@@ -21,3 +21,13 @@ All submissions, including submissions by project members, require review. We
 use GitHub pull requests for this purpose. Consult
 [GitHub Help](https://help.github.com/articles/about-pull-requests/) for more
 information on using pull requests.
+
+## Coding style
+
+Use Chromium's Python coding style as described [here][cr-python-style].
+
+You should be able to invoke [YAPF][yapf], which will pick up the style file at
+the root of the source tree.
+
+[cr-python-style]: https://chromium.googlesource.com/chromium/src/+/master/styleguide/styleguide.md
+[yapf]: https://github.com/google/yapf
