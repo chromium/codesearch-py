@@ -57,7 +57,20 @@ for search_result in response.search_response[0].search_result:
 In addition, the library also includes facilities for maintaining an ephemeral
 or persistent cache in order to minimize generated network traffic.
 
+**Note**: The library uses an unsupported interface to talk to the backend. If
+you are using the library and it suddenly stops working, file an issue and/or
+monitor the project on GitHub for updates.
+
 **Note**: This is not an official Google product.
+
+Support
+-------
+
+Feel free to submit issues on GitHub and/or contact the authors. This project is
+not officially supported by Google or the Chromium project.
+
+Contributing
+------------
 
 See [CONTRIBUTING](./CONTRIBUTING.md) for details on contributing.
 
