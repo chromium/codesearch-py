@@ -6,7 +6,7 @@
 
 from __future__ import absolute_import
 
-from .client_api import CodeSearch
+from .client_api import CodeSearch, XrefNode
 from .messages import Message, AnnotationTypeValue, AnnotationType, \
         InternalLink, XrefSignature, NodeEnumKind, KytheNodeEnumKind, \
         Annotation, FileSpec, FormatType, FormatRange, AnnotatedText, \

@@ -15,7 +15,7 @@ import os
 from .file_cache import FileCache
 from .messages import CompoundRequest, AnnotationType, AnnotationTypeValue, \
         CompoundResponse, FileInfoRequest, FileSpec, AnnotationRequest, \
-        EdgeEnumKind, XrefSearchRequest
+        EdgeEnumKind, XrefSearchRequest, XrefSingleMatch, XrefSearchResult
 from .paths import GetSourceRoot
 
 try:
@@ -24,6 +24,138 @@ try:
 except ImportError:
   from urllib2 import urlopen, Request
   from urllib import urlencode
+
+
+class XrefNode(object):
+  """A cross-reference node.
+
+  The codesearch data is represented as a graph of nodes where locations in
+  source or symbols are are connected to other symbols or locations in source
+  via edges.
+
+  In the abstract, a location or symbol in the source is represented using
+  what's called a "signature". In practice the signature is a string whose
+  exact contents is determined by the indexer. It's purpose is to act as an
+  identifier for the "thing" its referring to.
+
+  For example, the declaration of HttpNetworkTransaction in
+  net/http_network_transaction.cc (currently) has the signature
+  "cpp:net::class-HttpNetworkTransaction@chromium/../../net/http/http_network_transaction.h|def".
+
+  HttpNetworkTransaction declares a number of symols (more than 200 at the time
+  of writing). So you can figure out its declared symbols as follows:
+
+  >>> import codesearch
+
+  # Replace the path with where you have the Chromium sources checked out:
+  >>> cs = codesearch.CodeSearch(a_path_inside_source_dir='~/src/chrome/src')
+
+  # Ditto for the path to source:
+  >>> sig = cs.GetSignatureForSymbol('~/src/chrome/src/net/http/http_network_transaction.cc', \
+          'HttpNetworkTransaction')
+
+  >>> node = codesearch.XrefNode.FromSignature(cs, sig)
+  >>> node.GetEdges(codesearch.EdgeEnumKind.DECLARES)
+
+  This should dump out a list of XrefNode objects corresponding to the declared
+  symbols. You can inspect the .filespec and .single_match members to figure
+  out what the symols are.
+
+  Note that the members of the |node| object that was created by
+  XrefNode.FromSignature() doesn't have anything interesting in the |filespec|
+  and |single_match| members other than the signature.
+  """
+
+  def __init__(self, cs, single_match, filespec=None, parent=None):
+    """Constructs an XrefNode.
+
+    This is probably not what you are looking for. Instead figure out the
+    signature of the node you want to start with using one of the
+    GetSignatureFor* methods in CodeSearch, and then use the
+    XrefNode.FromSignature() static method to construct a starter node.
+
+    From there, you can use the GetEdge() and/or GetAllEdges() methods to
+    explore the cross references."""
+
+    self.cs = cs
+    self.filespec = filespec
+    self.single_match = single_match
+    self.parent = parent
+
+    assert isinstance(self.cs, CodeSearch)
+    assert isinstance(self.single_match, XrefSingleMatch)
+    assert self.parent is None or isinstance(self.parent, XrefNode)
+
+  def GetEdges(self, edge_enum_kind, max_num_results=500):
+    """Gets outgoing edges for this node matching |edge_enum_kind|.
+
+    |edge_enum_kind| can be either a single EdgeEnumKind value or it could be a
+    list of EdgeEnumKind values. In either case, all outgoing edges that match
+    any element in |edge_enum_kind| will be returned in the form of a list of
+    XrefNode objects.
+
+    If there are no matching edges, the funtion will return an empty list.
+    """
+    if isinstance(edge_enum_kind, list):
+      edge_filter = edge_enum_kind
+    else:
+      edge_filter = [edge_enum_kind]
+    results = self.cs.GetXrefsFor(self.single_match.signature, edge_filter,
+                                  max_num_results)
+    if not results:
+      return []
+
+    return XrefNode.FromSearchResults(self.cs, results, self)
+
+  def GetAllEdges(self, max_num_results=500):
+    """Return all known outgoing edges from this node.
+
+    Note that there can be literally hundreds of outgoing edges, if not
+    thousands. The |max_num_results| determines the number of results that will
+    be returned if there are too many.
+    """
+    return self.GetEdges([
+        getattr(EdgeEnumKind, x) for x in vars(EdgeEnumKind)
+        if isinstance(getattr(EdgeEnumKind, x), int)
+    ], max_num_results)
+
+  def __str__(self):
+    s = "{"
+    if self.filespec:
+      s += "filespec: {}, ".format(str(self.filespec))
+    s += "match: {}".format(str(self.single_match))
+    s += "}"
+    return s
+
+  @staticmethod
+  def FromSignature(cs, signature):
+    """Construct a XrefNode object for |signature|.
+
+    Other than the |signature| the constructured node will have no other
+    interesting fields. It can, however, be used to query outgoing edges.
+    """
+    return XrefNode(
+        cs, filespec=None, single_match=XrefSingleMatch(signature=signature))
+
+  @staticmethod
+  def FromSearchResults(cs, results, parent=None):
+    """Construct a *list* of XrefNode objects from a list of XrefSearchResult
+    objects.
+    """
+    nodes = []
+
+    assert isinstance(cs, CodeSearch)
+    assert isinstance(results, list)
+
+    for result in results:
+      assert isinstance(result, XrefSearchResult)
+
+      for match in result.match:
+        assert isinstance(match, XrefSingleMatch)
+
+        nodes.append(XrefNode(cs, match, result.file, parent))
+
+    return nodes
 
 
 class CodeSearch(object):
@@ -56,8 +188,6 @@ class CodeSearch(object):
 
     if not should_cache:
       self.file_cache = None
-      return
-    if self.file_cache:
       return
     self.file_cache = FileCache(cache_dir=cache_dir)
 
@@ -160,13 +290,14 @@ class CodeSearch(object):
 
     raise Exception("Can't determine signature for %s:%s" % (filename, symbol))
 
-  def GetXrefsFor(self, signature, edge_filter):
+  def GetXrefsFor(self, signature, edge_filter, max_num_results=500):
     refs = self.SendRequestToServer(
         CompoundRequest(xref_search_request=[
             XrefSearchRequest(
                 file_spec=self.GetFileSpec(),
                 query=signature,
-                edge_filter=edge_filter)
+                edge_filter=edge_filter,
+                max_num_results=max_num_results)
         ]))
     if not refs or not hasattr(refs.xref_search_response[0], 'search_result'):
       return []

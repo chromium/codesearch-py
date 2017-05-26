@@ -8,10 +8,20 @@ import os
 
 
 def GetPackageRelativePath(filename):
+  """GetPackageRelativePath returns the path to |filename| relative to the root
+  of the package as determined by GetSourceRoot()."""
+
   return os.path.relpath(filename, GetSourceRoot(filename))
 
 
 def GetSourceRoot(filename):
+  """Try to determine the root of the package which contains |filename|.
+
+  The current heuristic attempts to determine the root of the Chromium source
+  tree by searching up the directory hierarchy until we find a directory
+  containing src/.gn.
+  """
+
   # If filename is not absolute, then we are going to assume that it is
   # relative to the current directory.
   if not os.path.isabs(filename):

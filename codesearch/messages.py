@@ -43,6 +43,19 @@ class Message(object):
       values.extend(Message.ToQueryString(k, v))
     return values
 
+  def __str__(self):
+      s = "{"
+      first = True
+      for k, v in self.__dict__.iteritems():
+          if first:
+              first = False
+          else:
+              s += ", "
+          s += "{}: {}".format(k, str(v))
+      s += "}"
+      return s
+
+
   @staticmethod
   def ToQueryString(k, o):
     if o is None:
@@ -795,6 +808,7 @@ class XrefTypeCount(Message):
   }
 
 
+@message
 class XrefSingleMatch(Message):
   DESCRIPTOR = {
       'line_number': int,
