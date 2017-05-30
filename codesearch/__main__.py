@@ -20,7 +20,7 @@ import logging
 from codesearch import CodeSearch, CompoundRequest, \
         CodeSearchProtoJsonSymbolizedEncoder, CodeSearchProtoJsonEncoder, \
         XrefSearchRequest, SearchRequest, FileInfoRequest, DirInfoRequest, \
-        CallGraphRequest
+        CallGraphRequest, EdgeEnumKind
 
 
 def print_result(results, args):
@@ -53,6 +53,15 @@ def setup_logging(cs, args):
       level = logging.DEBUG
     cs.GetLogger().setLevel(level)
     logging.basicConfig()
+
+
+def get_edge_filter(args):
+  if args.all:
+    return [
+        getattr(EdgeEnumKind, x) for x in vars(EdgeEnumKind)
+        if isinstance(getattr(EdgeEnumKind, x), int)
+    ]
+  return []
 
 
 parser = argparse.ArgumentParser(description=__doc__)
@@ -102,12 +111,15 @@ xrefs_command = subcommands.add_parser(
     'xrefs',
     help='Query cross-references',
     parents=[signature_specifiers, common_args])
+xrefs_command.add_argument(
+    '--all', '-A', help='Include all outgoing references', action='store_true')
 xrefs_command.set_defaults(func=lambda cs, a: cs.SendRequestToServer(
     CompoundRequest(
         xref_search_request=[
             XrefSearchRequest(
                 query=get_signature(cs, a),
                 file_spec=cs.GetFileSpec('.'),
+                edge_filter=get_edge_filter(a),
                 max_num_results=100
             )
         ]
