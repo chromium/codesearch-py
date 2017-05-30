@@ -7,7 +7,7 @@ from .messages import FileInfo, TextRange, NodeEnumKind
 class TestCsFile(unittest.TestCase):
 
   def test_text_range(self):
-    cs = CodeSearch(a_path_inside_source_dir='/src/chrome/src')
+    cs = CodeSearch(source_root='/src/chrome/')
     cs_file = cs.GetFileInfo('/src/chrome/src/LICENSE')
 
     self.assertEqual(
@@ -30,12 +30,12 @@ class TestCsFile(unittest.TestCase):
                 start_line=17, start_column=59, end_line=19, end_column=2)))
 
   def test_path(self):
-    cs = CodeSearch(a_path_inside_source_dir='/src/chrome/src')
+    cs = CodeSearch(source_root='/src/chrome/')
     cs_file = cs.GetFileInfo('/src/chrome/src/LICENSE')
     self.assertEqual(cs_file.Path(), 'src/LICENSE')
 
   def test_display_name(self):
-    cs = CodeSearch(a_path_inside_source_dir='/src/chrome/src')
+    cs = CodeSearch(source_root='/src/chrome/')
     cs_file = cs.GetFileInfo('/src/chrome/src/net/http/http_auth.h')
     self.assertEqual(
         cs_file.GetDisplayName(

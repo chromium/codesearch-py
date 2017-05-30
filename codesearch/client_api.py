@@ -38,10 +38,10 @@ class CsFile(object):
     assert isinstance(self.file_info, FileInfo)
 
     if hasattr(self.file_info, 'content'):
-        self.lines = self.file_info.content.text.splitlines()
-        self.file_info.content.text = None
+      self.lines = self.file_info.content.text.splitlines()
+      self.file_info.content.text = None
     else:
-        self.lines = []
+      self.lines = []
     self.annotations = None
 
   def Path(self):
@@ -194,6 +194,8 @@ class XrefNode(object):
 
   def GetFile(self):
     """Return the file containing this XrefNode as a CsFile."""
+    if not self.filespec:
+      raise Exception('no filespec found for XrefNode')
     return self.cs.GetFileInfo(self.filespec)
 
   def GetDisplayName(self):
@@ -203,6 +205,8 @@ class XrefNode(object):
     XrefNode corresponds to a template specialization. In that case, this
     method will throw.
     """
+    if not self.filespec:
+      raise Exception('no filespec found for XrefNode')
     return self.cs.GetFileInfo(self.filespec).GetAnchorText(
         self.single_match.signature)
 
@@ -211,6 +215,8 @@ class XrefNode(object):
 
     See definition of NodeEnumKind for a list of possible node kinds."""
 
+    if not self.filespec:
+      raise Exception('no filespec found for XrefNode')
     annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
     for annotation in annotations:
       sig = getattr(annotation, 'xref_signature', None)
@@ -221,6 +227,9 @@ class XrefNode(object):
   def GetRelatedAnnotations(self):
     """Get related annotations. Currently this is defined to be annotations
     that surround the current xref location."""
+
+    if not self.filespec:
+      raise Exception('no filespec found for XrefNode')
     annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
     target_range = None
     for annotation in annotations:
@@ -242,6 +251,51 @@ class XrefNode(object):
       related.append(annotation)
     return related
 
+  def GetRelatedDefinitions(self):
+    """Get related definitions. Currently this is defined to be linked
+    definitions that surround the current xref location.
+
+    This is a hack that can be used to get at the type of a class member. E.g.:
+
+        class Foo {
+          public:
+            BarType bar_;
+        };
+
+    The signature of |bar_|'s definition should have a cross reference of type
+    HAS_TYPE which should link to the type. However, in practice, this
+    reference type may not be available. Instead, we use a heuristic where we
+    look for definitions that are on the same lines as the target. In this
+    case, we look for a LINK_TO_DEFINITION type annotation on the same line as
+    |bar_|. Such a link is likely to point to the type of |bar_| if it's a
+    compound type with cross reference information.
+    """
+
+    if not self.filespec:
+      raise Exception('no filespec found for XrefNode')
+    annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
+    target_range = None
+    for annotation in annotations:
+      sig = getattr(annotation, 'xref_signature', None)
+      if sig and sig.signature == self.single_match.signature:
+        target_range = annotation.range
+        break
+
+    if not target_range:
+      raise Exception('no related annotations')
+
+    related = []
+    for annotation in annotations:
+      if annotation.type.id != AnnotationTypeValue.LINK_TO_DEFINITION:
+        continue
+      if annotation.range.end_line < target_range.start_line or \
+              annotation.range.start_line > target_range.end_line:
+        continue
+      related.append(annotation)
+    return [
+        XrefNode.FromAnnotation(self.cs, annotation) for annotation in related
+    ]
+
   def GetSignature(self):
     """Return the signature for this node"""
     return self.single_match.signature
@@ -255,14 +309,33 @@ class XrefNode(object):
     return s
 
   @staticmethod
-  def FromSignature(cs, signature):
+  def FromSignature(cs, signature, filename=None):
     """Construct a XrefNode object for |signature|.
 
     Other than the |signature| the constructured node will have no other
     interesting fields. It can, however, be used to query outgoing edges.
     """
+
+    filespec = cs.GetFileSpec(filename) if filename else None
     return XrefNode(
-        cs, filespec=None, single_match=XrefSingleMatch(signature=signature))
+        cs,
+        filespec=filespec,
+        single_match=XrefSingleMatch(signature=signature))
+
+  @staticmethod
+  def FromAnnotation(cs, annotation):
+    """Construct a XrefNode based on an Annotation.
+
+      This is currently limited to annotations that have a LINK_TO_DEFINITION."""
+    assert isinstance(annotation, Annotation)
+    assert annotation.type.id == AnnotationTypeValue.LINK_TO_DEFINITION
+
+    return XrefNode.FromSignature(
+        cs,
+        annotation.internal_link.signature,
+        filename=FileSpec(
+            name=annotation.internal_link.path,
+            package_name=annotation.internal_link.package_name))
 
   @staticmethod
   def FromSearchResults(cs, results, parent=None):
@@ -296,6 +369,7 @@ class CodeSearch(object):
   def __init__(self,
                should_cache=False,
                cache_dir=None,
+               source_root=None,
                a_path_inside_source_dir=None,
                package_name='chromium',
                codesearch_host='https://cs.chromium.org',
@@ -318,7 +392,8 @@ class CodeSearch(object):
 
     self.request_timeout_in_seconds = request_timeout_in_seconds
 
-    self.source_root = GetSourceRoot(a_path_inside_source_dir)
+    self.source_root = source_root if source_root else GetSourceRoot(
+        a_path_inside_source_dir)
 
     self.user_agent_string = user_agent_string
 
