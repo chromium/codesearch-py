@@ -340,7 +340,6 @@ class CodeSearch(object):
     request = Request(url=url, headers={'User-Agent': self.user_agent_string})
     response = urlopen(request, timeout=self.request_timeout_in_seconds)
     result = response.read()
-    print url
     if self.file_cache:
       self.file_cache.put(url, result)
     return result.decode('utf8')
