@@ -15,7 +15,8 @@ import os
 from .file_cache import FileCache
 from .messages import CompoundRequest, AnnotationType, AnnotationTypeValue, \
         CompoundResponse, FileInfoRequest, FileSpec, AnnotationRequest, \
-        EdgeEnumKind, XrefSearchRequest, XrefSingleMatch, XrefSearchResult
+        EdgeEnumKind, XrefSearchRequest, XrefSingleMatch, XrefSearchResult, \
+        FileInfo, TextRange, Annotation
 from .paths import GetSourceRoot
 
 try:
@@ -24,6 +25,75 @@ try:
 except ImportError:
   from urllib2 import urlopen, Request
   from urllib import urlencode
+
+
+class CsFile(object):
+  """Represents a file known to CodeSearch and allows looking up annotations."""
+
+  def __init__(self, cs, file_info):
+    self.cs = cs
+    self.file_info = file_info
+
+    assert isinstance(self.cs, CodeSearch)
+    assert isinstance(self.file_info, FileInfo)
+
+    self.lines = self.file_info.content.text.splitlines()
+    self.file_info.content.text = None
+    self.annotations = None
+
+  def Path(self):
+    """Return the path to the file relative to the root of the source directory."""
+    return self.file_info.name
+
+  def Text(self, text_range):
+    """Given a TextRange, returns the text corresponding to said range in this file.
+
+    Any intervening newlines will be represented with a single '\n'."""
+
+    assert isinstance(text_range, TextRange)
+
+    if text_range.start_line <= 0 or text_range.start_line > len(self.lines) or \
+            text_range.end_line <= 0 or text_range.end_line > len(self.lines) or \
+            text_range.start_line > text_range.end_line:
+      raise IndexError('invalid range specified')
+    if text_range.start_line == text_range.end_line:
+      return self.lines[text_range.start_line
+                        - 1][text_range.start_column - 1:text_range.end_column]
+
+    first = [
+        self.lines[text_range.start_line - 1][text_range.start_column - 1:]
+    ]
+    middle = self.lines[text_range.start_line:text_range.end_line - 1]
+    end = [self.lines[text_range.end_line - 1][:text_range.end_column]]
+
+    return '\n'.join(first + middle + end)
+
+  def GetFileSpec(self):
+    return FileSpec(
+        name=self.file_info.name, package_name=self.file_info.package_name)
+
+  def GetAnnotations(self):
+    if self.annotations == None:
+      response = self.cs.GetAnnotationsForFile(self.GetFileSpec())
+      if not hasattr(response.annotation_response[0], 'annotation'):
+        raise Exception(
+            'can\'t fetch annotations for {}'.format(str(self.GetFileSpec())))
+      self.annotations = response.annotation_response[0].annotation
+      assert isinstance(self.annotations, list)
+      assert isinstance(self.annotations[0], Annotation)
+
+    return self.annotations
+
+  def GetAnchorText(self, signature):
+    # Fetch annotations if we haven't already.
+    self.GetAnnotations()
+
+    for annotation in self.annotations:
+      sig = getattr(annotation, 'xref_signature', None)
+      if sig and sig.signature == signature:
+        return self.Text(annotation.range)
+
+    raise Exception('can\'t determine display name for {}'.format(signature))
 
 
 class XrefNode(object):
@@ -119,11 +189,41 @@ class XrefNode(object):
         if isinstance(getattr(EdgeEnumKind, x), int)
     ], max_num_results)
 
+  def GetFile(self):
+    """Return the file containing this XrefNode as a CsFile."""
+    return self.cs.GetFileInfo(self.filespec)
+
+  def GetDisplayName(self):
+    """Return the display name for this XrefNode.
+
+    It is possible for there to be no associated displayname. E.g. if the
+    XrefNode corresponds to a template specialization. In that case, this
+    method will throw.
+    """
+    return self.cs.GetFileInfo(self.filespec).GetAnchorText(
+        self.single_match.signature)
+
+  def GetXrefKind(self):
+    """Return the kind of node.
+
+    See definition of NodeEnumKind for a list of possible node kinds."""
+
+    annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
+    for annotation in annotations:
+      sig = getattr(annotation, 'xref_signature', None)
+      if sig and sig.signature == self.single_match.signature:
+        return getattr(annotation, 'xref_kind', None)
+    raise Exception('unable to determine xref kind')
+
+  def GetSignature(self):
+    """Return the signature for this node"""
+    return self.single_match.signature
+
   def __str__(self):
     s = "{"
     if self.filespec:
       s += "filespec: {}, ".format(str(self.filespec))
-    s += "match: {}".format(str(self.single_match))
+    s += "single_match: {}".format(str(self.single_match))
     s += "}"
     return s
 
@@ -160,6 +260,12 @@ class XrefNode(object):
 
 class CodeSearch(object):
 
+  class Stats(object):
+
+    def __init__(self):
+      self.cache_hits = 0
+      self.cache_misses = 0  # == number of network requests made
+
   def __init__(self,
                should_cache=False,
                cache_dir=None,
@@ -171,6 +277,9 @@ class CodeSearch(object):
 
     # An instance of FileCache or None if no caching is to be performed.
     self.file_cache = None
+
+    # A cache mapping path -> CsFile objects.
+    self.file_info_cache = {}
 
     self.logger = logging.getLogger('codesearch')
 
@@ -186,6 +295,8 @@ class CodeSearch(object):
 
     self.user_agent_string = user_agent_string
 
+    self.stats = CodeSearch.Stats()
+
     if not should_cache:
       self.file_cache = None
       return
@@ -200,6 +311,9 @@ class CodeSearch(object):
   def GetFileSpec(self, path=None):
     if not path:
       return FileSpec(name='.', package_name=self.package_name)
+
+    if isinstance(path, FileSpec):
+      return path
 
     return FileSpec(
         name=os.path.relpath(os.path.abspath(path), self.source_root),
@@ -220,10 +334,13 @@ class CodeSearch(object):
       cached_response = self.file_cache.get(url)
       self.logger.debug('Found cached response')
       if (cached_response):
+        self.stats.cache_hits += 1
         return cached_response.decode('utf8')
+    self.stats.cache_misses += 1
     request = Request(url=url, headers={'User-Agent': self.user_agent_string})
     response = urlopen(request, timeout=self.request_timeout_in_seconds)
     result = response.read()
+    print url
     if self.file_cache:
       self.file_cache.put(url, result)
     return result.decode('utf8')
@@ -249,14 +366,8 @@ class CodeSearch(object):
         ]))
 
   def GetSignatureForLocation(self, filename, line, column):
-    result = self.GetAnnotationsForFile(
-        filename, [AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE)])
-    result = result.annotation_response[0]
-
-    if result.return_code != 1:
-      raise Exception('Request failed. Response=%s' % (result.AsQueryString()))
-
-    for annotation in result.annotation:
+    annotations = self.GetFileInfo(filename).GetAnnotations()
+    for annotation in annotations:
       if not annotation.range.Contains(line, column):
         continue
 
@@ -269,15 +380,46 @@ class CodeSearch(object):
     raise Exception("Can't determine signature for %s at %d:%d" %
                     (filename, line, column))
 
+  def GetFileInfo(self,
+                  filename,
+                  fetch_html_content=False,
+                  fetch_outline=False,
+                  fetch_folding=False,
+                  fetch_generated_from=False):
+    """Return a CsFile object corresponding to the file named by |filename|.
+
+    If |filename| is a FileSpec object, then that FileSpec object is used as-is
+    to locate the file. Otherwise |filename| is resolved as a local path which
+    should then map to a file known to CodeSearch."""
+
+    file_spec = self.GetFileSpec(filename)
+    cacheable = (not fetch_html_content) and (not fetch_outline) and (
+        not fetch_folding) and (not fetch_generated_from)
+    if cacheable and (file_spec.name in self.file_info_cache):
+      return self.file_info_cache[file_spec.name]
+
+    result = self.SendRequestToServer(
+        CompoundRequest(file_info_request=[
+            FileInfoRequest(
+                file_spec=self.GetFileSpec(filename),
+                fetch_html_content=fetch_html_content,
+                fetch_outline=fetch_outline,
+                fetch_folding=fetch_folding,
+                fetch_generated_from=fetch_generated_from)
+        ]))
+
+    if hasattr(result.file_info_response[0], 'file_info'):
+      file_info = CsFile(self, file_info=result.file_info_response[0].file_info)
+      if cacheable:
+        self.file_info_cache[file_spec.name] = file_info
+
+      return file_info
+
+    raise Exception('can\'t fetch file info for %f' % (filename))
+
   def GetSignatureForSymbol(self, filename, symbol):
-    result = self.GetAnnotationsForFile(
-        filename, [AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE)])
-    result = result.annotation_response[0]
-
-    if result.return_code != 1:
-      raise Exception('Request failed. Response=%s' % (result.AsQueryString()))
-
-    for snippet in result.annotation:
+    annotations = self.GetFileInfo(filename).GetAnnotations()
+    for snippet in annotations:
       if hasattr(snippet, 'xref_signature'):
         signature = snippet.xref_signature.signature
         if '%s(' % symbol in signature:

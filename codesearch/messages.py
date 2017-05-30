@@ -32,6 +32,22 @@ class CodeSearchProtoJsonSymbolizedEncoder(json.JSONEncoder):
     return o
 
 
+def StringifyObject(o, target_type):
+    def stringify_lines(o, level):
+        indent = '  ' * level
+        lines = [indent + '{']
+        for k, v in vars(o).iteritems():
+            if isinstance(v, target_type):
+                lines.append(indent + '  {}:'.format(k))
+                lines.extend(stringify_lines(v, level+1))
+            else:
+                lines.append(indent + '  {}: {}'.format(k, repr(v)))
+        lines.append(indent + '}')
+        return lines
+
+    return '\n'.join(stringify_lines(o, 0))
+
+
 class Message(object):
 
   class PARENT_TYPE:
@@ -44,16 +60,7 @@ class Message(object):
     return values
 
   def __str__(self):
-      s = "{"
-      first = True
-      for k, v in self.__dict__.iteritems():
-          if first:
-              first = False
-          else:
-              s += ", "
-          s += "{}: {}".format(k, str(v))
-      s += "}"
-      return s
+      return StringifyObject(self, Message)
 
 
   @staticmethod
@@ -189,7 +196,9 @@ class AnnotationType(Message):
   }
 
 
+@message
 class TextRange(Message):
+  """A range inside a source file. All indices are 1-based and inclusive."""
   DESCRIPTOR = {
       'start_line': int,
       'start_column': int,
