@@ -61,6 +61,8 @@ def get_edge_filter(args):
         getattr(EdgeEnumKind, x) for x in vars(EdgeEnumKind)
         if isinstance(getattr(EdgeEnumKind, x), int)
     ]
+  if args.type:
+    return args.type
   return []
 
 
@@ -113,6 +115,8 @@ xrefs_command = subcommands.add_parser(
     parents=[signature_specifiers, common_args])
 xrefs_command.add_argument(
     '--all', '-A', help='Include all outgoing references', action='store_true')
+xrefs_command.add_argument(
+    '--type', '-T', help='Include references of this type', action='append')
 xrefs_command.set_defaults(func=lambda cs, a: cs.SendRequestToServer(
     CompoundRequest(
         xref_search_request=[
