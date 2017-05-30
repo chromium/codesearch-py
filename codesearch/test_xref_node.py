@@ -50,6 +50,17 @@ class TestXrefNode(unittest.TestCase):
     # Previous 3 requests + (file_info_request, annotation_request) for http_network_transaction.h
     self.assertEqual(5, cs.stats.cache_misses)
 
+  def test_related_annotations(self):
+    cs = CodeSearch(a_path_inside_source_dir='/src/chrome/src')
+    node = XrefNode.FromSignature(cs, 'cpp:net::class-HttpNetworkTransaction::url_@chromium/../../net/http/http_network_transaction.h|def')
+    node.filespec = cs.GetFileSpec('/src/chrome/src/net/http/http_network_transaction.h')
+    related = node.GetRelatedAnnotations()
+
+    found_class = False
+    for annotation in related:
+        if annotation.xref_kind == NodeEnumKind.CLASS:
+            found_class = True
+    self.assertTrue(found_class)
 
 if __name__ == '__main__':
   unittest.main()

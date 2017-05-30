@@ -211,6 +211,25 @@ class TextRange(Message):
                 (line == self.start_line and column < self.start_column) or
                 (line == self.end_line and column > self.end_column))
 
+  def IsValid(self):
+    return hasattr(self, 'start_line') and \
+            hasattr(self, 'start_column') and \
+            hasattr(self, 'end_line') and \
+            hasattr(self, 'end_column')
+
+  def __eq__(self, other):
+      if not isinstance(other, TextRange):
+          return False
+
+      if not self.IsValid() or other.IsValid():
+          return False
+
+      return self.start_line == other.start_line and \
+              self.start_column == other.start_column and \
+              self.end_line == other.end_line and \
+              self.end_column == other.end_column
+
+
 
 class InternalLink(Message):
   DESCRIPTOR = {

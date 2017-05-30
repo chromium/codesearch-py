@@ -37,8 +37,11 @@ class CsFile(object):
     assert isinstance(self.cs, CodeSearch)
     assert isinstance(self.file_info, FileInfo)
 
-    self.lines = self.file_info.content.text.splitlines()
-    self.file_info.content.text = None
+    if hasattr(self.file_info, 'content'):
+        self.lines = self.file_info.content.text.splitlines()
+        self.file_info.content.text = None
+    else:
+        self.lines = []
     self.annotations = None
 
   def Path(self):
@@ -214,6 +217,30 @@ class XrefNode(object):
       if sig and sig.signature == self.single_match.signature:
         return getattr(annotation, 'xref_kind', None)
     raise Exception('unable to determine xref kind')
+
+  def GetRelatedAnnotations(self):
+    """Get related annotations. Currently this is defined to be annotations
+    that surround the current xref location."""
+    annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
+    target_range = None
+    for annotation in annotations:
+      sig = getattr(annotation, 'xref_signature', None)
+      if sig and sig.signature == self.single_match.signature:
+        target_range = annotation.range
+        break
+
+    if not target_range:
+      raise Exception('no related annotations')
+
+    related = []
+    for annotation in annotations:
+      if annotation.range.end_line < target_range.start_line or \
+              annotation.range.start_line > target_range.end_line:
+        continue
+      if annotation.range == target_range:
+        continue
+      related.append(annotation)
+    return related
 
   def GetSignature(self):
     """Return the signature for this node"""
