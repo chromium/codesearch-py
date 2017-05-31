@@ -22,7 +22,7 @@ class CodeSearchProtoJsonSymbolizedEncoder(json.JSONEncoder):
     if isinstance(o, Message):
       rv = {}
       desc = o.__class__.DESCRIPTOR
-      for k, v in o.__dict__.iteritems():
+      for k, v in o.__dict__.items():
         if k in desc and not isinstance(desc[k], list) and issubclass(
             desc[k], Message) and desc[k].IsEnum():
           rv[k] = desc[k].ToSymbol(v)
@@ -33,19 +33,20 @@ class CodeSearchProtoJsonSymbolizedEncoder(json.JSONEncoder):
 
 
 def StringifyObject(o, target_type):
-    def stringify_lines(o, level):
-        indent = '  ' * level
-        lines = [indent + '{']
-        for k, v in vars(o).iteritems():
-            if isinstance(v, target_type):
-                lines.append(indent + '  {}:'.format(k))
-                lines.extend(stringify_lines(v, level+1))
-            else:
-                lines.append(indent + '  {}: {}'.format(k, repr(v)))
-        lines.append(indent + '}')
-        return lines
 
-    return '\n'.join(stringify_lines(o, 0))
+  def stringify_lines(o, level):
+    indent = '  ' * level
+    lines = [indent + '{']
+    for k, v in vars(o).items():
+      if isinstance(v, target_type):
+        lines.append(indent + '  {}:'.format(k))
+        lines.extend(stringify_lines(v, level + 1))
+      else:
+        lines.append(indent + '  {}: {}'.format(k, repr(v)))
+    lines.append(indent + '}')
+    return lines
+
+  return '\n'.join(stringify_lines(o, 0))
 
 
 class Message(object):
@@ -55,13 +56,12 @@ class Message(object):
 
   def AsQueryString(self):
     values = []
-    for k, v in self.__dict__.iteritems():
+    for k, v in sorted(self.__dict__.items()):
       values.extend(Message.ToQueryString(k, v))
     return values
 
   def __str__(self):
-      return StringifyObject(self, Message)
-
+    return StringifyObject(self, Message)
 
   @staticmethod
   def ToQueryString(k, o):
@@ -103,7 +103,7 @@ class Message(object):
             source, dict), 'Source is not a dictionary: %s; Mapping to %s' % (
                 source, target_type)
         dest = target_type()
-        for k, v in source.iteritems():
+        for k, v in source.items():
           if k in typespec:
             dest.__dict__[k] = Message.Coerce(v, typespec[k], target_type)
           else:
@@ -132,7 +132,7 @@ class Message(object):
   @classmethod
   def ToSymbol(cls, v):
     assert cls.IsEnum()
-    for prop, value in vars(cls).iteritems():
+    for prop, value in vars(cls).items():
       if value == v:
         return prop
     return v
@@ -152,7 +152,7 @@ class Message(object):
 
   @classmethod
   def FromJsonString(cls, s):
-    d = json.loads(s, 'utf8')
+    d = json.loads(s)
     return cls.FromShallowDict(d)
 
   DESCRIPTOR = None
@@ -218,17 +218,16 @@ class TextRange(Message):
             hasattr(self, 'end_column')
 
   def __eq__(self, other):
-      if not isinstance(other, TextRange):
-          return False
+    if not isinstance(other, TextRange):
+      return False
 
-      if not self.IsValid() or other.IsValid():
-          return False
+    if not self.IsValid() or other.IsValid():
+      return False
 
-      return self.start_line == other.start_line and \
-              self.start_column == other.start_column and \
-              self.end_line == other.end_line and \
-              self.end_column == other.end_column
-
+    return self.start_line == other.start_line and \
+            self.start_column == other.start_column and \
+            self.end_line == other.end_line and \
+            self.end_column == other.end_column
 
 
 class InternalLink(Message):

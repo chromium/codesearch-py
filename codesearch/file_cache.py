@@ -48,19 +48,19 @@ class FileCache:
         f.seek(0)
 
       elif create and self.cache_dir is None:
-        f = tempfile.TemporaryFile()
+        f = tempfile.TemporaryFile(mode='w+b')
         f.seek(0)
 
       elif self.cache_dir:
-        deterministic_filename = os.path.join(self.cache_dir,
-                                              hashlib.sha1(url).hexdigest())
+        deterministic_filename = os.path.join(
+            self.cache_dir, hashlib.sha1(url.encode('utf-8')).hexdigest())
         if os.path.exists(deterministic_filename):
           st = os.stat(deterministic_filename)
           if create:
-            f = open(deterministic_filename, 'w+')
+            f = open(deterministic_filename, 'w+b')
           elif datetime.datetime.utcfromtimestamp(st.st_mtime) + \
                   self.expiration > datetime.datetime.now():
-            f = open(deterministic_filename, 'r+')
+            f = open(deterministic_filename, 'r+b')
             self.store[url] = (f,
                                datetime.datetime.utcfromtimestamp(st.st_mtime))
           else:
@@ -69,7 +69,7 @@ class FileCache:
             return None
         else:
           if create:
-            f = open(deterministic_filename, 'w+')
+            f = open(deterministic_filename, 'w+b')
           else:
             return None
       else:
@@ -80,11 +80,13 @@ class FileCache:
       return f
 
   def put(self, url, data):
+    """Store |data| as the response for |url|."""
     f = self._file_for(url, create=True)
     f.write(data)
     f.flush()
 
   def get(self, url):
+    """Get response data for |url|."""
     f = self._file_for(url, create=False)
     if f is None:
       return ''
@@ -92,6 +94,7 @@ class FileCache:
     return f.read()
 
   def gc(self):
+    """Garbage collect. Should be invoked periodically to keep cache directory clean."""
     dir_to_purge = None
     expiration = None
     with self.lock:
@@ -120,4 +123,5 @@ class FileCache:
         os.remove(full_path)
 
   def close(self):
+    """Stop using this FileCache. Should be called for every FileCache instance."""
     self.timer.cancel()

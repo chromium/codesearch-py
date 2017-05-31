@@ -18,6 +18,7 @@ from .messages import CompoundRequest, AnnotationType, AnnotationTypeValue, \
         EdgeEnumKind, XrefSearchRequest, XrefSingleMatch, XrefSearchResult, \
         FileInfo, TextRange, Annotation
 from .paths import GetSourceRoot
+from .compat import StringFromBytes
 
 try:
   from urllib.request import urlopen, Request
@@ -40,7 +41,6 @@ class CsFile(object):
 
     if hasattr(self.file_info, 'content'):
       self.lines = self.file_info.content.text.splitlines()
-      self.file_info.content.text = None
     else:
       self.lines = []
     self.annotations = None
@@ -56,10 +56,17 @@ class CsFile(object):
 
     assert isinstance(text_range, TextRange)
 
+    if len(self.lines) == 0:
+      raise IndexError('no text received for file contents. path:{}'.format(
+          self.file_info.name))
+
     if text_range.start_line <= 0 or text_range.start_line > len(self.lines) or \
             text_range.end_line <= 0 or text_range.end_line > len(self.lines) or \
             text_range.start_line > text_range.end_line:
-      raise IndexError('invalid range specified')
+      raise IndexError(
+          'invalid range specified: ({},{}) - ({},{}) : {} lines'.format(
+              text_range.start_line, text_range.start_column,
+              text_range.end_line, text_range.end_column, len(self.lines)))
     if text_range.start_line == text_range.end_line:
       return self.lines[text_range.start_line
                         - 1][text_range.start_column - 1:text_range.end_column]
@@ -189,7 +196,7 @@ class XrefNode(object):
     be returned if there are too many.
     """
     return self.GetEdges([
-        getattr(EdgeEnumKind, x) for x in vars(EdgeEnumKind)
+        getattr(EdgeEnumKind, x) for x in sorted(vars(EdgeEnumKind))
         if isinstance(getattr(EdgeEnumKind, x), int)
     ], max_num_results)
 
@@ -299,9 +306,9 @@ class XrefNode(object):
       abstract_node = XrefNode.FromAnnotation(self.cs, annotation)
       def_list = abstract_node.GetEdges(EdgeEnumKind.HAS_DEFINITION)
       if not def_list:
-          related.append(abstract_node)
+        related.append(abstract_node)
       else:
-          related.append(def_list[0])
+        related.append(def_list[0])
     return related
 
   def GetSignature(self):
@@ -461,7 +468,7 @@ class CodeSearch(object):
     result = response.read()
     if self.file_cache:
       self.file_cache.put(url, result)
-    return result.decode('utf8')
+    return StringFromBytes(result)
 
   def SendRequestToServer(self, compound_request):
     if not isinstance(compound_request, CompoundRequest):
@@ -525,6 +532,10 @@ class CodeSearch(object):
                 fetch_folding=fetch_folding,
                 fetch_generated_from=fetch_generated_from)
         ]))
+
+    if hasattr(result.file_info_response[0], 'error_message'):
+      raise Exception('error while fetching FileInfo: {}'.format(
+          result.file_info_response[0].error_message))
 
     if hasattr(result.file_info_response[0], 'file_info'):
       file_info = CsFile(self, file_info=result.file_info_response[0].file_info)

@@ -14,7 +14,7 @@ from .testing_support import InstallTestRequestHandler
 class TestCsFile(unittest.TestCase):
 
   def setUp(self):
-      InstallTestRequestHandler()
+    InstallTestRequestHandler()
 
   def test_text_range(self):
     cs = CodeSearch(source_root='/src/chrome/')

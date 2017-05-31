@@ -25,13 +25,13 @@ from codesearch import CodeSearch, CompoundRequest, \
 
 def print_result(results, args):
   if args.pretty:
-    print json.dumps(
+    print(json.dumps(
         results,
         indent=4,
         ensure_ascii=True,
-        cls=CodeSearchProtoJsonSymbolizedEncoder)
+        cls=CodeSearchProtoJsonSymbolizedEncoder))
   else:
-    print json.dumps(results, cls=CodeSearchProtoJsonEncoder)
+    print(json.dumps(results, cls=CodeSearchProtoJsonEncoder))
 
 
 def get_signature(cs, args):

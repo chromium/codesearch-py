@@ -17,8 +17,8 @@ class TestFileCache(unittest.TestCase):
   def test_with_no_cache_dir(self):
     try:
       f = FileCache()
-      f.put('foo', 'hello')
-      self.assertEqual('hello', f.get('foo'))
+      f.put('foo', 'hello'.encode('utf-8'))
+      self.assertEqual('hello'.encode('utf-8'), f.get('foo'))
     finally:
       f.close()
 
@@ -29,12 +29,12 @@ class TestFileCache(unittest.TestCase):
     try:
       test_dir = tempfile.mkdtemp()
       f = FileCache(cache_dir=test_dir)
-      f.put('foo', 'hello')
+      f.put('foo', 'hello'.encode('utf-8'))
       f.close()
       f = None
 
       g = FileCache(cache_dir=test_dir)
-      self.assertEqual('hello', g.get('foo'))
+      self.assertEqual('hello'.encode('utf-8'), g.get('foo'))
       g.close()
       g = None
     finally:

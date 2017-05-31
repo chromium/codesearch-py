@@ -4,6 +4,8 @@
 # license that can be found in the LICENSE file or at
 # https://developers.google.com/open-source/licenses/bsd.
 
+from __future__ import print_function
+
 import os
 import sys
 import hashlib
@@ -13,46 +15,104 @@ from email.message import Message
 
 try:
   from urllib.request import urlopen, Request, HTTPSHandler, install_opener, build_opener
+  from urllib.response import addinfourl
+  from urllib.error import URLError
 except ImportError:
-  from urllib2 import urlopen, Request, HTTPSHandler, install_opener, build_opener, addinfourl
+  from urllib2 import urlopen, Request, HTTPSHandler, install_opener, build_opener, addinfourl, URLError
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 RESPONSE_DATA_DIR = os.path.join(SCRIPT_DIR, 'testdata', 'responses')
 
+
+def DumpByteArray(b):
+  print('Decoded : {}'.format(b.decode('utf-8')))
+  print('Digest  : {}'.format(hashlib.sha1(b).hexdigest()))
+
+  for i in range(len(b)):
+    if (i % 32) == 0:
+      print('')
+    print('{:02x} '.format(b[i]), end='')
+  print('')
+
+
+if sys.version_info[0] < 3:
+
+  def GetRequestData(request):
+    return bytes(request.get_data()) if request.has_data() else bytes()
+
+  def StringFromBytes(b):
+    return str(b)
+
+  def AddDataToRequest(req, d):
+    req.add_data(d)
+
+else:
+
+  def GetRequestData(request):
+    return request.data if request.data is not None else bytes()
+
+  def StringFromBytes(b):
+    return str(b, encoding='utf-8')
+
+  def AddDataToRequest(req, d):
+    req.data = d
+
+
+requests_seen = []
+
+
+def DigestFromRequest(req):
+  b = bytearray(req.get_full_url().encode('utf-8'))
+  b.extend(GetRequestData(req))
+  return hashlib.sha1(b).hexdigest()
+
+
 class TestHttpHandler(HTTPSHandler):
-    def __init__(self):
-        pass
 
-    def default_open(self, request):
-        return None
+  def __init__(self):
+    pass
 
-    def https_open(self, request):
-        url = request.get_full_url()
-        data = request.get_data() if request.has_data() else ''
-        digest = hashlib.sha1((url + data).encode('utf-8')).hexdigest()
-        response_file_path = os.path.join(RESPONSE_DATA_DIR, digest)
+  def default_open(self, request):
+    return None
 
-        if os.path.exists(response_file_path):
-            f = open(response_file_path, 'r')
-            m = Message()
-            m.add_header('Content-Type', 'application/json')
-            resp = addinfourl(f, headers=m, url=url, code=200)
-            resp.msg = 'Success'
-            resp.code = 200
-            return resp
+  def https_open(self, request):
+    url = request.get_full_url()
+    data = GetRequestData(request)
+    digest = DigestFromRequest(request)
+    response_file_path = os.path.join(RESPONSE_DATA_DIR, digest)
 
-        # The file was not there. Create a missing resource file.
-        missing_response_file_path = os.path.join(RESPONSE_DATA_DIR, '{}.missing'.format(digest))
-        with open(missing_response_file_path, 'w') as f:
-            json.dump({ "url": url, "data": data, "digest": digest}, f, encoding='utf-8')
+    requests_seen.append(request)
 
-        return None
+    if os.path.exists(response_file_path):
+      f = open(response_file_path, mode='rb')
+      m = Message()
+      m.add_header('Content-Type', 'application/json')
+      resp = addinfourl(f, headers=m, url=url, code=200)
+      resp.msg = 'Success'
+      resp.code = 200
+      return resp
 
-    def http_open(self, request):
-        return self.https_open(request)
+    # The file was not there. Create a missing resource file.
+    missing_response_file_path = os.path.join(RESPONSE_DATA_DIR,
+                                              '{}.missing'.format(digest))
+    with open(missing_response_file_path, mode='wb') as f:
+      s = json.dumps({
+          "url": url,
+          "data": StringFromBytes(data),
+          "digest": digest
+      })
+      f.write(s.encode('utf-8'))
+
+    raise URLError(
+        'URL is not cached. Created missing request record: {}.missing'.format(
+            digest))
+
+  def http_open(self, request):
+    return self.https_open(request)
+
 
 def InstallTestRequestHandler():
-    """Any test that makes network requests to https://cs.codesearch.com (i.e.
+  """Any test that makes network requests to https://cs.codesearch.com (i.e.
     those that rely on making network requests) should call this function in
     their respective setUp() functions.
    
@@ -63,34 +123,51 @@ def InstallTestRequestHandler():
     directory containing the expected response data.
 
     This mechanism prevents the tests from making direct network requests.
-    """ 
-    install_opener(build_opener(TestHttpHandler()))
+    """
+  install_opener(build_opener(TestHttpHandler()))
+
+
+def LastRequest():
+  if len(requests_seen) > 0:
+    return requests_seen.pop()
+
 
 if __name__ == '__main__':
 
-    # Attempt to resolve all missing resource requests.
-    for name in os.listdir(RESPONSE_DATA_DIR):
-        if not name.endswith('.missing'):
-            continue
+  # Attempt to resolve all missing resource requests.
 
-        print 'Resolving {}'.format(name)
+  resolved_count = 0
 
-        with open(os.path.join(RESPONSE_DATA_DIR, name), 'r') as f:
-            o = json.load(f, encoding='utf-8')
+  for name in os.listdir(RESPONSE_DATA_DIR):
+    if not name.endswith('.missing'):
+      continue
 
-        url, data, digest = o["url"], o["data"], o["digest"]
-        req = Request(url=url)
-        if data != '':
-            req.add_data(data)
-        try:
-            response = urlopen(req, timeout=3)
-            result = response.read()
+    print('Resolving {}'.format(name))
 
-            with open(os.path.join(RESPONSE_DATA_DIR, digest), 'w') as f:
-                f.write(result)
+    with open(
+        os.path.join(RESPONSE_DATA_DIR, name), mode='r', encoding='utf-8') as f:
+      o = json.load(f)
 
-            os.unlink(os.path.join(RESPONSE_DATA_DIR, name))
+    url, data, digest = o["url"], o["data"], o["digest"]
+    req = Request(url=url)
+    if data != '':
+      AddDataToRequest(req, data.encode('utf-8'))
 
-            print '   Resolved. Wrote {}'.format(digest)
-        except Exception as e:
-            print '   FAILED.:{}'.format(e.message)
+    try:
+      response = urlopen(req, timeout=3)
+      result = response.read()
+
+      with open(os.path.join(RESPONSE_DATA_DIR, digest), 'wb') as f:
+        f.write(result)
+
+      os.unlink(os.path.join(RESPONSE_DATA_DIR, name))
+
+      print('   Resolved. Wrote {}'.format(digest))
+      resolved_count += 1
+
+    except Exception as e:
+      print('   FAILED.:{} while looking at {}'.format(str(e), name))
+      raise e
+
+  if resolved_count > 0:
+    print('\nDon\'t forget to \'git add\' the new files and commit them.')

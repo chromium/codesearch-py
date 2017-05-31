@@ -13,7 +13,7 @@ from .testing_support import InstallTestRequestHandler
 class TestXrefNode(unittest.TestCase):
 
   def setUp(self):
-      InstallTestRequestHandler()
+    InstallTestRequestHandler()
 
   def test_simple_xref_lookup(self):
     cs = CodeSearch(source_root='/src/chrome/')
