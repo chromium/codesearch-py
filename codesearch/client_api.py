@@ -129,11 +129,11 @@ class XrefNode(object):
   >>> import codesearch
 
   # Replace the path with where you have the Chromium sources checked out:
-  >>> cs = codesearch.CodeSearch(a_path_inside_source_dir='~/src/chrome/src')
+  >>> cs = codesearch.CodeSearch(source_root='/src/chrome/src')
 
   # Ditto for the path to source:
-  >>> sig = cs.GetSignatureForSymbol('~/src/chrome/src/net/http/http_network_transaction.cc', \
-          'HttpNetworkTransaction')
+  >>> sig = cs.GetSignatureForSymbol('/src/chrome/src/net/http/http_network_transaction.cc', 'HttpNetworkTransaction')
+  >>> sig
 
   >>> node = codesearch.XrefNode.FromSignature(cs, sig)
   >>> node.GetEdges(codesearch.EdgeEnumKind.DECLARES)
@@ -484,6 +484,14 @@ class CodeSearch(object):
       self,
       filename,
       annotation_types=[AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE)]):
+    """Retrieves a list of annotations for a file.
+
+    Note that it is much more efficient in your scripts to use
+    CsFile.GetAnnotations() instead of calling this function directly. CsFile
+    caches the annotations per file, and CodeSearch.GetFileInfo() ensures that
+    there's only one CsFile per file. This minimizes the number of requests
+    sent over the network.
+    """
     return self.SendRequestToServer(
         CompoundRequest(annotation_request=[
             AnnotationRequest(
@@ -491,6 +499,10 @@ class CodeSearch(object):
         ]))
 
   def GetSignatureForLocation(self, filename, line, column):
+    """Get the signature of the symbol at a specific location in a source file.
+
+    All locations are 1-based."""
+
     annotations = self.GetFileInfo(filename).GetAnnotations()
     for annotation in annotations:
       if not annotation.range.Contains(line, column):
@@ -561,6 +573,11 @@ class CodeSearch(object):
 
     raise Exception("Can't determine signature for %s:%s" % (filename, symbol))
 
+  def GetSignaturesForSymbol(self, symbol, xref_kind=None, filename=None):
+    """Get matching signatures given a symbol.
+
+    """
+
   def GetXrefsFor(self, signature, edge_filter, max_num_results=500):
     refs = self.SendRequestToServer(
         CompoundRequest(xref_search_request=[
@@ -604,6 +621,16 @@ class CodeSearch(object):
     return candidates
 
   def IsContentStale(self, filename, buffer_lines, check_prefix=False):
+    """Returns true if the file known to codesearch has different contents from
+    what's expected.
+
+    |filename| specifies a file on disk (or just relative to the
+    |source_root|).  |buffer_lines| is a list of strings containing the
+    expected contents of the file.
+    
+    If |check_prefix| is true, then only the first len(buffer_lines) lines of
+    |filename| are compared.
+    """
     response = self.SendRequestToServer(
         CompoundRequest(file_info_request=[
             FileInfoRequest(
