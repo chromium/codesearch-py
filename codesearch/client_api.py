@@ -21,10 +21,11 @@ from .paths import GetSourceRoot
 
 try:
   from urllib.request import urlopen, Request
-  from urllib.parse import urlencode
+  from urllib.parse import urlencode, urlparse
 except ImportError:
   from urllib2 import urlopen, Request
   from urllib import urlencode
+  from urlparse import urlparse
 
 
 class CsFile(object):
@@ -269,6 +270,10 @@ class XrefNode(object):
     case, we look for a LINK_TO_DEFINITION type annotation on the same line as
     |bar_|. Such a link is likely to point to the type of |bar_| if it's a
     compound type with cross reference information.
+
+    If any such definitions are found, a further HAS_DEFINITION edge lookup is
+    performed so that the resulting XrefNode corresponds to the definition of
+    the type.
     """
 
     if not self.filespec:
@@ -291,10 +296,13 @@ class XrefNode(object):
       if annotation.range.end_line < target_range.start_line or \
               annotation.range.start_line > target_range.end_line:
         continue
-      related.append(annotation)
-    return [
-        XrefNode.FromAnnotation(self.cs, annotation) for annotation in related
-    ]
+      abstract_node = XrefNode.FromAnnotation(self.cs, annotation)
+      def_list = abstract_node.GetEdges(EdgeEnumKind.HAS_DEFINITION)
+      if not def_list:
+          related.append(abstract_node)
+      else:
+          related.append(def_list[0])
+    return related
 
   def GetSignature(self):
     """Return the signature for this node"""
@@ -395,7 +403,7 @@ class CodeSearch(object):
     self.source_root = source_root if source_root else GetSourceRoot(
         a_path_inside_source_dir)
 
-    self.user_agent_string = user_agent_string
+    self.extra_headers = {'User-Agent': user_agent_string}
 
     self.stats = CodeSearch.Stats()
 
@@ -439,7 +447,16 @@ class CodeSearch(object):
         self.stats.cache_hits += 1
         return cached_response.decode('utf8')
     self.stats.cache_misses += 1
-    request = Request(url=url, headers={'User-Agent': self.user_agent_string})
+
+    # Long URLs cause the request to fail.
+    if len(url) > 1500:
+      parsed = urlparse(url)
+      short_url = '{}://{}{}'.format(parsed.scheme, parsed.netloc, parsed.path)
+      data = parsed.query.encode('utf-8')
+      request = Request(url=short_url, headers=self.extra_headers, data=data)
+    else:
+      request = Request(url=url, headers=self.extra_headers)
+
     response = urlopen(request, timeout=self.request_timeout_in_seconds)
     result = response.read()
     if self.file_cache:

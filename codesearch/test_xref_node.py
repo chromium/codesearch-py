@@ -73,8 +73,22 @@ class TestXrefNode(unittest.TestCase):
     related = node.GetRelatedDefinitions()
 
     self.assertEqual(1, len(related))
-    self.assertEqual('GURL',related[0].GetDisplayName())
-    self.assertEqual(NodeEnumKind.CLASS, related[0].GetXrefKind())
+    definition = related[0]
+    self.assertTrue(definition.single_match.grok_modifiers.definition)
+    self.assertEqual('GURL', definition.GetDisplayName())
+    self.assertEqual(NodeEnumKind.CLASS, definition.GetXrefKind())
+
+  def test_get_all_edges(self):
+    cs = CodeSearch(source_root='/src/chrome/')
+    node = XrefNode.FromSignature(
+        cs,
+        'cpp:net::class-HttpNetworkTransaction::RestartWithCertificate(net::X509Certificate *, net::SSLPrivateKey *, const base::Callback<void (int), base::internal::CopyMode::Copyable, base::internal::RepeatMode::Repeating> &)@chromium/../../net/http/http_network_transaction.cc|def',
+        '/src/chrome/src/net/http/http_network_transaction.cc')
+    all_edges = node.GetAllEdges(max_num_results=10)
+
+    # Definitely more than 10 edges here. But can't check for an exact number
+    # due to some results getting elided.
+    self.assertLess(0, len(all_edges))
 
 
 if __name__ == '__main__':

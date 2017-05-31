@@ -716,9 +716,7 @@ class CallGraphRequest(Message):
 
 
 class EdgeEnumKind(Message):
-  """Types of edge. This list has been pruned to under 100. It seems the
-  CodeSearch backend doesn't like edge filters with more than 100 items in
-  it."""
+  """Types of edge."""
 
   DESCRIPTOR = int
 
@@ -813,10 +811,10 @@ class EdgeEnumKind(Message):
   SENDS_TO = 2352
   SPECIALIZATION_OF = 1600
   SPECIALIZED_BY = 1700
-#  THROWGRAPH_FROM = 6700
-#  THROWGRAPH_TO = 6600
-#  THROWN_BY = 6300
-#  THROWS = 6200
+  THROWGRAPH_FROM = 6700
+  THROWGRAPH_TO = 6600
+  THROWN_BY = 6300
+  THROWS = 6200
   TREE_CHILD = 7900
   TREE_PARENT = 7800
   TYPE_PARAMETER = 1500
@@ -826,10 +824,10 @@ class EdgeEnumKind(Message):
   USES_CHANNEL = 2350
   USES_VARIABLE = 7000
   VARIABLE_USED_IN = 7100
-#  XLANG_PROVIDES = 8600
-#  XLANG_PROVIDES_NAME = 8400
-#  XLANG_USES = 8700
-#  XLANG_USES_NAME = 8500
+  XLANG_PROVIDES = 8600
+  XLANG_PROVIDES_NAME = 8400
+  XLANG_USES = 8700
+  XLANG_USES_NAME = 8500
 
 
 class XrefTypeCount(Message):
