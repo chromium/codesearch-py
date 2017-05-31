@@ -1,10 +1,20 @@
+# Copyright 2017 The Chromium Authors.
+#
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file or at
+# https://developers.google.com/open-source/licenses/bsd.
+
 import unittest
 
 from .client_api import CsFile, CodeSearch
 from .messages import FileInfo, TextRange, NodeEnumKind
+from .testing_support import InstallTestRequestHandler
 
 
 class TestCsFile(unittest.TestCase):
+
+  def setUp(self):
+      InstallTestRequestHandler()
 
   def test_text_range(self):
     cs = CodeSearch(source_root='/src/chrome/')
@@ -38,7 +48,7 @@ class TestCsFile(unittest.TestCase):
     cs = CodeSearch(source_root='/src/chrome/')
     cs_file = cs.GetFileInfo('/src/chrome/src/net/http/http_auth.h')
     self.assertEqual(
-        cs_file.GetDisplayName(
+        cs_file.GetAnchorText(
             'cpp:net::class-HttpAuth@chromium/../../net/http/http_auth.h|def'),
         'HttpAuth')
 
