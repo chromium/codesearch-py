@@ -12,12 +12,42 @@ A quick example:
 ``` python
 import codesearch
 
-# The plugin needs to locate a local Chromium checkout. We are passing '.' as a
-# path inside the source directory, which works if the current directory is
-# inside the Chromium checkout. The configuration mechanism is likely to change.
-cs = codesearch.CodeSearch(a_path_inside_source_dir='.')
+# The plugin can optionally work with a local Chromium checkout (see the
+# documentation for CodeSearch.__init__()), but for this example, we are going
+# use the API without a local checkout. This is indicated by setting the
+# |source_root| to '.'.
+cs = codesearch.CodeSearch(source_root='.')
 
-# The backend takes a CompoundRequest object ...
+# Let's look up a class:
+# The SearchForSymbol function searches for a symbol of a specific type. In
+# this case we are looking for a class named File. There may be more than one
+# such class, so the function returns an array. We only need the first one.
+file_class = cs.SearchForSymbol('File', codesearch.NodeEnumKind.CLASS)[0]
+
+# SearchForSymbol returns an XrefNode object. This is a starting point for cross
+# reference lookups.
+assert isinstance(file_class, XrefNode)
+
+# Say we want to look at all the declared members of the File class. This
+# includes both member functions and member variables:
+members = file_class.GetEdges(codesearch.EdgeEnumKind.DECLARES)
+
+# There'll be a bunch of these.
+assert len(members) > 0
+
+# ... and they are all XrefNode objects.
+assert isinstance(members[0], XrefNode)
+
+# We can find out what kind it is. The kinds that are known to CodeSearch are
+# described in the codesearch.NodeEnumKind enumeration.
+print(members[0].GetXrefKind())
+
+
+# In addition to the above, there are lower level APIs to talk to the unofficial
+# endpoints in the https://cs.chromium.org backend. One such API is 
+# SendRequestToServer.
+
+# SendRequestToServer takes a CompoundRequest object ...
 response = cs.SendRequestToServer(codesearch.CompoundRequest(
     search_request=[
         codesearch.SearchRequest(query='hello world')
@@ -38,6 +68,9 @@ assert hasattr(response, 'search_response')
 assert isinstance(response.search_response, list)
 assert isinstance(response.search_response[0], codesearch.SearchResponse)
 
+# Note there will be only one search_response object.
+assert len(response.search_response) == 1
+
 # We can now examine the contents of the SearchResponse object to see what the
 # server sent us. The fields are explained in message.py.
 
@@ -51,7 +84,7 @@ for search_result in response.search_response[0].search_result:
         assert isinstance(snippet, codesearch.Snippet)
 
 	# Just print the text of the search result snippet.
-        print snippet.text.text
+        print(snippet.text.text)
 ```
 
 In addition, the library also includes facilities for maintaining an ephemeral

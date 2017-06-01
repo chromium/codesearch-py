@@ -376,6 +376,7 @@ class XrefNode(object):
 class CodeSearch(object):
 
   class Stats(object):
+    """Used internally to track how many requests are being made."""
 
     def __init__(self):
       self.cache_hits = 0
@@ -390,6 +391,59 @@ class CodeSearch(object):
                codesearch_host='https://cs.chromium.org',
                request_timeout_in_seconds=3,
                user_agent_string='Python-CodeSearch-Client'):
+    """Initialize a CodeSearch object.
+
+    Creating a CodeSearch object is probably the first thing you are going to
+    do since all the other classes that make requests to the codesearch
+    backened depend on it.
+
+    Arguments:
+        should_cache -- Should be set to True in order to use a disk cache. See
+            documentation for cache_dir for how the cache is organized.
+
+        cache_dir -- Directory where the disk cache is located. Only considered
+            should_cache is True.
+
+            The directory is created if it doesn't already exist. Any files
+            contained therein are considered to be part of the cache. Hence you
+            can reuse a single cache across multiple sessions / instantiations
+            of the library. The exact contents of the directory is an
+            implementation detail of FileCache.
+
+            Set this to None to use an ephemeral disk cache that's only used
+            during a single session.
+
+        source_root -- The CodeSearch backend refers to files using paths that
+            are relative to the root of a source tree. This argument specifies
+            this root in the local filesystem.
+
+            E.g.: if source_root == '/src/chrome/', then a the library can look
+            at a path like '/src/chrome/src/base/logging.h' and rewrite it to be
+            'src/base/logging.h'. The latter is the source-relative path known
+            to CodeSearch.
+
+            Set this to '.' in order to use source-relative paths directly with
+            not modification.
+
+            Or leave out source_root and specify a_path_inside_source_dir
+            instead if that's easier. Either works.
+
+        a_path_inside_source_dir -- As the name implies, this shoud be a path to
+            a file inside the Chromium source directory. The library will
+            examing the path and determine the root.
+
+        user_agent_string -- The UA string to use when making requests to the
+            CodeSearch backend.
+
+        request_timeout_in_seconds -- Timeout to be applied to requests made to
+            the server.
+
+    In general, you only need to set the source_root or a_path_inside_source_dir
+    in order to construct a functional CodeSearch object.
+
+    E.g.:
+    >>> cs = CodeSearch(source_root='.')
+    """
 
     # An instance of FileCache or None if no caching is to be performed.
     self.file_cache = None
@@ -398,8 +452,6 @@ class CodeSearch(object):
     self.file_info_cache = {}
 
     self.logger = logging.getLogger('codesearch')
-
-    self.source_root = ''
 
     self.package_name = package_name
 
@@ -443,8 +495,15 @@ class CodeSearch(object):
     self.file_cache = None
 
   def _Retrieve(self, url):
-    """Retrieve the URL by first checking the cache and then falling back to
-        using the network."""
+    """Retrieve the URL, optionally using the cache.
+
+    If a cache is in use, checks if the URL is cached, otherwise sends it to the
+    network. Note that the cache in question may not obey usual HTTP caching
+    semantics.
+
+    The response is a str object containing the response body on success. Will
+    throw on failure.
+    """
     self.logger.debug('Fetching %s', url)
 
     if self.file_cache:
