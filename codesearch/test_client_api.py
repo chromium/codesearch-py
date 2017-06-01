@@ -13,7 +13,7 @@ import tempfile
 import unittest
 
 from .client_api import CodeSearch, XrefNode
-from .messages import CompoundRequest, CompoundResponse, FileInfoRequest, FileInfoResponse, NodeEnumKind
+from .messages import CompoundRequest, CompoundResponse, FileInfoRequest, FileInfoResponse, NodeEnumKind, EdgeEnumKind
 from .testing_support import InstallTestRequestHandler, LastRequest
 
 SOURCE_ROOT = '/src/chrome/'
@@ -62,18 +62,126 @@ class TestCodeSearch(unittest.TestCase):
                                            NodeEnumKind.CONSTRUCTOR)
     self.assertEqual(6, len(signatures))
 
-
   def test_search_for_symbol(self):
-      cs = CodeSearch(source_root='.')
+    cs = CodeSearch(source_root='.')
 
-      signatures = cs.SearchForSymbol('File', NodeEnumKind.CLASS)
+    signatures = cs.SearchForSymbol('File', NodeEnumKind.CLASS)
 
-      self.assertEqual(1, len(signatures))
-      self.assertTrue(isinstance(signatures[0], XrefNode))
+    self.assertEqual(1, len(signatures))
+    self.assertTrue(isinstance(signatures[0], XrefNode))
 
-      signatures = cs.SearchForSymbol('URLRequestJob', NodeEnumKind.CLASS)
-      self.assertEqual(1, len(signatures))
-      self.assertTrue(isinstance(signatures[0], XrefNode))
+    signatures = cs.SearchForSymbol('URLRequestJob', NodeEnumKind.CLASS)
+    self.assertEqual(1, len(signatures))
+    self.assertTrue(isinstance(signatures[0], XrefNode))
+
+  def test_figment_display_name(self):
+    cs = CodeSearch(source_root='.')
+
+    signatures = cs.SearchForSymbol('File', NodeEnumKind.CLASS)
+    self.assertEqual(1, len(signatures))
+
+    file_class = signatures[0]
+    declarations = file_class.GetEdges(EdgeEnumKind.DECLARES)
+
+    ed = [
+        d for d in declarations
+        if ' created_' in d.single_match.line_text and
+        d.GetXrefKind() == NodeEnumKind.FIELD
+    ][0]
+    ed_type = ed.GetEdges(EdgeEnumKind.HAS_TYPE)[0]
+    self.assertEqual('bool', ed_type.GetDisplayName())
+
+  def test_figment_display_name_2(self):
+    cs = CodeSearch(source_root='.')
+    signatures = cs.SearchForSymbol('GrowableIOBuffer', NodeEnumKind.CLASS)
+    self.assertEqual(1, len(signatures))
+
+    gb_class = signatures[0]
+    declarations = gb_class.GetEdges(EdgeEnumKind.DECLARES)
+
+    rd = [
+        d for d in declarations
+        if ' real_data_' in d.single_match.line_text and
+        d.GetXrefKind() == NodeEnumKind.FIELD
+    ][0]
+    rd_type = rd.GetEdges(EdgeEnumKind.HAS_TYPE)[0]
+    self.assertEqual('std::unique_ptr<char, base::FreeDeleter>',
+                     rd_type.GetDisplayName())
+
+  def test_figment_display_name_3(self):
+    cs = CodeSearch(source_root='.')
+    signatures = cs.SearchForSymbol('PickledIOBuffer', NodeEnumKind.CLASS)
+    self.assertEqual(1, len(signatures))
+
+    gb_class = signatures[0]
+    declarations = gb_class.GetEdges(EdgeEnumKind.DECLARES)
+
+    p = [
+        d for d in declarations
+        if ' pickle_' in d.single_match.line_text and
+        d.GetXrefKind() == NodeEnumKind.FIELD
+    ][0]
+    p_type = p.GetEdges(EdgeEnumKind.HAS_TYPE)
+    self.assertEqual(0, len(p_type))
+
+    reldefns = p.GetRelatedDefinitions()
+    self.assertEqual(2, len(reldefns))
+
+    class_defn = [d for d in reldefns
+                  if d.GetXrefKind() == NodeEnumKind.CLASS][0]
+    self.assertEqual('Pickle', class_defn.GetDisplayName())
+
+  def test_get_type_1(self):
+    cs = CodeSearch(source_root='.')
+
+    signatures = cs.SearchForSymbol('File', NodeEnumKind.CLASS)
+    self.assertEqual(1, len(signatures))
+
+    file_class = signatures[0]
+    declarations = file_class.GetEdges(EdgeEnumKind.DECLARES)
+
+    ed = [
+        d for d in declarations
+        if ' created_' in d.single_match.line_text and
+        d.GetXrefKind() == NodeEnumKind.FIELD
+    ][0]
+    ed_type = ed.GetType()
+    self.assertTrue(ed_type)
+    self.assertEqual('bool', ed_type.GetDisplayName())
+
+  def test_get_type_2(self):
+    cs = CodeSearch(source_root='.')
+    signatures = cs.SearchForSymbol('GrowableIOBuffer', NodeEnumKind.CLASS)
+    self.assertEqual(1, len(signatures))
+
+    gb_class = signatures[0]
+    declarations = gb_class.GetEdges(EdgeEnumKind.DECLARES)
+
+    rd = [
+        d for d in declarations
+        if ' real_data_' in d.single_match.line_text and
+        d.GetXrefKind() == NodeEnumKind.FIELD
+    ][0]
+    rd_type = rd.GetType()
+    self.assertTrue(rd_type)
+    self.assertEqual('std::unique_ptr<char, base::FreeDeleter>',
+                     rd_type.GetDisplayName())
+
+  def test_get_type_3(self):
+    cs = CodeSearch(source_root='.')
+    signatures = cs.SearchForSymbol('PickledIOBuffer', NodeEnumKind.CLASS)
+    self.assertEqual(1, len(signatures))
+
+    gb_class = signatures[0]
+    declarations = gb_class.GetEdges(EdgeEnumKind.DECLARES)
+
+    p = [
+        d for d in declarations
+        if ' pickle_' in d.single_match.line_text and
+        d.GetXrefKind() == NodeEnumKind.FIELD
+    ][0]
+    p_type = p.GetType()
+    self.assertEqual('Pickle', p_type.GetDisplayName())
 
 
 if __name__ == '__main__':

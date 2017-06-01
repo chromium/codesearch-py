@@ -1,0 +1,1 @@
+{"xref_search_response":[{"status":0,"grok_total_number_of_results":1,"grok_next_results_offset":1,"estimated_total_type_count":[{"type_id":1800,"type":"HAS_TYPE","count":1}],"eliminated_type_count":[{"type_id":1800,"type":"HAS_TYPE","count":1}]}],"elapsed_ms":46}

@@ -212,6 +212,15 @@ class XrefNode(object):
     XrefNode corresponds to a template specialization. In that case, this
     method will throw.
     """
+
+    # Special case for figments. Also the code formatting is YAPF's doing.
+    if self.single_match and hasattr(
+        self.single_match, 'grok_modifiers') and hasattr(
+            self.single_match.grok_modifiers, 'is_figment'
+        ) and self.single_match.grok_modifiers.is_figment and hasattr(
+            self.single_match, 'line_text'):
+      return self.single_match.line_text
+
     if not self.filespec:
       raise Exception('no filespec found for XrefNode')
     return self.cs.GetFileInfo(self.filespec).GetAnchorText(
@@ -257,6 +266,30 @@ class XrefNode(object):
         continue
       related.append(annotation)
     return related
+
+  def GetType(self):
+      """Gets the XrefNode that represents the type of this node.
+
+      Ideally this would just be the node that is on the other side of a
+      HAS_TYPE edge. Unfortunately this is sometimes not the case. In those
+      cases we try a little bit harder by resolving the related definitions,
+      weeding out those we don't need and then picking one that looks right
+      """
+      # First try following a HAS_TYPE edge.
+      type_nodes = self.GetEdges(EdgeEnumKind.HAS_TYPE)
+      if len(type_nodes) > 0:
+          return type_nodes[0]
+
+      # Else we are in rough territory.
+      related_defns = self.GetRelatedDefinitions()
+
+      # Filter out nodes that are namespaces.
+      related_defns = [d for d in related_defns if d.GetXrefKind() != NodeEnumKind.NAMESPACE]
+
+      if len(related_defns) > 0:
+          return related_defns[0]
+
+      return None
 
   def GetRelatedDefinitions(self):
     """Get related definitions. Currently this is defined to be linked
@@ -726,7 +759,8 @@ class CodeSearch(object):
 
       if len(signatures) > 0:
         return [
-            XrefNode.FromSignature(self, signature=s, filename=result.top_file.file)
+            XrefNode.FromSignature(
+                self, signature=s, filename=result.top_file.file)
             for s in signatures
         ]
     return []
