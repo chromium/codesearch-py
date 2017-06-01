@@ -16,7 +16,7 @@ from .file_cache import FileCache
 from .messages import CompoundRequest, AnnotationType, AnnotationTypeValue, \
         CompoundResponse, FileInfoRequest, FileSpec, AnnotationRequest, \
         EdgeEnumKind, XrefSearchRequest, XrefSingleMatch, XrefSearchResult, \
-        FileInfo, TextRange, Annotation
+        FileInfo, TextRange, Annotation, NodeEnumKind, SearchRequest
 from .paths import GetSourceRoot
 from .compat import StringFromBytes
 from .language_utils import SymbolSuffixMatcher
@@ -130,10 +130,10 @@ class XrefNode(object):
   >>> import codesearch
 
   # Replace the path with where you have the Chromium sources checked out:
-  >>> cs = codesearch.CodeSearch(source_root='/src/chrome/src')
+  >>> cs = codesearch.CodeSearch(source_root='.')
 
   # Ditto for the path to source:
-  >>> sig = cs.GetSignatureForSymbol('/src/chrome/src/net/http/http_network_transaction.cc', 'HttpNetworkTransaction')
+  >>> sig = cs.GetSignatureForSymbol('src/net/http/http_network_transaction.cc', 'HttpNetworkTransaction')
   >>> node = codesearch.XrefNode.FromSignature(cs, sig)
   >>> node.GetEdges(codesearch.EdgeEnumKind.DECLARES)
 
@@ -430,7 +430,7 @@ class CodeSearch(object):
       return FileSpec(name='.', package_name=self.package_name)
 
     if isinstance(path, FileSpec):
-      return path
+      return FileSpec(name=path.name, package_name=path.package_name)
 
     return FileSpec(
         name=os.path.relpath(os.path.abspath(path), self.source_root),
@@ -588,6 +588,9 @@ class CodeSearch(object):
 
     Symbols are matched using SymbolSuffixMatcher. See documentation for that
     class for more information about how fuzzy symbol matches are performed.
+
+    Returns a list of strings containing signatures. The list will be empty if
+    the search failed.
     """
     file_info = self.GetFileInfo(filename)
     matcher = SymbolSuffixMatcher(symbol)
@@ -610,6 +613,61 @@ class CodeSearch(object):
       signatures.add(annotation.xref_signature.signature)
 
     return list(signatures)
+
+  def SearchForSymbol(self, symbol, xref_kind=None, max_results_to_analyze=50):
+    """Search for a specified symbol.
+
+    Use this when you know the symbol name and its type, and don't mind a few
+    extra requests on the wire. It is possible that you'll end up with more than
+    one result.
+
+    Returns a list of signatures. The list will be empty if the search failed.
+
+    |xref_kind| should be one of NodeEnumKind.
+
+    Set |max_results_to_analyze| to change the number of search results to look
+    at. Note that each search result corresponds to a file. All the results from
+    the first file that yields any results are returned.
+    """
+    XREF_KIND_TO_SEARCH_PREFIX = {
+        NodeEnumKind.CLASS: "class:",
+        NodeEnumKind.FUNCTION: "function:",
+        NodeEnumKind.METHOD: "function:"
+    }
+
+    search_prefix = XREF_KIND_TO_SEARCH_PREFIX.get(xref_kind, "symbol:")
+    search_query = "{}{}".format(search_prefix, symbol)
+
+    search_response = self.SendRequestToServer(
+        CompoundRequest(search_request=[
+            SearchRequest(
+                query=search_query,
+                exhaustive=True,
+                max_num_results=max_results_to_analyze,
+                return_all_duplicates=False,
+                return_all_snippets=False,
+                return_decorated_snippets=False,
+                return_directories=False,
+                return_line_matches=False,
+                return_snippets=False)
+        ])).search_response[0]
+
+    if not hasattr(search_response, 'search_result'):
+        return []
+
+    signatures = set()
+    for result in search_response.search_result:
+        if not hasattr(result, 'top_file'):
+            continue
+
+        s = self.GetSignaturesForSymbol(result.top_file.file, symbol,
+                xref_kind)
+        if s:
+            signatures.update(set(s))
+
+        if len(signatures) > 0:
+            return list(signatures)
+    return []
 
   def GetXrefsFor(self, signature, edge_filter, max_num_results=500):
     refs = self.SendRequestToServer(

@@ -6,6 +6,11 @@
 # license that can be found in the LICENSE file or at
 # https://developers.google.com/open-source/licenses/bsd.
 
+# Run this script after making a change to a .py file to reformat it according
+# to the Chromium style guide. In case you are curious, the .style.yapf file at
+# the root of the source tree defines the style that YAPF applies to code it
+# finds in the repository.
+
 command -v yapf >/dev/null 2>&1 || {
 	echo Please install YAPF if you would like to format code.
 	echo https://github.com/google/yapf

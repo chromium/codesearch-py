@@ -6,6 +6,8 @@
 # license that can be found in the LICENSE file or at
 # https://developers.google.com/open-source/licenses/bsd.
 
+# Runs all the tests in the repo.
+
 set -e
 
 echo Running tests using Python2:

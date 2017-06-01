@@ -63,5 +63,18 @@ class TestCodeSearch(unittest.TestCase):
     self.assertEqual(6, len(signatures))
 
 
+  def test_search_for_symbol(self):
+      cs = CodeSearch(source_root='.')
+
+      signatures = cs.SearchForSymbol('File', NodeEnumKind.CLASS)
+
+      print(signatures)
+      self.assertEqual(1, len(signatures))
+
+      signatures = cs.SearchForSymbol('URLRequestJob', NodeEnumKind.CLASS)
+      print(signatures)
+      self.assertEqual(1, len(signatures))
+
+
 if __name__ == '__main__':
   unittest.main()
