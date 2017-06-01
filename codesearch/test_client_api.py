@@ -12,7 +12,7 @@ import socket
 import tempfile
 import unittest
 
-from .client_api import CodeSearch
+from .client_api import CodeSearch, XrefNode
 from .messages import CompoundRequest, CompoundResponse, FileInfoRequest, FileInfoResponse, NodeEnumKind
 from .testing_support import InstallTestRequestHandler, LastRequest
 
@@ -68,12 +68,12 @@ class TestCodeSearch(unittest.TestCase):
 
       signatures = cs.SearchForSymbol('File', NodeEnumKind.CLASS)
 
-      print(signatures)
       self.assertEqual(1, len(signatures))
+      self.assertTrue(isinstance(signatures[0], XrefNode))
 
       signatures = cs.SearchForSymbol('URLRequestJob', NodeEnumKind.CLASS)
-      print(signatures)
       self.assertEqual(1, len(signatures))
+      self.assertTrue(isinstance(signatures[0], XrefNode))
 
 
 if __name__ == '__main__':

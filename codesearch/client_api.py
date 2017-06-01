@@ -618,16 +618,17 @@ class CodeSearch(object):
     """Search for a specified symbol.
 
     Use this when you know the symbol name and its type, and don't mind a few
-    extra requests on the wire. It is possible that you'll end up with more than
-    one result.
+    extra requests on the wire. It is possible that you'll end up with more
+    than one result.
 
-    Returns a list of signatures. The list will be empty if the search failed.
+    Returns a list of XrefNode objects. The list will be empty if the search
+    failed.
 
     |xref_kind| should be one of NodeEnumKind.
 
     Set |max_results_to_analyze| to change the number of search results to look
-    at. Note that each search result corresponds to a file. All the results from
-    the first file that yields any results are returned.
+    at. Note that each search result corresponds to a file. All the results
+    from the first file that yields any results are returned.
     """
     XREF_KIND_TO_SEARCH_PREFIX = {
         NodeEnumKind.CLASS: "class:",
@@ -653,20 +654,22 @@ class CodeSearch(object):
         ])).search_response[0]
 
     if not hasattr(search_response, 'search_result'):
-        return []
+      return []
 
     signatures = set()
     for result in search_response.search_result:
-        if not hasattr(result, 'top_file'):
-            continue
+      if not hasattr(result, 'top_file'):
+        continue
 
-        s = self.GetSignaturesForSymbol(result.top_file.file, symbol,
-                xref_kind)
-        if s:
-            signatures.update(set(s))
+      s = self.GetSignaturesForSymbol(result.top_file.file, symbol, xref_kind)
+      if s:
+        signatures.update(set(s))
 
-        if len(signatures) > 0:
-            return list(signatures)
+      if len(signatures) > 0:
+        return [
+            XrefNode.FromSignature(self, signature=s, filename=result.top_file.file)
+            for s in signatures
+        ]
     return []
 
   def GetXrefsFor(self, signature, edge_filter, max_num_results=500):
