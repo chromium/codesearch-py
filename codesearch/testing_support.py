@@ -145,8 +145,8 @@ if __name__ == '__main__':
     print('Resolving {}'.format(name))
 
     with open(os.path.join(RESPONSE_DATA_DIR, name), mode='r') as f:
-        s = f.read()
-        o = json.loads(s)
+      s = f.read()
+      o = json.loads(s)
 
     url, data, digest = o["url"], o["data"], o["digest"]
     req = Request(url=url)

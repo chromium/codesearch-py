@@ -559,6 +559,12 @@ class CodeSearch(object):
     raise Exception('can\'t fetch file info for %f' % (filename))
 
   def GetSignatureForSymbol(self, filename, symbol):
+    """Return a signature matching |symbol| in |filename|.
+
+    Note: The heuristics used here may lead to inexact or surprising behavior.
+          Use GetSignaturesForSymbol instead.
+    """
+
     annotations = self.GetFileInfo(filename).GetAnnotations()
     for snippet in annotations:
       if hasattr(snippet, 'xref_signature'):
