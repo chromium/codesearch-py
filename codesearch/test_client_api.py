@@ -13,8 +13,10 @@ import tempfile
 import unittest
 
 from .client_api import CodeSearch
-from .messages import CompoundRequest, CompoundResponse, FileInfoRequest, FileInfoResponse
+from .messages import CompoundRequest, CompoundResponse, FileInfoRequest, FileInfoResponse, NodeEnumKind
 from .testing_support import InstallTestRequestHandler, LastRequest
+
+SOURCE_ROOT = '/src/chrome/'
 
 
 class TestCodeSearch(unittest.TestCase):
@@ -27,7 +29,6 @@ class TestCodeSearch(unittest.TestCase):
       pass
 
   def test_user_agent(self):
-    SOURCE_ROOT = '/src/chrome/src'
     TARGET_FILE = '/src/chrome/src/net/http/http_version.h'
 
     codesearch = CodeSearch(source_root=SOURCE_ROOT)
@@ -45,6 +46,21 @@ class TestCodeSearch(unittest.TestCase):
 
     request = LastRequest()
     self.assertEqual('Foo', request.get_header('User-agent'))
+
+  def test_get_signatures_for_symbol(self):
+    TARGET_FILE = '/src/chrome/src/base/files/file.h'
+    cs = CodeSearch(source_root=SOURCE_ROOT)
+
+    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'File')
+    self.assertEqual(8, len(signatures))
+
+    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'File',
+                                           NodeEnumKind.CLASS)
+    self.assertEqual(1, len(signatures))
+
+    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'File',
+                                           NodeEnumKind.CONSTRUCTOR)
+    self.assertEqual(6, len(signatures))
 
 
 if __name__ == '__main__':

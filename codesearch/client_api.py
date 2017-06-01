@@ -19,6 +19,7 @@ from .messages import CompoundRequest, AnnotationType, AnnotationTypeValue, \
         FileInfo, TextRange, Annotation
 from .paths import GetSourceRoot
 from .compat import StringFromBytes
+from .language_utils import SymbolSuffixMatcher
 
 try:
   from urllib.request import urlopen, Request
@@ -133,8 +134,6 @@ class XrefNode(object):
 
   # Ditto for the path to source:
   >>> sig = cs.GetSignatureForSymbol('/src/chrome/src/net/http/http_network_transaction.cc', 'HttpNetworkTransaction')
-  >>> sig
-
   >>> node = codesearch.XrefNode.FromSignature(cs, sig)
   >>> node.GetEdges(codesearch.EdgeEnumKind.DECLARES)
 
@@ -341,7 +340,8 @@ class XrefNode(object):
   def FromAnnotation(cs, annotation):
     """Construct a XrefNode based on an Annotation.
 
-      This is currently limited to annotations that have a LINK_TO_DEFINITION."""
+    This is currently limited to annotations that have a LINK_TO_DEFINITION."""
+
     assert isinstance(annotation, Annotation)
     assert annotation.type.id == AnnotationTypeValue.LINK_TO_DEFINITION
 
@@ -573,10 +573,37 @@ class CodeSearch(object):
 
     raise Exception("Can't determine signature for %s:%s" % (filename, symbol))
 
-  def GetSignaturesForSymbol(self, symbol, xref_kind=None, filename=None):
-    """Get matching signatures given a symbol.
+  def GetSignaturesForSymbol(self, filename, symbol, xref_kind=None):
+    """Get all matching signatures given a symbol.
 
+    Returns all the signatures matching the given symbol in |filename|. If
+    |xref_kind| is not None, it is assumed to be one of the NodeEnumKind values
+    and is used to filter matches to those of the |xref_kind|.
+
+    Symbols are matched using SymbolSuffixMatcher. See documentation for that
+    class for more information about how fuzzy symbol matches are performed.
     """
+    file_info = self.GetFileInfo(filename)
+    matcher = SymbolSuffixMatcher(symbol)
+    signatures = set()
+    for annotation in file_info.GetAnnotations():
+      if not hasattr(annotation, 'xref_kind') or not hasattr(
+          annotation, 'xref_signature'):
+        continue
+
+      if xref_kind is not None and xref_kind != annotation.xref_kind:
+        continue
+
+      if annotation.xref_signature.signature in signatures:
+        continue
+
+      text = file_info.Text(annotation.range)
+      if not matcher.Match(text):
+        continue
+
+      signatures.add(annotation.xref_signature.signature)
+
+    return list(signatures)
 
   def GetXrefsFor(self, signature, edge_filter, max_num_results=500):
     refs = self.SendRequestToServer(
