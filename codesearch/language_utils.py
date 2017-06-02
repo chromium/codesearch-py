@@ -82,6 +82,20 @@ class SymbolSuffixMatcher(object):
     return CppIdentifierTokens(haystack)[-len(self.needle):] == self.needle
 
 
+def IsIdentifier(s):
+    """Returns True if |s| is a valid C++ identifier.
+
+    >>> IsIdentifier('abc')
+    True
+
+    >>> IsIdentifier('abc ')
+    False
+
+    >>> IsIdentifier('abc:')
+    False
+    """
+    return CppIdentifierTokens(s)[0] == s
+
 # For running doctests.
 if __name__ == "__main__":
   import doctest

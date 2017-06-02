@@ -183,6 +183,20 @@ class TestCodeSearch(unittest.TestCase):
     p_type = p.GetType()
     self.assertEqual('Pickle', p_type.GetDisplayName())
 
+  def test_get_type_4(self):
+    cs = CodeSearch(source_root='.')
+    signatures = cs.SearchForSymbol('URLRequestJob', NodeEnumKind.CLASS)
+    self.assertEqual(1, len(signatures))
+    urj_class = signatures[0]
+
+    declarations = urj_class.GetEdges(EdgeEnumKind.DECLARES)
+    p = [
+        d for d in declarations
+        if ' last_notified_total_sent_bytes_' in d.single_match.line_text and
+        d.GetXrefKind() == NodeEnumKind.FIELD
+            ][0]
+    p_type = p.GetType()
+    self.assertEqual('int64_t', p_type.GetDisplayName())
 
 if __name__ == '__main__':
   unittest.main()

@@ -19,7 +19,7 @@ from .messages import CompoundRequest, AnnotationType, AnnotationTypeValue, \
         FileInfo, TextRange, Annotation, NodeEnumKind, SearchRequest
 from .paths import GetSourceRoot
 from .compat import StringFromBytes
-from .language_utils import SymbolSuffixMatcher
+from .language_utils import SymbolSuffixMatcher, IsIdentifier
 
 try:
   from urllib.request import urlopen, Request
@@ -205,6 +205,14 @@ class XrefNode(object):
       raise Exception('no filespec found for XrefNode')
     return self.cs.GetFileInfo(self.filespec)
 
+  def GetIntrinsicType(self):
+      # We are going to parse the signature. I'll shower afterwards.
+      prefix = self.single_match.signature.split('@')[0]
+      if prefix.startswith('cpp:') and IsIdentifier(prefix[4:]):
+          return prefix[4:]
+      return None
+
+
   def GetDisplayName(self):
     """Return the display name for this XrefNode.
 
@@ -221,6 +229,11 @@ class XrefNode(object):
             self.single_match, 'line_text'):
       return self.single_match.line_text
 
+    # Another special case for basic types.
+    intrinsic_type = self.GetIntrinsicType()
+    if intrinsic_type:
+        return intrinsic_type
+    
     if not self.filespec:
       raise Exception('no filespec found for XrefNode')
     return self.cs.GetFileInfo(self.filespec).GetAnchorText(
@@ -283,11 +296,15 @@ class XrefNode(object):
       # Else we are in rough territory.
       related_defns = self.GetRelatedDefinitions()
 
-      # Filter out nodes that are namespaces.
-      related_defns = [d for d in related_defns if d.GetXrefKind() != NodeEnumKind.NAMESPACE]
+      # Filter out nodes that are namespaces. It is possible the filtering will
+      # fail due to some nodes being resolved.
+      try:
+          related_defns = [d for d in related_defns if d.GetXrefKind() != NodeEnumKind.NAMESPACE]
+      except:
+          pass
 
       if len(related_defns) > 0:
-          return related_defns[0]
+          return related_defns[-1]
 
       return None
 
