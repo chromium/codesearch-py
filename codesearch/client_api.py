@@ -206,12 +206,11 @@ class XrefNode(object):
     return self.cs.GetFileInfo(self.filespec)
 
   def GetIntrinsicType(self):
-      # We are going to parse the signature. I'll shower afterwards.
-      prefix = self.single_match.signature.split('@')[0]
-      if prefix.startswith('cpp:') and IsIdentifier(prefix[4:]):
-          return prefix[4:]
-      return None
-
+    # We are going to parse the signature. I'll shower afterwards.
+    prefix = self.single_match.signature.split('@')[0]
+    if prefix.startswith('cpp:') and IsIdentifier(prefix[4:]):
+      return prefix[4:]
+    return None
 
   def GetDisplayName(self):
     """Return the display name for this XrefNode.
@@ -232,8 +231,8 @@ class XrefNode(object):
     # Another special case for basic types.
     intrinsic_type = self.GetIntrinsicType()
     if intrinsic_type:
-        return intrinsic_type
-    
+      return intrinsic_type
+
     if not self.filespec:
       raise Exception('no filespec found for XrefNode')
     return self.cs.GetFileInfo(self.filespec).GetAnchorText(
@@ -281,32 +280,34 @@ class XrefNode(object):
     return related
 
   def GetType(self):
-      """Gets the XrefNode that represents the type of this node.
+    """Gets the XrefNode that represents the type of this node.
 
       Ideally this would just be the node that is on the other side of a
       HAS_TYPE edge. Unfortunately this is sometimes not the case. In those
       cases we try a little bit harder by resolving the related definitions,
       weeding out those we don't need and then picking one that looks right
       """
-      # First try following a HAS_TYPE edge.
-      type_nodes = self.GetEdges(EdgeEnumKind.HAS_TYPE)
-      if len(type_nodes) > 0:
-          return type_nodes[0]
+    # First try following a HAS_TYPE edge.
+    type_nodes = self.GetEdges(EdgeEnumKind.HAS_TYPE)
+    if len(type_nodes) > 0:
+      return type_nodes[0]
 
-      # Else we are in rough territory.
-      related_defns = self.GetRelatedDefinitions()
+    # Else we are in rough territory.
+    related_defns = self.GetRelatedDefinitions()
 
-      # Filter out nodes that are namespaces. It is possible the filtering will
-      # fail due to some nodes being resolved.
-      try:
-          related_defns = [d for d in related_defns if d.GetXrefKind() != NodeEnumKind.NAMESPACE]
-      except:
-          pass
+    # Filter out nodes that are namespaces. It is possible the filtering will
+    # fail due to some nodes being resolved.
+    try:
+      related_defns = [
+          d for d in related_defns if d.GetXrefKind() != NodeEnumKind.NAMESPACE
+      ]
+    except:
+      pass
 
-      if len(related_defns) > 0:
-          return related_defns[-1]
+    if len(related_defns) > 0:
+      return related_defns[-1]
 
-      return None
+    return None
 
   def GetRelatedDefinitions(self):
     """Get related definitions. Currently this is defined to be linked
@@ -534,10 +535,9 @@ class CodeSearch(object):
     if isinstance(path, FileSpec):
       return FileSpec(name=path.name, package_name=path.package_name)
 
-    relpath =os.path.relpath(os.path.abspath(path), self.source_root).replace('\\', '/')
-    return FileSpec(
-        name=relpath
-        package_name=self.package_name)
+    relpath = os.path.relpath(os.path.abspath(path), self.source_root).replace(
+        '\\', '/')
+    return FileSpec(name=relpath, package_name=self.package_name)
 
   def TeardownCache(self):
     if self.file_cache:
