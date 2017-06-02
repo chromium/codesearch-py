@@ -11,7 +11,7 @@ def GetPackageRelativePath(filename):
   """GetPackageRelativePath returns the path to |filename| relative to the root
   of the package as determined by GetSourceRoot()."""
 
-  return os.path.relpath(filename, GetSourceRoot(filename))
+  return os.path.relpath(filename, GetSourceRoot(filename)).replace('\\', '/')
 
 
 def GetSourceRoot(filename):

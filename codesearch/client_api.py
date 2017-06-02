@@ -534,8 +534,9 @@ class CodeSearch(object):
     if isinstance(path, FileSpec):
       return FileSpec(name=path.name, package_name=path.package_name)
 
+    relpath =os.path.relpath(os.path.abspath(path), self.source_root).replace('\\', '/')
     return FileSpec(
-        name=os.path.relpath(os.path.abspath(path), self.source_root),
+        name=relpath
         package_name=self.package_name)
 
   def TeardownCache(self):
