@@ -87,6 +87,25 @@ class TestXrefNode(unittest.TestCase):
     self.assertEqual('GURL', definition.GetDisplayName())
     self.assertEqual(NodeEnumKind.CLASS, definition.GetXrefKind())
 
+  def test_related_definitions_2(self):
+    cs = CodeSearch(source_root='.')
+    node = XrefNode.FromSignature(
+        cs,
+        'cpp:net::class-URLRequestContext@chromium/../../net/url_request/url_request_context.h|def',
+        'src/net/url_request/url_request_context.h')
+    edges = node.GetEdges(EdgeEnumKind.DECLARES)
+
+    # Pick the line that looks like:   URLRequestBackoffManager* backoff_manager_;
+    p = [
+        e for e in edges
+        if e.single_match.line_text.endswith(' backoff_manager_;')
+    ][0]
+    related = p.GetRelatedDefinitions()
+
+    self.assertLessEqual(2, len(related))
+    for r in related:
+      self.assertTrue(hasattr(r.single_match, 'line_text'))
+
   def test_get_all_edges(self):
     cs = CodeSearch(source_root='/src/chrome/')
     node = XrefNode.FromSignature(

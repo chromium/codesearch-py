@@ -353,12 +353,19 @@ class XrefNode(object):
       if annotation.range.end_line < target_range.start_line or \
               annotation.range.start_line > target_range.end_line:
         continue
+
       abstract_node = XrefNode.FromAnnotation(self.cs, annotation)
       def_list = abstract_node.GetEdges(EdgeEnumKind.HAS_DEFINITION)
-      if not def_list:
-        related.append(abstract_node)
-      else:
+      if def_list:
         related.append(def_list[0])
+        continue
+
+      dcl_list = abstract_node.GetEdges(EdgeEnumKind.HAS_DECLARATION)
+      if dcl_list:
+        related.append(dcl_list[0])
+        continue
+
+      related.append(abstract_node)
     return related
 
   def GetSignature(self):
