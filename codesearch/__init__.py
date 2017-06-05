@@ -19,6 +19,6 @@ from .messages import Message, AnnotationTypeValue, AnnotationType, \
         DirInfoRequest, FileResult, SingleMatch, SearchResult, SearchResponse, \
         SearchRequest, StatusRequest, CompoundResponse, CompoundRequest, \
         CodeSearchProtoJsonEncoder, CodeSearchProtoJsonSymbolizedEncoder
-from .paths import GetPackageRelativePath, GetSourceRoot
+from .paths import GetPackageRelativePath, GetSourceRoot, NoSourceRootError
 
 __all__ = []
