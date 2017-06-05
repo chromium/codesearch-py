@@ -6,6 +6,11 @@
 
 import os
 
+class NoSourceRootError(Exception):
+    """Exception raise when the CodeSearch library can't determine the location
+of the local Chromium checkout."""
+    pass
+
 
 def GetPackageRelativePath(filename):
   """GetPackageRelativePath returns the path to |filename| relative to the root
@@ -27,7 +32,7 @@ def GetSourceRoot(filename):
   if not os.path.isabs(filename):
     filename = os.path.abspath(filename)
   if not os.path.exists(filename):
-    raise IOError('File not found: {}'.format(filename))
+    raise NoSourceRootError('File not found: {}'.format(filename))
   source_root = os.path.dirname(filename)
   while True:
     gnfile = os.path.join(source_root, 'src', '.gn')
@@ -36,5 +41,5 @@ def GetSourceRoot(filename):
 
     new_package_root = os.path.dirname(source_root)
     if new_package_root == source_root:
-      raise Exception("Can't determine package root")
+      raise NoSourceRootError("Can't determine package root")
     source_root = new_package_root
