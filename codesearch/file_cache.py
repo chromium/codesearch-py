@@ -125,3 +125,6 @@ class FileCache:
   def close(self):
     """Stop using this FileCache. Should be called for every FileCache instance."""
     self.timer.cancel()
+    for f, _ in self.store.values():
+      f.close()
+
