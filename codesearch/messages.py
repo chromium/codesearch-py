@@ -6,6 +6,9 @@
 
 import json
 import sys
+import os
+
+from .compat import IsString, ToStringSafe
 
 
 class CodeSearchProtoJsonEncoder(json.JSONEncoder):
@@ -47,6 +50,31 @@ def StringifyObject(o, target_type):
     return lines
 
   return '\n'.join(stringify_lines(o, 0))
+
+
+def AttemptToFixupInvalidUtf8(s):
+  """Try to recover invalid UTF-8 by replacing invalid bytes.
+   
+    The response from the server is not guaranteed to be valid UTF-8.  This
+    function attempts to recover incorrect UTF-8. We may still run into issues
+    due to a botched recovery, but this response is already doomed."""
+
+  def FixupByteArray(s):
+    return s.decode(encoding='utf-8', errors='replace')
+
+  def FixupString(s):
+    return str.decode(encoding='utf-8', errors='replace')
+
+  if isinstance(s, bytearray):
+    return FixupByteArray(s)
+
+  if isinstance(s, bytes):
+    return FixupByteArray(bytearray(s))
+
+  if isinstance(s, str):
+    return FixupString(s)
+
+  return None
 
 
 class Message(object):
@@ -123,6 +151,8 @@ class Message(object):
             target_type, source):
           return typespec(getattr(target_type, source))
       return typespec(source)
+    if target_type == str and IsString(source):
+      return ToStringSafe(source)
     return target_type(source)
 
   @classmethod
@@ -152,7 +182,40 @@ class Message(object):
 
   @classmethod
   def FromJsonString(cls, s):
-    d = json.loads(s)
+    try:
+      if isinstance(s, bytes) or isinstance(s, bytearray):
+        s = s.decode(encoding='utf-8')
+      d = json.loads(s)
+
+    except UnicodeError as e:
+      # The server sent us something that can't be decoded. It's probably not
+      # valid UTF-8.  Rather than giving up, let's try to fix up the string so
+      # that we can move on. Usually the problem is that there's an errant byte
+      # that needs to be replaced with something else.
+
+      s = AttemptToFixupInvalidUtf8(s)
+      if s:
+        d = json.loads(s)
+      else:
+        raise ValueError(
+            'Error while decoding {o}. {reason} at offset {start}'.format(
+                o=repr(e.object), reason=e.reason, start=e.start))
+
+    except ValueError as e:
+      import tempfile
+      error_file_name = None
+      with tempfile.NamedTemporaryFile(
+          delete=False, prefix='codesearch_error_') as f:
+        f.write("""Error while decoding JSON response.
+
+Message: {msg}
+Content follows this line: ----
+{content}
+""".format(msg=e.message, content=s))
+        error_file_name = f.name
+      raise ValueError('Error while decoding JSON response. Report saved to {}'.
+                       format(error_file_name))
+
     return cls.FromShallowDict(d)
 
   DESCRIPTOR = None

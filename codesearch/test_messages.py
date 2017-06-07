@@ -35,6 +35,10 @@ class Quux(Message):
   DESCRIPTOR = {'x': Qux}
 
 
+class S(Message):
+  DESCRIPTOR = {'s': str}
+
+
 class TestProto(unittest.TestCase):
 
   def test_proto_bridge(self):
@@ -79,6 +83,13 @@ class TestProto(unittest.TestCase):
     self.assertTrue(isinstance(v, Quux))
     self.assertTrue(isinstance(v.x, int))
     self.assertEqual(v.x, 1)
+
+  def test_from_json_string_invalid(self):
+    s = bytearray('{"s": "abcdefghijklmnop"}'.encode('utf-8'))
+    s[8] = 0xf8
+    v = S.FromJsonString(s)
+    self.assertTrue(isinstance(v, S))
+    self.assertGreater(len(v.s), 0)
 
   def test_from_shallow_dict_1(self):
     v = Baz.FromShallowDict({'x': 3, 'y': [{'x': 4}, {'x': 5}]})

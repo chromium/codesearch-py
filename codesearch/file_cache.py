@@ -127,4 +127,3 @@ class FileCache:
     self.timer.cancel()
     for f, _ in self.store.values():
       f.close()
-

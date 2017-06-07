@@ -6,10 +6,11 @@
 
 import os
 
+
 class NoSourceRootError(Exception):
-    """Exception raise when the CodeSearch library can't determine the location
+  """Exception raise when the CodeSearch library can't determine the location
 of the local Chromium checkout."""
-    pass
+  pass
 
 
 def GetPackageRelativePath(filename):

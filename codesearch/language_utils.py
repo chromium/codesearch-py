@@ -83,7 +83,7 @@ class SymbolSuffixMatcher(object):
 
 
 def IsIdentifier(s):
-    """Returns True if |s| is a valid C++ identifier.
+  """Returns True if |s| is a valid C++ identifier.
 
     >>> IsIdentifier('abc')
     True
@@ -94,7 +94,8 @@ def IsIdentifier(s):
     >>> IsIdentifier('abc:')
     False
     """
-    return CppIdentifierTokens(s)[0] == s
+  return CppIdentifierTokens(s)[0] == s
+
 
 # For running doctests.
 if __name__ == "__main__":

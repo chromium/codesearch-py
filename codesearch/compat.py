@@ -14,6 +14,13 @@ if sys.version_info[0] < 3:
   def IsString(s):
     return isinstance(s, basestring)
 
+  def ToStringSafe(s):
+    if isinstance(s, str):
+      return s
+    if isinstance(s, unicode):
+      return s.encode('utf-8')
+    return str(s)
+
 else:
 
   def StringFromBytes(b):
@@ -21,3 +28,8 @@ else:
 
   def IsString(s):
     return isinstance(s, str)
+
+  def ToStringSafe(s):
+    if isinstance(s, str):
+      return s
+    return str(s)
