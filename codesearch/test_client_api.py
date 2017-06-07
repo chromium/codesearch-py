@@ -62,6 +62,26 @@ class TestCodeSearch(unittest.TestCase):
                                            NodeEnumKind.CONSTRUCTOR)
     self.assertEqual(6, len(signatures))
 
+  def test_get_signature_for_symbol(self):
+
+    TARGET_FILE = '/src/chrome/src/base/files/file.h'
+    cs = CodeSearch(source_root=SOURCE_ROOT)
+
+    self.assertEqual(
+        cs.GetSignatureForSymbol(TARGET_FILE, 'File'),
+        'cpp:base::class-File@chromium/../../base/files/file.h|def')
+    self.assertEqual(
+        cs.GetSignatureForSymbol(TARGET_FILE, 'Time'),
+        'cpp:base::class-Time@chromium/../../base/time/time.h|def')
+    self.assertEqual(
+        cs.GetSignatureForSymbol(TARGET_FILE, 'last_modified'),
+        'cpp:base::class-File::class-Info::last_modified@chromium/../../base/files/file.h|def'
+    )
+    self.assertEqual(
+        cs.GetSignatureForSymbol(TARGET_FILE, 'int64_t'),
+        'cpp:int64_t@chromium/../../build/linux/debian_jessie_amd64-sysroot/usr/include/stdint.h|def'
+    )
+
   def test_search_for_symbol(self):
     cs = CodeSearch(source_root='.')
 

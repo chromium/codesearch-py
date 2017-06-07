@@ -682,17 +682,21 @@ class CodeSearch(object):
           Use GetSignaturesForSymbol instead.
     """
 
+    substrings = [ ':%s@' % symbol, ':%s(' % symbol, '-%s@' % symbol ]
+
     annotations = self.GetFileInfo(filename).GetAnnotations()
     for snippet in annotations:
       if hasattr(snippet, 'xref_signature'):
         signature = snippet.xref_signature.signature
-        if '%s(' % symbol in signature:
-          return signature
+        for s in substrings:
+            if s in signature:
+                return signature
 
       elif hasattr(snippet, 'internal_link'):
         signature = snippet.internal_link.signature
-        if '::%s' % symbol in signature or 'class-%s' % symbol in signature:
-          return signature
+        for s in substrings:
+            if s in signature:
+                return signature
 
     raise Exception("Can't determine signature for %s:%s" % (filename, symbol))
 
