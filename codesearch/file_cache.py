@@ -14,9 +14,13 @@ import datetime
 # for 30 minutes.
 
 
+def StableFilenameForUrl(url):
+  return hashlib.sha1(url.encode('utf-8')).hexdigest()
+
+
 class FileCache:
 
-  def __init__(self, cache_dir=None, expiration_in_minutes=30):
+  def __init__(self, cache_dir=None, expiration_in_seconds=1800):
 
     # Protects |self| but individual file objects in |store| are not
     # protected once its returned from |_file_for|.
@@ -34,7 +38,7 @@ class FileCache:
     self.timer = threading.Timer(15 * 60, self.gc)
     self.timer.start()
 
-    self.expiration = datetime.timedelta(minutes=expiration_in_minutes)
+    self.expiration = datetime.timedelta(seconds=expiration_in_seconds)
 
     if cache_dir and not os.path.exists(cache_dir):
       if not os.path.isabs(cache_dir):
@@ -52,8 +56,8 @@ class FileCache:
         f.seek(0)
 
       elif self.cache_dir:
-        deterministic_filename = os.path.join(
-            self.cache_dir, hashlib.sha1(url.encode('utf-8')).hexdigest())
+        deterministic_filename = os.path.join(self.cache_dir,
+                                              StableFilenameForUrl(url))
         if os.path.exists(deterministic_filename):
           st = os.stat(deterministic_filename)
           if create:

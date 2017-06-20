@@ -9,12 +9,14 @@ from __future__ import absolute_import
 import os
 import shutil
 import socket
+import sys
+import tempfile
 import tempfile
 import unittest
 
 from .client_api import CodeSearch, XrefNode
 from .messages import CompoundRequest, CompoundResponse, FileInfoRequest, FileInfoResponse, NodeEnumKind, EdgeEnumKind
-from .testing_support import InstallTestRequestHandler, LastRequest
+from .testing_support import InstallTestRequestHandler, LastRequest, TestDataDir, DisableNetwork, EnableNetwork
 
 SOURCE_ROOT = '/src/chrome/'
 
@@ -217,6 +219,49 @@ class TestCodeSearch(unittest.TestCase):
     ][0]
     p_type = p.GetType()
     self.assertEqual('int64_t', p_type.GetDisplayName())
+
+  def test_fixed_cache(self):
+    fixed_cache_dir = os.path.join(TestDataDir(), 'fixed_cache')
+
+    # There are no resources corresponding to the requests that are going to be
+    # made under this test. Instead there are cached resources. The cache
+    # expiration is set for 10 years, which should be long enough for anybody.
+    DisableNetwork()
+    cs = CodeSearch(
+        source_root='.',
+        should_cache=True,
+        cache_dir=fixed_cache_dir,
+        cache_timeout_in_seconds=10 * 365 * 24 * 60 * 60)
+    try:
+        signatures = cs.SearchForSymbol('URLRequestHttpJob', NodeEnumKind.CLASS)
+    finally:
+        EnableNetwork()
+        cs.TeardownCache()
+    self.assertEqual(1, len(signatures))
+
+  def test_with_cache_dir(self):
+    test_dir = tempfile.mkdtemp()
+    try:
+      cs = CodeSearch(source_root='.', should_cache=True, cache_dir=test_dir)
+      try:
+          signatures = cs.SearchForSymbol('URLRequestJob', NodeEnumKind.CLASS)
+      finally:
+          cs.TeardownCache()
+      self.assertEqual(1, len(signatures))
+
+      entries = os.listdir(test_dir)
+      self.assertEqual(3, len(entries))
+
+      # These are the sha1 hashes for the URL requests that should be generated.
+      self.assertSetEqual(
+          set(entries),
+          set([
+              '0e942b3e9f60ed374f6665557db7b32c09ca8750',
+              '523d9bc4fb57288017a0369243dc68aed4f28662',
+              'b4863b6c69e434795071308861d7e0586efe2186'
+          ]))
+    finally:
+      shutil.rmtree(test_dir)
 
 
 if __name__ == '__main__':

@@ -443,6 +443,7 @@ class CodeSearch(object):
   def __init__(self,
                should_cache=False,
                cache_dir=None,
+               cache_timeout_in_seconds=1800,
                source_root=None,
                a_path_inside_source_dir=None,
                package_name='chromium',
@@ -460,7 +461,7 @@ class CodeSearch(object):
             documentation for cache_dir for how the cache is organized.
 
         cache_dir -- Directory where the disk cache is located. Only considered
-            should_cache is True.
+            if |should_cache| is True.
 
             The directory is created if it doesn't already exist. Any files
             contained therein are considered to be part of the cache. Hence you
@@ -470,6 +471,9 @@ class CodeSearch(object):
 
             Set this to None to use an ephemeral disk cache that's only used
             during a single session.
+
+        cache_timeout_in_seconds -- The amount of time a request should be
+            cached before being sent out to the network again.
 
         source_root -- The CodeSearch backend refers to files using paths that
             are relative to the root of a source tree. This argument specifies
@@ -527,7 +531,8 @@ class CodeSearch(object):
     if not should_cache:
       self.file_cache = None
       return
-    self.file_cache = FileCache(cache_dir=cache_dir)
+    self.file_cache = FileCache(
+        cache_dir=cache_dir, expiration_in_seconds=cache_timeout_in_seconds)
 
   def GetSourceRoot(self):
     return self.source_root
@@ -682,21 +687,21 @@ class CodeSearch(object):
           Use GetSignaturesForSymbol instead.
     """
 
-    substrings = [ ':%s@' % symbol, ':%s(' % symbol, '-%s@' % symbol ]
+    substrings = [':%s@' % symbol, ':%s(' % symbol, '-%s@' % symbol]
 
     annotations = self.GetFileInfo(filename).GetAnnotations()
     for snippet in annotations:
       if hasattr(snippet, 'xref_signature'):
         signature = snippet.xref_signature.signature
         for s in substrings:
-            if s in signature:
-                return signature
+          if s in signature:
+            return signature
 
       elif hasattr(snippet, 'internal_link'):
         signature = snippet.internal_link.signature
         for s in substrings:
-            if s in signature:
-                return signature
+          if s in signature:
+            return signature
 
     raise Exception("Can't determine signature for %s:%s" % (filename, symbol))
 

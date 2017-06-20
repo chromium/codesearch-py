@@ -21,19 +21,10 @@ except ImportError:
   from urllib2 import urlopen, Request, HTTPSHandler, install_opener, build_opener, addinfourl, URLError
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-RESPONSE_DATA_DIR = os.path.join(SCRIPT_DIR, 'testdata', 'responses')
+TEST_DATA_DIR = os.path.join(SCRIPT_DIR, 'testdata')
+RESPONSE_DATA_DIR = os.path.join(TEST_DATA_DIR, 'responses')
 
-
-def DumpByteArray(b):
-  print('Decoded : {}'.format(b.decode('utf-8')))
-  print('Digest  : {}'.format(hashlib.sha1(b).hexdigest()))
-
-  for i in range(len(b)):
-    if (i % 32) == 0:
-      print('')
-    print('{:02x} '.format(b[i]), end='')
-  print('')
-
+disable_network = False
 
 if sys.version_info[0] < 3:
 
@@ -61,6 +52,10 @@ else:
 requests_seen = []
 
 
+def TestDataDir():
+  return TEST_DATA_DIR
+
+
 def DigestFromRequest(req):
   b = bytearray(req.get_full_url().encode('utf-8'))
   b.extend(GetRequestData(req))
@@ -76,6 +71,10 @@ class TestHttpHandler(HTTPSHandler):
     return None
 
   def https_open(self, request):
+    global disable_network
+    if disable_network:
+      raise URLError('Network access is disabled')
+
     url = request.get_full_url()
     data = GetRequestData(request)
     digest = DigestFromRequest(request)
@@ -125,6 +124,16 @@ def InstallTestRequestHandler():
     This mechanism prevents the tests from making direct network requests.
     """
   install_opener(build_opener(TestHttpHandler()))
+
+
+def DisableNetwork():
+  global disable_network
+  disable_network = True
+
+
+def EnableNetwork():
+  global disable_network
+  disable_network = False
 
 
 def LastRequest():

@@ -37,6 +37,7 @@ class TestFileCache(unittest.TestCase):
       self.assertEqual('hello'.encode('utf-8'), g.get('foo'))
       g.close()
       g = None
+
     finally:
       if f:
         f.close()
