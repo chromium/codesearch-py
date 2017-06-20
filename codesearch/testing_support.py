@@ -129,9 +129,10 @@ def InstallTestRequestHandler(test_data_dir=None):
         testing.
     """
 
+  global TEST_DATA_DIR
+  global RESPONSE_DATA_DIR
+
   if test_data_dir is not None:
-    global TEST_DATA_DIR
-    global RESPONSE_DATA_DIR
     TEST_DATA_DIR = test_data_dir
     RESPONSE_DATA_DIR = os.path.join(TEST_DATA_DIR, 'responses')
 
@@ -154,14 +155,11 @@ def LastRequest():
 
 
 if __name__ == '__main__':
-
   # Attempt to resolve all missing resource requests.
 
   resolved_count = 0
 
   if len(sys.argv) == 2:
-    global TEST_DATA_DIR
-    global RESPONSE_DATA_DIR
     TEST_DATA_DIR = sys.argv[1]
     RESPONSE_DATA_DIR = os.path.join(TEST_DATA_DIR, 'responses')
 
