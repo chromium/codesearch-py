@@ -21,4 +21,8 @@ from .messages import Message, AnnotationTypeValue, AnnotationType, \
         CodeSearchProtoJsonEncoder, CodeSearchProtoJsonSymbolizedEncoder
 from .paths import GetPackageRelativePath, GetSourceRoot, NoSourceRootError
 
+# Only useful for testing against this library.
+from .testing_support import DisableNetwork, EnableNetwork, \
+        InstallTestRequestHandler
+
 __all__ = []

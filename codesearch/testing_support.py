@@ -110,7 +110,7 @@ class TestHttpHandler(HTTPSHandler):
     return self.https_open(request)
 
 
-def InstallTestRequestHandler():
+def InstallTestRequestHandler(test_data_dir=None):
   """Any test that makes network requests to https://cs.codesearch.com (i.e.
     those that rely on making network requests) should call this function in
     their respective setUp() functions.
@@ -122,7 +122,19 @@ def InstallTestRequestHandler():
     directory containing the expected response data.
 
     This mechanism prevents the tests from making direct network requests.
+
+    test_data_dir -- If not None, should specify an abosolute path to a test
+        data directory containing a 'responses' subdirectory. This will be used
+        in the aforementioned fashion to store response data to be used during
+        testing.
     """
+
+  if test_data_dir is not None:
+    global TEST_DATA_DIR
+    global RESPONSE_DATA_DIR
+    TEST_DATA_DIR = test_data_dir
+    RESPONSE_DATA_DIR = os.path.join(TEST_DATA_DIR, 'responses')
+
   install_opener(build_opener(TestHttpHandler()))
 
 
@@ -146,6 +158,12 @@ if __name__ == '__main__':
   # Attempt to resolve all missing resource requests.
 
   resolved_count = 0
+
+  if len(sys.argv) == 2:
+    global TEST_DATA_DIR
+    global RESPONSE_DATA_DIR
+    TEST_DATA_DIR = sys.argv[1]
+    RESPONSE_DATA_DIR = os.path.join(TEST_DATA_DIR, 'responses')
 
   for name in os.listdir(RESPONSE_DATA_DIR):
     if not name.endswith('.missing'):
