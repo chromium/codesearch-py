@@ -6,9 +6,10 @@
 
 from __future__ import absolute_import
 
-import unittest
-import tempfile
+import os
 import shutil
+import tempfile
+import unittest
 from .file_cache import FileCache
 
 
@@ -28,12 +29,13 @@ class TestFileCache(unittest.TestCase):
     test_dir = None
     try:
       test_dir = tempfile.mkdtemp()
-      f = FileCache(cache_dir=test_dir)
+      test_cache_dir = os.path.join(test_dir, 'cache')
+      f = FileCache(cache_dir=test_cache_dir)
       f.put('foo', 'hello'.encode('utf-8'))
       f.close()
       f = None
 
-      g = FileCache(cache_dir=test_dir)
+      g = FileCache(cache_dir=test_cache_dir)
       self.assertEqual('hello'.encode('utf-8'), g.get('foo'))
       g.close()
       g = None

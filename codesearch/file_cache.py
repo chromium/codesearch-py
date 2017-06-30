@@ -43,7 +43,7 @@ class FileCache:
     if cache_dir and not os.path.exists(cache_dir):
       if not os.path.isabs(cache_dir):
         raise ValueError('|cache_dir| should be an absolute path')
-      os.mkdirs(cache_dir)
+      os.makedirs(cache_dir)
 
   def _file_for(self, url, create=False):
     with self.lock:
