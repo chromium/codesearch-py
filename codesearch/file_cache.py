@@ -34,11 +34,14 @@ class FileCache:
     # file is created independently using tempfile.TemporaryFile().
     self.cache_dir = cache_dir
 
+    self.expiration = datetime.timedelta(seconds=expiration_in_seconds)
+
     # Garbage collector timer.
-    self.timer = threading.Timer(15 * 60, self.gc)
+    # Add 2 seconds so that file timestamp comparisons will work as expected on
+    # filesystems where timestamps aren't very accurate.
+    self.timer = threading.Timer(self.expiration.total_seconds() + 2, self.gc)
     self.timer.start()
 
-    self.expiration = datetime.timedelta(seconds=expiration_in_seconds)
 
     if cache_dir and not os.path.exists(cache_dir):
       if not os.path.isabs(cache_dir):
@@ -63,7 +66,7 @@ class FileCache:
           if create:
             f = open(deterministic_filename, 'w+b')
           elif datetime.datetime.utcfromtimestamp(st.st_mtime) + \
-                  self.expiration > datetime.datetime.now():
+                  self.expiration > datetime.datetime.utcnow():
             f = open(deterministic_filename, 'r+b')
             self.store[url] = (f,
                                datetime.datetime.utcfromtimestamp(st.st_mtime))
@@ -86,6 +89,9 @@ class FileCache:
   def put(self, url, data):
     """Store |data| as the response for |url|."""
     f = self._file_for(url, create=True)
+    if f is None:
+        return
+
     f.write(data)
     f.flush()
 
@@ -118,7 +124,7 @@ class FileCache:
     if not dir_to_purge:
       return
 
-    now = datetime.datetime.now()
+    now = datetime.datetime.utcnow()
     for entry in os.listdir(dir_to_purge):
       full_path = os.path.join(dir_to_purge, entry)
       st = os.stat(full_path)
