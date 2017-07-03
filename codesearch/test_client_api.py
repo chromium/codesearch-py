@@ -233,10 +233,10 @@ class TestCodeSearch(unittest.TestCase):
         cache_dir=fixed_cache_dir,
         cache_timeout_in_seconds=10 * 365 * 24 * 60 * 60)
     try:
-        signatures = cs.SearchForSymbol('URLRequestHttpJob', NodeEnumKind.CLASS)
+      signatures = cs.SearchForSymbol('URLRequestHttpJob', NodeEnumKind.CLASS)
     finally:
-        EnableNetwork()
-        cs.TeardownCache()
+      EnableNetwork()
+      cs.TeardownCache()
     self.assertEqual(1, len(signatures))
 
   def test_with_cache_dir(self):
@@ -244,9 +244,9 @@ class TestCodeSearch(unittest.TestCase):
     try:
       cs = CodeSearch(source_root='.', should_cache=True, cache_dir=test_dir)
       try:
-          signatures = cs.SearchForSymbol('URLRequestJob', NodeEnumKind.CLASS)
+        signatures = cs.SearchForSymbol('URLRequestJob', NodeEnumKind.CLASS)
       finally:
-          cs.TeardownCache()
+        cs.TeardownCache()
       self.assertEqual(1, len(signatures))
 
       entries = os.listdir(test_dir)

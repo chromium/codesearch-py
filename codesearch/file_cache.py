@@ -42,7 +42,6 @@ class FileCache:
     self.timer = threading.Timer(self.expiration.total_seconds() + 2, self.gc)
     self.timer.start()
 
-
     if cache_dir and not os.path.exists(cache_dir):
       if not os.path.isabs(cache_dir):
         raise ValueError('|cache_dir| should be an absolute path')
@@ -90,7 +89,7 @@ class FileCache:
     """Store |data| as the response for |url|."""
     f = self._file_for(url, create=True)
     if f is None:
-        return
+      return
 
     f.write(data)
     f.flush()
