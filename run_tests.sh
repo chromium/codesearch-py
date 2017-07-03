@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Copyright 2017 The Chromium Authors.
 #
@@ -10,18 +10,24 @@
 
 set -e
 
-echo Running tests using Python2:
-python -m unittest discover
+if [ ${TEST_SUITE:-python2} == python2 ]; then
+  echo Running tests using Python2:
 
-# These files have doctests.
-python codesearch/language_utils.py
-python -m doctest README.md
+  python -m unittest discover
 
-# Exit if python3 is not installed.
-command -v python3 >/dev/null 2>&1
+  # These files have doctests.
+  python codesearch/language_utils.py
+  python -m doctest README.md
+fi
 
-echo Running tests using Python3:
-python3 -m unittest discover
-python3 codesearch/language_utils.py
-python3 -m doctest README.md
+if [ ${TEST_SUITE:-python3} == python3 ]; then
+  # Exit if python3 is not installed.
+  command -v python3 >/dev/null 2>&1
+
+  echo Running tests using Python3:
+
+  python3 -m unittest discover
+  python3 codesearch/language_utils.py
+  python3 -m doctest README.md
+fi
 

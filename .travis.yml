@@ -1,0 +1,12 @@
+language: python
+
+matrix:
+  include:
+    - python: '2.7'
+      env: TEST_SUITE=python2
+    - python: '3.6'
+      env: TEST_SUITE=python3
+    - python: "nightly"
+      env: TEST_SUITE=python3
+
+script: ./run_tests.sh
