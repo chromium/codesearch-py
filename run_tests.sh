@@ -13,8 +13,9 @@ set -e
 echo Running tests using Python2:
 python -m unittest discover
 
-# This file has doctests.
+# These files have doctests.
 python codesearch/language_utils.py
+python -m doctest README.md
 
 # Exit if python3 is not installed.
 command -v python3 >/dev/null 2>&1
@@ -22,3 +23,5 @@ command -v python3 >/dev/null 2>&1
 echo Running tests using Python3:
 python3 -m unittest discover
 python3 codesearch/language_utils.py
+python3 -m doctest README.md
+
