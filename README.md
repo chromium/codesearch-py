@@ -112,30 +112,20 @@ fields are explained in message.py.
 ...     for match in search_result.match:
 ...         print("{}:{}: {}".format(search_result.top_file.file.name,
 ...                                  match.line_number,
-...                                  match.line_text))
+...                                  match.line_text.strip()))
 ...         lines_left -= 1
 ...         if lines_left == 0: break
 ...     if lines_left == 0: break
-src/gin/shell/hello_world.js:6:   console.log("Hello World");
-<BLANKLINE>
-src/tools/gn/tutorial/hello_world.cc:8:   printf("Hello, world.\n");
-<BLANKLINE>
+src/gin/shell/hello_world.js:6: console.log("Hello World");
+src/tools/gn/tutorial/hello_world.cc:8: printf("Hello, world.\n");
 src/native_client/tests/hello_world/at_exit.c:10: void hello_world(void) {
-<BLANKLINE>
-src/native_client/tests/hello_world/at_exit.c:11:   printf("Hello, World!\n");
-<BLANKLINE>
-src/native_client/tests/hello_world/at_exit.c:17:     atexit(hello_world);
-<BLANKLINE>
+src/native_client/tests/hello_world/at_exit.c:11: printf("Hello, World!\n");
+src/native_client/tests/hello_world/at_exit.c:17: atexit(hello_world);
 tools/depot_tools/third_party/boto/pyami/helloworld.py:24: class HelloWorld(ScriptBase):
-<BLANKLINE>
-tools/depot_tools/third_party/boto/pyami/helloworld.py:27:         self.log('Hello World!!!')
-<BLANKLINE>
+tools/depot_tools/third_party/boto/pyami/helloworld.py:27: self.log('Hello World!!!')
 src/third_party/skia/example/HelloWorld.cpp:37: HelloWorldWindow::~HelloWorldWindow() {
-<BLANKLINE>
-src/third_party/skia/example/HelloWorld.cpp:124:     static const char message[] = "Hello World";
-<BLANKLINE>
-src/third_party/skia/example/HelloWorld.cpp:54:     SkString title("Hello World ");
-<BLANKLINE>
+src/third_party/skia/example/HelloWorld.cpp:124: static const char message[] = "Hello World";
+src/third_party/skia/example/HelloWorld.cpp:54: SkString title("Hello World ");
 
 Note that in the example above:
 *  search_result.match was available because |return_line_matches| was set to
