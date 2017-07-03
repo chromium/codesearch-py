@@ -156,3 +156,5 @@ Contributing
 
 See [CONTRIBUTING](./CONTRIBUTING.md) for details on contributing.
 
+[![Build Status](https://travis-ci.org/chromium/codesearch-py.svg?branch=master)](https://travis-ci.org/chromium/codesearch-py)
+
