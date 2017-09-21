@@ -43,12 +43,12 @@ class TestXrefNode(unittest.TestCase):
                          member.GetDisplayName())
 
       if member.GetSignature(
-      ) == 'cpp:net::class-HttpNetworkTransaction::RestartWithCertificate(net::X509Certificate *, net::SSLPrivateKey *, const base::Callback<void (int), base::internal::CopyMode::Copyable, base::internal::RepeatMode::Repeating> &)@chromium/../../net/http/http_network_transaction.cc|def':
+      ) == 'cpp:net::class-HttpNetworkTransaction::ResetConnectionAndRequestForResend()@chromium/../../net/http/http_network_transaction.h|decl':
         saw_test_case_2 = True
         self.assertEqual(NodeEnumKind.METHOD, member.GetXrefKind())
 
       if member.GetSignature(
-      ) == 'cpp:net::class-HttpNetworkTransaction::HandleIOError(int)@chromium/../../net/http/http_network_transaction.h|decl':
+      ) == 'cpp:net::class-HttpNetworkTransaction::ContentEncodingsValid()-const@chromium/../../net/http/http_network_transaction.h|decl':
         saw_test_case_3 = True
         self.assertEqual(NodeEnumKind.METHOD, member.GetXrefKind())
 
@@ -63,7 +63,7 @@ class TestXrefNode(unittest.TestCase):
     cs = CodeSearch(source_root='/src/chrome/')
     node = XrefNode.FromSignature(
         cs,
-        'cpp:net::class-HttpNetworkTransaction::url_@chromium/../../net/http/http_network_transaction.h|def',
+        'cpp:net::class-HttpNetworkTransaction@chromium/../../net/http/http_network_transaction.h|def',
         '/src/chrome/src/net/http/http_network_transaction.h')
     related = node.GetRelatedAnnotations()
 
@@ -77,15 +77,15 @@ class TestXrefNode(unittest.TestCase):
     cs = CodeSearch(source_root='/src/chrome/')
     node = XrefNode.FromSignature(
         cs,
-        'cpp:net::class-HttpNetworkTransaction::url_@chromium/../../net/http/http_network_transaction.h|def',
+        'cpp:net::class-HttpNetworkTransaction::next_state_@chromium/../../net/http/http_network_transaction.h|def',
         '/src/chrome/src/net/http/http_network_transaction.h')
     related = node.GetRelatedDefinitions()
 
     self.assertEqual(1, len(related))
     definition = related[0]
     self.assertTrue(definition.single_match.grok_modifiers.definition)
-    self.assertEqual('GURL', definition.GetDisplayName())
-    self.assertEqual(NodeEnumKind.CLASS, definition.GetXrefKind())
+    self.assertEqual('State', definition.GetDisplayName())
+    self.assertEqual(NodeEnumKind.ENUM, definition.GetXrefKind())
 
   def test_related_definitions_2(self):
     cs = CodeSearch(source_root='.')
@@ -110,13 +110,13 @@ class TestXrefNode(unittest.TestCase):
     cs = CodeSearch(source_root='/src/chrome/')
     node = XrefNode.FromSignature(
         cs,
-        'cpp:net::class-HttpNetworkTransaction::RestartWithCertificate(net::X509Certificate *, net::SSLPrivateKey *, const base::Callback<void (int), base::internal::CopyMode::Copyable, base::internal::RepeatMode::Repeating> &)@chromium/../../net/http/http_network_transaction.cc|def',
+        'cpp:net::class-HttpCache::class-Transaction::Start(const net::HttpRequestInfo *, const base::RepeatingCallback<void (int)> &, const net::NetLogWithSource &)@chromium/../../net/http/http_cache_transaction.h|decl',
         '/src/chrome/src/net/http/http_network_transaction.cc')
-    all_edges = node.GetAllEdges(max_num_results=10)
+    all_edges = node.GetAllEdges(max_num_results=50)
 
-    # Definitely more than 10 edges here. But can't check for an exact number
+    # Definitely more than 50 edges here. But can't check for an exact number
     # due to some results getting elided.
-    self.assertLess(0, len(all_edges))
+    self.assertLess(25, len(all_edges))
 
 
 if __name__ == '__main__':

@@ -33,7 +33,7 @@ Let's look up a class:
 The SearchForSymbol function searches for a symbol of a specific type. In this
 case we are looking for a class named File. There may be more than one such
 class, so the function returns an array. We only need the first one.
->>> file_class = cs.SearchForSymbol('File', codesearch.NodeEnumKind.CLASS)[0]
+>>> file_class = cs.SearchForSymbol('FieldTrial', codesearch.NodeEnumKind.CLASS)[0]
 
 SearchForSymbol returns an XrefNode object. This is a starting point for cross
 reference lookups.
@@ -55,12 +55,12 @@ True
 We can find out what kind it is. The kinds that are known to CodeSearch are
 described in the codesearch.NodeEnumKind enumeration.
 >>> print(members[0].GetXrefKind())
-700
+5200
 
 Convert between values and symbols using the class member functions ToSymbol(),
 and FromSymbol().
 >>> print(codesearch.NodeEnumKind.ToSymbol(members[0].GetXrefKind()))
-ENUM
+TYPE_ALIAS
 
 In addition to the above, there are lower level APIs to talk to the unofficial
 endpoints in the https://cs.chromium.org backend. One such API is
@@ -116,16 +116,16 @@ fields are explained in message.py.
 ...         lines_left -= 1
 ...         if lines_left == 0: break
 ...     if lines_left == 0: break
+src/v8/samples/hello-world.cc:39: v8::String::NewFromUtf8(isolate, "'Hello' + ', World!'",
+src/v8/samples/hello-world.cc:34: // Enter the context for compiling and running the hello world script.
 src/gin/shell/hello_world.js:6: console.log("Hello World");
+src/v8/test/fuzzer/parser/hello-world:1: console.log('hello world');
+src/native_client/tests/hello_world/hello_world.c:13: void hello_world(void) {
+src/native_client/tests/hello_world/hello_world.c:14: printf("Hello, World!\n");
+src/native_client/tests/hello_world/hello_world.c:18: hello_world();
+src/tools/gyp/test/hello/hello.c:9: printf("Hello, world!\n");
 src/tools/gn/tutorial/hello_world.cc:8: printf("Hello, world.\n");
-src/native_client/tests/hello_world/at_exit.c:10: void hello_world(void) {
-src/native_client/tests/hello_world/at_exit.c:11: printf("Hello, World!\n");
-src/native_client/tests/hello_world/at_exit.c:17: atexit(hello_world);
-tools/depot_tools/third_party/boto/pyami/helloworld.py:24: class HelloWorld(ScriptBase):
-tools/depot_tools/third_party/boto/pyami/helloworld.py:27: self.log('Hello World!!!')
-src/third_party/skia/example/HelloWorld.cpp:37: HelloWorldWindow::~HelloWorldWindow() {
-src/third_party/skia/example/HelloWorld.cpp:124: static const char message[] = "Hello World";
-src/third_party/skia/example/HelloWorld.cpp:54: SkString title("Hello World ");
+infra/go/src/go.chromium.org/luci/grpc/prpc/e2etest/helloworld_test.proto:19: service Hello {
 
 Note that in the example above:
 *  search_result.match was available because |return_line_matches| was set to

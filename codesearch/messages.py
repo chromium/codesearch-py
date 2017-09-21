@@ -907,6 +907,7 @@ class XrefSingleMatch(Message):
       'line_text': str,
       'type': str,
       'type_id': EdgeEnumKind,
+      'node_type': NodeEnumKind,
       'grok_modifiers': Modifiers,
       'signature': str,
   }

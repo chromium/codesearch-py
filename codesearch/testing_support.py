@@ -196,3 +196,6 @@ if __name__ == '__main__':
 
   if resolved_count > 0:
     print('\nDon\'t forget to \'git add\' the new files and commit them.')
+  else:
+    print('\nNo URLs resolved\n')
+    sys.exit(1)

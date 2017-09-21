@@ -50,44 +50,44 @@ class TestCodeSearch(unittest.TestCase):
     self.assertEqual('Foo', request.get_header('User-agent'))
 
   def test_get_signatures_for_symbol(self):
-    TARGET_FILE = '/src/chrome/src/base/files/file.h'
+    TARGET_FILE = '/src/chrome/src/base/metrics/field_trial.h'
     cs = CodeSearch(source_root=SOURCE_ROOT)
 
-    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'File')
-    self.assertEqual(8, len(signatures))
+    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'FieldTrial')
+    self.assertEqual(4, len(signatures))
 
-    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'File',
+    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'FieldTrial',
                                            NodeEnumKind.CLASS)
     self.assertEqual(1, len(signatures))
 
-    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'File',
+    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'FieldTrial',
                                            NodeEnumKind.CONSTRUCTOR)
-    self.assertEqual(6, len(signatures))
+    self.assertEqual(2, len(signatures))
 
   def test_get_signature_for_symbol(self):
 
-    TARGET_FILE = '/src/chrome/src/base/files/file.h'
+    TARGET_FILE = '/src/chrome/src/base/metrics/field_trial.h'
     cs = CodeSearch(source_root=SOURCE_ROOT)
 
     self.assertEqual(
-        cs.GetSignatureForSymbol(TARGET_FILE, 'File'),
-        'cpp:base::class-File@chromium/../../base/files/file.h|def')
+        cs.GetSignatureForSymbol(TARGET_FILE, 'RandomizationType'),
+        'cpp:base::class-FieldTrial::enum-RandomizationType@chromium/../../base/metrics/field_trial.h|def')
     self.assertEqual(
-        cs.GetSignatureForSymbol(TARGET_FILE, 'Time'),
-        'cpp:base::class-Time@chromium/../../base/time/time.h|def')
+        cs.GetSignatureForSymbol(TARGET_FILE, 'pickle_size'),
+        'cpp:base::class-FieldTrial::class-FieldTrialEntry::pickle_size@chromium/../../base/metrics/field_trial.h|def')
     self.assertEqual(
-        cs.GetSignatureForSymbol(TARGET_FILE, 'last_modified'),
-        'cpp:base::class-File::class-Info::last_modified@chromium/../../base/files/file.h|def'
+        cs.GetSignatureForSymbol(TARGET_FILE, 'randomization_seed'),
+        'cpp:base::class-FieldTrial::class-EntropyProvider::GetEntropyForTrial(const std::__1::basic_string<char> &, unsigned int)-const::param-randomization_seed@chromium/../../base/metrics/field_trial.h:4960|decl'
     )
     self.assertEqual(
-        cs.GetSignatureForSymbol(TARGET_FILE, 'int64_t'),
-        'cpp:int64_t@chromium/../../build/linux/debian_jessie_amd64-sysroot/usr/include/stdint.h|def'
+        cs.GetSignatureForSymbol(TARGET_FILE, 'uint32_t'),
+        'cpp:uint32_t@chromium/../../build/linux/debian_jessie_amd64-sysroot/usr/include/stdint.h|def'
     )
 
   def test_search_for_symbol(self):
     cs = CodeSearch(source_root='.')
 
-    signatures = cs.SearchForSymbol('File', NodeEnumKind.CLASS)
+    signatures = cs.SearchForSymbol('FieldTrial', NodeEnumKind.CLASS)
 
     self.assertEqual(1, len(signatures))
     self.assertTrue(isinstance(signatures[0], XrefNode))
@@ -99,7 +99,7 @@ class TestCodeSearch(unittest.TestCase):
   def test_figment_display_name(self):
     cs = CodeSearch(source_root='.')
 
-    signatures = cs.SearchForSymbol('File', NodeEnumKind.CLASS)
+    signatures = cs.SearchForSymbol('FieldTrial', NodeEnumKind.CLASS)
     self.assertEqual(1, len(signatures))
 
     file_class = signatures[0]
@@ -107,7 +107,7 @@ class TestCodeSearch(unittest.TestCase):
 
     ed = [
         d for d in declarations
-        if ' created_' in d.single_match.line_text and
+        if ' enable_field_trial_' in d.single_match.line_text and
         d.GetXrefKind() == NodeEnumKind.FIELD
     ][0]
     ed_type = ed.GetEdges(EdgeEnumKind.HAS_TYPE)[0]
@@ -127,12 +127,12 @@ class TestCodeSearch(unittest.TestCase):
         d.GetXrefKind() == NodeEnumKind.FIELD
     ][0]
     rd_type = rd.GetEdges(EdgeEnumKind.HAS_TYPE)[0]
-    self.assertEqual('std::unique_ptr<char, base::FreeDeleter>',
+    self.assertEqual('std::__1::unique_ptr<char, base::FreeDeleter>',
                      rd_type.GetDisplayName())
 
   def test_figment_display_name_3(self):
     cs = CodeSearch(source_root='.')
-    signatures = cs.SearchForSymbol('PickledIOBuffer', NodeEnumKind.CLASS)
+    signatures = cs.SearchForSymbol('GrowableIOBuffer', NodeEnumKind.CLASS)
     self.assertEqual(1, len(signatures))
 
     gb_class = signatures[0]
@@ -140,23 +140,21 @@ class TestCodeSearch(unittest.TestCase):
 
     p = [
         d for d in declarations
-        if ' pickle_' in d.single_match.line_text and
+        if ' real_data_' in d.single_match.line_text and
         d.GetXrefKind() == NodeEnumKind.FIELD
     ][0]
-    p_type = p.GetEdges(EdgeEnumKind.HAS_TYPE)
-    self.assertEqual(0, len(p_type))
 
     reldefns = p.GetRelatedDefinitions()
-    self.assertEqual(2, len(reldefns))
+    self.assertEqual(4, len(reldefns))
 
     class_defn = [d for d in reldefns
                   if d.GetXrefKind() == NodeEnumKind.CLASS][0]
-    self.assertEqual('Pickle', class_defn.GetDisplayName())
+    self.assertEqual('FreeDeleter', class_defn.GetDisplayName())
 
   def test_get_type_1(self):
     cs = CodeSearch(source_root='.')
 
-    signatures = cs.SearchForSymbol('File', NodeEnumKind.CLASS)
+    signatures = cs.SearchForSymbol('FieldTrial', NodeEnumKind.CLASS)
     self.assertEqual(1, len(signatures))
 
     file_class = signatures[0]
@@ -164,7 +162,7 @@ class TestCodeSearch(unittest.TestCase):
 
     ed = [
         d for d in declarations
-        if ' created_' in d.single_match.line_text and
+        if ' enable_field_trial_' in d.single_match.line_text and
         d.GetXrefKind() == NodeEnumKind.FIELD
     ][0]
     ed_type = ed.GetType()
@@ -186,12 +184,12 @@ class TestCodeSearch(unittest.TestCase):
     ][0]
     rd_type = rd.GetType()
     self.assertTrue(rd_type)
-    self.assertEqual('std::unique_ptr<char, base::FreeDeleter>',
+    self.assertEqual('std::__1::unique_ptr<char, base::FreeDeleter>',
                      rd_type.GetDisplayName())
 
   def test_get_type_3(self):
     cs = CodeSearch(source_root='.')
-    signatures = cs.SearchForSymbol('PickledIOBuffer', NodeEnumKind.CLASS)
+    signatures = cs.SearchForSymbol('AtExitManager', NodeEnumKind.CLASS)
     self.assertEqual(1, len(signatures))
 
     gb_class = signatures[0]
@@ -199,26 +197,11 @@ class TestCodeSearch(unittest.TestCase):
 
     p = [
         d for d in declarations
-        if ' pickle_' in d.single_match.line_text and
+        if ' next_manager_' in d.single_match.line_text and
         d.GetXrefKind() == NodeEnumKind.FIELD
     ][0]
     p_type = p.GetType()
-    self.assertEqual('Pickle', p_type.GetDisplayName())
-
-  def test_get_type_4(self):
-    cs = CodeSearch(source_root='.')
-    signatures = cs.SearchForSymbol('URLRequestJob', NodeEnumKind.CLASS)
-    self.assertEqual(1, len(signatures))
-    urj_class = signatures[0]
-
-    declarations = urj_class.GetEdges(EdgeEnumKind.DECLARES)
-    p = [
-        d for d in declarations
-        if ' last_notified_total_sent_bytes_' in d.single_match.line_text and
-        d.GetXrefKind() == NodeEnumKind.FIELD
-    ][0]
-    p_type = p.GetType()
-    self.assertEqual('int64_t', p_type.GetDisplayName())
+    self.assertEqual('base::AtExitManager*', p_type.GetDisplayName())
 
   def test_fixed_cache(self):
     fixed_cache_dir = os.path.join(TestDataDir(), 'fixed_cache')

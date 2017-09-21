@@ -245,6 +245,10 @@ class XrefNode(object):
 
     if not self.filespec:
       raise Exception('no filespec found for XrefNode')
+
+    if self.single_match and hasattr(self.single_match, 'node_type'):
+      return self.single_match.node_type
+
     annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
     for annotation in annotations:
       sig = getattr(annotation, 'xref_signature', None)
