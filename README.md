@@ -33,7 +33,7 @@ Let's look up a class:
 The SearchForSymbol function searches for a symbol of a specific type. In this
 case we are looking for a class named File. There may be more than one such
 class, so the function returns an array. We only need the first one.
->>> file_class = cs.SearchForSymbol('FieldTrial', codesearch.NodeEnumKind.CLASS)[0]
+>>> file_class = cs.SearchForSymbol('FieldTrial$', codesearch.NodeEnumKind.CLASS)[0]
 
 SearchForSymbol returns an XrefNode object. This is a starting point for cross
 reference lookups.

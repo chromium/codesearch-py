@@ -16,7 +16,7 @@ from .file_cache import FileCache
 from .messages import CompoundRequest, AnnotationType, AnnotationTypeValue, \
         CompoundResponse, FileInfoRequest, FileSpec, AnnotationRequest, \
         EdgeEnumKind, XrefSearchRequest, XrefSingleMatch, XrefSearchResult, \
-        FileInfo, TextRange, Annotation, NodeEnumKind, SearchRequest
+        FileInfo, TextRange, Annotation, NodeEnumKind, SearchRequest, SearchResult
 from .paths import GetSourceRoot
 from .compat import StringFromBytes
 from .language_utils import SymbolSuffixMatcher, IsIdentifier
@@ -88,8 +88,7 @@ class CsFile(object):
     if self.annotations == None:
       response = self.cs.GetAnnotationsForFile(self.GetFileSpec())
       if not hasattr(response.annotation_response[0], 'annotation'):
-        raise Exception(
-            'can\'t fetch annotations for {}'.format(str(self.GetFileSpec())))
+        return []
       self.annotations = response.annotation_response[0].annotation
       assert isinstance(self.annotations, list)
       assert isinstance(self.annotations[0], Annotation)
@@ -609,7 +608,8 @@ class CodeSearch(object):
   def GetAnnotationsForFile(
       self,
       filename,
-      annotation_types=[AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE)]):
+      annotation_types=[AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE),
+          AnnotationType(id=AnnotationTypeValue.LINK_TO_DEFINITION)]):
     """Retrieves a list of annotations for a file.
 
     Note that it is much more efficient in your scripts to use
@@ -630,9 +630,12 @@ class CodeSearch(object):
     All locations are 1-based."""
 
     annotations = self.GetFileInfo(filename).GetAnnotations()
+    enclosing_annotation_found = False
     for annotation in annotations:
       if not annotation.range.Contains(line, column):
         continue
+
+      enclosing_annotation_found = True
 
       if hasattr(annotation, 'xref_signature'):
         return annotation.xref_signature.signature
@@ -640,7 +643,10 @@ class CodeSearch(object):
       if hasattr(annotation, 'internal_link'):
         return annotation.internal_link.signature
 
-    raise Exception("Can't determine signature for %s at %d:%d" %
+    if not enclosing_annotation_found:
+        raise Exception("no annotations found at (%d:%d) for %s" % (line, column, filename))
+
+    raise Exception("can't determine signature for %s at %d:%d" %
                     (filename, line, column))
 
   def GetFileInfo(self,
@@ -672,7 +678,7 @@ class CodeSearch(object):
         ]))
 
     if hasattr(result.file_info_response[0], 'error_message'):
-      raise Exception('error while fetching FileInfo: {}'.format(
+      raise Exception('server reported error while fetching FileInfo: {}'.format(
           result.file_info_response[0].error_message))
 
     if hasattr(result.file_info_response[0], 'file_info'):
@@ -682,16 +688,32 @@ class CodeSearch(object):
 
       return file_info
 
-    raise Exception('can\'t fetch file info for %f' % (filename))
+    raise Exception('unexpected message format while fetching file info for %f' % (filename))
 
   def GetSignatureForSymbol(self, filename, symbol):
     """Return a signature matching |symbol| in |filename|.
 
     Note: The heuristics used here may lead to inexact or surprising behavior.
           Use GetSignaturesForSymbol instead.
+
+    Some examples of tickets (signatures):
+
+    * class BackgroundSyncService -> cpp:blink::mojom::class-BackgroundSyncService@chromium/gen/third_party/WebKit/public/platform/modules/background_sync/background_sync.mojom.h|def
+
+    * method BackgroundSyncService::Register -> cpp:blink::mojom::class-BackgroundSyncService::Register(mojo::InlinedStructPtr<blink::mojom::SyncRegistration>, long, base::OnceCallback<void (blink::mojom::BackgroundSyncError, mojo::InlinedStructPtr<blink::mojom::SyncRegistration>)>)@chromium/gen/third_party/WebKit/public/platform/modules/background_sync/background_sync.mojom.h|decl
+
+    * method parameter named 'options': cpp:blink::mojom::class-BackgroundSyncService::Register(mojo::InlinedStructPtr<blink::mojom::SyncRegistration>, long, base::OnceCallback<void (blink::mojom::BackgroundSyncError, mojo::InlinedStructPtr<blink::mojom::SyncRegistration>)>)::param-options@chromium/gen/third_party/WebKit/public/platform/modules/background_sync/background_sync.mojom.h:3620|decl
+
+    * class declaration: cpp:blink::mojom::class-BackgroundSyncServiceRequestValidator@chromium/gen/third_party/WebKit/public/platform/modules/background_sync/background_sync.mojom.h|decl
+
+    * Macro definition: cpp:macro-DISALLOW_COPY_AND_ASSIGN()@chromium/../../base/macros.h|def
+
+    * Template function: cpp:ignore_result<#1>(const #1 &)@chromium/../../base/macros.h|def
+
+    * Template class dcl: cpp:base::class-BasicStringPiece<#1>@chromium/../../base/strings/string_piece_forward.h|decl
     """
 
-    substrings = [':%s@' % symbol, ':%s(' % symbol, '-%s@' % symbol]
+    substrings = [':%s@' % symbol, ':%s(' % symbol, '-%s@' % symbol, '-%s(' % symbol]
 
     annotations = self.GetFileInfo(filename).GetAnnotations()
     for snippet in annotations:
@@ -744,7 +766,11 @@ class CodeSearch(object):
 
     return list(signatures)
 
-  def SearchForSymbol(self, symbol, xref_kind=None, max_results_to_analyze=50):
+  def SearchForSymbol(self,
+                      symbol,
+                      xref_kind=None,
+                      max_results_to_analyze=5,
+                      return_all_results=False):
     """Search for a specified symbol.
 
     Use this when you know the symbol name and its type, and don't mind a few
@@ -757,8 +783,11 @@ class CodeSearch(object):
     |xref_kind| should be one of NodeEnumKind.
 
     Set |max_results_to_analyze| to change the number of search results to look
-    at. Note that each search result corresponds to a file. All the results
-    from the first file that yields any results are returned.
+    at. Note that each search result corresponds to a file.
+
+    If |return_all_results| is True, then all signatures from all the search
+    results will be returned. Note that this can be very slow. By default, the
+    search will end as soon as at least one signature has been found.
     """
     XREF_KIND_TO_SEARCH_PREFIX = {
         NodeEnumKind.CLASS: "class:",
@@ -776,11 +805,11 @@ class CodeSearch(object):
                 exhaustive=True,
                 max_num_results=max_results_to_analyze,
                 return_all_duplicates=False,
-                return_all_snippets=False,
+                return_all_snippets=True,
                 return_decorated_snippets=False,
                 return_directories=False,
                 return_line_matches=False,
-                return_snippets=False)
+                return_snippets=True)
         ])).search_response[0]
 
     if not hasattr(search_response, 'search_result'):
@@ -788,20 +817,51 @@ class CodeSearch(object):
 
     signatures = set()
     for result in search_response.search_result:
+      assert isinstance(result, SearchResult)
+
       if not hasattr(result, 'top_file'):
         continue
 
-      s = self.GetSignaturesForSymbol(result.top_file.file, symbol, xref_kind)
-      if s:
-        signatures.update(set(s))
+      if not hasattr(result, 'snippet'):
+        continue
 
-      if len(signatures) > 0:
-        return [
-            XrefNode.FromSignature(
-                self, signature=s, filename=result.top_file.file)
-            for s in signatures
-        ]
-    return []
+      for snippet in result.snippet:
+        if not hasattr(snippet, 'text') or not hasattr(snippet.text, 'range'):
+          continue
+        for r in snippet.text.range:
+          try:
+            s = self.GetSignatureForLocation(
+                result.top_file.file.name,
+                snippet.first_line_number + r.range.end_line - 1,
+                r.range.end_column - 1)
+            signatures.add(s)
+          except:
+            # This usually means that there were no matches at the location. CS
+            # being CS, sometimes we need to resort to doing terrible things,
+            # like searching by symbol name.
+            sa = self.GetSignaturesForSymbol(result.top_file.file.name, symbol)
+            signatures.update(set(sa))
+
+            if len(sa) == 0:
+                # Well, that didn't work either. Let's try one more time and
+                # this time look up signatures that look like they are in the
+                # right ballpark. This is the least accurate of the methods
+                # available to us.
+                try:
+                    s = self.GetSignatureForSymbol(result.top_file.file.name, symbol)
+                    signatures.add(s)
+                except:
+                    pass
+            pass
+
+      if not return_all_results and len(signatures) > 0:
+        break
+
+    return [
+        XrefNode.FromSignature(
+            self, signature=s, filename=result.top_file.file)
+        for s in signatures
+    ]
 
   def GetXrefsFor(self, signature, edge_filter, max_num_results=500):
     refs = self.SendRequestToServer(

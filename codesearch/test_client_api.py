@@ -87,8 +87,7 @@ class TestCodeSearch(unittest.TestCase):
   def test_search_for_symbol(self):
     cs = CodeSearch(source_root='.')
 
-    signatures = cs.SearchForSymbol('FieldTrial', NodeEnumKind.CLASS)
-
+    signatures = cs.SearchForSymbol('FieldTrial$', NodeEnumKind.CLASS)
     self.assertEqual(1, len(signatures))
     self.assertTrue(isinstance(signatures[0], XrefNode))
 
@@ -96,10 +95,16 @@ class TestCodeSearch(unittest.TestCase):
     self.assertEqual(1, len(signatures))
     self.assertTrue(isinstance(signatures[0], XrefNode))
 
+    signatures = cs.SearchForSymbol('BackgroundSyncService::Register', NodeEnumKind.METHOD)
+    self.assertEqual(1, len(signatures))
+
+    signatures = cs.SearchForSymbol('BackgroundSyncService::Register', NodeEnumKind.METHOD, return_all_results=True)
+    self.assertEqual(2, len(signatures))
+
   def test_figment_display_name(self):
     cs = CodeSearch(source_root='.')
 
-    signatures = cs.SearchForSymbol('FieldTrial', NodeEnumKind.CLASS)
+    signatures = cs.SearchForSymbol('FieldTrial$', NodeEnumKind.CLASS)
     self.assertEqual(1, len(signatures))
 
     file_class = signatures[0]
@@ -145,16 +150,16 @@ class TestCodeSearch(unittest.TestCase):
     ][0]
 
     reldefns = p.GetRelatedDefinitions()
-    self.assertEqual(4, len(reldefns))
+    self.assertEqual(5, len(reldefns))
 
     class_defn = [d for d in reldefns
-                  if d.GetXrefKind() == NodeEnumKind.CLASS][0]
-    self.assertEqual('FreeDeleter', class_defn.GetDisplayName())
+                  if hasattr(d.single_match.grok_modifiers, 'is_figment') and d.single_match.grok_modifiers.is_figment][0]
+    self.assertEqual('std::__1::unique_ptr<char, base::FreeDeleter>',class_defn.GetDisplayName())
 
   def test_get_type_1(self):
     cs = CodeSearch(source_root='.')
 
-    signatures = cs.SearchForSymbol('FieldTrial', NodeEnumKind.CLASS)
+    signatures = cs.SearchForSymbol('FieldTrial$', NodeEnumKind.CLASS)
     self.assertEqual(1, len(signatures))
 
     file_class = signatures[0]
@@ -189,7 +194,7 @@ class TestCodeSearch(unittest.TestCase):
 
   def test_get_type_3(self):
     cs = CodeSearch(source_root='.')
-    signatures = cs.SearchForSymbol('AtExitManager', NodeEnumKind.CLASS)
+    signatures = cs.SearchForSymbol('base::AtExitManager', NodeEnumKind.CLASS)
     self.assertEqual(1, len(signatures))
 
     gb_class = signatures[0]
@@ -209,6 +214,16 @@ class TestCodeSearch(unittest.TestCase):
     # There are no resources corresponding to the requests that are going to be
     # made under this test. Instead there are cached resources. The cache
     # expiration is set for 10 years, which should be long enough for anybody.
+
+    # Note that whenever the request parameters change, the fixed cache will
+    # stop working. Hence we need to regenerate the test data. To do that:
+    #
+    # - Remove all the files from testdata/fixed_cache/*
+    # - Comment out the DisableNetwork() call below.
+    # - Run the test in rebaseline mode.
+    # - *DONT* add any of the new cache entries added to testdata/resource/*
+    # - *DO* add the new files that show up in testdata/fixed_cache/*
+
     DisableNetwork()
     cs = CodeSearch(
         source_root='.',
@@ -216,7 +231,7 @@ class TestCodeSearch(unittest.TestCase):
         cache_dir=fixed_cache_dir,
         cache_timeout_in_seconds=10 * 365 * 24 * 60 * 60)
     try:
-      signatures = cs.SearchForSymbol('URLRequestHttpJob', NodeEnumKind.CLASS)
+      signatures = cs.SearchForSymbol('URLRequestHttpJob', NodeEnumKind.CLASS, max_results_to_analyze=50)
     finally:
       EnableNetwork()
       cs.TeardownCache()
@@ -233,16 +248,10 @@ class TestCodeSearch(unittest.TestCase):
       self.assertEqual(1, len(signatures))
 
       entries = os.listdir(test_dir)
+      # Test the count of entries. The exact set of entries will change from
+      # time to time due to changes in queries and repsonses.
       self.assertEqual(3, len(entries))
 
-      # These are the sha1 hashes for the URL requests that should be generated.
-      self.assertSetEqual(
-          set(entries),
-          set([
-              '0e942b3e9f60ed374f6665557db7b32c09ca8750',
-              '523d9bc4fb57288017a0369243dc68aed4f28662',
-              'b4863b6c69e434795071308861d7e0586efe2186'
-          ]))
     finally:
       shutil.rmtree(test_dir)
 

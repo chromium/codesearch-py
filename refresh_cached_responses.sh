@@ -41,8 +41,7 @@ EOF
 fi
 
 if [ $remove = 1 ]; then
-  git clean -xf || echo No files to clean.
-  git rm codesearch/testdata/responses/\\* || echo No files in index.
+  git rm codesearch/testdata/responses/\* || echo No files in index.
   rm codesearch/testdata/responses/* || echo No unresolved files in cache.
 fi
 

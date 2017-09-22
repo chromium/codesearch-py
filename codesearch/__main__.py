@@ -259,5 +259,7 @@ try:
       cache_dir=arguments.cache if arguments.cache else None)
   setup_logging(codesearch_instance, arguments)
   print_result(arguments.func(codesearch_instance, arguments), arguments)
+except Exception as e:
+  print e
 finally:
   codesearch_instance.TeardownCache()
