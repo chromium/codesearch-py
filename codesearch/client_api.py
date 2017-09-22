@@ -608,8 +608,10 @@ class CodeSearch(object):
   def GetAnnotationsForFile(
       self,
       filename,
-      annotation_types=[AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE),
-          AnnotationType(id=AnnotationTypeValue.LINK_TO_DEFINITION)]):
+      annotation_types=[
+          AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE), AnnotationType(
+              id=AnnotationTypeValue.LINK_TO_DEFINITION)
+      ]):
     """Retrieves a list of annotations for a file.
 
     Note that it is much more efficient in your scripts to use
@@ -644,7 +646,8 @@ class CodeSearch(object):
         return annotation.internal_link.signature
 
     if not enclosing_annotation_found:
-        raise Exception("no annotations found at (%d:%d) for %s" % (line, column, filename))
+      raise Exception("no annotations found at (%d:%d) for %s" % (line, column,
+                                                                  filename))
 
     raise Exception("can't determine signature for %s at %d:%d" %
                     (filename, line, column))
@@ -678,8 +681,8 @@ class CodeSearch(object):
         ]))
 
     if hasattr(result.file_info_response[0], 'error_message'):
-      raise Exception('server reported error while fetching FileInfo: {}'.format(
-          result.file_info_response[0].error_message))
+      raise Exception('server reported error while fetching FileInfo: {}'.
+                      format(result.file_info_response[0].error_message))
 
     if hasattr(result.file_info_response[0], 'file_info'):
       file_info = CsFile(self, file_info=result.file_info_response[0].file_info)
@@ -688,7 +691,9 @@ class CodeSearch(object):
 
       return file_info
 
-    raise Exception('unexpected message format while fetching file info for %f' % (filename))
+    raise Exception(
+        'unexpected message format while fetching file info for %f' %
+        (filename))
 
   def GetSignatureForSymbol(self, filename, symbol):
     """Return a signature matching |symbol| in |filename|.
@@ -713,7 +718,9 @@ class CodeSearch(object):
     * Template class dcl: cpp:base::class-BasicStringPiece<#1>@chromium/../../base/strings/string_piece_forward.h|decl
     """
 
-    substrings = [':%s@' % symbol, ':%s(' % symbol, '-%s@' % symbol, '-%s(' % symbol]
+    substrings = [
+        ':%s@' % symbol, ':%s(' % symbol, '-%s@' % symbol, '-%s(' % symbol
+    ]
 
     annotations = self.GetFileInfo(filename).GetAnnotations()
     for snippet in annotations:
@@ -843,15 +850,16 @@ class CodeSearch(object):
             signatures.update(set(sa))
 
             if len(sa) == 0:
-                # Well, that didn't work either. Let's try one more time and
-                # this time look up signatures that look like they are in the
-                # right ballpark. This is the least accurate of the methods
-                # available to us.
-                try:
-                    s = self.GetSignatureForSymbol(result.top_file.file.name, symbol)
-                    signatures.add(s)
-                except:
-                    pass
+              # Well, that didn't work either. Let's try one more time and
+              # this time look up signatures that look like they are in the
+              # right ballpark. This is the least accurate of the methods
+              # available to us.
+              try:
+                s = self.GetSignatureForSymbol(result.top_file.file.name,
+                                               symbol)
+                signatures.add(s)
+              except:
+                pass
             pass
 
       if not return_all_results and len(signatures) > 0:

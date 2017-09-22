@@ -71,10 +71,12 @@ class TestCodeSearch(unittest.TestCase):
 
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'RandomizationType'),
-        'cpp:base::class-FieldTrial::enum-RandomizationType@chromium/../../base/metrics/field_trial.h|def')
+        'cpp:base::class-FieldTrial::enum-RandomizationType@chromium/../../base/metrics/field_trial.h|def'
+    )
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'pickle_size'),
-        'cpp:base::class-FieldTrial::class-FieldTrialEntry::pickle_size@chromium/../../base/metrics/field_trial.h|def')
+        'cpp:base::class-FieldTrial::class-FieldTrialEntry::pickle_size@chromium/../../base/metrics/field_trial.h|def'
+    )
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'randomization_seed'),
         'cpp:base::class-FieldTrial::class-EntropyProvider::GetEntropyForTrial(const std::__1::basic_string<char> &, unsigned int)-const::param-randomization_seed@chromium/../../base/metrics/field_trial.h:4960|decl'
@@ -95,10 +97,14 @@ class TestCodeSearch(unittest.TestCase):
     self.assertEqual(1, len(signatures))
     self.assertTrue(isinstance(signatures[0], XrefNode))
 
-    signatures = cs.SearchForSymbol('BackgroundSyncService::Register', NodeEnumKind.METHOD)
+    signatures = cs.SearchForSymbol('BackgroundSyncService::Register',
+                                    NodeEnumKind.METHOD)
     self.assertEqual(1, len(signatures))
 
-    signatures = cs.SearchForSymbol('BackgroundSyncService::Register', NodeEnumKind.METHOD, return_all_results=True)
+    signatures = cs.SearchForSymbol(
+        'BackgroundSyncService::Register',
+        NodeEnumKind.METHOD,
+        return_all_results=True)
     self.assertEqual(2, len(signatures))
 
   def test_figment_display_name(self):
@@ -152,9 +158,13 @@ class TestCodeSearch(unittest.TestCase):
     reldefns = p.GetRelatedDefinitions()
     self.assertEqual(5, len(reldefns))
 
-    class_defn = [d for d in reldefns
-                  if hasattr(d.single_match.grok_modifiers, 'is_figment') and d.single_match.grok_modifiers.is_figment][0]
-    self.assertEqual('std::__1::unique_ptr<char, base::FreeDeleter>',class_defn.GetDisplayName())
+    class_defn = [
+        d for d in reldefns
+        if hasattr(d.single_match.grok_modifiers, 'is_figment') and
+        d.single_match.grok_modifiers.is_figment
+    ][0]
+    self.assertEqual('std::__1::unique_ptr<char, base::FreeDeleter>',
+                     class_defn.GetDisplayName())
 
   def test_get_type_1(self):
     cs = CodeSearch(source_root='.')
@@ -231,7 +241,8 @@ class TestCodeSearch(unittest.TestCase):
         cache_dir=fixed_cache_dir,
         cache_timeout_in_seconds=10 * 365 * 24 * 60 * 60)
     try:
-      signatures = cs.SearchForSymbol('URLRequestHttpJob', NodeEnumKind.CLASS, max_results_to_analyze=50)
+      signatures = cs.SearchForSymbol(
+          'URLRequestHttpJob', NodeEnumKind.CLASS, max_results_to_analyze=50)
     finally:
       EnableNetwork()
       cs.TeardownCache()
