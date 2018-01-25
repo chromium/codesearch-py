@@ -1,0 +1,3816 @@
+{
+  "elapsed_ms": 15, 
+  "xref_search_response": [
+    {
+      "status": 0, 
+      "search_result": [
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/debug/activity_tracker.cc#%4065652%3A65662", 
+              "line_number": 1692, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }
+          ], 
+          "file": {
+            "name": "src/base/debug/activity_tracker.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.cc#%404075%3A4085", 
+              "line_number": 116, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial = FieldTrialList::Find(trial_name.as_string());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.cc#%404629%3A4639", 
+              "line_number": 132, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.cc#%405401%3A5411", 
+              "line_number": 151, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                             FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.cc#%407949%3A7959", 
+              "line_number": 231, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FeatureList::GetFieldTrial(const Feature& feature) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.cc#%4012045%3A12055", 
+              "line_number": 348, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FeatureList::GetAssociatedFieldTrial(const Feature& feature) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.cc#%4012692%3A12702", 
+              "line_number": 367, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial = nullptr;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.cc#%4013334%3A13344", 
+              "line_number": 383, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                   FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.cc#%4014525%3A14535", 
+              "line_number": 415, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                          FieldTrial* field_trial)"
+            }
+          ], 
+          "file": {
+            "name": "src/base/feature_list.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.h#%40541%3A551%40gLrt%2B4tPrI6tpxmO1gc6gpYTKsEw6OpAtZ98jZS8B%2Fo%3D%23chromium%23src%2Fbase%2Ffeature_list.h", 
+              "line_number": 22, 
+              "type_id": 2, 
+              "type": "DECLARATION", 
+              "line_text": "class FieldTrial;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.h#%405844%3A5854", 
+              "line_number": 134, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                    FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.h#%406568%3A6578", 
+              "line_number": 145, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                  FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.h#%408004%3A8014", 
+              "line_number": 169, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* GetFieldTrial(const Feature& feature);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.h#%4010589%3A10599", 
+              "line_number": 219, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.h#%4011259%3A11269", 
+              "line_number": 232, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    OverrideEntry(OverrideState overridden_state, FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.h#%4012059%3A12069", 
+              "line_number": 249, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* GetAssociatedFieldTrial(const Feature& feature);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list.h#%4013156%3A13166", 
+              "line_number": 267, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                        FieldTrial* field_trial);"
+            }
+          ], 
+          "file": {
+            "name": "src/base/feature_list.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%405059%3A5069", 
+              "line_number": 147, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%405405%3A5415", 
+              "line_number": 157, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial1 = FieldTrialList::CreateFieldTrial(\"TrialExample1\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%405486%3A5496", 
+              "line_number": 158, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial2 = FieldTrialList::CreateFieldTrial(\"TrialExample2\", \"B\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%407046%3A7056", 
+              "line_number": 189, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial1 = FieldTrialList::CreateFieldTrial(\"TrialExample1\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%407125%3A7135", 
+              "line_number": 190, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial2 = FieldTrialList::CreateFieldTrial(\"TrialExample2\", \"B\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%408685%3A8695", 
+              "line_number": 224, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"TrialExample2\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4013368%3A13378", 
+              "line_number": 321, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* enable_trial = nullptr;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4013853%3A13863", 
+              "line_number": 330, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* disable_trial = nullptr;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4015286%3A15296", 
+              "line_number": 363, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"Trial\", \"Group\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4016211%3A16221", 
+              "line_number": 384, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"Trial\", \"Group\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4016920%3A16930", 
+              "line_number": 401, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"Trial\", \"Group\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4021836%3A21846", 
+              "line_number": 510, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial1 = FieldTrialList::CreateFieldTrial(\"TrialExample1\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4021915%3A21925", 
+              "line_number": 511, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial2 = FieldTrialList::CreateFieldTrial(\"TrialExample2\", \"B\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4022781%3A22791", 
+              "line_number": 529, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* associated_trial1 ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4022882%3A22892", 
+              "line_number": 531, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* associated_trial2 ="
+            }
+          ], 
+          "file": {
+            "name": "src/base/feature_list_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%403479%3A3489", 
+              "line_number": 83, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void PickleFieldTrial(const FieldTrial::State& trial_state, Pickle* pickle) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%404871%3A4881", 
+              "line_number": 125, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::Probability GetGroupBoundaryValue("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%404922%3A4932", 
+              "line_number": 126, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::Probability divisor,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%405438%3A5448", 
+              "line_number": 136, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::Probability result ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409470%3A9480", 
+              "line_number": 250, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const int FieldTrial::kNotFinalized = -1;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409512%3A9522", 
+              "line_number": 251, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const int FieldTrial::kDefaultGroupNumber = 0;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409554%3A9564", 
+              "line_number": 252, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::enable_benchmarking_ = false;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409758%3A9768", 
+              "line_number": 259, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::EntropyProvider::~EntropyProvider() = default;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409818%3A9828", 
+              "line_number": 261, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::State::State() = default;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409857%3A9867", 
+              "line_number": 263, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::State::State(const State& other) = default;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409914%3A9924", 
+              "line_number": 265, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::State::~State() = default;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409959%3A9969", 
+              "line_number": 267, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::FieldTrialEntry::GetTrialAndGroupName("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4010185%3A10195", 
+              "line_number": 274, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::FieldTrialEntry::GetParams("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4010694%3A10704", 
+              "line_number": 291, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "PickleIterator FieldTrial::FieldTrialEntry::GetPickleIterator() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4010917%3A10927", 
+              "line_number": 299, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::FieldTrialEntry::ReadStringPair("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4011197%3A11207", 
+              "line_number": 310, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::Disable() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4011737%3A11747", 
+              "line_number": 325, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int FieldTrial::AppendGroup(const std::string& name,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4013106%3A13116", 
+              "line_number": 360, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int FieldTrial::group() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4013275%3A13285", 
+              "line_number": 367, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const std::string& FieldTrial::group_name() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4013467%3A13477", 
+              "line_number": 374, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const std::string& FieldTrial::GetGroupNameWithoutActivation() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4013568%3A13578", 
+              "line_number": 379, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::SetForced() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4013909%3A13919", 
+              "line_number": 391, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::EnableBenchmarking() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4014043%3A14053", 
+              "line_number": 397, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrial::CreateSimulatedFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4014055%3A14065", 
+              "line_number": 397, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrial::CreateSimulatedFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4014248%3A14258", 
+              "line_number": 402, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  return new FieldTrial(trial_name, total_probability, default_group_name,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4014353%3A14363", 
+              "line_number": 406, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::FieldTrial(const std::string& trial_name,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4015244%3A15254", 
+              "line_number": 428, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::~FieldTrial() = default;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4015287%3A15297", 
+              "line_number": 430, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::SetTrialRegistered() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4015424%3A15434", 
+              "line_number": 436, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::SetGroupChoice(const std::string& group_name, int number) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4015714%3A15724", 
+              "line_number": 445, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::FinalizeGroupChoice() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4015792%3A15802", 
+              "line_number": 449, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::FinalizeGroupChoiceImpl(bool is_locked) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4016276%3A16286", 
+              "line_number": 463, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::GetActiveGroup(ActiveGroup* active_group) const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4016547%3A16557", 
+              "line_number": 472, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::GetStateWhileLocked(State* field_trial_state,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4017282%3A17292", 
+              "line_number": 495, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<const FieldTrial::EntropyProvider> entropy_provider)"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4018057%3A18067", 
+              "line_number": 521, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrialList::FactoryGetFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4018146%3A18156", 
+              "line_number": 523, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::Probability total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4018305%3A18315", 
+              "line_number": 528, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::RandomizationType randomization_type,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4018598%3A18608", 
+              "line_number": 536, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrialList::FactoryGetFieldTrialWithRandomizationSeed("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4018708%3A18718", 
+              "line_number": 538, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::Probability total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4018867%3A18877", 
+              "line_number": 543, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::RandomizationType randomization_type,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4018991%3A19001", 
+              "line_number": 546, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const FieldTrial::EntropyProvider* override_entropy_provider) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4019105%3A19115", 
+              "line_number": 548, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    *default_group_number = FieldTrial::kDefaultGroupNumber;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4019214%3A19224", 
+              "line_number": 550, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* existing_trial = Find(trial_name);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4020244%3A20254", 
+              "line_number": 568, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "            kNonConflictingGroupNumber != FieldTrial::kDefaultGroupNumber,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4020390%3A20400", 
+              "line_number": 570, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        static_assert(kNonConflictingGroupNumber != FieldTrial::kNotFinalized,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4020646%3A20656", 
+              "line_number": 579, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  if (randomization_type == FieldTrial::ONE_TIME_RANDOMIZED) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4020748%3A20758", 
+              "line_number": 581, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const FieldTrial::EntropyProvider* entropy_provider ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4021140%3A21150", 
+              "line_number": 588, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    DCHECK_EQ(FieldTrial::SESSION_RANDOMIZED, randomization_type);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4021273%3A21283", 
+              "line_number": 593, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = new FieldTrial(trial_name, total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4021303%3A21313", 
+              "line_number": 593, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = new FieldTrial(trial_name, total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4021600%3A21610", 
+              "line_number": 602, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrialList::Find(const std::string& trial_name) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4021863%3A21873", 
+              "line_number": 611, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = Find(trial_name);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4021968%3A21978", 
+              "line_number": 614, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  return FieldTrial::kNotFinalized;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4022084%3A22094", 
+              "line_number": 619, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = Find(trial_name);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4022409%3A22419", 
+              "line_number": 632, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = Find(trial_name);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4022455%3A22465", 
+              "line_number": 633, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4022635%3A22645", 
+              "line_number": 639, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4022727%3A22737", 
+              "line_number": 641, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  for (FieldTrial::ActiveGroups::const_iterator it = active_groups.begin();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4023473%3A23483", 
+              "line_number": 662, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::State trial;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4024106%3A24116", 
+              "line_number": 680, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::ActiveGroups* active_groups) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4024371%3A24381", 
+              "line_number": 688, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4024623%3A24633", 
+              "line_number": 697, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::ActiveGroups* active_groups) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4024852%3A24862", 
+              "line_number": 704, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::ActiveGroup group;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4025154%3A25164", 
+              "line_number": 715, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::ActiveGroups* active_groups) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4025607%3A25617", 
+              "line_number": 728, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::FieldTrialEntry* entry;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4025686%3A25696", 
+              "line_number": 729, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  while ((entry = mem_iter.GetNextOfObject<FieldTrial::FieldTrialEntry>()) !="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4025921%3A25931", 
+              "line_number": 735, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::ActiveGroup group;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4026694%3A26704", 
+              "line_number": 762, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial = CreateFieldTrial(trial_name, group_name);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4031535%3A31545", 
+              "line_number": 894, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrialList::CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4031809%3A31819", 
+              "line_number": 903, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = FieldTrialList::Find(name);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4032177%3A32187", 
+              "line_number": 912, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  field_trial = new FieldTrial(name, kTotalProbability, group_name, 0);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4032750%3A32760", 
+              "line_number": 934, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrialList::OnGroupFinalized(bool is_locked, FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4033170%3A33180", 
+              "line_number": 948, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrialList::NotifyFieldTrialGroupSelection(FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4034307%3A34317", 
+              "line_number": 989, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* field_trial,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4035358%3A35368", 
+              "line_number": 1011, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::FieldTrialEntry* entry ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4035446%3A35456", 
+              "line_number": 1012, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      global_->field_trial_allocator_->GetAsObject<FieldTrial::FieldTrialEntry>("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4035635%3A35645", 
+              "line_number": 1017, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  size_t actual_size = sizeof(FieldTrial::FieldTrialEntry) + entry->pickle_size;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4036413%3A36423", 
+              "line_number": 1041, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::vector<FieldTrial::FieldTrialRef> new_refs;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4036453%3A36463", 
+              "line_number": 1043, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::FieldTrialRef prev_ref;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4036533%3A36543", 
+              "line_number": 1044, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  while ((prev_ref = mem_iter.GetNextOfType<FieldTrial::FieldTrialEntry>()) !="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4036686%3A36696", 
+              "line_number": 1047, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const FieldTrial::FieldTrialEntry* prev_entry ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4036759%3A36769", 
+              "line_number": 1048, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        allocator->GetAsObject<FieldTrial::FieldTrialEntry>(prev_ref);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4037107%3A37117", 
+              "line_number": 1058, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    size_t total_size = sizeof(FieldTrial::FieldTrialEntry) + pickle.size();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4037157%3A37167", 
+              "line_number": 1059, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::FieldTrialEntry* new_entry ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4037221%3A37231", 
+              "line_number": 1060, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        allocator->New<FieldTrial::FieldTrialEntry>(total_size);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4037639%3A37649", 
+              "line_number": 1068, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                sizeof(FieldTrial::FieldTrialEntry);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4037813%3A37823", 
+              "line_number": 1073, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::FieldTrialRef new_ref = allocator->GetAsReference(new_entry);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4037891%3A37901", 
+              "line_number": 1074, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial = global_->PreLockedFind(trial_name.as_string());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4038127%3A38137", 
+              "line_number": 1080, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                          FieldTrial::FieldTrialEntry::kPersistentTypeId,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4038636%3A38646", 
+              "line_number": 1101, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::vector<const FieldTrial::FieldTrialEntry*>"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4038794%3A38804", 
+              "line_number": 1104, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::vector<const FieldTrial::FieldTrialEntry*> entries;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4038891%3A38901", 
+              "line_number": 1106, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::FieldTrialEntry* entry;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4038966%3A38976", 
+              "line_number": 1107, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  while ((entry = iter.GetNextOfObject<FieldTrial::FieldTrialEntry>()) !="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4043807%3A43817", 
+              "line_number": 1260, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::FieldTrialEntry* entry;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4043886%3A43896", 
+              "line_number": 1261, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  while ((entry = mem_iter.GetNextOfObject<FieldTrial::FieldTrialEntry>()) !="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4044177%3A44187", 
+              "line_number": 1270, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4046156%3A46166", 
+              "line_number": 1330, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4046454%3A46464", 
+              "line_number": 1340, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::State trial_state;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4046796%3A46806", 
+              "line_number": 1352, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  size_t total_size = sizeof(FieldTrial::FieldTrialEntry) + pickle.size();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4046844%3A46854", 
+              "line_number": 1353, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::FieldTrialRef ref = allocator->Allocate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4046915%3A46925", 
+              "line_number": 1354, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      total_size, FieldTrial::FieldTrialEntry::kPersistentTypeId);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4047053%3A47063", 
+              "line_number": 1360, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::FieldTrialEntry* entry ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4047119%3A47129", 
+              "line_number": 1361, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      allocator->GetAsObject<FieldTrial::FieldTrialEntry>(ref);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4047445%3A47455", 
+              "line_number": 1368, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      reinterpret_cast<char*>(entry) + sizeof(FieldTrial::FieldTrialEntry);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4047654%3A47664", 
+              "line_number": 1377, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4047880%3A47890", 
+              "line_number": 1384, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::FieldTrialRef ref = field_trial->ref_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4048445%3A48455", 
+              "line_number": 1394, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::FieldTrialEntry* entry ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4048513%3A48523", 
+              "line_number": 1395, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        allocator->GetAsObject<FieldTrial::FieldTrialEntry>(ref);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4048622%3A48632", 
+              "line_number": 1401, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const FieldTrial::EntropyProvider*"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4048839%3A48849", 
+              "line_number": 1411, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrialList::PreLockedFind(const std::string& name) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4049080%3A49090", 
+              "line_number": 1419, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrialList::Register(FieldTrial* trial) {"
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%403540%3A3550%40FieldTrial%3Abase%23c%23cGxmCcu4cj8%23chromium%23src%2Fbase%2Fmetrics%2Ffield_trial.h", 
+              "line_number": 89, 
+              "type_id": 1, 
+              "type": "DEFINITION", 
+              "line_text": "class BASE_EXPORT FieldTrial : public RefCounted<FieldTrial> {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%403540%3A3550%40FieldTrial%3Abase%23c%23cGxmCcu4cj8%23chromium%23src%2Fbase%2Fmetrics%2Ffield_trial.h", 
+              "line_number": 89, 
+              "type_id": 1, 
+              "type": "DEFINITION", 
+              "line_text": "class BASE_EXPORT FieldTrial : public RefCounted<FieldTrial> {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%403571%3A3581", 
+              "line_number": 89, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "class BASE_EXPORT FieldTrial : public RefCounted<FieldTrial> {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4010827%3A10837", 
+              "line_number": 247, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* CreateSimulatedFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4016946%3A16956", 
+              "line_number": 385, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  DISALLOW_COPY_AND_ASSIGN(FieldTrial);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4018288%3A18298", 
+              "line_number": 418, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::unique_ptr<const FieldTrial::EntropyProvider> entropy_provider);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4019506%3A19516", 
+              "line_number": 441, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* FactoryGetFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4019583%3A19593", 
+              "line_number": 443, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::Probability total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4019752%3A19762", 
+              "line_number": 448, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::RandomizationType randomization_type,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4020543%3A20553", 
+              "line_number": 461, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* FactoryGetFieldTrialWithRandomizationSeed("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4020641%3A20651", 
+              "line_number": 463, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::Probability total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4020810%3A20820", 
+              "line_number": 468, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::RandomizationType randomization_type,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4020940%3A20950", 
+              "line_number": 471, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const FieldTrial::EntropyProvider* override_entropy_provider);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4021155%3A21165", 
+              "line_number": 475, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* Find(const std::string& trial_name);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4023532%3A23542", 
+              "line_number": 518, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::ActiveGroups* active_groups);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4023745%3A23755", 
+              "line_number": 523, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::ActiveGroups* active_groups);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4024134%3A24144", 
+              "line_number": 531, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::ActiveGroups* active_groups);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4027953%3A27963", 
+              "line_number": 597, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* CreateFieldTrial(const std::string& name,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4028585%3A28595", 
+              "line_number": 610, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static void OnGroupFinalized(bool is_locked, FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4028734%3A28744", 
+              "line_number": 613, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static void NotifyFieldTrialGroupSelection(FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4029093%3A29103", 
+              "line_number": 622, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial* field_trial,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4029726%3A29736", 
+              "line_number": 636, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static std::vector<const FieldTrial::FieldTrialEntry*>"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4033322%3A33332", 
+              "line_number": 705, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                        FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4033473%3A33483", 
+              "line_number": 708, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static void ActivateFieldTrialEntryWhileLocked(FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4033590%3A33600", 
+              "line_number": 711, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  typedef std::map<std::string, FieldTrial*> RegistrationMap;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4033770%3A33780", 
+              "line_number": 715, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static const FieldTrial::EntropyProvider*"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4033917%3A33927", 
+              "line_number": 719, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* PreLockedFind(const std::string& name);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4034190%3A34200", 
+              "line_number": 724, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static void Register(FieldTrial* trial);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4034867%3A34877", 
+              "line_number": 742, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const FieldTrial::EntropyProvider> entropy_provider_;"
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_param_associator.cc#%401176%3A1186", 
+              "line_number": 39, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = FieldTrialList::Find(trial_name);"
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial_param_associator.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params.cc#%401143%3A1153", 
+              "line_number": 33, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FeatureList::GetFieldTrial(feature);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params.cc#%401929%3A1939", 
+              "line_number": 56, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FeatureList::GetFieldTrial(feature);"
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial_params.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%40571%3A581", 
+              "line_number": 19, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "scoped_refptr<FieldTrial> CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%40890%3A900", 
+              "line_number": 26, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrialList::kNoExpirationYear, 1, 1, FieldTrial::SESSION_RANDOMIZED,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%401472%3A1482", 
+              "line_number": 44, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                              FieldTrial* trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%404111%3A4121", 
+              "line_number": 116, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%405455%3A5465", 
+              "line_number": 150, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%405976%3A5986", 
+              "line_number": 163, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%406620%3A6630", 
+              "line_number": 179, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%407305%3A7315", 
+              "line_number": 197, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%407964%3A7974", 
+              "line_number": 214, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%408624%3A8634", 
+              "line_number": 231, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%409816%3A9826", 
+              "line_number": 260, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%4010968%3A10978", 
+              "line_number": 291, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%4012525%3A12535", 
+              "line_number": 329, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%4014192%3A14202", 
+              "line_number": 370, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%4015599%3A15609", 
+              "line_number": 407, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%4017041%3A17051", 
+              "line_number": 444, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial_params_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%401095%3A1105", 
+              "line_number": 35, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "scoped_refptr<base::FieldTrial> CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%401432%3A1442", 
+              "line_number": 43, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::SESSION_RANDOMIZED, default_group_number);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%402964%3A2974", 
+              "line_number": 98, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial1 ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%403064%3A3074", 
+              "line_number": 100, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  EXPECT_EQ(FieldTrial::kNotFinalized, trial1->group_);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%403359%3A3369", 
+              "line_number": 109, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial2 ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%403459%3A3469", 
+              "line_number": 111, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  EXPECT_EQ(FieldTrial::kNotFinalized, trial2->group_);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%404331%3A4341", 
+              "line_number": 135, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial_true ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%404652%3A4662", 
+              "line_number": 143, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial_false ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%405066%3A5076", 
+              "line_number": 155, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%405437%3A5447", 
+              "line_number": 163, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  } while (trial->group_ != FieldTrial::kNotFinalized);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%406312%3A6322", 
+              "line_number": 184, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%406567%3A6577", 
+              "line_number": 188, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    if (trial->group_ != FieldTrial::kNotFinalized) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%406729%3A6739", 
+              "line_number": 193, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    EXPECT_NE(FieldTrial::kNotFinalized, trial->group());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%407253%3A7263", 
+              "line_number": 209, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%407971%3A7981", 
+              "line_number": 233, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%409088%3A9098", 
+              "line_number": 265, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::FactoryGetFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%409228%3A9238", 
+              "line_number": 267, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::SESSION_RANDOMIZED,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%409697%3A9707", 
+              "line_number": 280, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%409845%3A9855", 
+              "line_number": 284, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4010490%3A10500", 
+              "line_number": 300, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> multi_group_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4011116%3A11126", 
+              "line_number": 314, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4011748%3A11758", 
+              "line_number": 328, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4012350%3A12360", 
+              "line_number": 343, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4012597%3A12607", 
+              "line_number": 348, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4012762%3A12772", 
+              "line_number": 352, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4013778%3A13788", 
+              "line_number": 378, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4014522%3A14532", 
+              "line_number": 398, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4015226%3A15236", 
+              "line_number": 416, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial2 ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4015697%3A15707", 
+              "line_number": 428, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial3 ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4016057%3A16067", 
+              "line_number": 440, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4016895%3A16905", 
+              "line_number": 459, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial2 ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4017415%3A17425", 
+              "line_number": 472, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial3 ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4017734%3A17744", 
+              "line_number": 481, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> expired_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4017915%3A17925", 
+              "line_number": 484, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          OneYearBeforeBuildTime(), 1, 1, base::FieldTrial::SESSION_RANDOMIZED,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4018758%3A18768", 
+              "line_number": 507, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::Find(\"Some_name\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4019343%3A19353", 
+              "line_number": 522, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::Find(\"tname\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4020403%3A20413", 
+              "line_number": 542, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4021465%3A21475", 
+              "line_number": 566, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4022439%3A22449", 
+              "line_number": 589, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4024496%3A24506", 
+              "line_number": 642, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4024638%3A24648", 
+              "line_number": 646, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::Find(\"Foo\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4025178%3A25188", 
+              "line_number": 662, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::Find(\"Some_name\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4025659%3A25669", 
+              "line_number": 674, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4025863%3A25873", 
+              "line_number": 680, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4026033%3A26043", 
+              "line_number": 685, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial1 = FieldTrialList::CreateFieldTrial(\"Some_name\", \"Winner\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4026212%3A26222", 
+              "line_number": 689, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial2 = FieldTrialList::CreateFieldTrial(\"Some_name\", \"Loser\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4026420%3A26430", 
+              "line_number": 695, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4026700%3A26710", 
+              "line_number": 703, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4026975%3A26985", 
+              "line_number": 712, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* forced_trial = FieldTrialList::CreateFieldTrial(\"Use the\","
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4027229%3A27239", 
+              "line_number": 717, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> factory_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4028102%3A28112", 
+              "line_number": 737, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* forced_trial = FieldTrialList::CreateFieldTrial(\"Trial Name\","
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4028299%3A28309", 
+              "line_number": 740, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> factory_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4028979%3A28989", 
+              "line_number": 756, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> forced_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4029370%3A29380", 
+              "line_number": 767, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> hard_coded_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4029758%3A29768", 
+              "line_number": 776, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> other_hard_coded_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4030298%3A30308", 
+              "line_number": 790, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4030809%3A30819", 
+              "line_number": 804, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4031550%3A31560", 
+              "line_number": 822, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> forced_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4031769%3A31779", 
+              "line_number": 828, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> client_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4032539%3A32549", 
+              "line_number": 846, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> forced_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4032756%3A32766", 
+              "line_number": 852, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> client_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4033600%3A33610", 
+              "line_number": 871, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> forced_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4033809%3A33819", 
+              "line_number": 877, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> client_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4034639%3A34649", 
+              "line_number": 896, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> forced_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4034846%3A34856", 
+              "line_number": 902, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> client_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4035468%3A35478", 
+              "line_number": 919, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4036170%3A36180", 
+              "line_number": 938, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4036963%3A36973", 
+              "line_number": 962, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4037791%3A37801", 
+              "line_number": 986, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4037981%3A37991", 
+              "line_number": 992, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4038527%3A38537", 
+              "line_number": 1008, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4039013%3A39023", 
+              "line_number": 1021, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4039050%3A39060", 
+              "line_number": 1022, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        new base::FieldTrial(\"test\", kBucketCount, \"default\", entropy));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4039421%3A39431", 
+              "line_number": 1034, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4039456%3A39466", 
+              "line_number": 1035, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      new base::FieldTrial(\"test\", 2, \"default\", kEntropyValue));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4040131%3A40141", 
+              "line_number": 1058, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4040157%3A40167", 
+              "line_number": 1059, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "       FieldTrial::CreateSimulatedFieldTrial(kTrialName, 100, kDefaultGroupName,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4040810%3A40820", 
+              "line_number": 1074, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4041383%3A41393", 
+              "line_number": 1092, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4041543%3A41553", 
+              "line_number": 1096, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial2 ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4041700%3A41710", 
+              "line_number": 1100, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial3 ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4042086%3A42096", 
+              "line_number": 1111, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4042895%3A42905", 
+              "line_number": 1128, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4046235%3A46245", 
+              "line_number": 1214, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> simulated_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4046273%3A46283", 
+              "line_number": 1215, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        FieldTrial::CreateSimulatedFieldTrial(kTrialName, 100, \"Simulated\","
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4046470%3A46480", 
+              "line_number": 1220, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* real_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4048978%3A48988", 
+              "line_number": 1284, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4049468%3A49478", 
+              "line_number": 1295, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::FieldTrialRef old_ref = trial->ref_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4049595%3A49605", 
+              "line_number": 1297, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::FieldTrialRef new_ref = trial->ref_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4051690%3A51700", 
+              "line_number": 1344, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::vector<const FieldTrial::FieldTrialEntry*> entries ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4051892%3A51902", 
+              "line_number": 1349, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::FieldTrialEntry* entry = entries[0];"
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/mock_entropy_provider.h#%40372%3A382", 
+              "line_number": 14, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "class MockEntropyProvider : public base::FieldTrial::EntropyProvider {"
+            }
+          ], 
+          "file": {
+            "name": "src/base/test/mock_entropy_provider.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/scoped_feature_list.cc#%404422%3A4432", 
+              "line_number": 131, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/scoped_feature_list.cc#%404760%3A4770", 
+              "line_number": 141, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const std::vector<FieldTrial*>& trials_for_enabled_features,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/scoped_feature_list.cc#%406243%3A6253", 
+              "line_number": 170, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::vector<FieldTrial*>::const_iterator trial_it ="
+            }
+          ], 
+          "file": {
+            "name": "src/base/test/scoped_feature_list.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/scoped_feature_list.h#%404362%3A4372", 
+              "line_number": 98, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const std::vector<FieldTrial*>& trials_for_enabled_features,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/scoped_feature_list.h#%404816%3A4826", 
+              "line_number": 106, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                                  FieldTrial* trial);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/scoped_feature_list.h#%404908%3A4918", 
+              "line_number": 109, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> field_trial_override_;"
+            }
+          ], 
+          "file": {
+            "name": "src/base/test/scoped_feature_list.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/scoped_feature_list_unittest.cc#%402972%3A2982", 
+              "line_number": 89, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/scoped_feature_list_unittest.cc#%404138%3A4148", 
+              "line_number": 118, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/scoped_feature_list_unittest.cc#%408816%3A8826", 
+              "line_number": 233, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"TrialExample\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/test/scoped_feature_list_unittest.cc#%409460%3A9470", 
+              "line_number": 250, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"TrialExample\", \"A\");"
+            }
+          ], 
+          "file": {
+            "name": "src/base/test/scoped_feature_list_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/autocomplete/search_provider_unittest.cc#%409189%3A9199", 
+              "line_number": 235, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* CreateFieldTrial(const char* field_trial_rule,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/autocomplete/search_provider_unittest.cc#%4019733%3A19743", 
+              "line_number": 512, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "base::FieldTrial* SearchProviderTest::CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/autocomplete/search_provider_unittest.cc#%40112282%3A112292", 
+              "line_number": 2475, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/autocomplete/search_provider_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/chrome_navigation_browsertest.cc#%4033238%3A33248", 
+              "line_number": 770, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/chrome_navigation_browsertest.cc#%4035395%3A35405", 
+              "line_number": 821, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/chrome_navigation_browsertest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/feature_engagement/bookmark/bookmark_tracker_unittest.cc#%404670%3A4680", 
+              "line_number": 126, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* bookmark_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/feature_engagement/bookmark/bookmark_tracker_unittest.cc#%408132%3A8142", 
+              "line_number": 206, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::map<std::string, base::FieldTrial*> trials_;"
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/feature_engagement/bookmark/bookmark_tracker_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/feature_engagement/feature_tracker_unittest.cc#%405866%3A5876", 
+              "line_number": 155, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* new_tab_trial = base::FieldTrialList::CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/feature_engagement/feature_tracker_unittest.cc#%407349%3A7359", 
+              "line_number": 191, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::map<std::string, base::FieldTrial*> trials_;"
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/feature_engagement/feature_tracker_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/feature_engagement/incognito_window/incognito_window_tracker_unittest.cc#%404987%3A4997", 
+              "line_number": 128, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* incognito_window_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/feature_engagement/incognito_window/incognito_window_tracker_unittest.cc#%408794%3A8804", 
+              "line_number": 209, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::map<std::string, base::FieldTrial*> trials_;"
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/feature_engagement/incognito_window/incognito_window_tracker_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/feature_engagement/new_tab/new_tab_tracker_unittest.cc#%404961%3A4971", 
+              "line_number": 135, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* new_tab_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/feature_engagement/new_tab/new_tab_tracker_unittest.cc#%408452%3A8462", 
+              "line_number": 215, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::map<std::string, base::FieldTrial*> trials_;"
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/feature_engagement/new_tab/new_tab_tracker_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/media/media_engagement_score_unittest.cc#%405854%3A5864", 
+              "line_number": 155, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/media/media_engagement_score_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/metrics/chrome_metrics_services_manager_client.cc#%403311%3A3321", 
+              "line_number": 79, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                              base::FieldTrial* trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/metrics/chrome_metrics_services_manager_client.cc#%406207%3A6217", 
+              "line_number": 161, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/metrics/chrome_metrics_services_manager_client.cc#%406378%3A6388", 
+              "line_number": 164, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          1, 1, base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/metrics/chrome_metrics_services_manager_client.cc#%409618%3A9628", 
+              "line_number": 249, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/metrics/chrome_metrics_services_manager_client.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/metrics/chrome_metrics_services_manager_client.h#%403015%3A3025", 
+              "line_number": 76, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/metrics/chrome_metrics_services_manager_client.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/page_load_metrics/experiments/delay_navigation_throttle_unittest.cc#%404882%3A4892", 
+              "line_number": 123, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/page_load_metrics/experiments/delay_navigation_throttle_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/permissions/permission_context_base_unittest.cc#%4018599%3A18609", 
+              "line_number": 442, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/permissions/permission_context_base_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/prefs/chrome_pref_service_factory.cc#%4010947%3A10957", 
+              "line_number": 248, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/prefs/chrome_pref_service_factory.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/prerender/prerender_unittest.cc#%4014208%3A14218", 
+              "line_number": 413, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/prerender/prerender_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/previews/previews_infobar_delegate_unittest.cc#%409761%3A9771", 
+              "line_number": 241, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/previews/previews_infobar_delegate_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/safe_browsing/permission_reporter_unittest.cc#%405139%3A5149", 
+              "line_number": 132, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial_one ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/safe_browsing/permission_reporter_unittest.cc#%405249%3A5259", 
+              "line_number": 134, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial_two ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/safe_browsing/permission_reporter_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/ui/app_list/search/answer_card/answer_card_search_provider_unittest.cc#%405174%3A5184", 
+              "line_number": 147, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/ui/app_list/search/answer_card/answer_card_search_provider_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/renderer/safe_browsing/threat_dom_details_browsertest.cc#%401335%3A1345", 
+              "line_number": 31, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/renderer/safe_browsing/threat_dom_details_browsertest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/autofill/core/browser/form_structure_unittest.cc#%405576%3A5586", 
+              "line_number": 139, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> field_trial_;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/autofill/core/browser/form_structure_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/feature_engagement/internal/chrome_variations_configuration_unittest.cc#%401766%3A1776", 
+              "line_number": 49, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* foo_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/feature_engagement/internal/chrome_variations_configuration_unittest.cc#%401875%3A1885", 
+              "line_number": 51, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* bar_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/feature_engagement/internal/chrome_variations_configuration_unittest.cc#%401984%3A1994", 
+              "line_number": 53, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* qux_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/feature_engagement/internal/chrome_variations_configuration_unittest.cc#%404444%3A4454", 
+              "line_number": 112, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::map<std::string, base::FieldTrial*> trials_;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/feature_engagement/internal/chrome_variations_configuration_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/flags_ui/flags_state.cc#%407954%3A7964", 
+              "line_number": 217, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "base::FieldTrial* RegisterFeatureVariationParameters("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/flags_ui/flags_state.cc#%408557%3A8567", 
+              "line_number": 229, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/flags_ui/flags_state.cc#%4018281%3A18291", 
+              "line_number": 496, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial = RegisterFeatureVariationParameters("
+            }
+          ], 
+          "file": {
+            "name": "src/components/flags_ui/flags_state.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/flags_ui/flags_state_unittest.cc#%4012039%3A12049", 
+              "line_number": 297, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::Find(kTestTrial);"
+            }
+          ], 
+          "file": {
+            "name": "src/components/flags_ui/flags_state_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/metrics/metrics_state_manager.cc#%408904%3A8914", 
+              "line_number": 246, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/metrics/metrics_state_manager.cc#%409925%3A9935", 
+              "line_number": 269, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/metrics/metrics_state_manager.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/metrics/metrics_state_manager.h#%403096%3A3106", 
+              "line_number": 82, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/metrics/metrics_state_manager.h#%403432%3A3442", 
+              "line_number": 89, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/metrics/metrics_state_manager.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/metrics_services_manager/metrics_services_manager.cc#%401123%3A1133", 
+              "line_number": 33, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/metrics_services_manager/metrics_services_manager.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/metrics_services_manager/metrics_services_manager.h#%401668%3A1678", 
+              "line_number": 57, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/metrics_services_manager/metrics_services_manager.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/metrics_services_manager/metrics_services_manager_client.h#%401249%3A1259", 
+              "line_number": 44, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  virtual std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/metrics_services_manager/metrics_services_manager_client.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/network_time/network_time_test_utils.cc#%404720%3A4730", 
+              "line_number": 110, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::FactoryGetFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/network_time/network_time_test_utils.cc#%404843%3A4853", 
+              "line_number": 112, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::SESSION_RANDOMIZED, nullptr /* default_group_number */);"
+            }
+          ], 
+          "file": {
+            "name": "src/components/network_time/network_time_test_utils.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/offline_pages/core/prefetch/prefetch_request_test_base.cc#%401398%3A1408", 
+              "line_number": 39, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/offline_pages/core/prefetch/prefetch_request_test_base.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/omnibox/browser/omnibox_field_trial_unittest.cc#%401662%3A1672", 
+              "line_number": 52, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static base::FieldTrial* CreateTestTrial(const std::string& name,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/omnibox/browser/omnibox_field_trial_unittest.cc#%401801%3A1811", 
+              "line_number": 54, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/omnibox/browser/omnibox_field_trial_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/omnibox/browser/physical_web_provider_unittest.cc#%402849%3A2859", 
+              "line_number": 85, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial = CreatePhysicalWebFieldTrial();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/omnibox/browser/physical_web_provider_unittest.cc#%403452%3A3462", 
+              "line_number": 102, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static base::FieldTrial* CreatePhysicalWebFieldTrial() {"
+            }
+          ], 
+          "file": {
+            "name": "src/components/omnibox/browser/physical_web_provider_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/password_manager/core/browser/password_generation_manager_unittest.cc#%4012544%3A12554", 
+              "line_number": 296, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> field_trial;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/password_manager/core/browser/password_generation_manager_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/safe_browsing/triggers/ad_sampler_trigger_unittest.cc#%4010134%3A10144", 
+              "line_number": 236, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/safe_browsing/triggers/ad_sampler_trigger_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/safe_browsing/triggers/trigger_throttler_unittest.cc#%405911%3A5921", 
+              "line_number": 144, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/safe_browsing/triggers/trigger_throttler_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/subresource_filter/core/browser/subresource_filter_features_unittest.cc#%401399%3A1409", 
+              "line_number": 39, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/subresource_filter/core/browser/subresource_filter_features_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/ukm/ukm_service_unittest.cc#%402554%3A2564", 
+              "line_number": 74, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/ukm/ukm_service_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/active_field_trials.cc#%40740%3A750", 
+              "line_number": 24, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::ActiveGroups& active_groups,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/active_field_trials.cc#%402112%3A2122", 
+              "line_number": 59, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/active_field_trials.cc#%403069%3A3079", 
+              "line_number": 84, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::ActiveGroups& active_groups,"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/active_field_trials.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/active_field_trials.h#%403068%3A3078", 
+              "line_number": 72, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::ActiveGroups& active_groups,"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/active_field_trials.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/active_field_trials_unittest.cc#%40694%3A704", 
+              "line_number": 22, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/active_field_trials_unittest.cc#%40742%3A752", 
+              "line_number": 23, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/active_field_trials_unittest.cc#%402150%3A2160", 
+              "line_number": 60, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/active_field_trials_unittest.cc#%402198%3A2208", 
+              "line_number": 61, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroup active_group;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/active_field_trials_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer.cc#%401176%3A1186", 
+              "line_number": 33, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups initially_active_trials;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer.cc#%401564%3A1574", 
+              "line_number": 41, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups current_active_trials;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer.cc#%402039%3A2049", 
+              "line_number": 52, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/child_process_field_trial_syncer.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer_unittest.cc#%401984%3A1994", 
+              "line_number": 61, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial1 = base::FieldTrialList::CreateFieldTrial(\"A\", \"G1\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer_unittest.cc#%402064%3A2074", 
+              "line_number": 62, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial2 = base::FieldTrialList::CreateFieldTrial(\"B\", \"G2\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer_unittest.cc#%402144%3A2154", 
+              "line_number": 63, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial3 = base::FieldTrialList::CreateFieldTrial(\"C\", \"G3\");"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/child_process_field_trial_syncer_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider.h#%401609%3A1619", 
+              "line_number": 48, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "class SHA1EntropyProvider : public base::FieldTrial::EntropyProvider {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider.h#%402647%3A2657", 
+              "line_number": 71, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "class PermutedEntropyProvider : public base::FieldTrial::EntropyProvider {"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/entropy_provider.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%407837%3A7847", 
+              "line_number": 196, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trials[] = {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%407986%3A7996", 
+              "line_number": 199, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%408153%3A8163", 
+              "line_number": 202, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%409167%3A9177", 
+              "line_number": 226, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trials[] = {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%409316%3A9326", 
+              "line_number": 229, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%409483%3A9493", 
+              "line_number": 232, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4010357%3A10367", 
+              "line_number": 253, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trials[] = {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4010527%3A10537", 
+              "line_number": 256, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, kCustomSeed, nullptr, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4010737%3A10747", 
+              "line_number": 259, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, kCustomSeed, nullptr, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4011666%3A11676", 
+              "line_number": 280, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trials[] = {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4011836%3A11846", 
+              "line_number": 283, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, kCustomSeed, nullptr, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4012046%3A12056", 
+              "line_number": 286, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, kCustomSeed, nullptr, nullptr),"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/entropy_provider_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/field_trial_config/field_trial_util.cc#%401408%3A1418", 
+              "line_number": 42, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/field_trial_config/field_trial_util.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/processed_study.cc#%40570%3A580", 
+              "line_number": 21, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial::Probability* total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/processed_study.cc#%401274%3A1284", 
+              "line_number": 38, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::Probability divisor = 0;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/processed_study.cc#%404336%3A4346", 
+              "line_number": 127, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::Probability total_probability = 0;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/processed_study.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/processed_study.h#%40900%3A910", 
+              "line_number": 32, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::Probability total_probability() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/processed_study.h#%401822%3A1832", 
+              "line_number": 64, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::Probability total_probability_;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/processed_study.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/service/variations_field_trial_creator.cc#%406064%3A6074", 
+              "line_number": 164, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/service/variations_field_trial_creator.cc#%4015023%3A15033", 
+              "line_number": 373, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/service/variations_field_trial_creator.cc#%4015489%3A15499", 
+              "line_number": 383, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial::EnableBenchmarking();"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/service/variations_field_trial_creator.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/service/variations_field_trial_creator.h#%402561%3A2571", 
+              "line_number": 58, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                        std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/service/variations_field_trial_creator.h#%405460%3A5470", 
+              "line_number": 115, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/service/variations_field_trial_creator.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/service/variations_service.cc#%4016993%3A17003", 
+              "line_number": 451, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/service/variations_service.cc#%4028198%3A28208", 
+              "line_number": 718, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider> default_provider ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/service/variations_service.cc#%4028330%3A28340", 
+              "line_number": 720, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider> low_provider ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/service/variations_service.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/service/variations_service.h#%407495%3A7505", 
+              "line_number": 188, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  virtual std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/service/variations_service.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/service/variations_service_unittest.cc#%405412%3A5422", 
+              "line_number": 157, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/service/variations_service_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%40674%3A684", 
+              "line_number": 20, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "VariationID GetIDForTrial(IDCollectionKey key, base::FieldTrial* trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%40870%3A880", 
+              "line_number": 25, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "scoped_refptr<base::FieldTrial> CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%401213%3A1223", 
+              "line_number": 33, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::SESSION_RANDOMIZED, default_group_number);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%401950%3A1960", 
+              "line_number": 58, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%402535%3A2545", 
+              "line_number": 72, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%403213%3A3223", 
+              "line_number": 88, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_true("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%403958%3A3968", 
+              "line_number": 105, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_false("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%404736%3A4746", 
+              "line_number": 124, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> no_id_trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%406356%3A6366", 
+              "line_number": 159, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_true("
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_associated_data_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider.cc#%405879%3A5889", 
+              "line_number": 169, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups initial_groups;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_http_header_provider.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider_unittest.cc#%401355%3A1365", 
+              "line_number": 39, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "scoped_refptr<base::FieldTrial> CreateTrialAndAssociateId("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider_unittest.cc#%401541%3A1551", 
+              "line_number": 44, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider_unittest.cc#%403699%3A3709", 
+              "line_number": 105, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_1(CreateTrialAndAssociateId("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider_unittest.cc#%403875%3A3885", 
+              "line_number": 109, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_2(CreateTrialAndAssociateId("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider_unittest.cc#%404059%3A4069", 
+              "line_number": 113, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_3(CreateTrialAndAssociateId("
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_http_header_provider_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_id_collection.cc#%40709%3A719", 
+              "line_number": 22, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups initial_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_id_collection.cc#%40837%3A847", 
+              "line_number": 24, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  for (const base::FieldTrial::ActiveGroup& group : initial_groups) {"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_id_collection.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_params_manager.cc#%40765%3A775", 
+              "line_number": 24, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "base::FieldTrial* CreateFieldTrialWithParams("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_params_manager.cc#%402386%3A2396", 
+              "line_number": 68, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* field_trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_params_manager.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%403398%3A3408", 
+              "line_number": 84, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%404146%3A4156", 
+              "line_number": 99, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                              base::FieldTrial* trial,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%407712%3A7722", 
+              "line_number": 179, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::EntropyProvider* low_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%408680%3A8690", 
+              "line_number": 206, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::EntropyProvider* low_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%408965%3A8975", 
+              "line_number": 212, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* existing_trial = base::FieldTrialList::Find(study.name());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%409648%3A9658", 
+              "line_number": 226, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%4010727%3A10737", 
+              "line_number": 250, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::RandomizationType randomization_type ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%4010790%3A10800", 
+              "line_number": 251, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::SESSION_RANDOMIZED;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%4011186%3A11196", 
+              "line_number": 258, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    randomization_type = base::FieldTrial::ONE_TIME_RANDOMIZED;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%4011569%3A11579", 
+              "line_number": 266, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_seed_processor.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.h#%401564%3A1574", 
+              "line_number": 50, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider* low_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.h#%403586%3A3596", 
+              "line_number": 88, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider* low_entropy_provider,"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_seed_processor.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor_unittest.cc#%404285%3A4295", 
+              "line_number": 130, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider* override_entropy_provider) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor_unittest.cc#%404886%3A4896", 
+              "line_number": 143, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider* override_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor_unittest.cc#%4033500%3A33510", 
+              "line_number": 869, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::Find(\"Study1\");"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor_unittest.cc#%4034105%3A34109", 
+              "line_number": 885, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  auto* trial = base::FieldTrialList::FactoryGetFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_processor_unittest.cc#%4034262%3A34272", 
+              "line_number": 887, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      1, 1, base::FieldTrial::SESSION_RANDOMIZED, nullptr);"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_seed_processor_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%40880%3A890", 
+              "line_number": 26, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups trial_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%401376%3A1386", 
+              "line_number": 36, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::EntropyProvider& entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%401761%3A1771", 
+              "line_number": 44, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%401792%3A1802", 
+              "line_number": 45, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::CreateSimulatedFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%404008%3A4018", 
+              "line_number": 108, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::EntropyProvider& default_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%404079%3A4089", 
+              "line_number": 109, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::EntropyProvider& low_entropy_provider)"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%407746%3A7756", 
+              "line_number": 205, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const base::FieldTrial::EntropyProvider& entropy_provider ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_seed_simulator.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.h#%401988%3A1998", 
+              "line_number": 54, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider& default_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.h#%402061%3A2071", 
+              "line_number": 55, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider& low_entropy_provider);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.h#%404096%3A4106", 
+              "line_number": 99, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const base::FieldTrial::EntropyProvider& default_entropy_provider_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.h#%404166%3A4176", 
+              "line_number": 100, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const base::FieldTrial::EntropyProvider& low_entropy_provider_;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_seed_simulator.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/version_ui/version_handler_helper.cc#%40602%3A612", 
+              "line_number": 21, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups active_groups;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/version_ui/version_handler_helper.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/network/resource_scheduler_unittest.cc#%402472%3A2482", 
+              "line_number": 73, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/network/resource_scheduler_unittest.cc#%4014132%3A14142", 
+              "line_number": 381, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/network/resource_scheduler_unittest.cc#%4016817%3A16827", 
+              "line_number": 440, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/network/resource_scheduler_unittest.cc#%4069565%3A69575", 
+              "line_number": 1779, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* field_trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/content/network/resource_scheduler_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/disk_cache/simple/simple_experiment.cc#%401352%3A1362", 
+              "line_number": 47, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/net/disk_cache/simple/simple_experiment.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/disk_cache/simple/simple_experiment_unittest.cc#%401125%3A1135", 
+              "line_number": 34, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/net/disk_cache/simple/simple_experiment_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/log/net_log_util.cc#%4010002%3A10012", 
+              "line_number": 292, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/log/net_log_util.cc#%4010193%3A10203", 
+              "line_number": 295, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    for (base::FieldTrial::ActiveGroups::const_iterator it ="
+            }
+          ], 
+          "file": {
+            "name": "src/net/log/net_log_util.cc", 
+            "package_name": "chromium"
+          }
+        }
+      ], 
+      "estimated_total_type_count": [
+        {
+          "count": 2, 
+          "type": "DEFINITION", 
+          "type_id": 1
+        }, 
+        {
+          "count": 1, 
+          "type": "DECLARATION", 
+          "type_id": 2
+        }, 
+        {
+          "count": 446, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }, 
+        {
+          "count": 1, 
+          "type": "EXTENDS", 
+          "type_id": 6
+        }
+      ], 
+      "kythe_next_page_token": "", 
+      "eliminated_type_count": [
+        {
+          "count": 1, 
+          "type": "EXTENDS", 
+          "type_id": 6
+        }
+      ], 
+      "from_kythe": true
+    }
+  ]
+}

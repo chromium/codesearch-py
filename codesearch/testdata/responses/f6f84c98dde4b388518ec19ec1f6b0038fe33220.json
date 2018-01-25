@@ -1,0 +1,252 @@
+{
+  "elapsed_ms": 19, 
+  "file_info_response": [
+    {
+      "file_info": {
+        "gob_info": {
+          "repo": "chromium/chromium/src", 
+          "commit": "8d737563f986f1ece3016211a26aae2c323ae73d", 
+          "path": "net/base/network_throttle_manager.h"
+        }, 
+        "name": "src/net/base/network_throttle_manager.h", 
+        "language": "c++", 
+        "changelist_num": "8d737563f986f1ece3016211a26aae2c323ae73d", 
+        "package_name": "chromium", 
+        "lines": "97", 
+        "content": {
+          "text": "// Copyright 2016 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_BASE_NETWORK_THROTTLE_MANAGER_H_\n#define NET_BASE_NETWORK_THROTTLE_MANAGER_H_\n\n#include <memory>\n\n#include \"base/memory/weak_ptr.h\"\n#include \"net/base/net_export.h\"\n#include \"net/base/request_priority.h\"\n\nnamespace net {\n\n// This class controls throttling based on priority level and number of\n// outstanding requests.  It vends Throttle objects, and tracks\n// outstanding requests by the lifetime of those objects.  Consumers\n// determine whether or not they are throttled by consulting those\n// Throttle objects.\n//\n// This class must outlive all Throttles created from it via CreateThrottle().\n//\n// Methods are virtual to allow for test mocks.\nclass NET_EXPORT_PRIVATE NetworkThrottleManager {\n public:\n  class Throttle;\n\n  // Abstract base class other classes can inherit from to get\n  // notifications from throttle state changes.\n  class NET_EXPORT_PRIVATE ThrottleDelegate {\n   public:\n    // Called when a throttle is unblocked.\n    //\n    // Note that this call may occur as the result of either a call to\n    // Throttle::SetPriority (on the throttle related to this delegate\n    // or another throttle) or the destruction of a Throttle, and if\n    // so will occur synchronously during those events.  It will not\n    // be called from the destructor of the Throttle associated with\n    // the ThrottleDelegate.\n    virtual void OnThrottleUnblocked(Throttle* throttle) = 0;\n\n   protected:\n    virtual ~ThrottleDelegate() {}\n  };\n\n  // Class owned by external stream representations that\n  // routes notifications.  It may be constructed in either the\n  // blocked or unblocked state according to the state of the\n  // NetworkThrottleManager; if it's constructed in the unblocked\n  // state, it will only make a single transition to unblocked,\n  // which will be signaled by delegate->OnThrottleUnblocked(this).\n  // If it's constructed in the unblocked state, it will remain\n  // there.\n  class NET_EXPORT_PRIVATE Throttle {\n   public:\n    virtual ~Throttle() {}\n\n    virtual bool IsBlocked() const = 0;\n\n    virtual RequestPriority Priority() const = 0;\n\n    // Note that this may result in a possibly reentrant call to\n    // |ThrottleDelegate::OnThrottleUnblocked|, as well as the resumption\n    // of this or other requests, which may result in request completion\n    // and destruction before return.  Any caller of this function\n    // should not rely on this object or containing objects surviving\n    // this call.\n    //\n    // This call is a no-op if the priority is set to its current value.\n    virtual void SetPriority(RequestPriority priority) = 0;\n\n   protected:\n    Throttle() {}\n\n   private:\n    DISALLOW_COPY_AND_ASSIGN(Throttle);\n  };\n\n  virtual ~NetworkThrottleManager() {}\n\n  // Caller must ensure that |*delegate| outlives the returned\n  // Throttle.\n  virtual std::unique_ptr<Throttle> CreateThrottle(ThrottleDelegate* delegate,\n                                                   RequestPriority priority,\n                                                   bool ignore_limits) = 0;\n\n protected:\n  NetworkThrottleManager() {}\n\n private:\n  DISALLOW_COPY_AND_ASSIGN(NetworkThrottleManager);\n};\n\n}  // namespace net\n\n#endif  // NET_BASE_NETWORK_THROTTLE_MANAGER_H_\n"
+        }, 
+        "generated": false, 
+        "mime_type": "text/plain", 
+        "size": "3373", 
+        "type": 1, 
+        "md5": "dd3083e553a9c4a45aebcf82e85f1e18", 
+        "codeblock": [
+          {
+            "type": 40, 
+            "name": "NET_BASE_NETWORK_THROTTLE_MANAGER_H_", 
+            "text_range": {
+              "start_line": 6, 
+              "end_line": 7, 
+              "start_column": 1, 
+              "end_column": 1
+            }, 
+            "signature": ""
+          }, 
+          {
+            "child": [
+              {
+                "name": "NetworkThrottleManager", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ThrottleDelegate", 
+                    "signature": "", 
+                    "child": [
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnThrottleUnblocked", 
+                        "signature": "(Throttle* throttle)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 41, 
+                          "end_line": 41, 
+                          "start_column": 5, 
+                          "end_column": 62
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "protected": true
+                        }, 
+                        "name": "~ThrottleDelegate", 
+                        "signature": "()", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 44, 
+                          "end_line": 44, 
+                          "start_column": 5, 
+                          "end_column": 35
+                        }
+                      }
+                    ], 
+                    "name_prefix": "", 
+                    "type": 1, 
+                    "text_range": {
+                      "start_line": 31, 
+                      "end_line": 45, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Throttle", 
+                    "signature": "", 
+                    "child": [
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "~Throttle", 
+                        "signature": "()", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 57, 
+                          "end_line": 57, 
+                          "start_column": 5, 
+                          "end_column": 27
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "IsBlocked", 
+                        "signature": "()", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 59, 
+                          "end_line": 59, 
+                          "start_column": 5, 
+                          "end_column": 40
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "Priority", 
+                        "signature": "()", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 61, 
+                          "end_line": 61, 
+                          "start_column": 5, 
+                          "end_column": 50
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "SetPriority", 
+                        "signature": "(RequestPriority priority)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 71, 
+                          "end_line": 71, 
+                          "start_column": 5, 
+                          "end_column": 60
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "protected": true
+                        }, 
+                        "name": "Throttle", 
+                        "signature": "()", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 74, 
+                          "end_line": 74, 
+                          "start_column": 5, 
+                          "end_column": 18
+                        }
+                      }
+                    ], 
+                    "name_prefix": "", 
+                    "type": 1, 
+                    "text_range": {
+                      "start_line": 55, 
+                      "end_line": 78, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "~NetworkThrottleManager", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 80, 
+                      "end_line": 80, 
+                      "start_column": 3, 
+                      "end_column": 39
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "CreateThrottle", 
+                    "signature": "(ThrottleDelegate* delegate, RequestPriority priority, bool ignore_limits)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 84, 
+                      "end_line": 86, 
+                      "start_column": 3, 
+                      "end_column": 76
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "protected": true
+                    }, 
+                    "name": "NetworkThrottleManager", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 89, 
+                      "end_line": 89, 
+                      "start_column": 3, 
+                      "end_column": 30
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 25, 
+                  "end_line": 93, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }
+            ], 
+            "type": 11, 
+            "name": "net", 
+            "text_range": {
+              "start_line": 14, 
+              "end_line": 95, 
+              "start_column": 1, 
+              "end_column": 2
+            }, 
+            "signature": ""
+          }
+        ]
+      }, 
+      "return_code": 1
+    }
+  ]
+}

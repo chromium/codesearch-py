@@ -1,0 +1,300 @@
+{
+  "search_response": [
+    {
+      "maybe_skipped_documents": false, 
+      "hit_max_to_score": true, 
+      "estimated_total_number_of_results": 52, 
+      "search_result": [
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "class NET_EXPORT URLRequestJob : public base::PowerObserver {\n public:\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 18, 
+                      "end_column": 31
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 50, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }
+          ], 
+          "docid": "rg8u7oPj_WM", 
+          "best_matching_line_number": 50, 
+          "language": "c++", 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "389315a25d7da30d71b59e3803ab795bc4c18e1c", 
+              "name": "src/net/url_request/url_request_job.h", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 50, 
+              "score": 1252, 
+              "match_offset": 18, 
+              "match_length": 13, 
+              "line_text": "\nclass NET_EXPORT URLRequestJob : public base::PowerObserver {\n public:\n"
+            }
+          ]
+        }, 
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "// (in dataflow order).\nclass URLRequestJob::URLRequestJobSourceStream : public SourceStream {\n public:\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 2, 
+                      "end_line": 2, 
+                      "start_column": 7, 
+                      "end_column": 20
+                    }, 
+                    "type": 41
+                  }, 
+                  {
+                    "range": {
+                      "start_line": 2, 
+                      "end_line": 2, 
+                      "start_column": 22, 
+                      "end_column": 35
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 53, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }
+          ], 
+          "docid": "-OkUmzJC19I", 
+          "best_matching_line_number": 54, 
+          "language": "c++", 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "cf3bb707cf64395c36cd3b26a212e97b0ee45d01", 
+              "name": "src/net/url_request/url_request_job.cc", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 54, 
+              "score": 512, 
+              "match_offset": 45, 
+              "match_length": 13, 
+              "line_text": "// (in dataflow order).\nclass URLRequestJob::URLRequestJobSourceStream : public SourceStream {\n public:\n"
+            }
+          ]
+        }, 
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "typedef std::list<URLRequestTestJob*> URLRequestJobList;\nbase::LazyInstance<URLRequestJobList>::Leaky\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 39, 
+                      "end_column": 52
+                    }, 
+                    "type": 41
+                  }, 
+                  {
+                    "range": {
+                      "start_line": 2, 
+                      "end_line": 2, 
+                      "start_column": 20, 
+                      "end_column": 33
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 27, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }
+          ], 
+          "docid": "91HGIa329k8", 
+          "best_matching_line_number": 27, 
+          "language": "c++", 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "0", 
+              "name": "src/net/url_request/url_request_test_job.cc", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 27, 
+              "score": 546, 
+              "match_offset": 39, 
+              "match_length": 13, 
+              "line_text": "\ntypedef std::list<URLRequestTestJob*> URLRequestJobList;\nbase::LazyInstance<URLRequestJobList>::Leaky\n"
+            }
+          ]
+        }, 
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "class TestURLRequestJob : public net::URLRequestJob {\n public:\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 11, 
+                      "end_column": 24
+                    }, 
+                    "type": 41
+                  }, 
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 39, 
+                      "end_column": 52
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 17, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }
+          ], 
+          "docid": "UHjQj0aGOK8", 
+          "best_matching_line_number": 17, 
+          "language": "c++", 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "0", 
+              "name": "src/headless/test/test_url_request_job.h", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 17, 
+              "score": 546, 
+              "match_offset": 11, 
+              "match_length": 13, 
+              "line_text": "\nclass TestURLRequestJob : public net::URLRequestJob {\n public:\n"
+            }
+          ]
+        }, 
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "// Job that allows monitoring of its priority.\nclass PriorityMonitoringURLRequestJob : public URLRequestTestJob {\n public:\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 2, 
+                      "end_line": 2, 
+                      "start_column": 25, 
+                      "end_column": 38
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 336, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }
+          ], 
+          "docid": "Y_tvmPdbMWE", 
+          "best_matching_line_number": 337, 
+          "language": "c++", 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "2aeb8ae3aea2b7e78457ec774722a0e35e30a07d", 
+              "name": "src/net/url_request/url_request_unittest.cc", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 337, 
+              "score": 498, 
+              "match_offset": 71, 
+              "match_length": 13, 
+              "line_text": "// Job that allows monitoring of its priority.\nclass PriorityMonitoringURLRequestJob : public URLRequestTestJob {\n public:\n"
+            }
+          ]
+        }
+      ], 
+      "results_offset": 0
+    }
+  ], 
+  "elapsed_ms": 79
+}
