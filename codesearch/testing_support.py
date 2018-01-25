@@ -78,7 +78,14 @@ class TestHttpHandler(HTTPSHandler):
     url = request.get_full_url()
     data = GetRequestData(request)
     digest = DigestFromRequest(request)
-    response_file_path = os.path.join(RESPONSE_DATA_DIR, digest)
+    filename = digest + ".json"
+    response_file_path = os.path.join(RESPONSE_DATA_DIR, filename)
+
+    global requests_seen
+    if digest not in requests_seen:
+      requests_seen[digest] = RequestInfo(url, data)
+
+    requests_seen[digest].AddCallers()
 
     requests_seen.append(request)
 
@@ -98,7 +105,7 @@ class TestHttpHandler(HTTPSHandler):
       s = json.dumps({
           "url": url,
           "data": StringFromBytes(data),
-          "digest": digest
+          "filename": filename,
       })
       f.write(s.encode('utf-8'))
 
@@ -170,10 +177,9 @@ if __name__ == '__main__':
     print('Resolving {}'.format(name))
 
     with open(os.path.join(RESPONSE_DATA_DIR, name), mode='r') as f:
-      s = f.read()
-      o = json.loads(s)
+      o = json.load(f, encoding='utf-8')
 
-    url, data, digest = o["url"], o["data"], o["digest"]
+    url, data, filename = o["url"], o["data"], o["filename"]
     req = Request(url=url)
     if data != '':
       AddDataToRequest(req, data.encode('utf-8'))
@@ -181,13 +187,14 @@ if __name__ == '__main__':
     try:
       response = urlopen(req, timeout=3)
       result = response.read()
+      data = json.loads(result, encoding='utf-8')
 
-      with open(os.path.join(RESPONSE_DATA_DIR, digest), 'wb') as f:
-        f.write(result)
+      with open(os.path.join(RESPONSE_DATA_DIR, filename), 'wb') as f:
+        json.dump(data, f, indent=2, separators=(', ', ': '), encoding='utf-8')
 
       os.unlink(os.path.join(RESPONSE_DATA_DIR, name))
 
-      print('   Resolved. Wrote {}'.format(digest))
+      print('   Resolved. Wrote {}'.format(filename))
       resolved_count += 1
 
     except Exception as e:
