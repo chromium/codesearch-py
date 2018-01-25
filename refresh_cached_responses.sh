@@ -24,7 +24,9 @@ if [[ ( $remove = 0 ) && ( $skip = 1 ) ]]; then
 You are about to purge all files from codesearch/testdata/responses/* and
 replace them with fresh files from the current CodeSearch index. This is a
 destructive operation. If you really meant to do this, rerun this command with
-a '-r' or '-s' option.
+the '-r' option. I.e.:
+
+    sh refresh_cached_responses.sh -r
 
 The script will remove all the cached response files and rerun the tests.
 Whenever one of the tests makes a request for a resource, that test will fail
@@ -40,12 +42,15 @@ EOF
   exit 1
 fi
 
+set +e
+
 if [ $remove = 1 ]; then
   git rm codesearch/testdata/responses/\* || echo No files in index.
   rm codesearch/testdata/responses/* || echo No unresolved files in cache.
+  if [[ ! ( -d codesearch/testdata/responses ) ]]; then
+    mkdir -p codesearch/testdata/responses
+  fi
 fi
-
-set +e
 
 files_added=0
 
