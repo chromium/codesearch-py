@@ -15,6 +15,7 @@ import os
 from .file_cache import FileCache
 from .messages import CompoundRequest, AnnotationType, AnnotationTypeValue, \
         CompoundResponse, FileInfoRequest, FileSpec, AnnotationRequest, \
+        KytheXrefKind, KytheNodeKind, \
         EdgeEnumKind, XrefSearchRequest, XrefSingleMatch, XrefSearchResult, \
         FileInfo, TextRange, Annotation, NodeEnumKind, SearchRequest, SearchResult
 from .paths import GetSourceRoot
@@ -23,11 +24,23 @@ from .language_utils import SymbolSuffixMatcher, IsIdentifier
 
 try:
   from urllib.request import urlopen, Request
-  from urllib.parse import urlencode, urlparse
+  from urllib.parse import urlencode, urlparse, unquote
 except ImportError:
   from urllib2 import urlopen, Request
   from urllib import urlencode
-  from urlparse import urlparse
+  from urlparse import urlparse, unquote
+
+
+class ServerError(Exception):
+  pass
+
+
+class NoFileSpecError(Exception):
+  pass
+
+
+class NotFoundError(Exception):
+  pass
 
 
 class CsFile(object):
@@ -100,11 +113,11 @@ class CsFile(object):
     self.GetAnnotations()
 
     for annotation in self.annotations:
-      sig = getattr(annotation, 'xref_signature', None)
-      if sig and sig.signature == signature:
+      if annotation.MatchesSignature(signature):
         return self.Text(annotation.range)
 
-    raise Exception('can\'t determine display name for {}'.format(signature))
+    raise NotFoundError(
+        'can\'t determine display name for {}'.format(signature))
 
 
 class XrefNode(object):
@@ -134,7 +147,7 @@ class XrefNode(object):
   # Ditto for the path to source:
   >>> sig = cs.GetSignatureForSymbol('src/net/http/http_network_transaction.cc', 'HttpNetworkTransaction')
   >>> node = codesearch.XrefNode.FromSignature(cs, sig)
-  >>> node.GetEdges(codesearch.EdgeEnumKind.DECLARES)
+  >>> node.Traverse(codesearch.KytheXrefKind.REFERENCE)
 
   This should dump out a list of XrefNode objects corresponding to the declared
   symbols. You can inspect the .filespec and .single_match members to figure
@@ -163,55 +176,48 @@ class XrefNode(object):
 
     assert isinstance(self.cs, CodeSearch)
     assert isinstance(self.single_match, XrefSingleMatch)
+    assert self.filespec is None or isinstance(self.filespec, FileSpec)
     assert self.parent is None or isinstance(self.parent, XrefNode)
 
-  def GetEdges(self, edge_enum_kind, max_num_results=500):
-    """Gets outgoing edges for this node matching |edge_enum_kind|.
+  def Traverse(self, xref_kinds=None, max_num_results=500):
+    """Gets outgoing edges for this node.
 
-    |edge_enum_kind| can be either a single EdgeEnumKind value or it could be a
-    list of EdgeEnumKind values. In either case, all outgoing edges that match
-    any element in |edge_enum_kind| will be returned in the form of a list of
-    XrefNode objects.
+    Returns a list of XrefNode objects.
 
-    If there are no matching edges, the funtion will return an empty list.
+    |xref_kinds|, if specified could either be a KytheXrefKind value or a list
+    of KytheXrefKind values. The list specifies the types of cross references
+    to return.
     """
-    if isinstance(edge_enum_kind, list):
-      edge_filter = edge_enum_kind
-    else:
-      edge_filter = [edge_enum_kind]
-    results = self.cs.GetXrefsFor(self.single_match.signature, edge_filter,
-                                  max_num_results)
+
+    results = self.cs.GetXrefsFor(self.single_match.signature, max_num_results)
     if not results:
       return []
 
-    return XrefNode.FromSearchResults(self.cs, results, self)
+    results = XrefNode.FromSearchResults(self.cs, results, self)
+    if xref_kinds is None:
+      return results
 
-  def GetAllEdges(self, max_num_results=500):
-    """Return all known outgoing edges from this node.
+    if isinstance(xref_kinds, list):
+      xrset = set(xref_kinds)
+    else:
+      xrset = set()
+      xrset.add(xref_kinds)
 
-    Note that there can be literally hundreds of outgoing edges, if not
-    thousands. The |max_num_results| determines the number of results that will
-    be returned if there are too many.
-    """
-    return self.GetEdges([
-        getattr(EdgeEnumKind, x) for x in sorted(vars(EdgeEnumKind))
-        if isinstance(getattr(EdgeEnumKind, x), int)
-    ], max_num_results)
+    # Make sure that the incoming filter is based on KytheXrefKind and not the
+    # deprecated NodeEnumKind. Fortunately, the valid numbers for each type are
+    # disjoint despite being sparse.
+    for v in xrset:
+      assert KytheXrefKind.ToSymbol(v) != v
+
+    return list(filter(lambda n: n.single_match.type_id in xrset, results))
 
   def GetFile(self):
     """Return the file containing this XrefNode as a CsFile."""
     if not self.filespec:
-      raise Exception('no filespec found for XrefNode')
+      raise NoFileSpecError('no filespec found for XrefNode')
     return self.cs.GetFileInfo(self.filespec)
 
-  def GetIntrinsicType(self):
-    # We are going to parse the signature. I'll shower afterwards.
-    prefix = self.single_match.signature.split('@')[0]
-    if prefix.startswith('cpp:') and IsIdentifier(prefix[4:]):
-      return prefix[4:]
-    return None
-
-  def GetDisplayName(self):
+  def GetDisplayName(self, try_via_references=True):
     """Return the display name for this XrefNode.
 
     It is possible for there to be no associated displayname. E.g. if the
@@ -219,58 +225,47 @@ class XrefNode(object):
     method will throw.
     """
 
-    # Special case for figments. Also the code formatting is YAPF's doing.
-    if self.single_match and hasattr(
-        self.single_match, 'grok_modifiers') and hasattr(
-            self.single_match.grok_modifiers, 'is_figment'
-        ) and self.single_match.grok_modifiers.is_figment and hasattr(
-            self.single_match, 'line_text'):
-      return self.single_match.line_text
-
-    # Another special case for basic types.
-    intrinsic_type = self.GetIntrinsicType()
-    if intrinsic_type:
-      return intrinsic_type
-
     if not self.filespec:
-      raise Exception('no filespec found for XrefNode')
-    return self.cs.GetFileInfo(self.filespec).GetAnchorText(
-        self.single_match.signature)
+      raise NoFileSpecError('no filespec found for XrefNode')
 
-  def GetXrefKind(self):
-    """Return the kind of node.
+    try:
+      return self.cs.GetFileInfo(self.filespec).GetAnchorText(
+          self.single_match.signature)
+    except ServerError as e:
+      # Backend index is incomplete :-(. Unfortunately, this happens often,
+      # and is generally expected when following links to STL symbols.
+      if 'Could not resolve' in e.message and try_via_references:
+        pass
+      raise e
 
-    See definition of NodeEnumKind for a list of possible node kinds."""
-
-    if not self.filespec:
-      raise Exception('no filespec found for XrefNode')
-
-    if self.single_match and hasattr(self.single_match, 'node_type'):
-      return self.single_match.node_type
-
-    annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
-    for annotation in annotations:
-      sig = getattr(annotation, 'xref_signature', None)
-      if sig and sig.signature == self.single_match.signature:
-        return getattr(annotation, 'xref_kind', None)
-    raise Exception('unable to determine xref kind')
+    # Backup logic. Try to lookup a reference that works. Only try 5 times.
+    for ref in self.Traverse(KytheXrefKind.REFERENCE)[:5]:
+      try:
+        # Setting try_via_references to False since we don't want to fan
+        # out a tree of retries. Something should work at this level or we
+        # should just give up instead of DoSing the server.
+        return ref.GetDisplayName(try_via_references=False)
+      except ServerError as e:
+        pass
+    raise NotFoundError('display name could not be resolved for {}'.format(
+        self.single_match.signature))
 
   def GetRelatedAnnotations(self):
     """Get related annotations. Currently this is defined to be annotations
     that surround the current xref location."""
 
     if not self.filespec:
-      raise Exception('no filespec found for XrefNode')
+      raise NoFileSpecError('no filespec found for XrefNode')
+
     annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
     target_range = None
     for annotation in annotations:
-      sig = getattr(annotation, 'xref_signature', None)
-      if sig and sig.signature == self.single_match.signature:
+      if annotation.MatchesSignature(self.single_match.signature):
         target_range = annotation.range
         break
 
     if not target_range:
-      raise Exception('no related annotations')
+      raise NotFoundError('no related annotations')
 
     related = []
     for annotation in annotations:
@@ -281,36 +276,6 @@ class XrefNode(object):
         continue
       related.append(annotation)
     return related
-
-  def GetType(self):
-    """Gets the XrefNode that represents the type of this node.
-
-      Ideally this would just be the node that is on the other side of a
-      HAS_TYPE edge. Unfortunately this is sometimes not the case. In those
-      cases we try a little bit harder by resolving the related definitions,
-      weeding out those we don't need and then picking one that looks right
-      """
-    # First try following a HAS_TYPE edge.
-    type_nodes = self.GetEdges(EdgeEnumKind.HAS_TYPE)
-    if len(type_nodes) > 0:
-      return type_nodes[0]
-
-    # Else we are in rough territory.
-    related_defns = self.GetRelatedDefinitions()
-
-    # Filter out nodes that are namespaces. It is possible the filtering will
-    # fail due to some nodes being resolved.
-    try:
-      related_defns = [
-          d for d in related_defns if d.GetXrefKind() != NodeEnumKind.NAMESPACE
-      ]
-    except:
-      pass
-
-    if len(related_defns) > 0:
-      return related_defns[-1]
-
-    return None
 
   def GetRelatedDefinitions(self):
     """Get related definitions. Currently this is defined to be linked
@@ -337,7 +302,7 @@ class XrefNode(object):
     """
 
     if not self.filespec:
-      raise Exception('no filespec found for XrefNode')
+      raise NoFileSpecError('no filespec found for XrefNode')
     annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
     target_range = None
     for annotation in annotations:
@@ -347,7 +312,7 @@ class XrefNode(object):
         break
 
     if not target_range:
-      raise Exception('no related annotations')
+      raise NotFoundError('no related annotations')
 
     related = []
     for annotation in annotations:
@@ -358,12 +323,12 @@ class XrefNode(object):
         continue
 
       abstract_node = XrefNode.FromAnnotation(self.cs, annotation)
-      def_list = abstract_node.GetEdges(EdgeEnumKind.HAS_DEFINITION)
+      def_list = abstract_node.Traverse(KytheXrefKind.DEFINITION)
       if def_list:
         related.append(def_list[0])
         continue
 
-      dcl_list = abstract_node.GetEdges(EdgeEnumKind.HAS_DECLARATION)
+      dcl_list = abstract_node.Traverse(KytheXrefKind.DECLARATION)
       if dcl_list:
         related.append(dcl_list[0])
         continue
@@ -373,7 +338,10 @@ class XrefNode(object):
 
   def GetSignature(self):
     """Return the signature for this node"""
-    return self.single_match.signature
+    return self.single_match.signature.split(' ')[0]
+
+  def GetSignatures(self):
+    return self.single_match.GetSignatures()
 
   def __str__(self):
     s = "{"
@@ -391,7 +359,11 @@ class XrefNode(object):
     interesting fields. It can, however, be used to query outgoing edges.
     """
 
-    filespec = cs.GetFileSpec(filename) if filename else None
+    if filename is None:
+      filespec = cs.GetFileSpecFromSignature(signature)
+    else:
+      filespec = cs.GetFileSpec(filename)
+
     return XrefNode(
         cs,
         filespec=filespec,
@@ -554,6 +526,19 @@ class CodeSearch(object):
         '\\', '/')
     return FileSpec(name=relpath, package_name=self.package_name)
 
+  def GetFileSpecFromSignature(self, signature):
+    KYTHE_PREFIX = "kythe://"
+    assert signature.startswith(KYTHE_PREFIX)
+    signature = signature[len(KYTHE_PREFIX):].split('#')[0]
+    args = signature.split('?')
+    assert len(args) > 1
+    path = ""
+    for a in args:
+      if a.startswith("path="):
+        path = unquote(a[5:])
+    assert path != ""
+    return FileSpec(name=path, package_name=args[0])
+
   def TeardownCache(self):
     if self.file_cache:
       self.file_cache.close()
@@ -580,7 +565,8 @@ class CodeSearch(object):
         return cached_response.decode('utf8')
     self.stats.cache_misses += 1
 
-    # Long URLs cause the request to fail.
+    # Long URLs cause the request to fail. If it's too long, snip off the query
+    # and send it as a POST body. Yes, this is how it works.
     if len(url) > 1500:
       parsed = urlparse(url)
       short_url = '{}://{}{}'.format(parsed.scheme, parsed.netloc, parsed.path)
@@ -591,6 +577,7 @@ class CodeSearch(object):
 
     response = urlopen(request, timeout=self.request_timeout_in_seconds)
     result = response.read()
+    response.close()
     if self.file_cache:
       self.file_cache.put(url, result)
     return StringFromBytes(result)
@@ -646,16 +633,16 @@ class CodeSearch(object):
         return annotation.internal_link.signature
 
     if not enclosing_annotation_found:
-      raise Exception("no annotations found at (%d:%d) for %s" % (line, column,
-                                                                  filename))
+      raise NotFoundError("no annotations found at (%d:%d) for %s" %
+                          (line, column, filename))
 
-    raise Exception("can't determine signature for %s at %d:%d" %
-                    (filename, line, column))
+    raise NotFoundError("can't determine signature for %s at %d:%d" %
+                        (filename, line, column))
 
   def GetFileInfo(self,
                   filename,
                   fetch_html_content=False,
-                  fetch_outline=False,
+                  fetch_outline=True,
                   fetch_folding=False,
                   fetch_generated_from=False):
     """Return a CsFile object corresponding to the file named by |filename|.
@@ -665,7 +652,7 @@ class CodeSearch(object):
     should then map to a file known to CodeSearch."""
 
     file_spec = self.GetFileSpec(filename)
-    cacheable = (not fetch_html_content) and (not fetch_outline) and (
+    cacheable = (not fetch_html_content) and fetch_outline and (
         not fetch_folding) and (not fetch_generated_from)
     if cacheable and (file_spec.name in self.file_info_cache):
       return self.file_info_cache[file_spec.name]
@@ -681,8 +668,8 @@ class CodeSearch(object):
         ]))
 
     if hasattr(result.file_info_response[0], 'error_message'):
-      raise Exception('server reported error while fetching FileInfo: {}'.
-                      format(result.file_info_response[0].error_message))
+      raise ServerError('server reported error while fetching FileInfo: {}'.
+                        format(result.file_info_response[0].error_message))
 
     if hasattr(result.file_info_response[0], 'file_info'):
       file_info = CsFile(self, file_info=result.file_info_response[0].file_info)
@@ -691,59 +678,34 @@ class CodeSearch(object):
 
       return file_info
 
-    raise Exception(
-        'unexpected message format while fetching file info for %f' %
+    raise ServerError(
+        'unexpected message format while fetching file info for %s' %
         (filename))
 
   def GetSignatureForSymbol(self, filename, symbol):
     """Return a signature matching |symbol| in |filename|.
-
-    Note: The heuristics used here may lead to inexact or surprising behavior.
-          Use GetSignaturesForSymbol instead.
-
-    Some examples of tickets (signatures):
-
-    * class BackgroundSyncService -> cpp:blink::mojom::class-BackgroundSyncService@chromium/gen/third_party/WebKit/public/platform/modules/background_sync/background_sync.mojom.h|def
-
-    * method BackgroundSyncService::Register -> cpp:blink::mojom::class-BackgroundSyncService::Register(mojo::InlinedStructPtr<blink::mojom::SyncRegistration>, long, base::OnceCallback<void (blink::mojom::BackgroundSyncError, mojo::InlinedStructPtr<blink::mojom::SyncRegistration>)>)@chromium/gen/third_party/WebKit/public/platform/modules/background_sync/background_sync.mojom.h|decl
-
-    * method parameter named 'options': cpp:blink::mojom::class-BackgroundSyncService::Register(mojo::InlinedStructPtr<blink::mojom::SyncRegistration>, long, base::OnceCallback<void (blink::mojom::BackgroundSyncError, mojo::InlinedStructPtr<blink::mojom::SyncRegistration>)>)::param-options@chromium/gen/third_party/WebKit/public/platform/modules/background_sync/background_sync.mojom.h:3620|decl
-
-    * class declaration: cpp:blink::mojom::class-BackgroundSyncServiceRequestValidator@chromium/gen/third_party/WebKit/public/platform/modules/background_sync/background_sync.mojom.h|decl
-
-    * Macro definition: cpp:macro-DISALLOW_COPY_AND_ASSIGN()@chromium/../../base/macros.h|def
-
-    * Template function: cpp:ignore_result<#1>(const #1 &)@chromium/../../base/macros.h|def
-
-    * Template class dcl: cpp:base::class-BasicStringPiece<#1>@chromium/../../base/strings/string_piece_forward.h|decl
     """
 
-    substrings = [
-        ':%s@' % symbol, ':%s(' % symbol, '-%s@' % symbol, '-%s(' % symbol
-    ]
+    fileinfo = self.GetFileInfo(filename)
+    for annotation in fileinfo.GetAnnotations():
+      if symbol not in fileinfo.Text(annotation.range):
+        continue
 
-    annotations = self.GetFileInfo(filename).GetAnnotations()
-    for snippet in annotations:
-      if hasattr(snippet, 'xref_signature'):
-        signature = snippet.xref_signature.signature
-        for s in substrings:
-          if s in signature:
-            return signature
+      if annotation.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
+        return annotation.internal_link.GetSignature()
 
-      elif hasattr(snippet, 'internal_link'):
-        signature = snippet.internal_link.signature
-        for s in substrings:
-          if s in signature:
-            return signature
+      if annotation.type.id == AnnotationTypeValue.XREF_SIGNATURE:
+        return annotation.xref_signature.GetSignature()
 
-    raise Exception("Can't determine signature for %s:%s" % (filename, symbol))
+    raise NotFoundError("Can't determine signature for %s:%s" % (filename,
+                                                                 symbol))
 
-  def GetSignaturesForSymbol(self, filename, symbol, xref_kind=None):
+  def GetSignaturesForSymbol(self, filename, symbol, node_kind=None):
     """Get all matching signatures given a symbol.
 
     Returns all the signatures matching the given symbol in |filename|. If
-    |xref_kind| is not None, it is assumed to be one of the NodeEnumKind values
-    and is used to filter matches to those of the |xref_kind|.
+    |node_kind| is not None, it is assumed to be one of the KytheNodeKind
+    values and is used to filter matches to those of the |node_kind|.
 
     Symbols are matched using SymbolSuffixMatcher. See documentation for that
     class for more information about how fuzzy symbol matches are performed.
@@ -751,25 +713,28 @@ class CodeSearch(object):
     Returns a list of strings containing signatures. The list will be empty if
     the search failed.
     """
-    file_info = self.GetFileInfo(filename)
-    matcher = SymbolSuffixMatcher(symbol)
+
+    assert node_kind is None or KytheNodeKind.ToSymbol(node_kind) != node_kind
+
     signatures = set()
-    for annotation in file_info.GetAnnotations():
-      if not hasattr(annotation, 'xref_kind') or not hasattr(
-          annotation, 'xref_signature'):
-        continue
+    fileinfo = self.GetFileInfo(filename)
+    matcher = SymbolSuffixMatcher(symbol)
 
-      if xref_kind is not None and xref_kind != annotation.xref_kind:
-        continue
-
-      if annotation.xref_signature.signature in signatures:
-        continue
-
-      text = file_info.Text(annotation.range)
+    for annotation in fileinfo.GetAnnotations():
+      text = fileinfo.Text(annotation.range)
       if not matcher.Match(text):
         continue
 
-      signatures.add(annotation.xref_signature.signature)
+      if node_kind is not None and node_kind != annotation.kythe_xref_kind:
+        continue
+
+      if annotation.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
+        signatures.update(annotation.internal_link.GetSignatures())
+        continue
+
+      if annotation.type.id == AnnotationTypeValue.XREF_SIGNATURE:
+        signatures.update(annotation.xref_signature.GetSignatures())
+        continue
 
     return list(signatures)
 
@@ -815,7 +780,7 @@ class CodeSearch(object):
                 return_all_snippets=True,
                 return_decorated_snippets=False,
                 return_directories=False,
-                return_line_matches=False,
+                return_line_matches=True,
                 return_snippets=True)
         ])).search_response[0]
 
@@ -823,7 +788,9 @@ class CodeSearch(object):
       return []
 
     signatures = set()
-    for result in search_response.search_result:
+    result = None
+    for r in search_response.search_result:
+      result = r
       assert isinstance(result, SearchResult)
 
       if not hasattr(result, 'top_file'):
@@ -865,19 +832,14 @@ class CodeSearch(object):
       if not return_all_results and len(signatures) > 0:
         break
 
-    return [
-        XrefNode.FromSignature(
-            self, signature=s, filename=result.top_file.file)
-        for s in signatures
-    ]
+    return [XrefNode.FromSignature(self, signature=s) for s in signatures]
 
-  def GetXrefsFor(self, signature, edge_filter, max_num_results=500):
+  def GetXrefsFor(self, signature, max_num_results=500):
     refs = self.SendRequestToServer(
         CompoundRequest(xref_search_request=[
             XrefSearchRequest(
                 file_spec=self.GetFileSpec(),
                 query=signature,
-                edge_filter=edge_filter,
                 max_num_results=max_num_results)
         ]))
     if not refs or not hasattr(refs.xref_search_response[0], 'search_result'):
@@ -885,32 +847,37 @@ class CodeSearch(object):
     return refs.xref_search_response[0].search_result
 
   def GetOverridingDefinitions(self, signature):
-    candidates = []
-    refs = self.GetXrefsFor(signature, [EdgeEnumKind.OVERRIDDEN_BY])
+    """GetOverridingDefinitions returns a list of XrefSearchResult objects
+    representing all the overrides of the symbol corresponding to |signature|.
+
+    Returns an empty list if there are no overrides.
+    """
+
+    refs = self.GetXrefsFor(signature)
     for result in refs:
-      matches = []
-      for match in result.match:
-        if hasattr(match, 'grok_modifiers') and hasattr(
-            match.grok_modifiers,
-            'definition') and match.grok_modifiers.definition:
-          matches.append(match)
-      if matches:
-        result.match = matches
-        candidates.append(result)
-    return candidates
+      result.match = filter(
+          lambda match: getattr(match, 'type_id', -1) == KytheXrefKind.OVERRIDDEN_BY,
+          result.match)
+    return filter(lambda result: len(result.match) > 0, refs)
 
   def GetCallTargets(self, signature):
-    # First look up the declaration for the callsite.
-    refs = self.GetXrefsFor(signature, [EdgeEnumKind.HAS_DECLARATION])
+    # First look up the declaration(s) for the callsite.
+    decl_signatures = []
+    for decl in self.GetXrefsFor(signature):
+      assert isinstance(decl, XrefSearchResult)
+      for match in decl.match:
+        assert isinstance(match, XrefSingleMatch)
+        if match.type_id not in (KytheXrefKind.DECLARATION,
+                                 KytheXrefKind.DEFINITION,
+                                 KytheXrefKind.OVERRIDDEN_BY):
+          continue
+        decl_signatures.append(match.signature)
 
+    # These are signatures of declarations or definions of symbols that could
+    # possibly override the call site.
     candidates = []
-    for result in refs:
-      for match in result.match:
-        if hasattr(match, 'grok_modifiers') and hasattr(
-            match.grok_modifiers, 'virtual') and match.grok_modifiers.virtual:
-          candidates.extend(self.GetOverridingDefinitions(match.signature))
-    if not candidates:
-      return self.GetXrefsFor(signature, [EdgeEnumKind.HAS_DEFINITION])
+    for sig in decl_signatures:
+      candidates.extend(self.GetOverridingDefinitions(sig))
     return candidates
 
   def IsContentStale(self, filename, buffer_lines, check_prefix=False):
@@ -924,18 +891,8 @@ class CodeSearch(object):
     If |check_prefix| is true, then only the first len(buffer_lines) lines of
     |filename| are compared.
     """
-    response = self.SendRequestToServer(
-        CompoundRequest(file_info_request=[
-            FileInfoRequest(
-                file_spec=self.GetFileSpec(filename),
-                fetch_html_content=False,
-                fetch_outline=False,
-                fetch_folding=False,
-                fetch_generated_from=False)
-        ]))
-
-    response = response.file_info_response[0]
-    content_lines = response.file_info.content.text.split('\n')
+    fileinfo = self.GetFileInfo(filename)
+    content_lines = fileinfo.lines
 
     if check_prefix:
       content_lines = content_lines[:len(buffer_lines)]

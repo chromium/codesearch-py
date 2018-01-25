@@ -1,0 +1,251 @@
+{
+  "elapsed_ms": 27, 
+  "file_info_response": [
+    {
+      "file_info": {
+        "gob_info": {
+          "repo": "chromium/chromium/src", 
+          "commit": "8d737563f986f1ece3016211a26aae2c323ae73d", 
+          "path": "crypto/ec_private_key.h"
+        }, 
+        "name": "src/crypto/ec_private_key.h", 
+        "language": "c++", 
+        "changelist_num": "8d737563f986f1ece3016211a26aae2c323ae73d", 
+        "package_name": "chromium", 
+        "lines": "86", 
+        "content": {
+          "text": "// Copyright (c) 2012 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef CRYPTO_EC_PRIVATE_KEY_H_\n#define CRYPTO_EC_PRIVATE_KEY_H_\n\n#include <stddef.h>\n#include <stdint.h>\n\n#include <memory>\n#include <string>\n#include <vector>\n\n#include \"base/macros.h\"\n#include \"build/build_config.h\"\n#include \"crypto/crypto_export.h\"\n#include \"third_party/boringssl/src/include/openssl/base.h\"\n\nnamespace crypto {\n\n// Encapsulates an elliptic curve (EC) private key. Can be used to generate new\n// keys, export keys to other formats, or to extract a public key.\n// TODO(mattm): make this and RSAPrivateKey implement some PrivateKey interface.\n// (The difference in types of key() and public_key() make this a little\n// tricky.)\nclass CRYPTO_EXPORT ECPrivateKey {\n public:\n  ~ECPrivateKey();\n\n  // Creates a new random instance. Can return nullptr if initialization fails.\n  // The created key will use the NIST P-256 curve.\n  // TODO(mattm): Add a curve parameter.\n  static std::unique_ptr<ECPrivateKey> Create();\n\n  // Create a new instance by importing an existing private key. The format is\n  // an ASN.1-encoded PrivateKeyInfo block from PKCS #8. This can return\n  // nullptr if initialization fails.\n  static std::unique_ptr<ECPrivateKey> CreateFromPrivateKeyInfo(\n      const std::vector<uint8_t>& input);\n\n  // Creates a new instance by importing an existing key pair.\n  // The key pair is given as an ASN.1-encoded PKCS #8 EncryptedPrivateKeyInfo\n  // block with empty password and an X.509 SubjectPublicKeyInfo block.\n  // Returns nullptr if initialization fails.\n  //\n  // This function is deprecated. Use CreateFromPrivateKeyInfo for new code.\n  // See https://crbug.com/603319.\n  static std::unique_ptr<ECPrivateKey> CreateFromEncryptedPrivateKeyInfo(\n      const std::vector<uint8_t>& encrypted_private_key_info);\n\n  // Returns a copy of the object.\n  std::unique_ptr<ECPrivateKey> Copy() const;\n\n  EVP_PKEY* key() { return key_.get(); }\n\n  // Exports the private key to a PKCS #8 PrivateKeyInfo block.\n  bool ExportPrivateKey(std::vector<uint8_t>* output) const;\n\n  // Exports the private key as an ASN.1-encoded PKCS #8 EncryptedPrivateKeyInfo\n  // block wth empty password. This was historically used as a workaround for\n  // NSS API deficiencies and does not provide security.\n  //\n  // This function is deprecated. Use ExportPrivateKey for new code. See\n  // https://crbug.com/603319.\n  bool ExportEncryptedPrivateKey(std::vector<uint8_t>* output) const;\n\n  // Exports the public key to an X.509 SubjectPublicKeyInfo block.\n  bool ExportPublicKey(std::vector<uint8_t>* output) const;\n\n  // Exports the public key as an EC point in the uncompressed point format.\n  bool ExportRawPublicKey(std::string* output) const;\n\n private:\n  // Constructor is private. Use one of the Create*() methods above instead.\n  ECPrivateKey();\n\n  bssl::UniquePtr<EVP_PKEY> key_;\n\n  DISALLOW_COPY_AND_ASSIGN(ECPrivateKey);\n};\n\n\n}  // namespace crypto\n\n#endif  // CRYPTO_EC_PRIVATE_KEY_H_\n"
+        }, 
+        "generated": false, 
+        "mime_type": "text/plain", 
+        "size": "3073", 
+        "type": 1, 
+        "md5": "67fbe9bc5deb566c1af90d170d9ed559", 
+        "codeblock": [
+          {
+            "type": 40, 
+            "name": "CRYPTO_EC_PRIVATE_KEY_H_", 
+            "text_range": {
+              "start_line": 6, 
+              "end_line": 7, 
+              "start_column": 1, 
+              "end_column": 1
+            }, 
+            "signature": ""
+          }, 
+          {
+            "child": [
+              {
+                "name": "ECPrivateKey", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "~ECPrivateKey", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 29, 
+                      "end_line": 29, 
+                      "start_column": 3, 
+                      "end_column": 19
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "Create", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 34, 
+                      "end_line": 34, 
+                      "start_column": 3, 
+                      "end_column": 49
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "CreateFromPrivateKeyInfo", 
+                    "signature": "(const std::vector<uint8_t>& input)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 39, 
+                      "end_line": 40, 
+                      "start_column": 3, 
+                      "end_column": 42
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "CreateFromEncryptedPrivateKeyInfo", 
+                    "signature": "(const std::vector<uint8_t>& encrypted_private_key_info)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 49, 
+                      "end_line": 50, 
+                      "start_column": 3, 
+                      "end_column": 63
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Copy", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 53, 
+                      "end_line": 53, 
+                      "start_column": 3, 
+                      "end_column": 46
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "key", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 55, 
+                      "end_line": 55, 
+                      "start_column": 3, 
+                      "end_column": 41
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ExportPrivateKey", 
+                    "signature": "(std::vector<uint8_t>* output)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 58, 
+                      "end_line": 58, 
+                      "start_column": 3, 
+                      "end_column": 61
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ExportEncryptedPrivateKey", 
+                    "signature": "(std::vector<uint8_t>* output)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 66, 
+                      "end_line": 66, 
+                      "start_column": 3, 
+                      "end_column": 70
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ExportPublicKey", 
+                    "signature": "(std::vector<uint8_t>* output)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 69, 
+                      "end_line": 69, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ExportRawPublicKey", 
+                    "signature": "(std::string* output)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 72, 
+                      "end_line": 72, 
+                      "start_column": 3, 
+                      "end_column": 54
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "ECPrivateKey", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 76, 
+                      "end_line": 76, 
+                      "start_column": 3, 
+                      "end_column": 18
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "key_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 78, 
+                      "end_line": 78, 
+                      "start_column": 3, 
+                      "end_column": 34
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 27, 
+                  "end_line": 81, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }
+            ], 
+            "type": 11, 
+            "name": "crypto", 
+            "text_range": {
+              "start_line": 20, 
+              "end_line": 84, 
+              "start_column": 1, 
+              "end_column": 2
+            }, 
+            "signature": ""
+          }
+        ]
+      }, 
+      "return_code": 1
+    }
+  ]
+}

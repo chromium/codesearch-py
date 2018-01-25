@@ -40,27 +40,12 @@ reference lookups.
 >>> isinstance(file_class, codesearch.XrefNode)
 True
 
-Say we want to look at all the declared members of the File class. This includes
-both member functions and member variables:
->>> members = file_class.GetEdges(codesearch.EdgeEnumKind.DECLARES)
+We can look for references to this class.
+>>> references = file_class.Traverse(codesearch.KytheXrefKind.REFERENCE)
 
-There'll be a bunch of these.
->>> len(members) > 0
+There will be a number of these.
+>>> len(references) > 30
 True
-
-..  and they are all XrefNode objects.
->>> isinstance(members[0], codesearch.XrefNode)
-True
-
-We can find out what kind it is. The kinds that are known to CodeSearch are
-described in the codesearch.NodeEnumKind enumeration.
->>> print(members[0].GetXrefKind())
-5200
-
-Convert between values and symbols using the class member functions ToSymbol(),
-and FromSymbol().
->>> print(codesearch.NodeEnumKind.ToSymbol(members[0].GetXrefKind()))
-TYPE_ALIAS
 
 In addition to the above, there are lower level APIs to talk to the unofficial
 endpoints in the https://cs.chromium.org backend. One such API is
@@ -118,7 +103,7 @@ fields are explained in message.py.
 ...     if lines_left == 0: break
 src/v8/samples/hello-world.cc:39: v8::String::NewFromUtf8(isolate, "'Hello' + ', World!'",
 src/v8/samples/hello-world.cc:34: // Enter the context for compiling and running the hello world script.
-src/gin/shell/hello_world.js:6: console.log("Hello World");
+src/gin/shell/hello_world.js:5: log("Hello World");
 src/v8/test/fuzzer/parser/hello-world:1: console.log('hello world');
 src/native_client/tests/hello_world/hello_world.c:13: void hello_world(void) {
 src/native_client/tests/hello_world/hello_world.c:14: printf("Hello, World!\n");

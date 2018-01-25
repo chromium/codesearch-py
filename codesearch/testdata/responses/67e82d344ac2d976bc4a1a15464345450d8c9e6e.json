@@ -1,0 +1,65 @@
+{
+  "search_response": [
+    {
+      "maybe_skipped_documents": false, 
+      "hit_max_to_score": true, 
+      "estimated_total_number_of_results": 1, 
+      "search_result": [
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "class BASE_EXPORT FieldTrial : public RefCounted<FieldTrial> {\n public:\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 19, 
+                      "end_column": 29
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 89, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }
+          ], 
+          "docid": "E-D1G49vcaA", 
+          "best_matching_line_number": 89, 
+          "language": "c++", 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "c58666ce255116df6d3696da4877da27e50b9a66", 
+              "name": "src/base/metrics/field_trial.h", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 89, 
+              "score": 609, 
+              "match_offset": 19, 
+              "match_length": 10, 
+              "line_text": "\nclass BASE_EXPORT FieldTrial : public RefCounted<FieldTrial> {\n public:\n"
+            }
+          ]
+        }
+      ], 
+      "results_offset": 0
+    }
+  ], 
+  "elapsed_ms": 65
+}

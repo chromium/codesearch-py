@@ -1,0 +1,566 @@
+{
+  "elapsed_ms": 24, 
+  "file_info_response": [
+    {
+      "file_info": {
+        "gob_info": {
+          "repo": "chromium/chromium/src", 
+          "commit": "8d737563f986f1ece3016211a26aae2c323ae73d", 
+          "path": "net/http/http_stream_factory.h"
+        }, 
+        "name": "src/net/http/http_stream_factory.h", 
+        "language": "c++", 
+        "changelist_num": "8d737563f986f1ece3016211a26aae2c323ae73d", 
+        "package_name": "chromium", 
+        "lines": "266", 
+        "content": {
+          "text": "// Copyright (c) 2012 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_HTTP_HTTP_STREAM_FACTORY_H_\n#define NET_HTTP_HTTP_STREAM_FACTORY_H_\n\n#include <list>\n#include <memory>\n#include <string>\n\n#include \"base/macros.h\"\n#include \"base/memory/ref_counted.h\"\n#include \"base/strings/string16.h\"\n#include \"net/base/completion_callback.h\"\n#include \"net/base/load_states.h\"\n#include \"net/base/net_export.h\"\n#include \"net/base/request_priority.h\"\n#include \"net/http/http_server_properties.h\"\n#include \"net/socket/connection_attempts.h\"\n// This file can be included from net/http even though\n// it is in net/websockets because it doesn't\n// introduce any link dependency to net/websockets.\n#include \"net/websockets/websocket_handshake_stream_base.h\"\n\nnamespace base {\nnamespace trace_event {\nclass ProcessMemoryDump;\n}\n}\n\nnamespace net {\n\nclass BidirectionalStreamImpl;\nclass HostMappingRules;\nclass HttpAuthController;\nclass HttpNetworkSession;\nclass HttpResponseHeaders;\nclass HttpResponseInfo;\nclass HttpStream;\nclass NetLogWithSource;\nclass ProxyInfo;\nclass SSLCertRequestInfo;\nclass SSLInfo;\nstruct HttpRequestInfo;\nstruct SSLConfig;\n\n// The HttpStreamRequest is the client's handle to the worker object which\n// handles the creation of an HttpStream.  While the HttpStream is being\n// created, this object is the creator's handle for interacting with the\n// HttpStream creation process.  The request is cancelled by deleting it, after\n// which no callbacks will be invoked.\nclass NET_EXPORT_PRIVATE HttpStreamRequest {\n public:\n  // Indicates which type of stream is requested.\n  enum StreamType {\n    BIDIRECTIONAL_STREAM,\n    HTTP_STREAM,\n  };\n\n  // The HttpStreamRequest::Delegate is a set of callback methods for a\n  // HttpStreamRequestJob.  Generally, only one of these methods will be\n  // called as a result of a stream request.\n  class NET_EXPORT_PRIVATE Delegate {\n   public:\n    virtual ~Delegate() {}\n\n    // This is the success case for RequestStream.\n    // |stream| is now owned by the delegate.\n    // |used_ssl_config| indicates the actual SSL configuration used for this\n    // stream, since the HttpStreamRequest may have modified the configuration\n    // during stream processing.\n    // |used_proxy_info| indicates the actual ProxyInfo used for this stream,\n    // since the HttpStreamRequest performs the proxy resolution.\n    virtual void OnStreamReady(const SSLConfig& used_ssl_config,\n                               const ProxyInfo& used_proxy_info,\n                               std::unique_ptr<HttpStream> stream) = 0;\n\n    // This is the success case for RequestWebSocketHandshakeStream.\n    // |stream| is now owned by the delegate.\n    // |used_ssl_config| indicates the actual SSL configuration used for this\n    // stream, since the HttpStreamRequest may have modified the configuration\n    // during stream processing.\n    // |used_proxy_info| indicates the actual ProxyInfo used for this stream,\n    // since the HttpStreamRequest performs the proxy resolution.\n    virtual void OnWebSocketHandshakeStreamReady(\n        const SSLConfig& used_ssl_config,\n        const ProxyInfo& used_proxy_info,\n        std::unique_ptr<WebSocketHandshakeStreamBase> stream) = 0;\n\n    virtual void OnBidirectionalStreamImplReady(\n        const SSLConfig& used_ssl_config,\n        const ProxyInfo& used_proxy_info,\n        std::unique_ptr<BidirectionalStreamImpl> stream) = 0;\n\n    // This is the failure to create a stream case.\n    // |used_ssl_config| indicates the actual SSL configuration used for this\n    // stream, since the HttpStreamRequest may have modified the configuration\n    // during stream processing.\n    virtual void OnStreamFailed(int status,\n                                const NetErrorDetails& net_error_details,\n                                const SSLConfig& used_ssl_config) = 0;\n\n    // Called when we have a certificate error for the request.\n    // |used_ssl_config| indicates the actual SSL configuration used for this\n    // stream, since the HttpStreamRequest may have modified the configuration\n    // during stream processing.\n    virtual void OnCertificateError(int status,\n                                    const SSLConfig& used_ssl_config,\n                                    const SSLInfo& ssl_info) = 0;\n\n    // This is the failure case where we need proxy authentication during\n    // proxy tunnel establishment.  For the tunnel case, we were unable to\n    // create the HttpStream, so the caller provides the auth and then resumes\n    // the HttpStreamRequest.\n    //\n    // For the non-tunnel case, the caller will discover the authentication\n    // failure when reading response headers. At that point, it will handle the\n    // authentication failure and restart the HttpStreamRequest entirely.\n    //\n    // Ownership of |auth_controller| and |proxy_response| are owned\n    // by the HttpStreamRequest. |proxy_response| is not guaranteed to be usable\n    // after the lifetime of this callback.  The delegate may take a reference\n    // to |auth_controller| if it is needed beyond the lifetime of this\n    // callback.\n    //\n    // |used_ssl_config| indicates the actual SSL configuration used for this\n    // stream, since the HttpStreamRequest may have modified the configuration\n    // during stream processing.\n    virtual void OnNeedsProxyAuth(const HttpResponseInfo& proxy_response,\n                                  const SSLConfig& used_ssl_config,\n                                  const ProxyInfo& used_proxy_info,\n                                  HttpAuthController* auth_controller) = 0;\n\n    // This is the failure for SSL Client Auth\n    // Ownership of |cert_info| is retained by the HttpStreamRequest.  The\n    // delegate may take a reference if it needs the cert_info beyond the\n    // lifetime of this callback.\n    virtual void OnNeedsClientAuth(const SSLConfig& used_ssl_config,\n                                   SSLCertRequestInfo* cert_info) = 0;\n\n    // This is the failure of the CONNECT request through an HTTPS proxy.\n    // Headers can be read from |response_info|, while the body can be read\n    // from |stream|.\n    //\n    // |used_ssl_config| indicates the actual SSL configuration used for this\n    // stream, since the HttpStreamRequest may have modified the configuration\n    // during stream processing.\n    //\n    // |used_proxy_info| indicates the actual ProxyInfo used for this stream,\n    // since the HttpStreamRequest performs the proxy resolution.\n    //\n    // Ownership of |stream| is transferred to the delegate.\n    virtual void OnHttpsProxyTunnelResponse(\n        const HttpResponseInfo& response_info,\n        const SSLConfig& used_ssl_config,\n        const ProxyInfo& used_proxy_info,\n        std::unique_ptr<HttpStream> stream) = 0;\n\n    // Called when finding all QUIC alternative services are marked broken for\n    // the origin in this request which advertises supporting QUIC.\n    virtual void OnQuicBroken() = 0;\n  };\n\n  virtual ~HttpStreamRequest() {}\n\n  // When a HttpStream creation process is stalled due to necessity\n  // of Proxy authentication credentials, the delegate OnNeedsProxyAuth\n  // will have been called.  It now becomes the delegate's responsibility\n  // to collect the necessary credentials, and then call this method to\n  // resume the HttpStream creation process.\n  virtual int RestartTunnelWithProxyAuth() = 0;\n\n  // Called when the priority of the parent transaction changes.\n  virtual void SetPriority(RequestPriority priority) = 0;\n\n  // Returns the LoadState for the request.\n  virtual LoadState GetLoadState() const = 0;\n\n  // Returns true if TLS/ALPN was negotiated for this stream.\n  virtual bool was_alpn_negotiated() const = 0;\n\n  // Protocol negotiated with the server.\n  virtual NextProto negotiated_protocol() const = 0;\n\n  // Returns true if this stream is being fetched over SPDY.\n  virtual bool using_spdy() const = 0;\n\n  // Returns socket-layer connection attempts made for this stream request.\n  virtual const ConnectionAttempts& connection_attempts() const = 0;\n};\n\n// The HttpStreamFactory defines an interface for creating usable HttpStreams.\nclass NET_EXPORT HttpStreamFactory {\n public:\n  virtual ~HttpStreamFactory();\n\n  void ProcessAlternativeServices(HttpNetworkSession* session,\n                                  const HttpResponseHeaders* headers,\n                                  const url::SchemeHostPort& http_server);\n\n  // Virtual interface methods.\n\n  // Request a stream.\n  // Will call delegate->OnStreamReady on successful completion.\n  virtual std::unique_ptr<HttpStreamRequest> RequestStream(\n      const HttpRequestInfo& info,\n      RequestPriority priority,\n      const SSLConfig& server_ssl_config,\n      const SSLConfig& proxy_ssl_config,\n      HttpStreamRequest::Delegate* delegate,\n      bool enable_ip_based_pooling,\n      bool enable_alternative_services,\n      const NetLogWithSource& net_log) = 0;\n\n  // Request a WebSocket handshake stream.\n  // Will call delegate->OnWebSocketHandshakeStreamReady on successful\n  // completion.\n  virtual std::unique_ptr<HttpStreamRequest> RequestWebSocketHandshakeStream(\n      const HttpRequestInfo& info,\n      RequestPriority priority,\n      const SSLConfig& server_ssl_config,\n      const SSLConfig& proxy_ssl_config,\n      HttpStreamRequest::Delegate* delegate,\n      WebSocketHandshakeStreamBase::CreateHelper* create_helper,\n      bool enable_ip_based_pooling,\n      bool enable_alternative_services,\n      const NetLogWithSource& net_log) = 0;\n\n  // Request a BidirectionalStreamImpl.\n  // Will call delegate->OnBidirectionalStreamImplReady on successful\n  // completion.\n  virtual std::unique_ptr<HttpStreamRequest> RequestBidirectionalStreamImpl(\n      const HttpRequestInfo& info,\n      RequestPriority priority,\n      const SSLConfig& server_ssl_config,\n      const SSLConfig& proxy_ssl_config,\n      HttpStreamRequest::Delegate* delegate,\n      bool enable_ip_based_pooling,\n      bool enable_alternative_services,\n      const NetLogWithSource& net_log) = 0;\n\n  // Requests that enough connections for |num_streams| be opened.\n  virtual void PreconnectStreams(int num_streams,\n                                 const HttpRequestInfo& info) = 0;\n\n  virtual const HostMappingRules* GetHostMappingRules() const = 0;\n\n  // Dumps memory allocation stats. |parent_dump_absolute_name| is the name\n  // used by the parent MemoryAllocatorDump in the memory dump hierarchy.\n  virtual void DumpMemoryStats(\n      base::trace_event::ProcessMemoryDump* pmd,\n      const std::string& parent_absolute_name) const = 0;\n\n protected:\n  HttpStreamFactory();\n\n private:\n  url::SchemeHostPort RewriteHost(const url::SchemeHostPort& server);\n\n  DISALLOW_COPY_AND_ASSIGN(HttpStreamFactory);\n};\n\n}  // namespace net\n\n#endif  // NET_HTTP_HTTP_STREAM_FACTORY_H_\n"
+        }, 
+        "generated": false, 
+        "mime_type": "text/plain", 
+        "size": "10888", 
+        "type": 1, 
+        "md5": "b246ffc296e3e4ec8b1593075694af68", 
+        "codeblock": [
+          {
+            "type": 40, 
+            "name": "NET_HTTP_HTTP_STREAM_FACTORY_H_", 
+            "text_range": {
+              "start_line": 6, 
+              "end_line": 7, 
+              "start_column": 1, 
+              "end_column": 1
+            }, 
+            "signature": ""
+          }, 
+          {
+            "child": [
+              {
+                "name": "HttpStreamRequest", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "StreamType", 
+                    "signature": "", 
+                    "child": [
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "BIDIRECTIONAL_STREAM", 
+                        "signature": "", 
+                        "name_prefix": "", 
+                        "type": 14, 
+                        "text_range": {
+                          "start_line": 57, 
+                          "end_line": 57, 
+                          "start_column": 5, 
+                          "end_column": 25
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "HTTP_STREAM", 
+                        "signature": "", 
+                        "name_prefix": "", 
+                        "type": 14, 
+                        "text_range": {
+                          "start_line": 58, 
+                          "end_line": 58, 
+                          "start_column": 5, 
+                          "end_column": 16
+                        }
+                      }
+                    ], 
+                    "name_prefix": "", 
+                    "type": 4, 
+                    "text_range": {
+                      "start_line": 56, 
+                      "end_line": 59, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Delegate", 
+                    "signature": "", 
+                    "child": [
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "~Delegate", 
+                        "signature": "()", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 66, 
+                          "end_line": 66, 
+                          "start_column": 5, 
+                          "end_column": 27
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnStreamReady", 
+                        "signature": "(const SSLConfig& used_ssl_config, const ProxyInfo& used_proxy_info, std::unique_ptr<HttpStream> stream)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 75, 
+                          "end_line": 77, 
+                          "start_column": 5, 
+                          "end_column": 72
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnWebSocketHandshakeStreamReady", 
+                        "signature": "(const SSLConfig& used_ssl_config, const ProxyInfo& used_proxy_info, std::unique_ptr<WebSocketHandshakeStreamBase> stream)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 86, 
+                          "end_line": 89, 
+                          "start_column": 5, 
+                          "end_column": 67
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnBidirectionalStreamImplReady", 
+                        "signature": "(const SSLConfig& used_ssl_config, const ProxyInfo& used_proxy_info, std::unique_ptr<BidirectionalStreamImpl> stream)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 91, 
+                          "end_line": 94, 
+                          "start_column": 5, 
+                          "end_column": 62
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnStreamFailed", 
+                        "signature": "(int status, const NetErrorDetails& net_error_details, const SSLConfig& used_ssl_config)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 100, 
+                          "end_line": 102, 
+                          "start_column": 5, 
+                          "end_column": 71
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnCertificateError", 
+                        "signature": "(int status, const SSLConfig& used_ssl_config, const SSLInfo& ssl_info)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 108, 
+                          "end_line": 110, 
+                          "start_column": 5, 
+                          "end_column": 66
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnNeedsProxyAuth", 
+                        "signature": "(const HttpResponseInfo& proxy_response, const SSLConfig& used_ssl_config, const ProxyInfo& used_proxy_info, HttpAuthController* auth_controller)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 130, 
+                          "end_line": 133, 
+                          "start_column": 5, 
+                          "end_column": 76
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnNeedsClientAuth", 
+                        "signature": "(const SSLConfig& used_ssl_config, SSLCertRequestInfo* cert_info)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 139, 
+                          "end_line": 140, 
+                          "start_column": 5, 
+                          "end_column": 71
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnHttpsProxyTunnelResponse", 
+                        "signature": "(const HttpResponseInfo& response_info, const SSLConfig& used_ssl_config, const ProxyInfo& used_proxy_info, std::unique_ptr<HttpStream> stream)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 154, 
+                          "end_line": 158, 
+                          "start_column": 5, 
+                          "end_column": 49
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnQuicBroken", 
+                        "signature": "()", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 162, 
+                          "end_line": 162, 
+                          "start_column": 5, 
+                          "end_column": 37
+                        }
+                      }
+                    ], 
+                    "name_prefix": "", 
+                    "type": 1, 
+                    "text_range": {
+                      "start_line": 64, 
+                      "end_line": 163, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "~HttpStreamRequest", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 165, 
+                      "end_line": 165, 
+                      "start_column": 3, 
+                      "end_column": 34
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RestartTunnelWithProxyAuth", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 172, 
+                      "end_line": 172, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetPriority", 
+                    "signature": "(RequestPriority priority)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 175, 
+                      "end_line": 175, 
+                      "start_column": 3, 
+                      "end_column": 58
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetLoadState", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 178, 
+                      "end_line": 178, 
+                      "start_column": 3, 
+                      "end_column": 46
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "was_alpn_negotiated", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 181, 
+                      "end_line": 181, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "negotiated_protocol", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 184, 
+                      "end_line": 184, 
+                      "start_column": 3, 
+                      "end_column": 53
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "using_spdy", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 187, 
+                      "end_line": 187, 
+                      "start_column": 3, 
+                      "end_column": 39
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "connection_attempts", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 190, 
+                      "end_line": 190, 
+                      "start_column": 3, 
+                      "end_column": 69
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 53, 
+                  "end_line": 191, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }, 
+              {
+                "name": "HttpStreamFactory", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "~HttpStreamFactory", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 196, 
+                      "end_line": 196, 
+                      "start_column": 3, 
+                      "end_column": 32
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ProcessAlternativeServices", 
+                    "signature": "(HttpNetworkSession* session, const HttpResponseHeaders* headers, const url::SchemeHostPort& http_server)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 198, 
+                      "end_line": 200, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RequestStream", 
+                    "signature": "(const HttpRequestInfo& info, RequestPriority priority, const SSLConfig& server_ssl_config, const SSLConfig& proxy_ssl_config, HttpStreamRequest::Delegate* delegate, bool enable_ip_based_pooling, bool enable_alternative_services, const NetLogWithSource& net_log)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 206, 
+                      "end_line": 214, 
+                      "start_column": 3, 
+                      "end_column": 44
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RequestWebSocketHandshakeStream", 
+                    "signature": "(const HttpRequestInfo& info, RequestPriority priority, const SSLConfig& server_ssl_config, const SSLConfig& proxy_ssl_config, HttpStreamRequest::Delegate* delegate, WebSocketHandshakeStreamBase::CreateHelper* create_helper, bool enable_ip_based_pooling, bool enable_alternative_services, const NetLogWithSource& net_log)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 219, 
+                      "end_line": 228, 
+                      "start_column": 3, 
+                      "end_column": 44
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RequestBidirectionalStreamImpl", 
+                    "signature": "(const HttpRequestInfo& info, RequestPriority priority, const SSLConfig& server_ssl_config, const SSLConfig& proxy_ssl_config, HttpStreamRequest::Delegate* delegate, bool enable_ip_based_pooling, bool enable_alternative_services, const NetLogWithSource& net_log)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 233, 
+                      "end_line": 241, 
+                      "start_column": 3, 
+                      "end_column": 44
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "PreconnectStreams", 
+                    "signature": "(int num_streams, const HttpRequestInfo& info)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 244, 
+                      "end_line": 245, 
+                      "start_column": 3, 
+                      "end_column": 67
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetHostMappingRules", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 247, 
+                      "end_line": 247, 
+                      "start_column": 3, 
+                      "end_column": 67
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "DumpMemoryStats", 
+                    "signature": "(base::trace_event::ProcessMemoryDump* pmd, const std::string& parent_absolute_name)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 251, 
+                      "end_line": 253, 
+                      "start_column": 3, 
+                      "end_column": 58
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "protected": true
+                    }, 
+                    "name": "HttpStreamFactory", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 256, 
+                      "end_line": 256, 
+                      "start_column": 3, 
+                      "end_column": 23
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "RewriteHost", 
+                    "signature": "(const url::SchemeHostPort& server)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 259, 
+                      "end_line": 259, 
+                      "start_column": 3, 
+                      "end_column": 70
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 194, 
+                  "end_line": 262, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }
+            ], 
+            "type": 11, 
+            "name": "net", 
+            "text_range": {
+              "start_line": 32, 
+              "end_line": 264, 
+              "start_column": 1, 
+              "end_column": 2
+            }, 
+            "signature": ""
+          }
+        ]
+      }, 
+      "return_code": 1
+    }
+  ]
+}

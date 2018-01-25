@@ -15,8 +15,10 @@ import tempfile
 import unittest
 
 from .client_api import CodeSearch, XrefNode
-from .messages import CompoundRequest, CompoundResponse, FileInfoRequest, FileInfoResponse, NodeEnumKind, EdgeEnumKind
-from .testing_support import InstallTestRequestHandler, LastRequest, TestDataDir, DisableNetwork, EnableNetwork
+from .messages import CompoundRequest, CompoundResponse, FileInfoRequest, \
+        FileInfoResponse, KytheNodeKind, KytheXrefKind, NodeEnumKind
+from .testing_support import InstallTestRequestHandler, LastRequest, \
+        TestDataDir, DisableNetwork, EnableNetwork, DumpCallers
 
 SOURCE_ROOT = '/src/chrome/'
 
@@ -25,6 +27,9 @@ class TestCodeSearch(unittest.TestCase):
 
   def setUp(self):
     InstallTestRequestHandler()
+
+  def tearDown(self):
+    DumpCallers()
 
   def Touch(self, path):
     with open(path, 'w'):
@@ -40,6 +45,7 @@ class TestCodeSearch(unittest.TestCase):
     self.assertTrue(hasattr(response, 'annotation_response'))
 
     request = LastRequest()
+    self.assertIsNotNone(request)
     self.assertEqual('Python-CodeSearch-Client',
                      request.get_header('User-agent'))
 
@@ -54,15 +60,15 @@ class TestCodeSearch(unittest.TestCase):
     cs = CodeSearch(source_root=SOURCE_ROOT)
 
     signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'FieldTrial')
-    self.assertEqual(4, len(signatures))
+    self.assertEqual(7, len(signatures))
 
     signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'FieldTrial',
-                                           NodeEnumKind.CLASS)
-    self.assertEqual(1, len(signatures))
-
-    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'FieldTrial',
-                                           NodeEnumKind.CONSTRUCTOR)
+                                           KytheNodeKind.RECORD_CLASS)
     self.assertEqual(2, len(signatures))
+
+    signatures = cs.GetSignaturesForSymbol(TARGET_FILE, 'FieldTrial',
+                                           KytheNodeKind.FUNCTION_CONSTRUCTOR)
+    self.assertEqual(3, len(signatures))
 
   def test_get_signature_for_symbol(self):
 
@@ -71,25 +77,25 @@ class TestCodeSearch(unittest.TestCase):
 
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'RandomizationType'),
-        'cpp:base::class-FieldTrial::enum-RandomizationType@chromium/../../base/metrics/field_trial.h|def'
+        'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#sffJe7wAnF2I9rS3Yd%2B8%2FcTJryczxcrLGG1xREnxhKU%3D'
     )
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'pickle_size'),
-        'cpp:base::class-FieldTrial::class-FieldTrialEntry::pickle_size@chromium/../../base/metrics/field_trial.h|def'
+        'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#5j4rU1ruIZUCxPWsXAOsTjOIQPiJdmvDwkVVxoqsqT8%3D'
     )
     self.assertEqual(
-        cs.GetSignatureForSymbol(TARGET_FILE, 'randomization_seed'),
-        'cpp:base::class-FieldTrial::class-EntropyProvider::GetEntropyForTrial(const std::__1::basic_string<char> &, unsigned int)-const::param-randomization_seed@chromium/../../base/metrics/field_trial.h:4960|decl'
+        cs.GetSignatureForSymbol(TARGET_FILE, 'override_entropy_provider'),
+        'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#CovtgPJr0GhjW8v68pJEvcKvc4Qq6H89sC5MGPOElkc%3D'
     )
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'uint32_t'),
-        'cpp:uint32_t@chromium/../../build/linux/debian_jessie_amd64-sysroot/usr/include/stdint.h|def'
+        'kythe:?lang=c%2B%2B#talias%28uint32_t%23n%2Cunsigned%20int%23builtin%29'
     )
 
   def test_search_for_symbol(self):
     cs = CodeSearch(source_root='.')
 
-    signatures = cs.SearchForSymbol('FieldTrial$', NodeEnumKind.CLASS)
+    signatures = cs.SearchForSymbol('base::FieldTrial$', NodeEnumKind.CLASS)
     self.assertEqual(1, len(signatures))
     self.assertTrue(isinstance(signatures[0], XrefNode))
 
@@ -106,117 +112,6 @@ class TestCodeSearch(unittest.TestCase):
         NodeEnumKind.METHOD,
         return_all_results=True)
     self.assertEqual(2, len(signatures))
-
-  def test_figment_display_name(self):
-    cs = CodeSearch(source_root='.')
-
-    signatures = cs.SearchForSymbol('FieldTrial$', NodeEnumKind.CLASS)
-    self.assertEqual(1, len(signatures))
-
-    file_class = signatures[0]
-    declarations = file_class.GetEdges(EdgeEnumKind.DECLARES)
-
-    ed = [
-        d for d in declarations
-        if ' enable_field_trial_' in d.single_match.line_text and
-        d.GetXrefKind() == NodeEnumKind.FIELD
-    ][0]
-    ed_type = ed.GetEdges(EdgeEnumKind.HAS_TYPE)[0]
-    self.assertEqual('bool', ed_type.GetDisplayName())
-
-  def test_figment_display_name_2(self):
-    cs = CodeSearch(source_root='.')
-    signatures = cs.SearchForSymbol('GrowableIOBuffer', NodeEnumKind.CLASS)
-    self.assertEqual(1, len(signatures))
-
-    gb_class = signatures[0]
-    declarations = gb_class.GetEdges(EdgeEnumKind.DECLARES)
-
-    rd = [
-        d for d in declarations
-        if ' real_data_' in d.single_match.line_text and
-        d.GetXrefKind() == NodeEnumKind.FIELD
-    ][0]
-    rd_type = rd.GetEdges(EdgeEnumKind.HAS_TYPE)[0]
-    self.assertEqual('std::__1::unique_ptr<char, base::FreeDeleter>',
-                     rd_type.GetDisplayName())
-
-  def test_figment_display_name_3(self):
-    cs = CodeSearch(source_root='.')
-    signatures = cs.SearchForSymbol('GrowableIOBuffer', NodeEnumKind.CLASS)
-    self.assertEqual(1, len(signatures))
-
-    gb_class = signatures[0]
-    declarations = gb_class.GetEdges(EdgeEnumKind.DECLARES)
-
-    p = [
-        d for d in declarations
-        if ' real_data_' in d.single_match.line_text and
-        d.GetXrefKind() == NodeEnumKind.FIELD
-    ][0]
-
-    reldefns = p.GetRelatedDefinitions()
-    self.assertEqual(5, len(reldefns))
-
-    class_defn = [
-        d for d in reldefns
-        if hasattr(d.single_match.grok_modifiers, 'is_figment') and
-        d.single_match.grok_modifiers.is_figment
-    ][0]
-    self.assertEqual('std::__1::unique_ptr<char, base::FreeDeleter>',
-                     class_defn.GetDisplayName())
-
-  def test_get_type_1(self):
-    cs = CodeSearch(source_root='.')
-
-    signatures = cs.SearchForSymbol('FieldTrial$', NodeEnumKind.CLASS)
-    self.assertEqual(1, len(signatures))
-
-    file_class = signatures[0]
-    declarations = file_class.GetEdges(EdgeEnumKind.DECLARES)
-
-    ed = [
-        d for d in declarations
-        if ' enable_field_trial_' in d.single_match.line_text and
-        d.GetXrefKind() == NodeEnumKind.FIELD
-    ][0]
-    ed_type = ed.GetType()
-    self.assertTrue(ed_type)
-    self.assertEqual('bool', ed_type.GetDisplayName())
-
-  def test_get_type_2(self):
-    cs = CodeSearch(source_root='.')
-    signatures = cs.SearchForSymbol('GrowableIOBuffer', NodeEnumKind.CLASS)
-    self.assertEqual(1, len(signatures))
-
-    gb_class = signatures[0]
-    declarations = gb_class.GetEdges(EdgeEnumKind.DECLARES)
-
-    rd = [
-        d for d in declarations
-        if ' real_data_' in d.single_match.line_text and
-        d.GetXrefKind() == NodeEnumKind.FIELD
-    ][0]
-    rd_type = rd.GetType()
-    self.assertTrue(rd_type)
-    self.assertEqual('std::__1::unique_ptr<char, base::FreeDeleter>',
-                     rd_type.GetDisplayName())
-
-  def test_get_type_3(self):
-    cs = CodeSearch(source_root='.')
-    signatures = cs.SearchForSymbol('base::AtExitManager', NodeEnumKind.CLASS)
-    self.assertEqual(1, len(signatures))
-
-    gb_class = signatures[0]
-    declarations = gb_class.GetEdges(EdgeEnumKind.DECLARES)
-
-    p = [
-        d for d in declarations
-        if ' next_manager_' in d.single_match.line_text and
-        d.GetXrefKind() == NodeEnumKind.FIELD
-    ][0]
-    p_type = p.GetType()
-    self.assertEqual('base::AtExitManager*', p_type.GetDisplayName())
 
   def test_fixed_cache(self):
     fixed_cache_dir = os.path.join(TestDataDir(), 'fixed_cache')

@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 from .client_api import CodeSearch, XrefNode
 from .messages import Message, AnnotationTypeValue, AnnotationType, \
-        InternalLink, XrefSignature, NodeEnumKind, KytheNodeEnumKind, \
+        InternalLink, XrefSignature, NodeEnumKind, KytheNodeKind, KytheXrefKind, \
         Annotation, FileSpec, FormatType, FormatRange, AnnotatedText, \
         CodeBlockType, Modifiers, CodeBlock, FileInfo, FileInfoResponse, \
         FileInfoRequest, AnnotationResponse, MatchReason, Snippet, Node, \

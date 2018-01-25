@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import unittest
 
-from .messages import Message, message
+from .messages import Message, message, XrefSignature, InternalLink
 
 
 @message
@@ -115,6 +115,51 @@ class TestConstructor(unittest.TestCase):
     self.assertTrue(hasattr(f, 'x'))
     self.assertTrue(hasattr(f, 'y'))
     self.assertEqual(9, f.y)
+
+
+class TestXrefSignature(unittest.TestCase):
+
+  def test_basic_with_single_signature(self):
+    xsig = XrefSignature.FromJsonString(
+        '{"highlight_signature":"abc", "signature":"sig","signature_hash":"hash"}'
+    )
+    self.assertEqual('abc', xsig.highlight_signature)
+    self.assertEqual('sig', xsig.signature)
+    self.assertEqual('hash', xsig.signature_hash)
+    self.assertSetEqual(set(['abc', 'sig']), set(xsig.GetSignatures()))
+    self.assertEqual('sig', xsig.GetSignature())
+
+  def test_multi_strings(self):
+    xsig = XrefSignature.FromJsonString('''{
+        "signature": "foo bar baz",
+        "highlight_signature": "hifoo hibar"
+      }''')
+    self.assertSetEqual(
+        set(['foo', 'bar', 'baz', 'hifoo', 'hibar']), set(xsig.GetSignatures()))
+    self.assertEqual('foo', xsig.GetSignature())
+
+
+class TestInternalLink(unittest.TestCase):
+
+  def test_basic_with_single_signature(self):
+    ilink = InternalLink.FromJsonString(
+        '{"highlight_signature":"abc", "signature":"sig","signature_hash":"hash"}'
+    )
+    self.assertEqual('abc', ilink.highlight_signature)
+    self.assertEqual('sig', ilink.signature)
+    self.assertEqual('hash', ilink.signature_hash)
+    self.assertSetEqual(set(['abc', 'sig']), set(ilink.GetSignatures()))
+    self.assertEqual('sig', ilink.GetSignature())
+
+  def test_multi_strings(self):
+    ilink = InternalLink.FromJsonString('''{
+        "signature": "foo bar baz",
+        "highlight_signature": "hifoo hibar"
+      }''')
+    self.assertSetEqual(
+        set(['foo', 'bar', 'baz', 'hifoo', 'hibar']),
+        set(ilink.GetSignatures()))
+    self.assertEqual('foo', ilink.GetSignature())
 
 
 if __name__ == '__main__':
