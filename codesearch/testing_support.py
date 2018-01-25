@@ -6,10 +6,11 @@
 
 from __future__ import print_function
 
+import hashlib
+import inspect
+import json
 import os
 import sys
-import hashlib
-import json
 
 from email.message import Message
 
@@ -17,8 +18,10 @@ try:
   from urllib.request import urlopen, Request, HTTPSHandler, install_opener, build_opener
   from urllib.response import addinfourl
   from urllib.error import URLError
+  from urllib.parse import urlparse, parse_qsl
 except ImportError:
   from urllib2 import urlopen, Request, HTTPSHandler, install_opener, build_opener, addinfourl, URLError
+  from urlparse import urlparse, parse_qsl, parse_qs
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_DATA_DIR = os.path.join(SCRIPT_DIR, 'testdata')
@@ -37,6 +40,10 @@ if sys.version_info[0] < 3:
   def AddDataToRequest(req, d):
     req.add_data(d)
 
+  def GetLocationFromFrame(frame):
+    _, fname, line, fn, _, _ = frame
+    return (fname, line, fn)
+
 else:
 
   def GetRequestData(request):
@@ -48,8 +55,38 @@ else:
   def AddDataToRequest(req, d):
     req.data = d
 
+  def GetLocationFromFrame(frame):
+    return (frame.filename, frame.lineno, frame.function)
 
-requests_seen = []
+
+class RequestInfo(object):
+
+  FILE_PREFIXES = ['test_', 'client_api.py']
+
+  def __init__(self, url, data):
+    self.callers = []
+    self.url = url
+    self.data = data
+
+  def AddCallers(self):
+    frames = inspect.stack()
+    for frame in frames:
+      filename, lineno, function = GetLocationFromFrame(frame)
+      basename = os.path.basename(filename)
+      track = False
+      for prefix in RequestInfo.FILE_PREFIXES:
+        if basename.startswith(prefix):
+          track = True
+          break
+      if not track:
+        continue
+      self.callers.append((filename, lineno, function))
+
+
+last_request = None
+
+# A map from the request digest string to RequestInfo.
+requests_seen = {}
 
 
 def TestDataDir():
@@ -87,7 +124,8 @@ class TestHttpHandler(HTTPSHandler):
 
     requests_seen[digest].AddCallers()
 
-    requests_seen.append(request)
+    global last_request
+    last_request = request
 
     if os.path.exists(response_file_path):
       f = open(response_file_path, mode='rb')
@@ -146,6 +184,54 @@ def InstallTestRequestHandler(test_data_dir=None):
   install_opener(build_opener(TestHttpHandler()))
 
 
+def DumpCallers(callers_file=None):
+  """\
+  DumpCallers writes a trace of callers to a file named `callers.json`. The
+  filename can be overridden by the `callers_file` argument.
+
+  The file contains a JSON encoded mapping from each cached response file name
+  to a list of maps. Each map consists of the three keys "file", "line",
+  "function" which collectively describe an "interesting" call frame found in
+  the call stack leading up to the request for the named file.
+
+  The caller lists can be used to figure out which cached response file was
+  accessed by which callers during a test run.
+  """
+  global RESPONSE_DATA_DIR
+  global requests_seen
+
+  if callers_file is None:
+    callers_file = os.path.join(RESPONSE_DATA_DIR, 'callers.json')
+
+  o = {}
+
+  try:
+    with open(callers_file, "rb") as f:
+      o = json.load(f, encoding='utf-8')
+  except IOError:
+    pass
+  except ValueError:
+    pass
+
+  for digest, ri in requests_seen.items():
+    req = {}
+    callers = []
+    query = ri.data if len(ri.data) > 0 else urlparse(ri.url).query
+    req["query"] = parse_qsl(query)
+    for caller in ri.callers:
+      callers.append({
+          "file": caller[0],
+          "line": caller[1],
+          "function": caller[2]
+      })
+    req["callers"] = callers
+
+    o[digest] = req
+
+  with open(callers_file, "w") as f:
+    json.dump(o, f, separators=(', ', ': '), indent=2, sort_keys=True)
+
+
 def DisableNetwork():
   global disable_network
   disable_network = True
@@ -157,8 +243,7 @@ def EnableNetwork():
 
 
 def LastRequest():
-  if len(requests_seen) > 0:
-    return requests_seen.pop()
+  return last_request
 
 
 if __name__ == '__main__':
