@@ -6,8 +6,8 @@
 import unittest
 
 from .client_api import CodeSearch, XrefNode
-from .messages import FileSpec, XrefSingleMatch, EdgeEnumKind, NodeEnumKind
-from .testing_support import InstallTestRequestHandler
+from .messages import FileSpec, XrefSingleMatch, KytheXrefKind, KytheNodeKind
+from .testing_support import InstallTestRequestHandler, DumpCallers
 
 
 class TestXrefNode(unittest.TestCase):
@@ -15,108 +15,55 @@ class TestXrefNode(unittest.TestCase):
   def setUp(self):
     InstallTestRequestHandler()
 
+  def tearDown(self):
+    DumpCallers()
+
   def test_simple_xref_lookup(self):
-    cs = CodeSearch(source_root='/src/chrome/')
+    cs = CodeSearch(source_root='/chrome/')
     sig = cs.GetSignatureForSymbol(
-        '/src/chrome/src/net/http/http_network_transaction.cc',
+        '/chrome/src/net/http/http_network_transaction.cc',
         'HttpNetworkTransaction')
     self.assertNotEqual(sig, "", "signature lookup failed")
 
     node = XrefNode.FromSignature(cs, sig)
-    members = node.GetEdges(EdgeEnumKind.DECLARES)
-    self.assertTrue(members)
+    members = node.Traverse(KytheXrefKind.EXTENDS)
+    self.assertIsInstance(members, list)
+    self.assertEqual(3, len(members))
+    self.assertIsInstance(members[0], XrefNode)
 
-    saw_test_case_1 = False
-    saw_test_case_2 = False
-    saw_test_case_3 = False
-
-    # file_info_request, annotation_request, xref_search_request
-    self.assertEqual(3, cs.stats.cache_misses)
-
-    for member in members:
-
-      if member.GetSignature(
-      ) == 'cpp:net::class-HttpNetworkTransaction::before_headers_sent_callback_@chromium/../../net/http/http_network_transaction.h|def':
-        saw_test_case_1 = True
-        self.assertEqual(NodeEnumKind.FIELD, member.GetXrefKind())
-        self.assertEqual('before_headers_sent_callback_',
-                         member.GetDisplayName())
-
-      if member.GetSignature(
-      ) == 'cpp:net::class-HttpNetworkTransaction::ResetConnectionAndRequestForResend()@chromium/../../net/http/http_network_transaction.h|decl':
-        saw_test_case_2 = True
-        self.assertEqual(NodeEnumKind.METHOD, member.GetXrefKind())
-
-      if member.GetSignature(
-      ) == 'cpp:net::class-HttpNetworkTransaction::ContentEncodingsValid()-const@chromium/../../net/http/http_network_transaction.h|decl':
-        saw_test_case_3 = True
-        self.assertEqual(NodeEnumKind.METHOD, member.GetXrefKind())
-
-    self.assertTrue(saw_test_case_1)
-    self.assertTrue(saw_test_case_2)
-    self.assertTrue(saw_test_case_3)
-
-    # Previous 3 requests + (file_info_request, annotation_request) for http_network_transaction.h
-    self.assertEqual(5, cs.stats.cache_misses)
+    display_names = set([m.GetDisplayName() for m in members])
+    self.assertSetEqual(display_names,
+                        set(["ThrottleDelegate", "Delegate",
+                             "HttpTransaction"]))
 
   def test_related_annotations(self):
-    cs = CodeSearch(source_root='/src/chrome/')
-    node = XrefNode.FromSignature(
-        cs,
-        'cpp:net::class-HttpNetworkTransaction@chromium/../../net/http/http_network_transaction.h|def',
-        '/src/chrome/src/net/http/http_network_transaction.h')
+    cs = CodeSearch(source_root='/chrome/')
+    sig = cs.GetSignatureForSymbol(
+        '/chrome/src/net/http/http_network_transaction.h',
+        'HttpNetworkTransaction')
+    self.assertNotEqual(sig, "", "signature lookup failed")
+    node = XrefNode.FromSignature(cs, sig)
     related = node.GetRelatedAnnotations()
 
     found_class = False
     for annotation in related:
-      if annotation.xref_kind == NodeEnumKind.CLASS:
+      if annotation.kythe_xref_kind == KytheNodeKind.RECORD_CLASS:
         found_class = True
     self.assertTrue(found_class)
 
   def test_related_definitions(self):
-    cs = CodeSearch(source_root='/src/chrome/')
-    node = XrefNode.FromSignature(
-        cs,
-        'cpp:net::class-HttpNetworkTransaction::next_state_@chromium/../../net/http/http_network_transaction.h|def',
-        '/src/chrome/src/net/http/http_network_transaction.h')
+    cs = CodeSearch(source_root='/chrome/')
+    sig = cs.GetSignatureForSymbol(
+        '/chrome/src/net/http/http_network_transaction.h',
+        'provided_token_binding_key_')
+    self.assertNotEqual(sig, "", "signature lookup failed")
+    node = XrefNode.FromSignature(cs, sig)
     related = node.GetRelatedDefinitions()
 
-    self.assertEqual(1, len(related))
-    definition = related[0]
-    self.assertTrue(definition.single_match.grok_modifiers.definition)
-    self.assertEqual('State', definition.GetDisplayName())
-    self.assertEqual(NodeEnumKind.ENUM, definition.GetXrefKind())
-
-  def test_related_definitions_2(self):
-    cs = CodeSearch(source_root='.')
-    node = XrefNode.FromSignature(
-        cs,
-        'cpp:net::class-URLRequestContext@chromium/../../net/url_request/url_request_context.h|def',
-        'src/net/url_request/url_request_context.h')
-    edges = node.GetEdges(EdgeEnumKind.DECLARES)
-
-    # Pick the line that looks like:   URLRequestBackoffManager* backoff_manager_;
-    p = [
-        e for e in edges
-        if e.single_match.line_text.endswith(' backoff_manager_;')
-    ][0]
-    related = p.GetRelatedDefinitions()
-
-    self.assertLessEqual(2, len(related))
-    for r in related:
-      self.assertTrue(hasattr(r.single_match, 'line_text'))
-
-  def test_get_all_edges(self):
-    cs = CodeSearch(source_root='/src/chrome/')
-    node = XrefNode.FromSignature(
-        cs,
-        'cpp:net::class-HttpCache::class-Transaction::Start(const net::HttpRequestInfo *, const base::RepeatingCallback<void (int)> &, const net::NetLogWithSource &)@chromium/../../net/http/http_cache_transaction.h|decl',
-        '/src/chrome/src/net/http/http_network_transaction.cc')
-    all_edges = node.GetAllEdges(max_num_results=50)
-
-    # Definitely more than 50 edges here. But can't check for an exact number
-    # due to some results getting elided.
-    self.assertLess(25, len(all_edges))
+    self.assertEqual(2, len(related))
+    definition = related[1]
+    self.assertEqual(KytheXrefKind.DEFINITION, definition.single_match.type_id)
+    self.assertEqual('ECPrivateKey', definition.GetDisplayName())
 
 
 if __name__ == '__main__':

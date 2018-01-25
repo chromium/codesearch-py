@@ -1,3 +1,4 @@
 *.pyc
 MANIFEST
 dist/
+codesearch/testdata/responses/callers.json

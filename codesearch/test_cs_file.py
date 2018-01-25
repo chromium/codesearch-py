@@ -49,8 +49,8 @@ class TestCsFile(unittest.TestCase):
     cs_file = cs.GetFileInfo('/src/chrome/src/net/http/http_auth.h')
     self.assertEqual(
         cs_file.GetAnchorText(
-            'cpp:net::class-HttpAuth@chromium/../../net/http/http_auth.h|def'),
-        'HttpAuth')
+            'kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#HttpAuth%3Anet%23c%23hUTvau_Z32C'
+        ), 'HttpAuth')
 
 
 if __name__ == '__main__':

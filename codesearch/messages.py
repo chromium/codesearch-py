@@ -296,21 +296,61 @@ class TextRange(Message):
 class InternalLink(Message):
   DESCRIPTOR = {
       'package_name': str,
-      'signature': str,
-      'signature_hash': str,
+      'highlight_signature': str,  # A ' ' delimited list of tickets.
+      'signature': str,  # A ' ' delimited list of tickets.
+      'signature_hash': str,  # Always '' for Kythe.
       'path': str,
       'range': TextRange,
   }
 
+  def MatchesSignature(self, signature):
+    return signature in getattr(self, 'highlight_signature', '').split(' ') or (
+        signature in getattr(self, 'signature', '').split(' '))
+
+  def GetSignatures(self):
+    sigs = []
+    if hasattr(self, 'signature'):
+      sigs.extend(self.signature.split(' '))
+    if hasattr(self, 'highlight_signature'):
+      sigs.extend(self.highlight_signature.split(' '))
+    return sigs
+
+  def GetSignature(self):
+    sigs = self.GetSignatures()
+    if len(sigs) == 0:
+      return ""
+    return sigs[0]
+
 
 class XrefSignature(Message):
   DESCRIPTOR = {
-      'signature': str,
-      'signature_hash': str,
+      'highlight_signature': str,  # A space delimited list of tickets.
+      'signature': str,  # A space delimited list of tickets.
+      'signature_hash': str,  # Always '' for Kythe.
   }
+
+  def MatchesSignature(self, signature):
+    return signature in getattr(self, 'highlight_signature', '').split(' ') or (
+        signature in getattr(self, 'signature', '').split(' '))
+
+  def GetSignatures(self):
+    sigs = []
+    if hasattr(self, 'signature'):
+      sigs.extend(self.signature.split(' '))
+    if hasattr(self, 'highlight_signature'):
+      sigs.extend(self.highlight_signature.split(' '))
+    return sigs
+
+  def GetSignature(self):
+    sigs = self.GetSignatures()
+    if len(sigs) == 0:
+      return ""
+    return sigs[0]
 
 
 class NodeEnumKind(Message):
+  """DEPRECATED: Only used on Grok backend."""
+
   ALIAS_JOIN = 9100
   ANNOTATION = 900
   ARRAY = 5700
@@ -406,7 +446,7 @@ class NodeEnumKind(Message):
   DESCRIPTOR = int
 
 
-class KytheNodeEnumKind(Message):
+class KytheNodeKind(Message):
   ABS = 100
   ABSVAR = 200
   ANCHOR = 300
@@ -465,14 +505,21 @@ class Annotation(Message):
       'file_name': str,
       'internal_link': InternalLink,
       'is_implicit_target': bool,
-      'kythe_xref_kind': KytheNodeEnumKind,
+      'kythe_xref_kind':
+          KytheNodeKind,  # Not to be confused with KytheXrefKind.
       'range': TextRange,
       'status': int,
       'type': AnnotationType,
       'url': str,
-      'xref_kind': NodeEnumKind,
+      'xref_kind': NodeEnumKind,  # DEPRECATED
       'xref_signature': XrefSignature,
   }
+
+  def MatchesSignature(self, signature):
+    if self.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
+      return self.internal_link.MatchesSignature(signature)
+    if self.type.id == AnnotationTypeValue.XREF_SIGNATURE:
+      return self.xref_signature.MatchesSignature(signature)
 
 
 @message
@@ -557,6 +604,7 @@ class CodeBlockType(Message):
   ERROR = 0
   FIELD = 7
   FUNCTION = 8
+  GROUP = 51
   INTERFACE = 2
   JOB = 47
   JS_ASSIGNMENT = 38
@@ -576,6 +624,7 @@ class CodeBlockType(Message):
   RESERVED_27 = 27
   RESERVED_28 = 28
   RESERVED_29 = 29
+  SCOPE = 50
   SERVICE = 48
   STRUCT = 3
   TEMPLATE = 46
@@ -778,7 +827,10 @@ class CallGraphRequest(Message):
 
 
 class EdgeEnumKind(Message):
-  """Types of edge."""
+  """Types of edge.
+
+  DEPRECATED: Only used by Grok backend.
+  """
 
   DESCRIPTOR = int
 
@@ -892,11 +944,32 @@ class EdgeEnumKind(Message):
   XLANG_USES_NAME = 8500
 
 
+class KytheXrefKind(Message):
+  DESCRIPTOR = int
+
+  DEFINITION = 1
+  DECLARATION = 2
+  REFERENCE = 3
+
+  OVERRIDES = 4
+  OVERRIDDEN_BY = 5
+  EXTENDS = 6
+  EXTENDED_BY = 7
+
+  INSTANTIATION = 8
+
+  GENERATES = 10
+  GENERATED_BY = 11
+
+  ANNOTATES = 12
+  ANNOTATED_BY = 13
+
+
 class XrefTypeCount(Message):
   DESCRIPTOR = {
       'count': int,
       'type': str,
-      'type_id': int,
+      'type_id': KytheXrefKind,
   }
 
 
@@ -906,9 +979,9 @@ class XrefSingleMatch(Message):
       'line_number': int,
       'line_text': str,
       'type': str,
-      'type_id': EdgeEnumKind,
-      'node_type': NodeEnumKind,
-      'grok_modifiers': Modifiers,
+      'type_id': KytheXrefKind,
+      'node_type': NodeEnumKind,  # DEPRECATED
+      'grok_modifiers': Modifiers,  # DEPRECATED
       'signature': str,
   }
 
@@ -935,7 +1008,7 @@ class XrefSearchResponse(Message):
 @message
 class XrefSearchRequest(Message):
   DESCRIPTOR = {
-      'edge_filter': [EdgeEnumKind],
+      'edge_filter': [EdgeEnumKind],  # DEPRECATED
       'file_spec': FileSpec,
       'max_num_results': int,
       'query': str,
