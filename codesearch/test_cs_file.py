@@ -7,7 +7,7 @@
 import unittest
 
 from .client_api import CsFile, CodeSearch
-from .messages import FileInfo, TextRange, NodeEnumKind
+from .messages import FileInfo, TextRange, NodeEnumKind, CodeBlock, CodeBlockType
 from .testing_support import InstallTestRequestHandler
 
 
@@ -51,6 +51,24 @@ class TestCsFile(unittest.TestCase):
         cs_file.GetAnchorText(
             'kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#HttpAuth%3Anet%23c%23hUTvau_Z32C'
         ), 'HttpAuth')
+
+  def test_get_codeblock(self):
+    cs = CodeSearch(source_root='/src/chrome/')
+    cs_file = cs.GetFileInfo('/src/chrome/src/net/http/http_auth.h')
+    block = cs_file.GetCodeBlock()
+    self.assertIsInstance(block, CodeBlock)
+    self.assertNotEqual(0, len(block.child))
+    self.assertIsInstance(block.child[0], CodeBlock)
+
+  def test_get_signature_for_codeblock(self):
+    cs = CodeSearch(source_root='/src/chrome/')
+    cs_file = cs.GetFileInfo('/src/chrome/src/net/http/http_auth.h')
+    block = cs_file.FindCodeBlock(
+        name="AuthorizationResult", type=CodeBlockType.ENUM)
+    self.assertIsNotNone(block)
+    sig = cs_file.GetSignatureForCodeBlock(block)
+    self.assertIsNotNone(sig)
+    self.assertNotEqual("", sig)
 
 
 if __name__ == '__main__':
