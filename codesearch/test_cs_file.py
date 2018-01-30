@@ -7,7 +7,7 @@
 import unittest
 
 from .client_api import CsFile, CodeSearch
-from .messages import FileInfo, TextRange, NodeEnumKind, CodeBlock, CodeBlockType
+from .messages import FileInfo, TextRange, NodeEnumKind, CodeBlock, CodeBlockType, AnnotationTypeValue
 from .testing_support import InstallTestRequestHandler
 
 
@@ -69,6 +69,20 @@ class TestCsFile(unittest.TestCase):
     sig = cs_file.GetSignatureForCodeBlock(block)
     self.assertIsNotNone(sig)
     self.assertNotEqual("", sig)
+
+  def test_get_annotations_types(self):
+    cs = CodeSearch(source_root='/src/chrome/')
+    cs_file = cs.GetFileInfo('/src/chrome/src/net/http/http_auth.h')
+    annotations = cs_file.GetAnnotations()
+    found_xref_signature = False
+    found_link_to_definition = False
+    for annotation in annotations:
+      if annotation.type.id == AnnotationTypeValue.XREF_SIGNATURE:
+        found_xref_signature = True
+      if annotation.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
+        found_link_to_definition = True
+    self.assertTrue(found_xref_signature)
+    self.assertTrue(found_link_to_definition)
 
 
 if __name__ == '__main__':
