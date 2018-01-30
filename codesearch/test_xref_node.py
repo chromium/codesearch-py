@@ -6,7 +6,8 @@
 import unittest
 
 from .client_api import CodeSearch, XrefNode
-from .messages import FileSpec, XrefSingleMatch, KytheXrefKind, KytheNodeKind
+from .messages import FileSpec, XrefSingleMatch, KytheXrefKind, KytheNodeKind, \
+CodeBlockType, CodeBlock
 from .testing_support import InstallTestRequestHandler, DumpCallers
 
 
@@ -64,6 +65,34 @@ class TestXrefNode(unittest.TestCase):
     definition = related[1]
     self.assertEqual(KytheXrefKind.DEFINITION, definition.single_match.type_id)
     self.assertEqual('ECPrivateKey', definition.GetDisplayName())
+
+  def test_traverse(self):
+    cs = CodeSearch(source_root='/src/chrome/')
+    cs_file = cs.GetFileInfo('/src/chrome/src/net/http/http_auth.h')
+    sig_block = cs_file.FindCodeBlock(
+        name='ChooseBestChallenge', type=CodeBlockType.FUNCTION)
+    self.assertIsNotNone(sig_block)
+    self.assertIsInstance(sig_block, CodeBlock)
+    sig = cs_file.GetSignatureForCodeBlock(sig_block)
+    self.assertIsNotNone(sig)
+    node = XrefNode.FromSignature(cs, sig)
+
+    callers = node.Traverse(KytheXrefKind.CALLED_BY)
+    self.assertIsNotNone(callers)
+    self.assertIsInstance(callers, list)
+    self.assertEqual(2, len(callers))
+    self.assertIsInstance(callers[0], XrefNode)
+    self.assertIsInstance(callers[1], XrefNode)
+
+    refs = node.Traverse(KytheXrefKind.REFERENCE)
+    self.assertIsNotNone(refs)
+    self.assertIsInstance(refs, list)
+    self.assertEqual(2, len(refs))
+    self.assertIsInstance(refs[0], XrefNode)
+
+    decl = node.Traverse(KytheXrefKind.DECLARATION)
+    self.assertIsInstance(decl, list)
+    self.assertEqual(1, len(decl))
 
 
 if __name__ == '__main__':

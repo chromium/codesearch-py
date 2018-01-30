@@ -16,7 +16,8 @@ import unittest
 
 from .client_api import CodeSearch, XrefNode
 from .messages import CompoundRequest, CompoundResponse, FileInfoRequest, \
-        FileInfoResponse, KytheNodeKind, KytheXrefKind, NodeEnumKind
+        FileInfoResponse, KytheNodeKind, KytheXrefKind, NodeEnumKind, \
+        CallGraphRequest, CallGraphResponse, Node
 from .testing_support import InstallTestRequestHandler, LastRequest, \
         TestDataDir, DisableNetwork, EnableNetwork, DumpCallers
 
@@ -112,6 +113,17 @@ class TestCodeSearch(unittest.TestCase):
         NodeEnumKind.METHOD,
         return_all_results=True)
     self.assertEqual(2, len(signatures))
+
+  def test_get_call_graph(self):
+    cs = CodeSearch(source_root='.')
+    signatures = cs.SearchForSymbol('HttpAuth::ChooseBestChallenge',
+                                    NodeEnumKind.FUNCTION)
+    self.assertEqual(1, len(signatures))
+    self.assertIsInstance(signatures[0], XrefNode)
+    cg_response = cs.GetCallGraph(signature=signatures[0].GetSignature())
+    self.assertIsInstance(cg_response, CompoundResponse)
+    self.assertIsInstance(cg_response.call_graph_response[0], CallGraphResponse)
+    self.assertIsInstance(cg_response.call_graph_response[0].node, Node)
 
   def test_fixed_cache(self):
     fixed_cache_dir = os.path.join(TestDataDir(), 'fixed_cache')

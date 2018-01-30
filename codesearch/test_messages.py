@@ -8,7 +8,7 @@ from __future__ import absolute_import
 
 import unittest
 
-from .messages import Message, message, XrefSignature, InternalLink
+from .messages import Message, message, XrefSignature, InternalLink, TextRange
 
 
 @message
@@ -160,6 +160,71 @@ class TestInternalLink(unittest.TestCase):
         set(['foo', 'bar', 'baz', 'hifoo', 'hibar']),
         set(ilink.GetSignatures()))
     self.assertEqual('foo', ilink.GetSignature())
+
+
+class TestTextRange(unittest.TestCase):
+
+  def test_contains(self):
+    r = TextRange(start_line=1, start_column=8, end_line=3, end_column=1)
+    self.assertTrue(r.Contains(1, 8))
+    self.assertTrue(r.Contains(3, 1))
+    self.assertTrue(r.Contains(2, 100))
+    self.assertFalse(r.Contains(1, 7))
+    self.assertFalse(r.Contains(3, 2))
+
+  def test_overlaps(self):
+
+    def _QuadToRange(q):
+      return TextRange(
+          start_line=q[0], start_column=q[1], end_line=q[2], end_column=q[3])
+
+    TestCases = [
+        {
+            "r1": (2, 8, 2, 9),
+            "r2": (1, 1, 1, 100),
+            "result": False
+        },
+        {
+            "r1": (2, 8, 2, 9),
+            "r2": (2, 6, 2, 7),
+            "result": False
+        },
+        {
+            "r1": (2, 8, 2, 9),
+            "r2": (2, 6, 2, 8),
+            "result": True
+        },
+        {
+            "r1": (2, 8, 3, 9),
+            "r2": (2, 6, 2, 8),
+            "result": True
+        },
+        {
+            "r1": (2, 8, 4, 9),
+            "r2": (3, 6, 3, 800),
+            "result": True
+        },
+        {
+            "r1": (2, 8, 4, 9),
+            "r2": (1, 6, 3, 800),
+            "result": True
+        },
+        {
+            "r1": (2, 8, 4, 9),
+            "r2": (3, 6, 300, 800),
+            "result": True
+        },
+        {
+            "r1": (2, 8, 4, 9),
+            "r2": (1, 6, 2, 7),
+            "result": False
+        },
+    ]
+    for t in TestCases:
+      r1 = _QuadToRange(t["r1"])
+      r2 = _QuadToRange(t["r2"])
+      self.assertEqual(t["result"], r1.Overlaps(r2))
+      self.assertEqual(t["result"], r2.Overlaps(r1))
 
 
 if __name__ == '__main__':

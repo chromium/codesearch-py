@@ -13,11 +13,31 @@ import logging
 import os
 
 from .file_cache import FileCache
-from .messages import CompoundRequest, AnnotationType, AnnotationTypeValue, \
-        CompoundResponse, FileInfoRequest, FileSpec, AnnotationRequest, \
-        KytheXrefKind, KytheNodeKind, \
-        EdgeEnumKind, XrefSearchRequest, XrefSingleMatch, XrefSearchResult, \
-        FileInfo, TextRange, Annotation, NodeEnumKind, SearchRequest, SearchResult
+from .messages import \
+        Annotation, \
+        AnnotationRequest, \
+        AnnotationType, \
+        AnnotationTypeValue, \
+        CallGraphRequest, \
+        CallGraphResponse, \
+        CodeBlock, \
+        CodeBlockType, \
+        CompoundRequest, \
+        CompoundResponse, \
+        EdgeEnumKind, \
+        FileInfo, \
+        FileInfoRequest, \
+        FileSpec, \
+        KytheNodeKind, \
+        KytheXrefKind, \
+        Node, \
+        NodeEnumKind, \
+        SearchRequest, \
+        SearchResult, \
+        TextRange, \
+        XrefSearchRequest, \
+        XrefSearchResult, \
+        XrefSingleMatch
 from .paths import GetSourceRoot
 from .compat import StringFromBytes
 from .language_utils import SymbolSuffixMatcher, IsIdentifier
@@ -32,31 +52,46 @@ except ImportError:
 
 
 class ServerError(Exception):
+  """An error that occurred when talking to the CodeSearch backend."""
   pass
 
 
 class NoFileSpecError(Exception):
+  """XrefNode object didn't have an associated FileSpec.
+
+  A valid FileSpec is required for traversing node relationships.
+  """
   pass
 
 
 class NotFoundError(Exception):
+  """Something you were looking for was not found."""
   pass
 
 
 class CsFile(object):
-  """Represents a file known to CodeSearch and allows looking up annotations."""
+  """Represents a source file known to CodeSearch and allows looking up annotations."""
 
   def __init__(self, cs, file_info):
+    assert isinstance(cs, CodeSearch)
+    assert isinstance(file_info, FileInfo)
+
     self.cs = cs
     self.file_info = file_info
-
-    assert isinstance(self.cs, CodeSearch)
-    assert isinstance(self.file_info, FileInfo)
 
     if hasattr(self.file_info, 'content'):
       self.lines = self.file_info.content.text.splitlines()
     else:
       self.lines = []
+
+    if hasattr(self.file_info, 'codeblock'):
+      codeblocks = self.file_info.codeblock
+      assert isinstance(codeblocks, list)
+      assert len(codeblocks) == 0 or isinstance(codeblocks[0], CodeBlock)
+      self.codeblock = CodeBlock.Make(
+          child=codeblocks, type=CodeBlockType.ROOT, name="")
+    else:
+      self.codeblock = None
     self.annotations = None
 
   def Path(self):
@@ -93,6 +128,58 @@ class CsFile(object):
 
     return '\n'.join(first + middle + end)
 
+  def GetCodeBlock(self):
+    """Retrieves a CodeBlocks of type ROOT for the file or None if one is not found.
+
+    Note that a CodeBlock list is only preset if one is requested explicitly at
+    the time the FileInfo request was made by setting the ``fetch_outline```
+    field to True.
+    """
+    return self.codeblock
+
+  def FindCodeBlock(self, name="", type=CodeBlockType.ROOT):
+    """Find a codeblock in this file that matches the name and type. If there
+    are more than one, could return any."""
+    if self.codeblock is None:
+      return None
+    return self.codeblock.Find(name, type)
+
+  def GetSignatureForCodeBlock(self, codeblock):
+    """Return a signature for a CodeBlock or None if no signature could be determined.
+
+    The ``signature`` field included included in the CodeBlock is the function
+    signature for a FUNCTION type CodeBlock and not the CodeSearch signature.
+    Also, the ``text_range`` property refers to the entire code block that
+    encompasses the definition or declaration of the symbol.
+
+    So this function looks through annotations that fall within ``text_range``
+    where the annotation text matches the ``name`` property of the CodeBlock.
+    If one is found and if that annotation has a signature, then that signature
+    is returned.
+    """
+    assert isinstance(codeblock, CodeBlock)
+
+    # Can't do much with this codeblock if it doesn't have a range or a name.
+    # This is the case for a root CodeBlock, but we are generalizing it to
+    # include any CodeBlock without a name or a range. It's not considered an
+    # error since we expect this to be the case for some code blocks that don't
+    # map to a signature.
+    if not hasattr(codeblock, 'name') or not hasattr(codeblock, 'text_range'):
+      return None
+
+    assert isinstance(codeblock.text_range, TextRange)
+
+    annotations = self.GetAnnotations()
+
+    for annotation in annotations:
+      if not annotation.HasSignature():
+        continue
+      if not codeblock.text_range.Overlaps(annotation.range):
+        continue
+      if self.Text(annotation.range) == codeblock.name:
+        return annotation.GetSignature()
+    return None
+
   def GetFileSpec(self):
     return FileSpec(
         name=self.file_info.name, package_name=self.file_info.package_name)
@@ -111,6 +198,9 @@ class CsFile(object):
   def GetAnchorText(self, signature):
     # Fetch annotations if we haven't already.
     self.GetAnnotations()
+    assert isinstance(self.annotations, list)
+    assert len(self.annotations) == 0 or isinstance(self.annotations[0],
+                                                    Annotation)
 
     for annotation in self.annotations:
       if annotation.MatchesSignature(signature):
@@ -209,7 +299,32 @@ class XrefNode(object):
     for v in xrset:
       assert KytheXrefKind.ToSymbol(v) != v
 
-    return list(filter(lambda n: n.single_match.type_id in xrset, results))
+    cg = []
+    if KytheXrefKind.CALLED_BY in xrset:
+      cg.extend([
+          XrefNode.FromNode(self.cs, n)
+          for n in self._GetCallGraphNode(max_num_results).children
+      ])
+
+    return list(filter(lambda n: n.single_match.type_id in xrset, results)) + cg
+
+  def _GetCallGraphNode(self, max_num_results=500):
+    """Returns a single Node containing one level of the incoming call graph."""
+
+    cg_response = self.cs.GetCallGraph(
+        signature=self.single_match.signature, max_num_results=max_num_results)
+
+    if not isinstance(cg_response, CompoundResponse) or not hasattr(
+        cg_response, 'call_graph_response'):
+      raise ServerError("Unexpected response. {}".format(cg_response))
+
+    response = cg_response.call_graph_response[0]
+
+    if not hasattr(response, 'node') or not hasattr(response.node, 'children'):
+      raise NotFoundError("No callers for signature {} ({})".format(
+          self.single_match.signature, self.GetDisplayName()))
+
+    return response.node
 
   def GetFile(self):
     """Return the file containing this XrefNode as a CsFile."""
@@ -359,6 +474,9 @@ class XrefNode(object):
     interesting fields. It can, however, be used to query outgoing edges.
     """
 
+    assert isinstance(cs, CodeSearch)
+    assert signature
+
     if filename is None:
       filespec = cs.GetFileSpecFromSignature(signature)
     else:
@@ -368,6 +486,19 @@ class XrefNode(object):
         cs,
         filespec=filespec,
         single_match=XrefSingleMatch(signature=signature))
+
+  @staticmethod
+  def FromNode(cs, node):
+    """Construct a XrefNode based on a Node.
+    """
+
+    assert isinstance(cs, CodeSearch)
+    assert isinstance(node, Node)
+
+    return XrefNode.FromSignature(
+        cs,
+        node.signature,
+        filename=FileSpec(name=node.file_path, package_name=node.package_name))
 
   @staticmethod
   def FromAnnotation(cs, annotation):
@@ -591,6 +722,19 @@ class CodeSearch(object):
     url = '{host}/codesearch/json?{qs}'.format(host=self.codesearch_host, qs=qs)
     result = self._Retrieve(url)
     return CompoundResponse.FromJsonString(result)
+
+  def GetCallGraph(self, signature, max_num_results=500):
+    """Retrieves a list of call graph nodes corresponding to all call sites of
+    |signature|.
+
+    """
+    return self.SendRequestToServer(
+        CompoundRequest(call_graph_request=[
+            CallGraphRequest(
+                file_spec=self.GetFileSpec(),
+                max_num_results=max_num_results,
+                signature=signature)
+        ]))
 
   def GetAnnotationsForFile(
       self,

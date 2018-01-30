@@ -274,6 +274,33 @@ class TextRange(Message):
                 (line == self.start_line and column < self.start_column) or
                 (line == self.end_line and column > self.end_column))
 
+  def Overlaps(self, other):
+    assert isinstance(other, TextRange)
+
+    def _RangeOverlap(s1, e1, s2, e2):
+      """Returns true if the range [s1,e1] and [s2,e2] intersects. The
+          ranges are inclusive."""
+      return (s1 <= e1 and s2 <= e2) and not (e1 < s2 or e2 < s1)
+
+    if not self.IsValid() or not other.IsValid():
+      return False
+
+    if not _RangeOverlap(self.start_line, self.end_line, other.start_line,
+                         other.end_line):
+      return False
+
+    if _RangeOverlap(self.start_line + 1, self.end_line - 1,
+                     other.start_line + 1, other.end_line - 1):
+      return True
+
+    if self.end_line == other.start_line and self.end_column < other.start_column:
+      return False
+
+    if other.end_line == self.start_line and other.end_column < self.start_column:
+      return False
+
+    return True
+
   def IsValid(self):
     return hasattr(self, 'start_line') and \
             hasattr(self, 'start_column') and \
@@ -521,6 +548,15 @@ class Annotation(Message):
     if self.type.id == AnnotationTypeValue.XREF_SIGNATURE:
       return self.xref_signature.MatchesSignature(signature)
 
+  def HasSignature(self):
+    return self.type.id == AnnotationTypeValue.LINK_TO_DEFINITION or self.type.id == AnnotationTypeValue.XREF_SIGNATURE
+
+  def GetSignature(self):
+    if self.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
+      return self.internal_link.GetSignature()
+    if self.type.id == AnnotationTypeValue.XREF_SIGNATURE:
+      return self.xref_signature.GetSignature()
+
 
 @message
 class FileSpec(Message):
@@ -624,6 +660,7 @@ class CodeBlockType(Message):
   RESERVED_27 = 27
   RESERVED_28 = 28
   RESERVED_29 = 29
+  ROOT = -1
   SCOPE = 50
   SERVICE = 48
   STRUCT = 3
@@ -696,10 +733,28 @@ class CodeBlock(Message):
       'modifiers': Modifiers,
       'name': str,
       'name_prefix': str,
-      'signature': str,
+      'signature': str,  # Valid if .type == FUNCTION. The signature
+      # includes the function parameters excluding the
+      # function name. This is not a CodeSearch ticket.
       'text_range': TextRange,
       'type': CodeBlockType,
   }
+
+  def Find(self, name="", type=CodeBlockType.ROOT):
+    """Find the self or child CodeBlock that matches the name and type.
+
+      The special *name* value of "*" matches all names.
+      """
+
+    if (self.name == name or name == "*") and self.type == type:
+      return self
+    if not hasattr(self, 'child'):
+      return None
+    for c in self.child:
+      n = c.Find(name, type)
+      if n is not None:
+        return n
+    return None
 
 
 class FileInfo(Message):
@@ -793,11 +848,11 @@ class Node(Message):
       'edge_kind': str,
       'file_path': str,
       'identifier': str,
-      'node_kind': str,
+      'node_kind': KytheNodeKind,
       'override': bool,
       'package_name': str,
-      'params': [str],
-      'signature': str,
+      'params': [str],  # For FUNCTION nodes, list of parameter names.
+      'signature': str,  # XrefSignature.signature
       'snippet': Snippet,
       'snippet_file_path': str,
       'snippet_package_name': str,
@@ -963,6 +1018,10 @@ class KytheXrefKind(Message):
 
   ANNOTATES = 12
   ANNOTATED_BY = 13
+
+  # These are manual additions for extending the xref lookup features.
+  CALLS = -100  # Provided for symmetry. Not implemented.
+  CALLED_BY = -101
 
 
 class XrefTypeCount(Message):
