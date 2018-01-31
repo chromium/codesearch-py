@@ -90,6 +90,35 @@ Note that there's no `MEMBER_OF` or an equivalent relation. Thus there's no way
 currently via this API to enumerate the members of a class other than to infer
 such relationships via the document outline.
 
+## `xref_search_response` no longer include called-by information, or modifiers
+
+Prior to the migration, an `xref_search_request` message could've been used to
+request not just references, definitions, and declarations, but also call sites.
+After the Kythe migration, call sites appear in the `xref_search_response` as
+`REFERENCE` type results.
+
+Modifiers are no longer returned as a part of `xref_search_response` messages.
+
+Also, as noted below the `type_id` is now a `KytheXrefKind`.
+
+## Root `call_graph_response` Node no longer contain path information
+
+The server responds to a `call_graph_request` with a `call_graph_response`
+message which is described in `messages.py` as the `CallGraphResponse` class. A
+non-empty response would include a single root call graph node called `node`.
+It's described in `messages.py` as `Node`.
+
+Prior to the migration, this root node could be expected to be properly
+populated with file path and snippet information for the root signature. Post
+migration these fields are no longer being populated.
+
+## Call graph nodes no longer include a `display_name`
+
+The Grok backend populated the `display_name` field of a `Node` object with a
+full `c++` symbol name. The new Kythe backend doesn't populate this field at
+all. Instead callers should rely on the `identifier` field. The latter is a
+single identifier and does not contain scope or type information.
+
 # Breaking API Changes
 
 *   `NodeEnumKind` is now deprecated. It's still used in some APIs (e.g.
@@ -139,4 +168,13 @@ such relationships via the document outline.
 
 *   `XrefNode` no longer has a `GetType()` method since that information is no
     longer available from CodeSearch responses.
+
+*   `Node` objects may be sparsely populate and may lack `file_path` fields.
+
+*   `Node` objects no longer populate the `display_name` with the full `c++`
+    symbol name. The field is no longer included in responses. Use the
+    `identifier` field as a workaround. The full `c++` symbol name is no longer
+    accessible from the web-facing interface.
+
+*   `node_kind` of a `Node` object is now a `KytheNodeKind`.
 
