@@ -272,7 +272,8 @@ class XrefNode(object):
   def Traverse(self, xref_kinds=None, max_num_results=500):
     """Gets outgoing edges for this node.
 
-    Returns a list of XrefNode objects.
+    Returns a list of XrefNode objects. If there are no results, then returns
+    an empty list.
 
     |xref_kinds|, if specified could either be a KytheXrefKind value or a list
     of KytheXrefKind values. The list specifies the types of cross references
@@ -495,10 +496,20 @@ class XrefNode(object):
     assert isinstance(cs, CodeSearch)
     assert isinstance(node, Node)
 
-    return XrefNode.FromSignature(
-        cs,
-        node.signature,
-        filename=FileSpec(name=node.file_path, package_name=node.package_name))
+    line_text = ""
+    line_number = node.call_site_range.start_line
+
+    # Snippets for Node results only contain one line of text.
+    if hasattr(node, 'snippet'):
+      line_text = node.snippet.text.text
+      line_number = node.snippet.first_line_number
+
+    match = XrefSingleMatch(
+        line_number=line_number, line_text=line_text, signature=node.signature)
+    return XrefNode(
+        cs=cs,
+        single_match=match,
+        filespec=FileSpec(name=node.file_path, package_name=node.package_name))
 
   @staticmethod
   def FromAnnotation(cs, annotation):
