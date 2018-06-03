@@ -206,7 +206,7 @@ def DumpCallers(callers_file=None):
   o = {}
 
   try:
-    with open(callers_file, "rb") as f:
+    with open(callers_file, "r") as f:
       o = json.load(f, encoding='utf-8')
   except IOError:
     pass

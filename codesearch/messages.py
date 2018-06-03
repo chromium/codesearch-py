@@ -773,6 +773,14 @@ class CodeBlock(Message):
     return None
 
 
+class GobInfo(Message):
+  DESCRIPTOR = {
+      'commit': str,  # Git commit
+      'path': str,  # Path relative to repository
+      'repo': str,  # Repository path. Chromium's is "chromium/chromium/src"
+  }
+
+
 class FileInfo(Message):
   DESCRIPTOR = {
       'actual_name': str,
@@ -1136,14 +1144,6 @@ class StatusResponse(Message):
       'build_label': str,
       'internal_package': [InternalPackage],
       'success': bool,
-  }
-
-
-class GobInfo(Message):
-  DESCRIPTOR = {
-      'commit': str,  # Git commit
-      'path': str,  # Path relative to repository
-      'repo': str,  # Repository path. Chromium's is "chromium/chromium/src"
   }
 
 
