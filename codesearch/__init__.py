@@ -6,7 +6,9 @@
 
 from __future__ import absolute_import
 
-from .client_api import CodeSearch, XrefNode
+from .client_api import CodeSearch, XrefNode, ServerError, NoFileSpecError, \
+        NotFoundError
+
 from .messages import Message, AnnotationTypeValue, AnnotationType, \
         InternalLink, XrefSignature, NodeEnumKind, KytheNodeKind, KytheXrefKind, \
         Annotation, FileSpec, FormatType, FormatRange, AnnotatedText, \
@@ -19,6 +21,7 @@ from .messages import Message, AnnotationTypeValue, AnnotationType, \
         DirInfoRequest, FileResult, SingleMatch, SearchResult, SearchResponse, \
         SearchRequest, StatusRequest, CompoundResponse, CompoundRequest, \
         CodeSearchProtoJsonEncoder, CodeSearchProtoJsonSymbolizedEncoder
+
 from .paths import GetPackageRelativePath, GetSourceRoot, NoSourceRootError
 
 # Only useful for testing against this library.
