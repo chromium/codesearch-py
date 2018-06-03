@@ -33,9 +33,8 @@ class TestXrefNode(unittest.TestCase):
     self.assertIsInstance(members[0], XrefNode)
 
     display_names = set([m.GetDisplayName() for m in members])
-    self.assertSetEqual(display_names,
-                        set(["ThrottleDelegate", "Delegate",
-                             "HttpTransaction"]))
+    self.assertSetEqual(
+        display_names, set(["ThrottleDelegate", "Delegate", "HttpTransaction"]))
 
   def test_related_annotations(self):
     cs = CodeSearch(source_root='/chrome/')

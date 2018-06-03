@@ -213,8 +213,9 @@ Content follows this line: ----
 {content}
 """.format(msg=e.message, content=s))
         error_file_name = f.name
-      raise ValueError('Error while decoding JSON response. Report saved to {}'.
-                       format(error_file_name))
+      raise ValueError(
+          'Error while decoding JSON response. Report saved to {}'.format(
+              error_file_name))
 
     return cls.FromShallowDict(d)
 
@@ -330,12 +331,13 @@ class InternalLink(Message):
 
       # The range in the target path that should be considered the target of the
       # link.
-      'range': TextRange, 
+      'range': TextRange,
   }
 
   def MatchesSignature(self, signature):
-    return signature in getattr(self, 'highlight_signature', '').split(' ') or (
-        signature in getattr(self, 'signature', '').split(' '))
+    return signature in getattr(self, 'highlight_signature',
+                                '').split(' ') or (signature in getattr(
+                                    self, 'signature', '').split(' '))
 
   def GetSignatures(self):
     sigs = []
@@ -360,8 +362,9 @@ class XrefSignature(Message):
   }
 
   def MatchesSignature(self, signature):
-    return signature in getattr(self, 'highlight_signature', '').split(' ') or (
-        signature in getattr(self, 'signature', '').split(' '))
+    return signature in getattr(self, 'highlight_signature',
+                                '').split(' ') or (signature in getattr(
+                                    self, 'signature', '').split(' '))
 
   def GetSignatures(self):
     sigs = []
@@ -536,7 +539,6 @@ class Annotation(Message):
       # Sent for BLAME with a semicolon separated list of Git revision, and
       # author.
       'content': str,
-
       'file_name': str,
       'internal_link': InternalLink,
       'is_implicit_target': bool,
@@ -571,7 +573,7 @@ class FileSpec(Message):
   DESCRIPTOR = {
       'name': str,
       'package_name': str,
-      'changelist': str, # Last known Git commit.
+      'changelist': str,  # Last known Git commit.
   }
 
 
@@ -743,10 +745,10 @@ class CodeBlock(Message):
   DESCRIPTOR = {
       'child': [Message.PARENT_TYPE],
       'modifiers': Modifiers,
-      'name': str, # Unadorned name.
-      'name_prefix': str, # Class qualifiers. I.e. For a function named
-                          # net::Foo::Bar, where net is a namespace, name="Bar",
-                          # name_prefix="Foo::".
+      'name': str,  # Unadorned name.
+      'name_prefix': str,  # Class qualifiers. I.e. For a function named
+      # net::Foo::Bar, where net is a namespace, name="Bar",
+      # name_prefix="Foo::".
       'signature': str,  # Valid if .type == FUNCTION. The signature
       # includes the function parameters excluding the
       # function name. This is not a CodeSearch ticket.
@@ -774,17 +776,17 @@ class CodeBlock(Message):
 class FileInfo(Message):
   DESCRIPTOR = {
       'actual_name': str,
-      'changelist_num': str,   # Git commit hash for indexed ToT.
+      'changelist_num': str,  # Git commit hash for indexed ToT.
       'codeblock': [CodeBlock],
       'content': AnnotatedText,
       'converted_content': AnnotatedText,
       'converted_lines': int,
       'fold_ranges': [TextRange],
-      'generated': bool, # Generated file?
+      'generated': bool,  # Generated file?
       'generated_from': [str],
       'gob_info': GobInfo,
       'html_text': str,
-      'language': str, # "c++" etc.
+      'language': str,  # "c++" etc.
       'license_path': str,
       'license_type': str,
       'lines': int,
@@ -792,7 +794,7 @@ class FileInfo(Message):
       'mime_type': str,
       'name': str,
       'package_name': str,
-      'revision_num': str, # DEPRECATED
+      'revision_num': str,  # DEPRECATED
       'size': int,
       'type': FileType,
   }
@@ -821,7 +823,7 @@ class FileInfoRequest(Message):
 class AnnotationResponse(Message):
   DESCRIPTOR = {
       'annotation': [Annotation],
-      'file': str, # Not populated
+      'file': str,  # Not populated
       'max_findings_reached': bool,
       'return_code': int,
   }
@@ -870,20 +872,20 @@ class Node(Message):
       # call_site_range would cover the function call on line 4. I.e
       # call_site_range { start_line: 4, start_column: 3, end_line: 4,
       # end_column: 7 }
-      'call_scope_range': TextRange, # Range defining calling function name.
+      'call_scope_range': TextRange,  # Range defining calling function name.
       'call_site_range': TextRange,  # Range defining call site.
-
-      'children': [Message.PARENT_TYPE], # Nodes corresponding to callsites of 
-      'display_name': str, # Deprecated.
-      'edge_kind': str,    # Deprecated.
+      'children': [Message.PARENT_TYPE],  # Nodes corresponding to callsites of 
+      'display_name': str,  # Deprecated.
+      'edge_kind': str,  # Deprecated.
       'file_path': str,
       'identifier': str,
       'node_kind': KytheNodeKind,
       'override': bool,
       'package_name': str,
       'params': [str],  # For FUNCTION nodes, list of parameter names.
-                        # No type information present.
-      'signature': str, # Signature for call scope. I.e. thing at call_scope_range.
+      # No type information present.
+      'signature':
+          str,  # Signature for call scope. I.e. thing at call_scope_range.
       'snippet': Snippet,
       'snippet_file_path': str,
       'snippet_package_name': str,
@@ -1089,7 +1091,7 @@ class XrefSearchResponse(Message):
       'estimated_total_type_count': [XrefTypeCount],
       'from_kythe': bool,
       'kythe_next_page_token': str,
-      'grok_total_number_of_results': int, # DEPRECATED
+      'grok_total_number_of_results': int,  # DEPRECATED
       'search_result': [XrefSearchResult],
       'status': int,
       'status_message': str,
@@ -1139,9 +1141,9 @@ class StatusResponse(Message):
 
 class GobInfo(Message):
   DESCRIPTOR = {
-      'commit': str, # Git commit
-      'path': str, # Path relative to repository
-      'repo': str, # Repository path. Chromium's is "chromium/chromium/src"
+      'commit': str,  # Git commit
+      'path': str,  # Path relative to repository
+      'repo': str,  # Repository path. Chromium's is "chromium/chromium/src"
   }
 
 

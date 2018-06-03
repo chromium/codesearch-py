@@ -58,7 +58,8 @@ def setup_logging(cs, args):
 def get_edge_filter(args):
   if args.all:
     return [
-        getattr(EdgeEnumKind, x) for x in vars(EdgeEnumKind)
+        getattr(EdgeEnumKind, x)
+        for x in vars(EdgeEnumKind)
         if isinstance(getattr(EdgeEnumKind, x), int)
     ]
   if args.type:
