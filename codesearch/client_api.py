@@ -117,8 +117,8 @@ class CsFile(object):
               text_range.start_line, text_range.start_column,
               text_range.end_line, text_range.end_column, len(self.lines)))
     if text_range.start_line == text_range.end_line:
-      return self.lines[text_range.start_line
-                        - 1][text_range.start_column - 1:text_range.end_column]
+      return self.lines[text_range.start_line - 1][text_range.start_column -
+                                                   1:text_range.end_column]
 
     first = [
         self.lines[text_range.start_line - 1][text_range.start_column - 1:]
@@ -751,8 +751,8 @@ class CodeSearch(object):
       self,
       filename,
       annotation_types=[
-          AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE), AnnotationType(
-              id=AnnotationTypeValue.LINK_TO_DEFINITION)
+          AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE),
+          AnnotationType(id=AnnotationTypeValue.LINK_TO_DEFINITION)
       ]):
     """Retrieves a list of annotations for a file.
 
@@ -788,11 +788,11 @@ class CodeSearch(object):
         return annotation.internal_link.signature
 
     if not enclosing_annotation_found:
-      raise NotFoundError("no annotations found at (%d:%d) for %s" %
-                          (line, column, filename))
+      raise NotFoundError(
+          "no annotations found at (%d:%d) for %s" % (line, column, filename))
 
-    raise NotFoundError("can't determine signature for %s at %d:%d" %
-                        (filename, line, column))
+    raise NotFoundError(
+        "can't determine signature for %s at %d:%d" % (filename, line, column))
 
   def GetFileInfo(self,
                   filename,
@@ -823,8 +823,9 @@ class CodeSearch(object):
         ]))
 
     if hasattr(result.file_info_response[0], 'error_message'):
-      raise ServerError('server reported error while fetching FileInfo: {}'.
-                        format(result.file_info_response[0].error_message))
+      raise ServerError(
+          'server reported error while fetching FileInfo: {}'.format(
+              result.file_info_response[0].error_message))
 
     if hasattr(result.file_info_response[0], 'file_info'):
       file_info = CsFile(self, file_info=result.file_info_response[0].file_info)
@@ -852,8 +853,8 @@ class CodeSearch(object):
       if annotation.type.id == AnnotationTypeValue.XREF_SIGNATURE:
         return annotation.xref_signature.GetSignature()
 
-    raise NotFoundError("Can't determine signature for %s:%s" % (filename,
-                                                                 symbol))
+    raise NotFoundError(
+        "Can't determine signature for %s:%s" % (filename, symbol))
 
   def GetSignaturesForSymbol(self, filename, symbol, node_kind=None):
     """Get all matching signatures given a symbol.

@@ -213,8 +213,9 @@ Content follows this line: ----
 {content}
 """.format(msg=e.message, content=s))
         error_file_name = f.name
-      raise ValueError('Error while decoding JSON response. Report saved to {}'.
-                       format(error_file_name))
+      raise ValueError(
+          'Error while decoding JSON response. Report saved to {}'.format(
+              error_file_name))
 
     return cls.FromShallowDict(d)
 
@@ -327,12 +328,16 @@ class InternalLink(Message):
       'signature': str,  # A ' ' delimited list of tickets.
       'signature_hash': str,  # Always '' for Kythe.
       'path': str,
+
+      # The range in the target path that should be considered the target of the
+      # link.
       'range': TextRange,
   }
 
   def MatchesSignature(self, signature):
-    return signature in getattr(self, 'highlight_signature', '').split(' ') or (
-        signature in getattr(self, 'signature', '').split(' '))
+    return signature in getattr(self, 'highlight_signature',
+                                '').split(' ') or (signature in getattr(
+                                    self, 'signature', '').split(' '))
 
   def GetSignatures(self):
     sigs = []
@@ -357,8 +362,9 @@ class XrefSignature(Message):
   }
 
   def MatchesSignature(self, signature):
-    return signature in getattr(self, 'highlight_signature', '').split(' ') or (
-        signature in getattr(self, 'signature', '').split(' '))
+    return signature in getattr(self, 'highlight_signature',
+                                '').split(' ') or (signature in getattr(
+                                    self, 'signature', '').split(' '))
 
   def GetSignatures(self):
     sigs = []
@@ -528,6 +534,10 @@ class KytheNodeKind(Message):
 
 class Annotation(Message):
   DESCRIPTOR = {
+      # Sent for OVERRIDE. Is an informative hover text like "Overrides
+      # net::Foo::Callback".
+      # Sent for BLAME with a semicolon separated list of Git revision, and
+      # author.
       'content': str,
       'file_name': str,
       'internal_link': InternalLink,
@@ -560,7 +570,11 @@ class Annotation(Message):
 
 @message
 class FileSpec(Message):
-  DESCRIPTOR = {'name': str, 'package_name': str}
+  DESCRIPTOR = {
+      'name': str,
+      'package_name': str,
+      'changelist': str,  # Last known Git commit.
+  }
 
 
 class FormatType(Message):
@@ -731,8 +745,10 @@ class CodeBlock(Message):
   DESCRIPTOR = {
       'child': [Message.PARENT_TYPE],
       'modifiers': Modifiers,
-      'name': str,
-      'name_prefix': str,
+      'name': str,  # Unadorned name.
+      'name_prefix': str,  # Class qualifiers. I.e. For a function named
+      # net::Foo::Bar, where net is a namespace, name="Bar",
+      # name_prefix="Foo::".
       'signature': str,  # Valid if .type == FUNCTION. The signature
       # includes the function parameters excluding the
       # function name. This is not a CodeSearch ticket.
@@ -757,19 +773,28 @@ class CodeBlock(Message):
     return None
 
 
+class GobInfo(Message):
+  DESCRIPTOR = {
+      'commit': str,  # Git commit
+      'path': str,  # Path relative to repository
+      'repo': str,  # Repository path. Chromium's is "chromium/chromium/src"
+  }
+
+
 class FileInfo(Message):
   DESCRIPTOR = {
       'actual_name': str,
-      'changelist_num': str,
+      'changelist_num': str,  # Git commit hash for indexed ToT.
       'codeblock': [CodeBlock],
       'content': AnnotatedText,
       'converted_content': AnnotatedText,
       'converted_lines': int,
       'fold_ranges': [TextRange],
-      'generated': bool,
+      'generated': bool,  # Generated file?
       'generated_from': [str],
+      'gob_info': GobInfo,
       'html_text': str,
-      'language': str,
+      'language': str,  # "c++" etc.
       'license_path': str,
       'license_type': str,
       'lines': int,
@@ -777,7 +802,7 @@ class FileInfo(Message):
       'mime_type': str,
       'name': str,
       'package_name': str,
-      'revision_num': str,
+      'revision_num': str,  # DEPRECATED
       'size': int,
       'type': FileType,
   }
@@ -806,7 +831,7 @@ class FileInfoRequest(Message):
 class AnnotationResponse(Message):
   DESCRIPTOR = {
       'annotation': [Annotation],
-      'file': str,
+      'file': str,  # Not populated
       'max_findings_reached': bool,
       'return_code': int,
   }
@@ -817,6 +842,7 @@ class AnnotationRequest(Message):
   DESCRIPTOR = {
       'file_spec': FileSpec,
       'type': [AnnotationType],
+      'md5': str,
   }
 
 
@@ -841,18 +867,33 @@ class Snippet(Message):
 
 class Node(Message):
   DESCRIPTOR = {
-      'call_scope_range': TextRange,
-      'call_site_range': TextRange,
-      'children': [Message.PARENT_TYPE],
-      'display_name': str,
-      'edge_kind': str,
+      # Take this example snippet:
+      #
+      # 03  void Foo(int a, int b) {
+      # 04    Bar();
+      # 05  }
+      #
+      # If this is a call graph node for Bar(), then call_scope_range would
+      # cover "Foo" on line 3 (i.e. call_scope_range { start_line: 3,
+      # start_column: 6, end_line: 3, end_column: 8 })
+      #
+      # call_site_range would cover the function call on line 4. I.e
+      # call_site_range { start_line: 4, start_column: 3, end_line: 4,
+      # end_column: 7 }
+      'call_scope_range': TextRange,  # Range defining calling function name.
+      'call_site_range': TextRange,  # Range defining call site.
+      'children': [Message.PARENT_TYPE],  # Nodes corresponding to callsites of 
+      'display_name': str,  # Deprecated.
+      'edge_kind': str,  # Deprecated.
       'file_path': str,
       'identifier': str,
       'node_kind': KytheNodeKind,
       'override': bool,
       'package_name': str,
       'params': [str],  # For FUNCTION nodes, list of parameter names.
-      'signature': str,  # XrefSignature.signature
+      # No type information present.
+      'signature':
+          str,  # Signature for call scope. I.e. thing at call_scope_range.
       'snippet': Snippet,
       'snippet_file_path': str,
       'snippet_package_name': str,
@@ -1057,7 +1098,8 @@ class XrefSearchResponse(Message):
       'eliminated_type_count': [XrefTypeCount],
       'estimated_total_type_count': [XrefTypeCount],
       'from_kythe': bool,
-      'grok_total_number_of_results': int,
+      'kythe_next_page_token': str,
+      'grok_total_number_of_results': int,  # DEPRECATED
       'search_result': [XrefSearchResult],
       'status': int,
       'status_message': str,
@@ -1102,14 +1144,6 @@ class StatusResponse(Message):
       'build_label': str,
       'internal_package': [InternalPackage],
       'success': bool,
-  }
-
-
-class GobInfo(Message):
-  DESCRIPTOR = {
-      'commit': str,
-      'path': str,
-      'repo': str,
   }
 
 
