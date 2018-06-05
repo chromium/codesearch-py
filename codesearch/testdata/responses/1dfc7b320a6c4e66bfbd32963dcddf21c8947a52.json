@@ -1,0 +1,3673 @@
+{
+  "elapsed_ms": 77, 
+  "xref_search_response": [
+    {
+      "status": 0, 
+      "estimated_total_type_count": [
+        {
+          "count": 1, 
+          "type": "DEFINITION", 
+          "type_id": 1
+        }, 
+        {
+          "count": 316186, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }, 
+        {
+          "count": 5, 
+          "type": "EXTENDED_BY", 
+          "type_id": 7
+        }
+      ], 
+      "kythe_next_page_token": "CygiCQoEc2tpcBD0Aw==", 
+      "search_result": [
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407397%3A7407", 
+              "line_number": 197, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407397%3A7420", 
+              "line_number": 197, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407495%3A7505", 
+              "line_number": 199, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407495%3A7518", 
+              "line_number": 199, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407593%3A7603", 
+              "line_number": 201, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w3(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407593%3A7616", 
+              "line_number": 201, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w3(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407714%3A7724", 
+              "line_number": 203, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w4("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407714%3A7737", 
+              "line_number": 203, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w4("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407810%3A7820", 
+              "line_number": 205, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w5("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407810%3A7833", 
+              "line_number": 205, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w5("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407906%3A7916", 
+              "line_number": 207, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w6("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%407906%3A7929", 
+              "line_number": 207, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w6("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%408004%3A8014", 
+              "line_number": 209, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w7("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%408004%3A8027", 
+              "line_number": 209, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w7("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%408099%3A8109", 
+              "line_number": 211, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w8("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%408099%3A8122", 
+              "line_number": 211, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w8("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4028838%3A28861", 
+              "line_number": 640, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4028940%3A28950", 
+              "line_number": 642, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w3(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4028940%3A28963", 
+              "line_number": 642, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w3(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4029684%3A29694", 
+              "line_number": 658, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4029684%3A29707", 
+              "line_number": 658, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4030711%3A30721", 
+              "line_number": 681, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> initially_minimized_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4030711%3A30734", 
+              "line_number": 681, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> initially_minimized_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4030832%3A30842", 
+              "line_number": 683, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> initially_normal_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4030832%3A30855", 
+              "line_number": 683, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> initially_normal_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4030950%3A30960", 
+              "line_number": 685, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> initially_maximized_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4030950%3A30973", 
+              "line_number": 685, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> initially_maximized_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4032900%3A32910", 
+              "line_number": 725, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4032900%3A32923", 
+              "line_number": 725, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4033191%3A33201", 
+              "line_number": 731, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window2(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4033191%3A33214", 
+              "line_number": 731, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window2(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4034637%3A34660", 
+              "line_number": 760, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4034637%3A34647", 
+              "line_number": 760, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4035987%3A35997", 
+              "line_number": 789, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4035987%3A36010", 
+              "line_number": 789, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4036107%3A36117", 
+              "line_number": 791, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4036107%3A36130", 
+              "line_number": 791, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4036204%3A36214", 
+              "line_number": 793, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w3("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4036204%3A36227", 
+              "line_number": 793, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w3("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4036301%3A36311", 
+              "line_number": 795, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w4(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4036301%3A36324", 
+              "line_number": 795, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w4(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4036421%3A36431", 
+              "line_number": 797, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w5("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4036421%3A36444", 
+              "line_number": 797, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w5("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4038096%3A38106", 
+              "line_number": 844, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4038096%3A38119", 
+              "line_number": 844, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4038732%3A38742", 
+              "line_number": 861, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4038732%3A38755", 
+              "line_number": 861, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4039932%3A39942", 
+              "line_number": 890, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4039932%3A39955", 
+              "line_number": 890, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4040814%3A40837", 
+              "line_number": 910, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4040814%3A40824", 
+              "line_number": 910, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4042037%3A42047", 
+              "line_number": 938, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4042037%3A42060", 
+              "line_number": 938, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4043245%3A43255", 
+              "line_number": 963, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4043245%3A43268", 
+              "line_number": 963, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4045002%3A45012", 
+              "line_number": 1007, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4045002%3A45025", 
+              "line_number": 1007, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4045917%3A45927", 
+              "line_number": 1035, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4045917%3A45940", 
+              "line_number": 1035, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4047106%3A47116", 
+              "line_number": 1073, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4047106%3A47129", 
+              "line_number": 1073, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4048283%3A48293", 
+              "line_number": 1110, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4048283%3A48306", 
+              "line_number": 1110, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4049570%3A49580", 
+              "line_number": 1148, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4049570%3A49593", 
+              "line_number": 1148, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4051242%3A51252", 
+              "line_number": 1188, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4051242%3A51265", 
+              "line_number": 1188, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4052839%3A52862", 
+              "line_number": 1230, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4052839%3A52849", 
+              "line_number": 1230, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4053532%3A53542", 
+              "line_number": 1247, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4053532%3A53555", 
+              "line_number": 1247, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4054248%3A54258", 
+              "line_number": 1265, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4054248%3A54271", 
+              "line_number": 1265, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4055448%3A55458", 
+              "line_number": 1294, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4055448%3A55471", 
+              "line_number": 1294, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4057697%3A57707", 
+              "line_number": 1344, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4057697%3A57720", 
+              "line_number": 1344, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4057795%3A57805", 
+              "line_number": 1346, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4057795%3A57818", 
+              "line_number": 1346, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4058762%3A58772", 
+              "line_number": 1368, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> background_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4058762%3A58785", 
+              "line_number": 1368, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> background_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4058874%3A58884", 
+              "line_number": 1370, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> foreground_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4058874%3A58897", 
+              "line_number": 1370, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> foreground_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4060518%3A60528", 
+              "line_number": 1408, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> background_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4060518%3A60541", 
+              "line_number": 1408, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> background_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4060630%3A60653", 
+              "line_number": 1410, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> foreground_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4060630%3A60640", 
+              "line_number": 1410, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> foreground_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4062025%3A62035", 
+              "line_number": 1442, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> background_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4062025%3A62048", 
+              "line_number": 1442, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> background_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4062137%3A62147", 
+              "line_number": 1444, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> foreground_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4062137%3A62160", 
+              "line_number": 1444, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> foreground_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4063571%3A63581", 
+              "line_number": 1478, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> background_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4063571%3A63594", 
+              "line_number": 1478, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> background_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4063683%3A63693", 
+              "line_number": 1480, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> foreground_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4063683%3A63706", 
+              "line_number": 1480, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> foreground_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4065233%3A65256", 
+              "line_number": 1516, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4065233%3A65243", 
+              "line_number": 1516, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4066439%3A66462", 
+              "line_number": 1546, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4066439%3A66449", 
+              "line_number": 1546, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4067964%3A67987", 
+              "line_number": 1582, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4067964%3A67974", 
+              "line_number": 1582, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4068062%3A68072", 
+              "line_number": 1584, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4068062%3A68085", 
+              "line_number": 1584, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2(CreateFixedSizeNonMaximizableWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4070986%3A71009", 
+              "line_number": 1640, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4070986%3A70996", 
+              "line_number": 1640, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4071579%3A71602", 
+              "line_number": 1654, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4071579%3A71589", 
+              "line_number": 1654, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4073627%3A73650", 
+              "line_number": 1728, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4073627%3A73637", 
+              "line_number": 1728, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4075914%3A75937", 
+              "line_number": 1787, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateWindowInWatchedContainer(params));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4075914%3A75924", 
+              "line_number": 1787, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateWindowInWatchedContainer(params));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4076305%3A76328", 
+              "line_number": 1796, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4076305%3A76315", 
+              "line_number": 1796, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4076406%3A76430", 
+              "line_number": 1798, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<WindowResizer> resizer(CreateWindowResizer("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4076406%3A76416", 
+              "line_number": 1798, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<WindowResizer> resizer(CreateWindowResizer("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4076991%3A77001", 
+              "line_number": 1812, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc#%4076991%3A77014", 
+              "line_number": 1812, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window("
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/tablet_mode/tablet_mode_window_manager_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_resizer.h#%401776%3A1786", 
+              "line_number": 48, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<PhantomWindowController> phantom_window_controller_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_resizer.h#%401776%3A1810", 
+              "line_number": 48, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<PhantomWindowController> phantom_window_controller_;"
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/tablet_mode/tablet_mode_window_resizer.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_state.cc#%405547%3A5557", 
+              "line_number": 146, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                       ->SetStateObject(std::unique_ptr<State>(this))"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_state.cc#%405547%3A5563", 
+              "line_number": 146, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                       ->SetStateObject(std::unique_ptr<State>(this))"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_state.cc#%405869%3A5879", 
+              "line_number": 156, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<wm::WindowState::State> our_reference ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_state.cc#%405869%3A5902", 
+              "line_number": 156, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<wm::WindowState::State> our_reference ="
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/tablet_mode/tablet_mode_window_state.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_state.h#%403324%3A3334", 
+              "line_number": 77, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<wm::WindowState::State> old_state_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/tablet_mode/tablet_mode_window_state.h#%403324%3A3357", 
+              "line_number": 77, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<wm::WindowState::State> old_state_;"
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/tablet_mode/tablet_mode_window_state.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/test_child_modal_parent.h#%401755%3A1765", 
+              "line_number": 61, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<views::Widget> widget_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/test_child_modal_parent.h#%401755%3A1779", 
+              "line_number": 61, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<views::Widget> widget_;"
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/test_child_modal_parent.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/top_level_window_factory_unittest.cc#%401847%3A1857", 
+              "line_number": 58, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window = CreateTestWindow();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/top_level_window_factory_unittest.cc#%401847%3A1870", 
+              "line_number": 58, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window = CreateTestWindow();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/top_level_window_factory_unittest.cc#%402402%3A2412", 
+              "line_number": 73, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window_primary_display("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/top_level_window_factory_unittest.cc#%402402%3A2425", 
+              "line_number": 73, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window_primary_display("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/top_level_window_factory_unittest.cc#%402535%3A2545", 
+              "line_number": 75, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window_secondary_display("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/top_level_window_factory_unittest.cc#%402535%3A2558", 
+              "line_number": 75, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window_secondary_display("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/top_level_window_factory_unittest.cc#%403138%3A3148", 
+              "line_number": 90, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateAndParentTopLevelWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/top_level_window_factory_unittest.cc#%403138%3A3161", 
+              "line_number": 90, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateAndParentTopLevelWindow("
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/top_level_window_factory_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%403005%3A3015", 
+              "line_number": 85, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ToplevelWindowEventHandler> handler_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%403005%3A3042", 
+              "line_number": 85, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ToplevelWindowEventHandler> handler_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%403202%3A3212", 
+              "line_number": 93, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%403202%3A3225", 
+              "line_number": 93, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%404321%3A4331", 
+              "line_number": 124, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTNOWHERE));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%404321%3A4344", 
+              "line_number": 124, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTNOWHERE));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%406568%3A6578", 
+              "line_number": 169, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTBOTTOMRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%406568%3A6591", 
+              "line_number": 169, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTBOTTOMRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%407001%3A7011", 
+              "line_number": 179, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTGROWBOX));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%407001%3A7024", 
+              "line_number": 179, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTGROWBOX));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%408200%3A8210", 
+              "line_number": 207, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%408200%3A8223", 
+              "line_number": 207, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%408624%3A8634", 
+              "line_number": 217, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTBOTTOM));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%408624%3A8647", 
+              "line_number": 217, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTBOTTOM));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%409051%3A9061", 
+              "line_number": 227, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTTOPRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%409051%3A9074", 
+              "line_number": 227, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTTOPRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%409442%3A9452", 
+              "line_number": 236, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTTOP));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%409442%3A9465", 
+              "line_number": 236, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTTOP));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%409828%3A9838", 
+              "line_number": 245, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%409828%3A9851", 
+              "line_number": 245, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4010221%3A10244", 
+              "line_number": 254, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTBOTTOMLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4010221%3A10231", 
+              "line_number": 254, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTBOTTOMLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4010618%3A10628", 
+              "line_number": 263, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTTOPLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4010618%3A10641", 
+              "line_number": 263, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTTOPLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4011012%3A11022", 
+              "line_number": 272, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTCLIENT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4011012%3A11035", 
+              "line_number": 272, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTCLIENT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4011317%3A11327", 
+              "line_number": 280, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4011317%3A11340", 
+              "line_number": 280, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4011918%3A11928", 
+              "line_number": 293, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4011918%3A11941", 
+              "line_number": 293, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4012546%3A12556", 
+              "line_number": 307, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTTOPLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4012546%3A12569", 
+              "line_number": 307, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTTOPLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4013151%3A13161", 
+              "line_number": 320, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTTOPRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4013151%3A13174", 
+              "line_number": 320, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTTOPRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4013796%3A13806", 
+              "line_number": 334, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTBOTTOMLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4013796%3A13819", 
+              "line_number": 334, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTBOTTOMLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4014444%3A14467", 
+              "line_number": 348, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTBOTTOMRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4014444%3A14454", 
+              "line_number": 348, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTBOTTOMRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4015091%3A15101", 
+              "line_number": 362, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTBOTTOMRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4015091%3A15114", 
+              "line_number": 362, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTBOTTOMRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4015861%3A15884", 
+              "line_number": 378, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTBOTTOMLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4015861%3A15871", 
+              "line_number": 378, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTBOTTOMLEFT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4016648%3A16658", 
+              "line_number": 395, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTBOTTOM));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4016648%3A16671", 
+              "line_number": 395, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTBOTTOM));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4017411%3A17434", 
+              "line_number": 411, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4017411%3A17421", 
+              "line_number": 411, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4017472%3A17482", 
+              "line_number": 412, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4017472%3A17495", 
+              "line_number": 412, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4018269%3A18279", 
+              "line_number": 431, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTTOP));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4018269%3A18292", 
+              "line_number": 431, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTTOP));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4018787%3A18797", 
+              "line_number": 443, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4018787%3A18810", 
+              "line_number": 443, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4019300%3A19310", 
+              "line_number": 454, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4019300%3A19323", 
+              "line_number": 454, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4022263%3A22273", 
+              "line_number": 527, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4022263%3A22286", 
+              "line_number": 527, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4022943%3A22953", 
+              "line_number": 543, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4022943%3A22966", 
+              "line_number": 543, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4024073%3A24096", 
+              "line_number": 571, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4024073%3A24083", 
+              "line_number": 571, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4025176%3A25186", 
+              "line_number": 598, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4025176%3A25199", 
+              "line_number": 598, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4026295%3A26305", 
+              "line_number": 626, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4026295%3A26318", 
+              "line_number": 626, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4027472%3A27482", 
+              "line_number": 655, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4027472%3A27495", 
+              "line_number": 655, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4028618%3A28628", 
+              "line_number": 683, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4028618%3A28641", 
+              "line_number": 683, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4029811%3A29821", 
+              "line_number": 708, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4029811%3A29834", 
+              "line_number": 708, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4029957%3A29967", 
+              "line_number": 710, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4029957%3A29980", 
+              "line_number": 710, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4031580%3A31603", 
+              "line_number": 743, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4031580%3A31590", 
+              "line_number": 743, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4031726%3A31736", 
+              "line_number": 745, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4031726%3A31749", 
+              "line_number": 745, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4033287%3A33297", 
+              "line_number": 774, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4033287%3A33310", 
+              "line_number": 774, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4035106%3A35116", 
+              "line_number": 821, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4035106%3A35129", 
+              "line_number": 821, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4035255%3A35265", 
+              "line_number": 823, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> notmoved(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4035255%3A35278", 
+              "line_number": 823, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> notmoved(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4036374%3A36384", 
+              "line_number": 850, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTBOTTOMRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4036374%3A36397", 
+              "line_number": 850, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> target(CreateWindow(HTBOTTOMRIGHT));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4037134%3A37144", 
+              "line_number": 869, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4037134%3A37157", 
+              "line_number": 869, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4037869%3A37892", 
+              "line_number": 889, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4037869%3A37879", 
+              "line_number": 889, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> target(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4038752%3A38762", 
+              "line_number": 912, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4038752%3A38775", 
+              "line_number": 912, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4038876%3A38886", 
+              "line_number": 914, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window2(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4038876%3A38899", 
+              "line_number": 914, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window2(CreateWindow(HTCAPTION));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4040031%3A40054", 
+              "line_number": 946, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateWindow(HTNOWHERE));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4040031%3A40041", 
+              "line_number": 946, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateWindow(HTNOWHERE));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4041100%3A41123", 
+              "line_number": 975, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateWindow(HTNOWHERE));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4041100%3A41110", 
+              "line_number": 975, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateWindow(HTNOWHERE));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4042384%3A42407", 
+              "line_number": 1001, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateTestWindowInShellWithDelegateAndType("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/toplevel_window_event_handler_unittest.cc#%4042384%3A42394", 
+              "line_number": 1001, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1(CreateTestWindowInShellWithDelegateAndType("
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/toplevel_window_event_handler_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/video_detector_unittest.cc#%402081%3A2091", 
+              "line_number": 74, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> CreateTestWindow(const gfx::Rect& bounds) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/video_detector_unittest.cc#%402081%3A2104", 
+              "line_number": 74, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> CreateTestWindow(const gfx::Rect& bounds) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/video_detector_unittest.cc#%402166%3A2176", 
+              "line_number": 75, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    return std::unique_ptr<aura::Window>("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/video_detector_unittest.cc#%402166%3A2189", 
+              "line_number": 75, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    return std::unique_ptr<aura::Window>("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/video_detector_unittest.cc#%402320%3A2330", 
+              "line_number": 80, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<TestObserver> observer_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/video_detector_unittest.cc#%402320%3A2343", 
+              "line_number": 80, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<TestObserver> observer_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/video_detector_unittest.cc#%402678%3A2688", 
+              "line_number": 94, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/video_detector_unittest.cc#%402678%3A2701", 
+              "line_number": 94, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/video_detector_unittest.cc#%403760%3A3770", 
+              "line_number": 117, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> other_window ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/video_detector_unittest.cc#%403760%3A3783", 
+              "line_number": 117, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> other_window ="
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/video_detector_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%404148%3A4184", 
+              "line_number": 118, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::InterpolatedTransform> scale ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%404148%3A4158", 
+              "line_number": 118, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::InterpolatedTransform> scale ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%404318%3A4354", 
+              "line_number": 122, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::InterpolatedTransform> translation ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%404318%3A4328", 
+              "line_number": 122, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::InterpolatedTransform> translation ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%404736%3A4772", 
+              "line_number": 133, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerAnimationElement> transition ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%404736%3A4746", 
+              "line_number": 133, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerAnimationElement> transition ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4010358%3A10387", 
+              "line_number": 278, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                    std::unique_ptr<ui::LayerTreeOwner> layer_owner)"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4010358%3A10368", 
+              "line_number": 278, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                    std::unique_ptr<ui::LayerTreeOwner> layer_owner)"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4011195%3A11224", 
+              "line_number": 302, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerTreeOwner> layer_owner_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4011195%3A11205", 
+              "line_number": 302, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerTreeOwner> layer_owner_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4011363%3A11392", 
+              "line_number": 309, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<ui::LayerTreeOwner> old_layer_owner,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4011363%3A11373", 
+              "line_number": 309, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<ui::LayerTreeOwner> old_layer_owner,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4016483%3A16520", 
+              "line_number": 429, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerAnimationSequence> brightness_sequence ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4016483%3A16493", 
+              "line_number": 429, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerAnimationSequence> brightness_sequence ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4016605%3A16615", 
+              "line_number": 431, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerAnimationSequence> grayscale_sequence ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4016605%3A16642", 
+              "line_number": 431, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerAnimationSequence> grayscale_sequence ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4016727%3A16737", 
+              "line_number": 434, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerAnimationElement> brightness_element ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4016727%3A16763", 
+              "line_number": 434, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerAnimationElement> brightness_element ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4017053%3A17063", 
+              "line_number": 440, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerAnimationElement> grayscale_element ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.cc#%4017053%3A17089", 
+              "line_number": 440, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerAnimationElement> grayscale_element ="
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/window_animations.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.h#%401020%3A1030", 
+              "line_number": 35, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<ui::LayerTreeOwner> old_layer_owner,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations.h#%401020%3A1049", 
+              "line_number": 35, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<ui::LayerTreeOwner> old_layer_owner,"
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/window_animations.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations_unittest.cc#%402263%3A2273", 
+              "line_number": 69, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations_unittest.cc#%402263%3A2286", 
+              "line_number": 69, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations_unittest.cc#%403483%3A3493", 
+              "line_number": 98, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations_unittest.cc#%403483%3A3506", 
+              "line_number": 98, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations_unittest.cc#%404032%3A4042", 
+              "line_number": 115, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations_unittest.cc#%404032%3A4049", 
+              "line_number": 115, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations_unittest.cc#%406784%3A6794", 
+              "line_number": 174, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations_unittest.cc#%406784%3A6801", 
+              "line_number": 174, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations_unittest.cc#%407865%3A7875", 
+              "line_number": 203, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_animations_unittest.cc#%407865%3A7882", 
+              "line_number": 203, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window(CreateTestWindowInShellWithId(0));"
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/window_animations_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller.h#%402230%3A2240", 
+              "line_number": 69, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<WindowCycleList> window_cycle_list_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller.h#%402230%3A2256", 
+              "line_number": 69, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<WindowCycleList> window_cycle_list_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller.h#%402525%3A2535", 
+              "line_number": 76, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<WindowCycleEventFilter> event_filter_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller.h#%402525%3A2558", 
+              "line_number": 76, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<WindowCycleEventFilter> event_filter_;"
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/window_cycle_controller.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%403372%3A3382", 
+              "line_number": 118, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ShelfViewTestAPI> shelf_view_test_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%403372%3A3399", 
+              "line_number": 118, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ShelfViewTestAPI> shelf_view_test_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%403782%3A3792", 
+              "line_number": 130, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%403782%3A3799", 
+              "line_number": 130, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%404389%3A4399", 
+              "line_number": 145, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%404389%3A4406", 
+              "line_number": 145, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%405190%3A5200", 
+              "line_number": 164, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window2(CreateTestWindowInShellWithId(2));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%405190%3A5207", 
+              "line_number": 164, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window2(CreateTestWindowInShellWithId(2));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%405259%3A5269", 
+              "line_number": 165, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%405259%3A5276", 
+              "line_number": 165, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%405328%3A5338", 
+              "line_number": 166, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%405328%3A5345", 
+              "line_number": 166, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%408442%3A8452", 
+              "line_number": 242, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> modal_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%408442%3A8459", 
+              "line_number": 242, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> modal_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%409362%3A9372", 
+              "line_number": 261, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> skip_overview_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%409362%3A9379", 
+              "line_number": 261, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> skip_overview_window("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4010097%3A10114", 
+              "line_number": 278, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4010097%3A10107", 
+              "line_number": 278, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4010166%3A10176", 
+              "line_number": 279, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4010166%3A10183", 
+              "line_number": 279, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4011024%3A11034", 
+              "line_number": 301, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4011024%3A11041", 
+              "line_number": 301, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4011093%3A11103", 
+              "line_number": 302, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4011093%3A11110", 
+              "line_number": 302, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4012157%3A12167", 
+              "line_number": 328, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4012157%3A12174", 
+              "line_number": 328, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4012226%3A12236", 
+              "line_number": 329, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4012226%3A12243", 
+              "line_number": 329, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4013342%3A13352", 
+              "line_number": 357, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4013342%3A13359", 
+              "line_number": 357, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4013411%3A13428", 
+              "line_number": 358, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4013411%3A13421", 
+              "line_number": 358, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4013603%3A13613", 
+              "line_number": 362, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window2(CreateTestWindowWithId(2, top_container));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4013603%3A13620", 
+              "line_number": 362, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window2(CreateTestWindowWithId(2, top_container));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4014431%3A14441", 
+              "line_number": 383, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4014431%3A14448", 
+              "line_number": 383, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4014500%3A14510", 
+              "line_number": 384, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4014500%3A14517", 
+              "line_number": 384, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4014692%3A14702", 
+              "line_number": 388, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window2(CreateTestWindowWithId(2, top_container));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4014692%3A14709", 
+              "line_number": 388, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window2(CreateTestWindowWithId(2, top_container));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4014769%3A14779", 
+              "line_number": 389, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window3(CreateTestWindowWithId(3, top_container));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4014769%3A14786", 
+              "line_number": 389, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window3(CreateTestWindowWithId(3, top_container));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4015829%3A15839", 
+              "line_number": 416, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4015829%3A15846", 
+              "line_number": 416, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4016062%3A16072", 
+              "line_number": 420, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowWithId(1, top_container0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4016062%3A16079", 
+              "line_number": 420, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowWithId(1, top_container0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4016347%3A16357", 
+              "line_number": 425, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window2(CreateTestWindowInShellWithId(2));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4016347%3A16364", 
+              "line_number": 425, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window2(CreateTestWindowInShellWithId(2));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4016581%3A16598", 
+              "line_number": 430, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window3(CreateTestWindowWithId(3, top_container1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4016581%3A16591", 
+              "line_number": 430, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window3(CreateTestWindowWithId(3, top_container1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4017741%3A17751", 
+              "line_number": 459, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4017741%3A17758", 
+              "line_number": 459, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4017810%3A17820", 
+              "line_number": 460, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4017810%3A17827", 
+              "line_number": 460, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4017879%3A17889", 
+              "line_number": 461, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window2(CreateTestWindowInShellWithId(2));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4017879%3A17896", 
+              "line_number": 461, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> window2(CreateTestWindowInShellWithId(2));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4019243%3A19253", 
+              "line_number": 495, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4019243%3A19266", 
+              "line_number": 495, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4019318%3A19328", 
+              "line_number": 496, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4019318%3A19341", 
+              "line_number": 496, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4020133%3A20143", 
+              "line_number": 515, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4020133%3A20156", 
+              "line_number": 515, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4020208%3A20218", 
+              "line_number": 516, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4020208%3A20231", 
+              "line_number": 516, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4020992%3A21002", 
+              "line_number": 539, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4020992%3A21015", 
+              "line_number": 539, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4021067%3A21090", 
+              "line_number": 540, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel0(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4021067%3A21077", 
+              "line_number": 540, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel0(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4021128%3A21138", 
+              "line_number": 541, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel1(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4021128%3A21151", 
+              "line_number": 541, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel1(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4022168%3A22178", 
+              "line_number": 567, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4022168%3A22191", 
+              "line_number": 567, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4022243%3A22253", 
+              "line_number": 568, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4022243%3A22266", 
+              "line_number": 568, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4022318%3A22328", 
+              "line_number": 569, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window2(CreateTestWindowInShellWithId(2));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4022318%3A22341", 
+              "line_number": 569, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window2(CreateTestWindowInShellWithId(2));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4022393%3A22403", 
+              "line_number": 570, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel0(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4022393%3A22416", 
+              "line_number": 570, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel0(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4022454%3A22464", 
+              "line_number": 571, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel1(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4022454%3A22477", 
+              "line_number": 571, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel1(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4023306%3A23316", 
+              "line_number": 594, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4023306%3A23329", 
+              "line_number": 594, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4023381%3A23391", 
+              "line_number": 595, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4023381%3A23404", 
+              "line_number": 595, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4023456%3A23479", 
+              "line_number": 596, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel0(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4023456%3A23466", 
+              "line_number": 596, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel0(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4023517%3A23527", 
+              "line_number": 597, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel1(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4023517%3A23540", 
+              "line_number": 597, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> panel1(CreatePanelWindow());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4024323%3A24333", 
+              "line_number": 618, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4024323%3A24340", 
+              "line_number": 618, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4024387%3A24404", 
+              "line_number": 619, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4024387%3A24397", 
+              "line_number": 619, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4025376%3A25393", 
+              "line_number": 640, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w0(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4025376%3A25386", 
+              "line_number": 640, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w0(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4025491%3A25508", 
+              "line_number": 642, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4025491%3A25501", 
+              "line_number": 642, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4026857%3A26874", 
+              "line_number": 677, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4026857%3A26867", 
+              "line_number": 677, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w0(CreateTestWindowInShellWithId(0));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4026921%3A26938", 
+              "line_number": 678, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4026921%3A26931", 
+              "line_number": 678, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<Window> w1(CreateTestWindowInShellWithId(1));"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4029326%3A29343", 
+              "line_number": 735, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<Window> window0("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4029326%3A29336", 
+              "line_number": 735, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<Window> window0("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4029581%3A29598", 
+              "line_number": 740, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<Window> window1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_controller_unittest.cc#%4029581%3A29591", 
+              "line_number": 740, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<Window> window1("
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/window_cycle_controller_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_list.cc#%401502%3A1512", 
+              "line_number": 48, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  explicit LayerFillBackgroundPainter(std::unique_ptr<views::Painter> painter)"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_list.cc#%401502%3A1527", 
+              "line_number": 48, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  explicit LayerFillBackgroundPainter(std::unique_ptr<views::Painter> painter)"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_list.cc#%401853%3A1863", 
+              "line_number": 59, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<views::Painter> painter_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_list.cc#%401853%3A1878", 
+              "line_number": 59, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<views::Painter> painter_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_cycle_list.cc#%408754%3A8758", 
+              "line_number": 234, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    auto layout = std::make_unique<views::BoxLayout>("
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/window_cycle_list.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%403974%3A3984", 
+              "line_number": 134, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%403974%3A3997", 
+              "line_number": 134, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404090%3A4100", 
+              "line_number": 136, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11(aura::test::CreateTestWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404090%3A4113", 
+              "line_number": 136, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11(aura::test::CreateTestWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404221%3A4231", 
+              "line_number": 138, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w111(aura::test::CreateTestWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404221%3A4244", 
+              "line_number": 138, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w111(aura::test::CreateTestWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404352%3A4362", 
+              "line_number": 140, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1111(aura::test::CreateTestWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404352%3A4375", 
+              "line_number": 140, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1111(aura::test::CreateTestWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404485%3A4495", 
+              "line_number": 142, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w12(aura::test::CreateTestWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404485%3A4508", 
+              "line_number": 142, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w12(aura::test::CreateTestWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404736%3A4759", 
+              "line_number": 146, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w121(aura::test::CreateTestWindowWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404736%3A4746", 
+              "line_number": 146, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w121(aura::test::CreateTestWindowWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404991%3A5001", 
+              "line_number": 150, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w122(aura::test::CreateTestWindowWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%404991%3A5014", 
+              "line_number": 150, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w122(aura::test::CreateTestWindowWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%405247%3A5257", 
+              "line_number": 154, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w123(aura::test::CreateTestWindowWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%405247%3A5270", 
+              "line_number": 154, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w123(aura::test::CreateTestWindowWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%405389%3A5399", 
+              "line_number": 156, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w13(aura::test::CreateTestWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%405389%3A5412", 
+              "line_number": 156, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w13(aura::test::CreateTestWindow("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%409595%3A9605", 
+              "line_number": 257, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%409595%3A9618", 
+              "line_number": 257, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%409766%3A9776", 
+              "line_number": 261, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%409766%3A9789", 
+              "line_number": 261, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4011804%3A11827", 
+              "line_number": 325, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w11(CreateTestWindowWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4011804%3A11814", 
+              "line_number": 325, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w11(CreateTestWindowWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4012802%3A12812", 
+              "line_number": 348, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w11(CreateTestWindowWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4012802%3A12825", 
+              "line_number": 348, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w11(CreateTestWindowWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4012960%3A12970", 
+              "line_number": 351, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w2(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4012960%3A12983", 
+              "line_number": 351, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w2(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4013745%3A13755", 
+              "line_number": 370, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4013745%3A13768", 
+              "line_number": 370, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4013861%3A13871", 
+              "line_number": 372, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4013861%3A13884", 
+              "line_number": 372, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4015091%3A15101", 
+              "line_number": 406, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4015091%3A15114", 
+              "line_number": 406, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4015244%3A15254", 
+              "line_number": 409, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> p1(CreateTestWindowInShellWithDelegateAndType("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4015244%3A15267", 
+              "line_number": 409, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> p1(CreateTestWindowInShellWithDelegateAndType("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4016008%3A16018", 
+              "line_number": 431, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w3(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4016008%3A16031", 
+              "line_number": 431, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<aura::Window> w3(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4016657%3A16667", 
+              "line_number": 448, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4016657%3A16680", 
+              "line_number": 448, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4016828%3A16838", 
+              "line_number": 452, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4016828%3A16851", 
+              "line_number": 452, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4019541%3A19551", 
+              "line_number": 529, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4019541%3A19564", 
+              "line_number": 529, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> window(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4024371%3A24394", 
+              "line_number": 650, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4024371%3A24381", 
+              "line_number": 650, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4026142%3A26165", 
+              "line_number": 689, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4026142%3A26152", 
+              "line_number": 689, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4026323%3A26352", 
+              "line_number": 694, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<CustomEventHandler> f1(new CustomEventHandler);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4026323%3A26333", 
+              "line_number": 694, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<CustomEventHandler> f1(new CustomEventHandler);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4026389%3A26418", 
+              "line_number": 695, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<CustomEventHandler> f2(new CustomEventHandler);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4026389%3A26399", 
+              "line_number": 695, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<CustomEventHandler> f2(new CustomEventHandler);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4031960%3A31983", 
+              "line_number": 833, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_manager_unittest.cc#%4031960%3A31970", 
+              "line_number": 833, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/window_manager_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_mirror_view.h#%401418%3A1428", 
+              "line_number": 54, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerTreeOwner> layer_owner_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_mirror_view.h#%401418%3A1447", 
+              "line_number": 54, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<ui::LayerTreeOwner> layer_owner_;"
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/window_mirror_view.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%401567%3A1590", 
+              "line_number": 48, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%401567%3A1577", 
+              "line_number": 48, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%401668%3A1691", 
+              "line_number": 50, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%401668%3A1678", 
+              "line_number": 50, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%401771%3A1794", 
+              "line_number": 52, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w12("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%401771%3A1781", 
+              "line_number": 52, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w12("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%403235%3A3245", 
+              "line_number": 93, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%403235%3A3258", 
+              "line_number": 93, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%403336%3A3346", 
+              "line_number": 95, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%403336%3A3359", 
+              "line_number": 95, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%403439%3A3462", 
+              "line_number": 97, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w111("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%403439%3A3449", 
+              "line_number": 97, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w111("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%403544%3A3554", 
+              "line_number": 99, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%403544%3A3567", 
+              "line_number": 99, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%405197%3A5207", 
+              "line_number": 146, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%405197%3A5220", 
+              "line_number": 146, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%405298%3A5308", 
+              "line_number": 148, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%405298%3A5321", 
+              "line_number": 148, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%405538%3A5548", 
+              "line_number": 153, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%405538%3A5561", 
+              "line_number": 153, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%406553%3A6563", 
+              "line_number": 185, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%406553%3A6576", 
+              "line_number": 185, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%406668%3A6678", 
+              "line_number": 187, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4010391%3A10414", 
+              "line_number": 278, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> widget_window(widget->GetNativeView());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4010391%3A10401", 
+              "line_number": 278, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> widget_window(widget->GetNativeView());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4011083%3A11093", 
+              "line_number": 293, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> modal_window(modal_widget->GetNativeView());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4011083%3A11106", 
+              "line_number": 293, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> modal_window(modal_widget->GetNativeView());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4012638%3A12648", 
+              "line_number": 332, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4012638%3A12661", 
+              "line_number": 332, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4012739%3A12749", 
+              "line_number": 334, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4012739%3A12762", 
+              "line_number": 334, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4012857%3A12867", 
+              "line_number": 336, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4012857%3A12880", 
+              "line_number": 336, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4012958%3A12968", 
+              "line_number": 338, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w3("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4012958%3A12981", 
+              "line_number": 338, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w3("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4015560%3A15570", 
+              "line_number": 411, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4015560%3A15583", 
+              "line_number": 411, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4015710%3A15720", 
+              "line_number": 414, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4015710%3A15733", 
+              "line_number": 414, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w11(CreateTestWindowInShellWithDelegate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4022203%3A22213", 
+              "line_number": 602, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4022203%3A22226", 
+              "line_number": 602, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4022304%3A22314", 
+              "line_number": 604, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4022304%3A22327", 
+              "line_number": 604, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4022421%3A22444", 
+              "line_number": 606, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w3("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4022421%3A22431", 
+              "line_number": 606, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w3("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4022538%3A22561", 
+              "line_number": 608, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w4("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4022538%3A22548", 
+              "line_number": 608, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w4("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4023270%3A23293", 
+              "line_number": 630, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4023270%3A23280", 
+              "line_number": 630, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w1("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4023371%3A23394", 
+              "line_number": 632, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4023371%3A23381", 
+              "line_number": 632, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w2("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4023488%3A23511", 
+              "line_number": 634, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w3("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4023488%3A23498", 
+              "line_number": 634, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w3("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4023605%3A23628", 
+              "line_number": 636, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w4("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/ash/wm/window_modality_controller_unittest.cc#%4023605%3A23615", 
+              "line_number": 636, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<aura::Window> w4("
+            }
+          ], 
+          "file": {
+            "name": "src/ash/wm/window_modality_controller_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4079621%3A79631%40sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
+              "line_number": 2383, 
+              "type_id": 1, 
+              "type": "DEFINITION", 
+              "line_text": "class _LIBCPP_TEMPLATE_VIS unique_ptr {"
+            }
+          ], 
+          "file": {
+            "name": "src/buildtools/third_party/libc++/trunk/include/memory", 
+            "package_name": "chromium"
+          }
+        }
+      ], 
+      "from_kythe": true
+    }
+  ]
+}

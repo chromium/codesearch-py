@@ -1,0 +1,2177 @@
+{
+  "elapsed_ms": 17, 
+  "file_info_response": [
+    {
+      "file_info": {
+        "gob_info": {
+          "repo": "chromium/chromium/src", 
+          "commit": "6b9a52cbb9fb3ce498f057d11372d22095ef7560", 
+          "path": "net/http/http_transaction_test_util.h"
+        }, 
+        "name": "src/net/http/http_transaction_test_util.h", 
+        "language": "c++", 
+        "changelist_num": "6b9a52cbb9fb3ce498f057d11372d22095ef7560", 
+        "package_name": "chromium", 
+        "lines": "368", 
+        "content": {
+          "text": "// Copyright 2014 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_HTTP_HTTP_TRANSACTION_TEST_UTIL_H_\n#define NET_HTTP_HTTP_TRANSACTION_TEST_UTIL_H_\n\n#include \"net/http/http_transaction.h\"\n\n#include <stdint.h>\n\n#include <string>\n\n#include \"base/callback.h\"\n#include \"base/compiler_specific.h\"\n#include \"base/memory/weak_ptr.h\"\n#include \"base/strings/string16.h\"\n#include \"net/base/io_buffer.h\"\n#include \"net/base/load_flags.h\"\n#include \"net/base/net_error_details.h\"\n#include \"net/base/net_errors.h\"\n#include \"net/base/request_priority.h\"\n#include \"net/base/test_completion_callback.h\"\n#include \"net/disk_cache/disk_cache.h\"\n#include \"net/http/http_cache.h\"\n#include \"net/http/http_request_info.h\"\n#include \"net/http/http_response_headers.h\"\n#include \"net/http/http_response_info.h\"\n#include \"net/socket/connection_attempts.h\"\n\nnamespace net {\n\nclass HttpRequestHeaders;\nclass IOBuffer;\nclass SSLPrivateKey;\nclass X509Certificate;\nclass NetLogWithSource;\nstruct HttpRequestInfo;\n\n//-----------------------------------------------------------------------------\n// mock transaction data\n\n// these flags may be combined to form the test_mode field\nenum {\n  TEST_MODE_NORMAL = 0,\n  TEST_MODE_SYNC_NET_START = 1 << 0,\n  TEST_MODE_SYNC_NET_READ  = 1 << 1,\n  TEST_MODE_SYNC_CACHE_START = 1 << 2,\n  TEST_MODE_SYNC_CACHE_READ  = 1 << 3,\n  TEST_MODE_SYNC_CACHE_WRITE  = 1 << 4,\n  TEST_MODE_SYNC_ALL = (TEST_MODE_SYNC_NET_START | TEST_MODE_SYNC_NET_READ |\n                        TEST_MODE_SYNC_CACHE_START | TEST_MODE_SYNC_CACHE_READ |\n                        TEST_MODE_SYNC_CACHE_WRITE),\n  TEST_MODE_SLOW_READ = 1 << 5\n};\n\nusing MockTransactionReadHandler = int (*)(int64_t content_length,\n                                           int64_t offset,\n                                           IOBuffer* buf,\n                                           int buf_len);\nusing MockTransactionHandler = void (*)(const HttpRequestInfo* request,\n                                        std::string* response_status,\n                                        std::string* response_headers,\n                                        std::string* response_data);\n\nstruct MockTransaction {\n  const char* url;\n  const char* method;\n  // If |request_time| is unspecified, the current time will be used.\n  base::Time request_time;\n  const char* request_headers;\n  int load_flags;\n  const char* status;\n  const char* response_headers;\n  // If |response_time| is unspecified, the current time will be used.\n  base::Time response_time;\n  const char* data;\n  int test_mode;\n  MockTransactionHandler handler;\n  MockTransactionReadHandler read_handler;\n  scoped_refptr<X509Certificate> cert;\n  CertStatus cert_status;\n  int ssl_connection_status;\n  // Value returned by MockNetworkTransaction::Start (potentially\n  // asynchronously if |!(test_mode & TEST_MODE_SYNC_NET_START)|.)\n  Error start_return_code;\n  // Value returned by MockNetworkTransaction::Read (potentially\n  // asynchronously if |!(test_mode & TEST_MODE_SYNC_NET_START)|.)\n  Error read_return_code;\n};\n\nextern const MockTransaction kSimpleGET_Transaction;\nextern const MockTransaction kSimplePOST_Transaction;\nextern const MockTransaction kTypicalGET_Transaction;\nextern const MockTransaction kETagGET_Transaction;\nextern const MockTransaction kRangeGET_Transaction;\n\n// returns the mock transaction for the given URL\nconst MockTransaction* FindMockTransaction(const GURL& url);\n\n// Add/Remove a mock transaction that can be accessed via FindMockTransaction.\n// There can be only one MockTransaction associated with a given URL.\nvoid AddMockTransaction(const MockTransaction* trans);\nvoid RemoveMockTransaction(const MockTransaction* trans);\n\nstruct ScopedMockTransaction : MockTransaction {\n  ScopedMockTransaction() {\n    AddMockTransaction(this);\n  }\n  explicit ScopedMockTransaction(const MockTransaction& t)\n      : MockTransaction(t) {\n    AddMockTransaction(this);\n  }\n  ~ScopedMockTransaction() {\n    RemoveMockTransaction(this);\n  }\n};\n\n//-----------------------------------------------------------------------------\n// mock http request\n\nclass MockHttpRequest : public HttpRequestInfo {\n public:\n  explicit MockHttpRequest(const MockTransaction& t);\n};\n\n//-----------------------------------------------------------------------------\n// use this class to test completely consuming a transaction\n\nclass TestTransactionConsumer {\n public:\n  TestTransactionConsumer(RequestPriority priority,\n                          HttpTransactionFactory* factory);\n  virtual ~TestTransactionConsumer();\n\n  void Start(const HttpRequestInfo* request, const NetLogWithSource& net_log);\n\n  bool is_done() const { return state_ == DONE; }\n  int error() const { return error_; }\n\n  const HttpResponseInfo* response_info() const {\n    return trans_->GetResponseInfo();\n  }\n  const HttpTransaction* transaction() const { return trans_.get(); }\n  const std::string& content() const { return content_; }\n\n private:\n  enum State {\n    IDLE,\n    STARTING,\n    READING,\n    DONE\n  };\n\n  void DidStart(int result);\n  void DidRead(int result);\n  void DidFinish(int result);\n  void Read();\n\n  void OnIOComplete(int result);\n\n  State state_;\n  std::unique_ptr<HttpTransaction> trans_;\n  std::string content_;\n  scoped_refptr<IOBuffer> read_buf_;\n  int error_;\n\n  static int quit_counter_;\n};\n\n//-----------------------------------------------------------------------------\n// mock network layer\n\nclass MockNetworkLayer;\n\n// This transaction class inspects the available set of mock transactions to\n// find data for the request URL.  It supports IO operations that complete\n// synchronously or asynchronously to help exercise different code paths in the\n// HttpCache implementation.\nclass MockNetworkTransaction\n    : public HttpTransaction,\n      public base::SupportsWeakPtr<MockNetworkTransaction> {\n  typedef WebSocketHandshakeStreamBase::CreateHelper CreateHelper;\n\n public:\n  MockNetworkTransaction(RequestPriority priority, MockNetworkLayer* factory);\n  ~MockNetworkTransaction() override;\n\n  int Start(const HttpRequestInfo* request,\n            const CompletionCallback& callback,\n            const NetLogWithSource& net_log) override;\n\n  int RestartIgnoringLastError(const CompletionCallback& callback) override;\n\n  int RestartWithCertificate(scoped_refptr<X509Certificate> client_cert,\n                             scoped_refptr<SSLPrivateKey> client_private_key,\n                             const CompletionCallback& callback) override;\n\n  int RestartWithAuth(const AuthCredentials& credentials,\n                      const CompletionCallback& callback) override;\n\n  bool IsReadyToRestartForAuth() override;\n\n  int Read(IOBuffer* buf,\n           int buf_len,\n           const CompletionCallback& callback) override;\n  void PopulateNetErrorDetails(NetErrorDetails* details) const override;\n\n  void StopCaching() override;\n\n  bool GetFullRequestHeaders(HttpRequestHeaders* headers) const override;\n\n  int64_t GetTotalReceivedBytes() const override;\n\n  int64_t GetTotalSentBytes() const override;\n\n  void DoneReading() override;\n\n  const HttpResponseInfo* GetResponseInfo() const override;\n\n  LoadState GetLoadState() const override;\n\n  void SetQuicServerInfo(QuicServerInfo* quic_server_info) override;\n\n  bool GetLoadTimingInfo(LoadTimingInfo* load_timing_info) const override;\n\n  bool GetRemoteEndpoint(IPEndPoint* endpoint) const override;\n\n  void SetPriority(RequestPriority priority) override;\n\n  void SetWebSocketHandshakeStreamCreateHelper(\n      CreateHelper* create_helper) override;\n\n  void SetBeforeNetworkStartCallback(\n      const BeforeNetworkStartCallback& callback) override;\n\n  void SetBeforeHeadersSentCallback(\n      const BeforeHeadersSentCallback& callback) override;\n\n  void SetRequestHeadersCallback(RequestHeadersCallback callback) override {}\n  void SetResponseHeadersCallback(ResponseHeadersCallback) override {}\n\n  int ResumeNetworkStart() override;\n\n  void GetConnectionAttempts(ConnectionAttempts* out) const override;\n\n  CreateHelper* websocket_handshake_stream_create_helper() {\n    return websocket_handshake_stream_create_helper_;\n  }\n\n  RequestPriority priority() const { return priority_; }\n  const HttpRequestInfo* request() const { return request_; }\n\n  // Bogus value that will be returned by GetTotalReceivedBytes() if the\n  // MockNetworkTransaction was started.\n  static const int64_t kTotalReceivedBytes;\n  // Bogus value that will be returned by GetTotalSentBytes() if the\n  // MockNetworkTransaction was started.\n  static const int64_t kTotalSentBytes;\n\n private:\n  int StartInternal(const HttpRequestInfo* request,\n                    const CompletionCallback& callback,\n                    const NetLogWithSource& net_log);\n  void CallbackLater(const CompletionCallback& callback, int result);\n  void RunCallback(const CompletionCallback& callback, int result);\n\n  const HttpRequestInfo* request_;\n  HttpResponseInfo response_;\n  std::string data_;\n  int64_t data_cursor_;\n  int64_t content_length_;\n  int test_mode_;\n  RequestPriority priority_;\n  MockTransactionReadHandler read_handler_;\n  CreateHelper* websocket_handshake_stream_create_helper_;\n  BeforeNetworkStartCallback before_network_start_callback_;\n  base::WeakPtr<MockNetworkLayer> transaction_factory_;\n  int64_t received_bytes_;\n  int64_t sent_bytes_;\n\n  // NetLog ID of the fake / non-existent underlying socket used by the\n  // connection. Requires Start() be passed a NetLogWithSource with a real\n  // NetLog to\n  // be initialized.\n  unsigned int socket_log_id_;\n\n  bool done_reading_called_;\n  bool reading_;\n\n  CompletionCallback resume_start_callback_;  // used for pause and restart.\n\n  base::WeakPtrFactory<MockNetworkTransaction> weak_factory_;\n\n};\n\nclass MockNetworkLayer : public HttpTransactionFactory,\n                         public base::SupportsWeakPtr<MockNetworkLayer> {\n public:\n  MockNetworkLayer();\n  ~MockNetworkLayer() override;\n\n  int transaction_count() const { return transaction_count_; }\n  bool done_reading_called() const { return done_reading_called_; }\n  bool stop_caching_called() const { return stop_caching_called_; }\n  void TransactionDoneReading();\n  void TransactionStopCaching();\n\n  // Resets the transaction count. Can be called after test setup in order to\n  // make test expectations independent of how test setup is performed.\n  void ResetTransactionCount();\n\n  // Returns the last priority passed to CreateTransaction, or\n  // DEFAULT_PRIORITY if it hasn't been called yet.\n  RequestPriority last_create_transaction_priority() const {\n    return last_create_transaction_priority_;\n  }\n\n  // Returns the last transaction created by\n  // CreateTransaction. Returns a NULL WeakPtr if one has not been\n  // created yet, or the last transaction has been destroyed, or\n  // ClearLastTransaction() has been called and a new transaction\n  // hasn't been created yet.\n  base::WeakPtr<MockNetworkTransaction> last_transaction() {\n    return last_transaction_;\n  }\n\n  // Makes last_transaction() return NULL until the next transaction\n  // is created.\n  void ClearLastTransaction() {\n    last_transaction_.reset();\n  }\n\n  // HttpTransactionFactory:\n  int CreateTransaction(RequestPriority priority,\n                        std::unique_ptr<HttpTransaction>* trans) override;\n  HttpCache* GetCache() override;\n  HttpNetworkSession* GetSession() override;\n\n  // The caller must guarantee that |clock| will outlive this object.\n  void SetClock(base::Clock* clock);\n  base::Clock* clock() const { return clock_; }\n\n  // The current time (will use clock_ if it is non NULL).\n  base::Time Now();\n\n private:\n  int transaction_count_;\n  bool done_reading_called_;\n  bool stop_caching_called_;\n  RequestPriority last_create_transaction_priority_;\n\n  // By default clock_ is NULL but it can be set to a custom clock by test\n  // frameworks using SetClock.\n  base::Clock* clock_;\n\n  base::WeakPtr<MockNetworkTransaction> last_transaction_;\n};\n\n//-----------------------------------------------------------------------------\n// helpers\n\n// read the transaction completely\nint ReadTransaction(HttpTransaction* trans, std::string* result);\n\n}  // namespace net\n\n#endif  // NET_HTTP_HTTP_TRANSACTION_TEST_UTIL_H_\n"
+        }, 
+        "generated": false, 
+        "mime_type": "text/plain", 
+        "size": "12269", 
+        "type": 1, 
+        "md5": "a165d6929d9c24e7cf958af6e17648e0", 
+        "codeblock": [
+          {
+            "type": 40, 
+            "name": "NET_HTTP_HTTP_TRANSACTION_TEST_UTIL_H_", 
+            "text_range": {
+              "start_line": 6, 
+              "end_line": 7, 
+              "start_column": 1, 
+              "end_column": 1
+            }, 
+            "signature": ""
+          }, 
+          {
+            "child": [
+              {
+                "name_prefix": "", 
+                "type": 14, 
+                "name": "TEST_MODE_NORMAL", 
+                "text_range": {
+                  "start_line": 45, 
+                  "end_line": 45, 
+                  "start_column": 3, 
+                  "end_column": 23
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 14, 
+                "name": "TEST_MODE_SYNC_NET_START", 
+                "text_range": {
+                  "start_line": 46, 
+                  "end_line": 46, 
+                  "start_column": 3, 
+                  "end_column": 36
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 14, 
+                "name": "TEST_MODE_SYNC_NET_READ", 
+                "text_range": {
+                  "start_line": 47, 
+                  "end_line": 47, 
+                  "start_column": 3, 
+                  "end_column": 36
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 14, 
+                "name": "TEST_MODE_SYNC_CACHE_START", 
+                "text_range": {
+                  "start_line": 48, 
+                  "end_line": 48, 
+                  "start_column": 3, 
+                  "end_column": 38
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 14, 
+                "name": "TEST_MODE_SYNC_CACHE_READ", 
+                "text_range": {
+                  "start_line": 49, 
+                  "end_line": 49, 
+                  "start_column": 3, 
+                  "end_column": 38
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 14, 
+                "name": "TEST_MODE_SYNC_CACHE_WRITE", 
+                "text_range": {
+                  "start_line": 50, 
+                  "end_line": 50, 
+                  "start_column": 3, 
+                  "end_column": 39
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 14, 
+                "name": "TEST_MODE_SYNC_ALL", 
+                "text_range": {
+                  "start_line": 51, 
+                  "end_line": 53, 
+                  "start_column": 3, 
+                  "end_column": 52
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 14, 
+                "name": "TEST_MODE_SLOW_READ", 
+                "text_range": {
+                  "start_line": 54, 
+                  "end_line": 54, 
+                  "start_column": 3, 
+                  "end_column": 31
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name": "MockTransaction", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "url", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 67, 
+                      "end_line": 67, 
+                      "start_column": 3, 
+                      "end_column": 19
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "method", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 68, 
+                      "end_line": 68, 
+                      "start_column": 3, 
+                      "end_column": 22
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "request_time", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 70, 
+                      "end_line": 70, 
+                      "start_column": 3, 
+                      "end_column": 27
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "request_headers", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 71, 
+                      "end_line": 71, 
+                      "start_column": 3, 
+                      "end_column": 31
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "load_flags", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 72, 
+                      "end_line": 72, 
+                      "start_column": 3, 
+                      "end_column": 18
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "status", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 73, 
+                      "end_line": 73, 
+                      "start_column": 3, 
+                      "end_column": 22
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "response_headers", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 74, 
+                      "end_line": 74, 
+                      "start_column": 3, 
+                      "end_column": 32
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "response_time", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 76, 
+                      "end_line": 76, 
+                      "start_column": 3, 
+                      "end_column": 28
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "data", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 77, 
+                      "end_line": 77, 
+                      "start_column": 3, 
+                      "end_column": 20
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "test_mode", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 78, 
+                      "end_line": 78, 
+                      "start_column": 3, 
+                      "end_column": 17
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "handler", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 79, 
+                      "end_line": 79, 
+                      "start_column": 3, 
+                      "end_column": 34
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "read_handler", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 80, 
+                      "end_line": 80, 
+                      "start_column": 3, 
+                      "end_column": 43
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "cert", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 81, 
+                      "end_line": 81, 
+                      "start_column": 3, 
+                      "end_column": 39
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "cert_status", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 82, 
+                      "end_line": 82, 
+                      "start_column": 3, 
+                      "end_column": 26
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ssl_connection_status", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 83, 
+                      "end_line": 83, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "start_return_code", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 86, 
+                      "end_line": 86, 
+                      "start_column": 3, 
+                      "end_column": 27
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "read_return_code", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 89, 
+                      "end_line": 89, 
+                      "start_column": 3, 
+                      "end_column": 26
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 3, 
+                "text_range": {
+                  "start_line": 66, 
+                  "end_line": 90, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 9, 
+                "name": "kSimpleGET_Transaction", 
+                "text_range": {
+                  "start_line": 92, 
+                  "end_line": 92, 
+                  "start_column": 1, 
+                  "end_column": 53
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 9, 
+                "name": "kSimplePOST_Transaction", 
+                "text_range": {
+                  "start_line": 93, 
+                  "end_line": 93, 
+                  "start_column": 1, 
+                  "end_column": 54
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 9, 
+                "name": "kTypicalGET_Transaction", 
+                "text_range": {
+                  "start_line": 94, 
+                  "end_line": 94, 
+                  "start_column": 1, 
+                  "end_column": 54
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 9, 
+                "name": "kETagGET_Transaction", 
+                "text_range": {
+                  "start_line": 95, 
+                  "end_line": 95, 
+                  "start_column": 1, 
+                  "end_column": 51
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 9, 
+                "name": "kRangeGET_Transaction", 
+                "text_range": {
+                  "start_line": 96, 
+                  "end_line": 96, 
+                  "start_column": 1, 
+                  "end_column": 52
+                }, 
+                "signature": ""
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 8, 
+                "name": "FindMockTransaction", 
+                "text_range": {
+                  "start_line": 99, 
+                  "end_line": 99, 
+                  "start_column": 1, 
+                  "end_column": 61
+                }, 
+                "signature": "(const GURL& url)"
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 8, 
+                "name": "AddMockTransaction", 
+                "text_range": {
+                  "start_line": 103, 
+                  "end_line": 103, 
+                  "start_column": 1, 
+                  "end_column": 55
+                }, 
+                "signature": "(const MockTransaction* trans)"
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 8, 
+                "name": "RemoveMockTransaction", 
+                "text_range": {
+                  "start_line": 104, 
+                  "end_line": 104, 
+                  "start_column": 1, 
+                  "end_column": 58
+                }, 
+                "signature": "(const MockTransaction* trans)"
+              }, 
+              {
+                "name": "ScopedMockTransaction", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ScopedMockTransaction", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 107, 
+                      "end_line": 109, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ScopedMockTransaction", 
+                    "signature": "(const MockTransaction& t)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 110, 
+                      "end_line": 113, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "~ScopedMockTransaction", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 114, 
+                      "end_line": 116, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 3, 
+                "text_range": {
+                  "start_line": 106, 
+                  "end_line": 117, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }, 
+              {
+                "name": "MockHttpRequest", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "MockHttpRequest", 
+                    "signature": "(const MockTransaction& t)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 124, 
+                      "end_line": 124, 
+                      "start_column": 3, 
+                      "end_column": 54
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 122, 
+                  "end_line": 125, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }, 
+              {
+                "name": "TestTransactionConsumer", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "TestTransactionConsumer", 
+                    "signature": "(RequestPriority priority, HttpTransactionFactory* factory)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 132, 
+                      "end_line": 133, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "~TestTransactionConsumer", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 134, 
+                      "end_line": 134, 
+                      "start_column": 3, 
+                      "end_column": 38
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Start", 
+                    "signature": "(const HttpRequestInfo* request, const NetLogWithSource& net_log)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 136, 
+                      "end_line": 136, 
+                      "start_column": 3, 
+                      "end_column": 79
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "is_done", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 138, 
+                      "end_line": 138, 
+                      "start_column": 3, 
+                      "end_column": 50
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "error", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 139, 
+                      "end_line": 139, 
+                      "start_column": 3, 
+                      "end_column": 39
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "response_info", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 141, 
+                      "end_line": 143, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "transaction", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 144, 
+                      "end_line": 144, 
+                      "start_column": 3, 
+                      "end_column": 70
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "content", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 145, 
+                      "end_line": 145, 
+                      "start_column": 3, 
+                      "end_column": 58
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "State", 
+                    "signature": "", 
+                    "child": [
+                      {
+                        "modifiers": {
+                          "private": true
+                        }, 
+                        "name": "IDLE", 
+                        "signature": "", 
+                        "name_prefix": "", 
+                        "type": 14, 
+                        "text_range": {
+                          "start_line": 149, 
+                          "end_line": 149, 
+                          "start_column": 5, 
+                          "end_column": 9
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "private": true
+                        }, 
+                        "name": "STARTING", 
+                        "signature": "", 
+                        "name_prefix": "", 
+                        "type": 14, 
+                        "text_range": {
+                          "start_line": 150, 
+                          "end_line": 150, 
+                          "start_column": 5, 
+                          "end_column": 13
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "private": true
+                        }, 
+                        "name": "READING", 
+                        "signature": "", 
+                        "name_prefix": "", 
+                        "type": 14, 
+                        "text_range": {
+                          "start_line": 151, 
+                          "end_line": 151, 
+                          "start_column": 5, 
+                          "end_column": 12
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "private": true
+                        }, 
+                        "name": "DONE", 
+                        "signature": "", 
+                        "name_prefix": "", 
+                        "type": 14, 
+                        "text_range": {
+                          "start_line": 152, 
+                          "end_line": 152, 
+                          "start_column": 5, 
+                          "end_column": 9
+                        }
+                      }
+                    ], 
+                    "name_prefix": "", 
+                    "type": 4, 
+                    "text_range": {
+                      "start_line": 148, 
+                      "end_line": 153, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "DidStart", 
+                    "signature": "(int result)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 155, 
+                      "end_line": 155, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "DidRead", 
+                    "signature": "(int result)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 156, 
+                      "end_line": 156, 
+                      "start_column": 3, 
+                      "end_column": 28
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "DidFinish", 
+                    "signature": "(int result)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 157, 
+                      "end_line": 157, 
+                      "start_column": 3, 
+                      "end_column": 30
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "Read", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 158, 
+                      "end_line": 158, 
+                      "start_column": 3, 
+                      "end_column": 15
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "OnIOComplete", 
+                    "signature": "(int result)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 160, 
+                      "end_line": 160, 
+                      "start_column": 3, 
+                      "end_column": 33
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "state_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 162, 
+                      "end_line": 162, 
+                      "start_column": 3, 
+                      "end_column": 16
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "trans_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 163, 
+                      "end_line": 163, 
+                      "start_column": 3, 
+                      "end_column": 43
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "content_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 164, 
+                      "end_line": 164, 
+                      "start_column": 3, 
+                      "end_column": 24
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "read_buf_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 165, 
+                      "end_line": 165, 
+                      "start_column": 3, 
+                      "end_column": 37
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "error_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 166, 
+                      "end_line": 166, 
+                      "start_column": 3, 
+                      "end_column": 14
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "quit_counter_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 168, 
+                      "end_line": 168, 
+                      "start_column": 3, 
+                      "end_column": 28
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 130, 
+                  "end_line": 169, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }, 
+              {
+                "name": "MockNetworkTransaction", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "CreateHelper", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 10, 
+                    "text_range": {
+                      "start_line": 183, 
+                      "end_line": 183, 
+                      "start_column": 3, 
+                      "end_column": 67
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "MockNetworkTransaction", 
+                    "signature": "(RequestPriority priority, MockNetworkLayer* factory)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 186, 
+                      "end_line": 186, 
+                      "start_column": 3, 
+                      "end_column": 79
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "~MockNetworkTransaction", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 187, 
+                      "end_line": 187, 
+                      "start_column": 3, 
+                      "end_column": 38
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Start", 
+                    "signature": "(const HttpRequestInfo* request, const CompletionCallback& callback, const NetLogWithSource& net_log)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 189, 
+                      "end_line": 191, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RestartIgnoringLastError", 
+                    "signature": "(const CompletionCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 193, 
+                      "end_line": 193, 
+                      "start_column": 3, 
+                      "end_column": 77
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RestartWithCertificate", 
+                    "signature": "(scoped_refptr<X509Certificate> client_cert, scoped_refptr<SSLPrivateKey> client_private_key, const CompletionCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 195, 
+                      "end_line": 197, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RestartWithAuth", 
+                    "signature": "(const AuthCredentials& credentials, const CompletionCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 199, 
+                      "end_line": 200, 
+                      "start_column": 3, 
+                      "end_column": 68
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "IsReadyToRestartForAuth", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 202, 
+                      "end_line": 202, 
+                      "start_column": 3, 
+                      "end_column": 43
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Read", 
+                    "signature": "(IOBuffer* buf, int buf_len, const CompletionCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 204, 
+                      "end_line": 206, 
+                      "start_column": 3, 
+                      "end_column": 57
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "PopulateNetErrorDetails", 
+                    "signature": "(NetErrorDetails* details)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 207, 
+                      "end_line": 207, 
+                      "start_column": 3, 
+                      "end_column": 73
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "StopCaching", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 209, 
+                      "end_line": 209, 
+                      "start_column": 3, 
+                      "end_column": 31
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetFullRequestHeaders", 
+                    "signature": "(HttpRequestHeaders* headers)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 211, 
+                      "end_line": 211, 
+                      "start_column": 3, 
+                      "end_column": 74
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetTotalReceivedBytes", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 213, 
+                      "end_line": 213, 
+                      "start_column": 3, 
+                      "end_column": 50
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetTotalSentBytes", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 215, 
+                      "end_line": 215, 
+                      "start_column": 3, 
+                      "end_column": 46
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "DoneReading", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 217, 
+                      "end_line": 217, 
+                      "start_column": 3, 
+                      "end_column": 31
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetResponseInfo", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 219, 
+                      "end_line": 219, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetLoadState", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 221, 
+                      "end_line": 221, 
+                      "start_column": 3, 
+                      "end_column": 43
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetQuicServerInfo", 
+                    "signature": "(QuicServerInfo* quic_server_info)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 223, 
+                      "end_line": 223, 
+                      "start_column": 3, 
+                      "end_column": 69
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetLoadTimingInfo", 
+                    "signature": "(LoadTimingInfo* load_timing_info)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 225, 
+                      "end_line": 225, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetRemoteEndpoint", 
+                    "signature": "(IPEndPoint* endpoint)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 227, 
+                      "end_line": 227, 
+                      "start_column": 3, 
+                      "end_column": 63
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetPriority", 
+                    "signature": "(RequestPriority priority)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 229, 
+                      "end_line": 229, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetWebSocketHandshakeStreamCreateHelper", 
+                    "signature": "(CreateHelper* create_helper)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 231, 
+                      "end_line": 232, 
+                      "start_column": 3, 
+                      "end_column": 45
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetBeforeNetworkStartCallback", 
+                    "signature": "(const BeforeNetworkStartCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 234, 
+                      "end_line": 235, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetBeforeHeadersSentCallback", 
+                    "signature": "(const BeforeHeadersSentCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 237, 
+                      "end_line": 238, 
+                      "start_column": 3, 
+                      "end_column": 59
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetRequestHeadersCallback", 
+                    "signature": "(RequestHeadersCallback callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 240, 
+                      "end_line": 240, 
+                      "start_column": 3, 
+                      "end_column": 78
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetResponseHeadersCallback", 
+                    "signature": "(ResponseHeadersCallback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 241, 
+                      "end_line": 241, 
+                      "start_column": 3, 
+                      "end_column": 71
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ResumeNetworkStart", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 243, 
+                      "end_line": 243, 
+                      "start_column": 3, 
+                      "end_column": 37
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetConnectionAttempts", 
+                    "signature": "(ConnectionAttempts* out)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 245, 
+                      "end_line": 245, 
+                      "start_column": 3, 
+                      "end_column": 70
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "websocket_handshake_stream_create_helper", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 247, 
+                      "end_line": 249, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "priority", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 251, 
+                      "end_line": 251, 
+                      "start_column": 3, 
+                      "end_column": 57
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "request", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 252, 
+                      "end_line": 252, 
+                      "start_column": 3, 
+                      "end_column": 62
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "kTotalReceivedBytes", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 256, 
+                      "end_line": 256, 
+                      "start_column": 3, 
+                      "end_column": 44
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "kTotalSentBytes", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 259, 
+                      "end_line": 259, 
+                      "start_column": 3, 
+                      "end_column": 40
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "StartInternal", 
+                    "signature": "(const HttpRequestInfo* request, const CompletionCallback& callback, const NetLogWithSource& net_log)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 262, 
+                      "end_line": 264, 
+                      "start_column": 3, 
+                      "end_column": 54
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "CallbackLater", 
+                    "signature": "(const CompletionCallback& callback, int result)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 265, 
+                      "end_line": 265, 
+                      "start_column": 3, 
+                      "end_column": 70
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "RunCallback", 
+                    "signature": "(const CompletionCallback& callback, int result)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 266, 
+                      "end_line": 266, 
+                      "start_column": 3, 
+                      "end_column": 68
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "request_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 268, 
+                      "end_line": 268, 
+                      "start_column": 3, 
+                      "end_column": 35
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "response_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 269, 
+                      "end_line": 269, 
+                      "start_column": 3, 
+                      "end_column": 30
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "data_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 270, 
+                      "end_line": 270, 
+                      "start_column": 3, 
+                      "end_column": 21
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "data_cursor_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 271, 
+                      "end_line": 271, 
+                      "start_column": 3, 
+                      "end_column": 24
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "content_length_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 272, 
+                      "end_line": 272, 
+                      "start_column": 3, 
+                      "end_column": 27
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "test_mode_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 273, 
+                      "end_line": 273, 
+                      "start_column": 3, 
+                      "end_column": 18
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "priority_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 274, 
+                      "end_line": 274, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "read_handler_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 275, 
+                      "end_line": 275, 
+                      "start_column": 3, 
+                      "end_column": 44
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "websocket_handshake_stream_create_helper_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 276, 
+                      "end_line": 276, 
+                      "start_column": 3, 
+                      "end_column": 59
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "before_network_start_callback_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 277, 
+                      "end_line": 277, 
+                      "start_column": 3, 
+                      "end_column": 61
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "transaction_factory_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 278, 
+                      "end_line": 278, 
+                      "start_column": 3, 
+                      "end_column": 56
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "received_bytes_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 279, 
+                      "end_line": 279, 
+                      "start_column": 3, 
+                      "end_column": 27
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "sent_bytes_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 280, 
+                      "end_line": 280, 
+                      "start_column": 3, 
+                      "end_column": 23
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "socket_log_id_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 286, 
+                      "end_line": 286, 
+                      "start_column": 3, 
+                      "end_column": 31
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "done_reading_called_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 288, 
+                      "end_line": 288, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "reading_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 289, 
+                      "end_line": 289, 
+                      "start_column": 3, 
+                      "end_column": 17
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "resume_start_callback_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 291, 
+                      "end_line": 291, 
+                      "start_column": 3, 
+                      "end_column": 45
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "weak_factory_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 293, 
+                      "end_line": 293, 
+                      "start_column": 3, 
+                      "end_column": 62
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 180, 
+                  "end_line": 295, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }, 
+              {
+                "name": "MockNetworkLayer", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "MockNetworkLayer", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 300, 
+                      "end_line": 300, 
+                      "start_column": 3, 
+                      "end_column": 22
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "~MockNetworkLayer", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 301, 
+                      "end_line": 301, 
+                      "start_column": 3, 
+                      "end_column": 32
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "transaction_count", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 303, 
+                      "end_line": 303, 
+                      "start_column": 3, 
+                      "end_column": 63
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "done_reading_called", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 304, 
+                      "end_line": 304, 
+                      "start_column": 3, 
+                      "end_column": 68
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "stop_caching_called", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 305, 
+                      "end_line": 305, 
+                      "start_column": 3, 
+                      "end_column": 68
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "TransactionDoneReading", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 306, 
+                      "end_line": 306, 
+                      "start_column": 3, 
+                      "end_column": 33
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "TransactionStopCaching", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 307, 
+                      "end_line": 307, 
+                      "start_column": 3, 
+                      "end_column": 33
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ResetTransactionCount", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 311, 
+                      "end_line": 311, 
+                      "start_column": 3, 
+                      "end_column": 32
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "last_create_transaction_priority", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 315, 
+                      "end_line": 317, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "last_transaction", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 324, 
+                      "end_line": 326, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ClearLastTransaction", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 330, 
+                      "end_line": 332, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "CreateTransaction", 
+                    "signature": "(RequestPriority priority, std::unique_ptr<HttpTransaction>* trans)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 335, 
+                      "end_line": 336, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetCache", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 337, 
+                      "end_line": 337, 
+                      "start_column": 3, 
+                      "end_column": 34
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetSession", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 338, 
+                      "end_line": 338, 
+                      "start_column": 3, 
+                      "end_column": 45
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetClock", 
+                    "signature": "(base::Clock* clock)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 341, 
+                      "end_line": 341, 
+                      "start_column": 3, 
+                      "end_column": 37
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "clock", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 342, 
+                      "end_line": 342, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Now", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 345, 
+                      "end_line": 345, 
+                      "start_column": 3, 
+                      "end_column": 20
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "transaction_count_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 348, 
+                      "end_line": 348, 
+                      "start_column": 3, 
+                      "end_column": 26
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "done_reading_called_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 349, 
+                      "end_line": 349, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "stop_caching_called_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 350, 
+                      "end_line": 350, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "last_create_transaction_priority_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 351, 
+                      "end_line": 351, 
+                      "start_column": 3, 
+                      "end_column": 53
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "clock_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 355, 
+                      "end_line": 355, 
+                      "start_column": 3, 
+                      "end_column": 23
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "last_transaction_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 357, 
+                      "end_line": 357, 
+                      "start_column": 3, 
+                      "end_column": 59
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 297, 
+                  "end_line": 358, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }, 
+              {
+                "name_prefix": "", 
+                "type": 8, 
+                "name": "ReadTransaction", 
+                "text_range": {
+                  "start_line": 364, 
+                  "end_line": 364, 
+                  "start_column": 1, 
+                  "end_column": 66
+                }, 
+                "signature": "(HttpTransaction* trans, std::string* result)"
+              }
+            ], 
+            "type": 11, 
+            "name": "net", 
+            "text_range": {
+              "start_line": 31, 
+              "end_line": 366, 
+              "start_column": 1, 
+              "end_column": 2
+            }, 
+            "signature": ""
+          }
+        ]
+      }, 
+      "return_code": 1
+    }
+  ]
+}

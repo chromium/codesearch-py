@@ -114,8 +114,11 @@ class FileCache:
           remove.append(url)
       for url in remove:
         self.store.pop(url)
-      self.timer = threading.Timer(15 * 60, self.gc)
-      self.timer.start()
+      if not purge:
+        if self.timer is not None:
+          self.timer.cancel()
+        self.timer = threading.Timer(15 * 60, self.gc)
+        self.timer.start()
       dir_to_purge = self.cache_dir
       expiration = self.expiration
 

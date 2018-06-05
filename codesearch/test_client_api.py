@@ -71,6 +71,14 @@ class TestCodeSearch(unittest.TestCase):
                                            KytheNodeKind.FUNCTION_CONSTRUCTOR)
     self.assertEqual(3, len(signatures))
 
+  def test_gob_revision(self):
+    TARGET_FILE = '/src/chrome/src/README.md'
+    cs = CodeSearch(source_root=SOURCE_ROOT)
+
+    self.assertEqual('', cs.GetRevision())
+    fi = cs.GetFileInfo(TARGET_FILE)
+    self.assertEqual(40, len(cs.GetRevision()))
+
   def test_get_signature_for_symbol(self):
     # These values are likely to change pretty often. So this test will likely
     # fail each time we refresh the test data corpus. If that happens, open up
