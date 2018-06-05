@@ -248,9 +248,7 @@ def LastRequest():
 
 if __name__ == '__main__':
   # Attempt to resolve all missing resource requests.
-  HOST_MAPPING = {
-      'cs.chromium.org': 'cs-staging.chromium.org'
-  }
+  HOST_MAPPING = {'cs.chromium.org': 'cs-staging.chromium.org'}
 
   resolved_count = 0
 
