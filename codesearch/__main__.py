@@ -253,6 +253,7 @@ status_command.set_defaults(
     lambda cs, a: cs.SendRequestToServer(CompoundRequest(status_request=[{}])))
 
 arguments = parser.parse_args()
+codesearch_instance = None
 
 try:
   codesearch_instance = CodeSearch(
@@ -263,4 +264,5 @@ try:
 except Exception as e:
   print e
 finally:
-  codesearch_instance.TeardownCache()
+  if codesearch_instance is not None:
+    codesearch_instance.TeardownCache()

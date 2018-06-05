@@ -3436,14 +3436,14 @@
             "end_column": 18
           }, 
           "internal_link": {
-            "path": "src/buildtools/third_party/libc++/trunk/src/new.cpp", 
+            "path": "src/base/allocator/allocator_shim_override_cpp_symbols.h", 
             "range": {
-              "start_line": 69, 
-              "end_line": 69, 
-              "start_column": 1, 
-              "end_column": 8
+              "start_line": 18, 
+              "end_line": 18, 
+              "start_column": 26, 
+              "end_column": 33
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/src/new.cpp#%401673%3A1681%40ZRfBUK25AThB%2BOOoMDOnnkJnihDwrWKgMUSqMLNAsD8%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Fsrc%2Fnew.cpp", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/base/allocator/allocator_shim_override_cpp_symbols.h?root=chromium-android#%40626%3A634%40HPxb8rnEDLRFSLleHwBwow%2B%2F7UFoJ3FKxxdueXkY%2FvY%3D%23chromium%23chromium-android%23src%2Fbase%2Fallocator%2Fallocator_shim_override_cpp_symbols.h", 
             "package_name": "chromium", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/new#X3xYq9EXoFrcQ2iS25SWVHV5GscRkkLHfU14DZF8jxs%3D"
           }, 
@@ -5617,5 +5617,5 @@
       ]
     }
   ], 
-  "elapsed_ms": 1137
+  "elapsed_ms": 896
 }

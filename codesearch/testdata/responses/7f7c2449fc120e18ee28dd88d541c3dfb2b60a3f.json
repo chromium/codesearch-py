@@ -620,16 +620,16 @@
             "end_column": 24
           }, 
           "internal_link": {
-            "path": "src/net/http/http_stream.h", 
+            "path": "src/net/base/io_buffer.h", 
             "range": {
-              "start_line": 39, 
-              "end_line": 39, 
-              "start_column": 7, 
-              "end_column": 14
+              "start_line": 76, 
+              "end_line": 76, 
+              "start_column": 18, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream.h#%401145%3A1153%40HbNAua3X64qUtXzmwd7nliKlZpoDdcH3oB9Occ32toA%3D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_stream.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#%403073%3A3081%40IOBuffer%3Anet%23c%23p%24O0ht3pQkw%23chromium%23src%2Fnet%2Fbase%2Fio_buffer.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream.h#HbNAua3X64qUtXzmwd7nliKlZpoDdcH3oB9Occ32toA%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#IOBuffer%3Anet%23c%23p%24O0ht3pQkw"
           }, 
           "type": {
             "id": 1
@@ -1277,7 +1277,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/base/memory/weak_ptr.h#%407326%3A7333%408MLp7NN8f5h09%2FU1zxPtNmK4HoP2By5QgKkJBcrmWTg%3D%23chromium%23src%2Fbase%2Fmemory%2Fweak_ptr.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/memory/weak_ptr.h#8MLp7NN8f5h09%2FU1zxPtNmK4HoP2By5QgKkJBcrmWTg%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/memory/weak_ptr.h#Eb1EqQGBCTVB4XZA9fLKQzCxl6vQJiTXdW1RIGp8z3U%3D"
           }, 
           "type": {
             "id": 1
@@ -1728,7 +1728,6 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/throttling/throttling_controller.h#%40689%3A709%40ThrottlingController%3Anetwork%23c%23jtm2V07nFUb%23chromium%23src%2Fservices%2Fnetwork%2Fthrottling%2Fthrottling_controller.h", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/throttling/throttling_network_transaction.h#TVKRfC9ejpcuaXy0TAIOPRklhq9LKbaPx21BOQ0rNCQ%3D"
           }
         }, 
@@ -1762,7 +1761,6 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/throttling/throttling_upload_data_stream.h#%40741%3A767%40kC69WPBWm3M3LxzTKkn28kMvhSWxEVK3BvNYRZa5Fvc%3D%23chromium%23src%2Fservices%2Fnetwork%2Fthrottling%2Fthrottling_upload_data_stream.h", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/throttling/throttling_network_transaction.h#pZkJIA9i43shWFOsQNUa4rbsvxwL5L7BsUZQXnbNIn8%3D"
           }
         }, 
@@ -3055,5 +3053,5 @@
       ]
     }
   ], 
-  "elapsed_ms": 137
+  "elapsed_ms": 157
 }

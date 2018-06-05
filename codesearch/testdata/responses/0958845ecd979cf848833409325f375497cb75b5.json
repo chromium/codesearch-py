@@ -1,5 +1,5 @@
 {
-  "elapsed_ms": 696, 
+  "elapsed_ms": 162, 
   "call_graph_response": [
     {
       "node": {
@@ -67,7 +67,7 @@
             "file_path": "src/net/http/http_auth_unittest.cc"
           }
         ], 
-        "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.cc#Nrxbg2wUMb7TnDHlFpxZyOQVIkRE3PT9Fb4TKk23Pqg%3D"
+        "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#XuQjjB%2FAKTA9o5vtXL1SZ6VRmQTtjfVt5Jh%2Bsorw5eg%3D"
       }, 
       "is_from_kythe": true, 
       "return_code": 1, 

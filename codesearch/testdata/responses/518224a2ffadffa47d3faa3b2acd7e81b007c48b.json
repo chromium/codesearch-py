@@ -468,30 +468,6 @@
           }
         }, 
         {
-          "kythe_xref_kind": 1000, 
-          "range": {
-            "start_line": 50, 
-            "end_line": 50, 
-            "start_column": 7, 
-            "end_column": 24
-          }, 
-          "internal_link": {
-            "path": "src/net/base/net_export.h", 
-            "range": {
-              "start_line": 29, 
-              "end_line": 29, 
-              "start_column": 9, 
-              "end_column": 26
-            }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/net_export.h#%40982%3A1000%40NET_EXPORT_PRIVATE%23m%40982%23chromium%23src%2Fnet%2Fbase%2Fnet_export.h", 
-            "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/net_export.h#NET_EXPORT_PRIVATE%23m%40982"
-          }, 
-          "type": {
-            "id": 1
-          }
-        }, 
-        {
           "kythe_xref_kind": 1310, 
           "range": {
             "start_line": 51, 
@@ -605,7 +581,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_session.h#%402343%3A2361%40HttpNetworkSession%3Anet%23c%23miG2o9qa44n%23chromium%23src%2Fnet%2Fhttp%2Fhttp_network_session.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream.h#yaDAHyCEGr36c4e73r2%2BrNp67xpe%2FH45pkdeUNVrDcE%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_session.h#HttpNetworkSession%3Anet%23c%23miG2o9qa44n"
           }, 
           "type": {
             "id": 1
@@ -716,16 +692,16 @@
             "end_column": 42
           }, 
           "internal_link": {
-            "path": "src/base/memory/scoped_refptr.h", 
+            "path": "src/net/http/http_auth.h", 
             "range": {
-              "start_line": 167, 
-              "end_line": 167, 
-              "start_column": 7, 
-              "end_column": 19
+              "start_line": 16, 
+              "end_line": 16, 
+              "start_column": 26, 
+              "end_column": 38
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/base/memory/scoped_refptr.h#%405341%3A5354%40mWSz%2BcWfWzjzqjlLwsthJPTwwvCT%2F3NBYFSnlNUOpbc%3D%23chromium%23src%2Fbase%2Fmemory%2Fscoped_refptr.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#%40401%3A414%40xTh3LccY5fc3%2F2nNFEOvdBEWcMsw2wBN6mz62QFoU7I%3D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/memory/scoped_refptr.h#mWSz%2BcWfWzjzqjlLwsthJPTwwvCT%2F3NBYFSnlNUOpbc%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#xTh3LccY5fc3%2F2nNFEOvdBEWcMsw2wBN6mz62QFoU7I%3D"
           }, 
           "type": {
             "id": 1
@@ -764,16 +740,16 @@
             "end_column": 42
           }, 
           "internal_link": {
-            "path": "src/base/memory/scoped_refptr.h", 
+            "path": "src/net/http/http_auth.h", 
             "range": {
-              "start_line": 167, 
-              "end_line": 167, 
-              "start_column": 7, 
-              "end_column": 19
+              "start_line": 16, 
+              "end_line": 16, 
+              "start_column": 26, 
+              "end_column": 38
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/base/memory/scoped_refptr.h#%405341%3A5354%40mWSz%2BcWfWzjzqjlLwsthJPTwwvCT%2F3NBYFSnlNUOpbc%3D%23chromium%23src%2Fbase%2Fmemory%2Fscoped_refptr.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#%40401%3A414%40xTh3LccY5fc3%2F2nNFEOvdBEWcMsw2wBN6mz62QFoU7I%3D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/memory/scoped_refptr.h#mWSz%2BcWfWzjzqjlLwsthJPTwwvCT%2F3NBYFSnlNUOpbc%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#xTh3LccY5fc3%2F2nNFEOvdBEWcMsw2wBN6mz62QFoU7I%3D"
           }, 
           "type": {
             "id": 1
@@ -884,16 +860,16 @@
             "end_column": 19
           }, 
           "internal_link": {
-            "path": "src/net/http/http_stream.h", 
+            "path": "src/net/base/io_buffer.h", 
             "range": {
-              "start_line": 39, 
-              "end_line": 39, 
-              "start_column": 7, 
-              "end_column": 14
+              "start_line": 76, 
+              "end_line": 76, 
+              "start_column": 18, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream.h#%401145%3A1153%40HbNAua3X64qUtXzmwd7nliKlZpoDdcH3oB9Occ32toA%3D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_stream.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#%403073%3A3081%40IOBuffer%3Anet%23c%23p%24O0ht3pQkw%23chromium%23src%2Fnet%2Fbase%2Fio_buffer.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream.h#HbNAua3X64qUtXzmwd7nliKlZpoDdcH3oB9Occ32toA%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#IOBuffer%3Anet%23c%23p%24O0ht3pQkw"
           }, 
           "type": {
             "id": 1
@@ -1052,16 +1028,16 @@
             "end_column": 39
           }, 
           "internal_link": {
-            "path": "src/net/http/http_transaction.h", 
+            "path": "src/net/quic/chromium/quic_server_info.h", 
             "range": {
-              "start_line": 31, 
-              "end_line": 31, 
-              "start_column": 7, 
-              "end_column": 20
+              "start_line": 25, 
+              "end_line": 25, 
+              "start_column": 27, 
+              "end_column": 40
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#%40888%3A902%40j2GyRhIeNWeWVg1ySk0ghDvYTHF%2FJfLSUSgLAT%2FBRHQ%3D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_transaction.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_server_info.h#%40854%3A868%40QuicServerInfo%3Anet%23c%23n%24cEHUzSVW1%23chromium%23src%2Fnet%2Fquic%2Fchromium%2Fquic_server_info.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#j2GyRhIeNWeWVg1ySk0ghDvYTHF%2FJfLSUSgLAT%2FBRHQ%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_chromium_client_session.h#5d2nD0TPVK3jkBQxvZfxMVFgNaLAN1LLyZMU4PtNjoU%3D"
           }, 
           "type": {
             "id": 1
@@ -1493,7 +1469,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/bidirectional_stream_impl.h#%401105%3A1128%40BidirectionalStreamImpl%3Anet%23c%23e7Gy2OJXTlj%23chromium%23src%2Fnet%2Fhttp%2Fbidirectional_stream_impl.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream_request.h#JFx3kHyaNlrEhzW2BFoCf9vct6vvGVKdJ5KzjYIQYdo%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/bidirectional_stream_impl.h#BidirectionalStreamImpl%3Anet%23c%23e7Gy2OJXTlj"
           }, 
           "type": {
             "id": 1
@@ -1781,7 +1757,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_controller.h#%401268%3A1286%40HttpAuthController%3Anet%23c%23kTeUfqfy8NF%23chromium%23src%2Fnet%2Fhttp%2Fhttp_auth_controller.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream_request.h#JXTXW2BC%2B4SP3%2F%2F62MLhkasZRZuTqWhhF%2FFvZohdvy0%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_controller.h#HttpAuthController%3Anet%23c%23kTeUfqfy8NF"
           }, 
           "type": {
             "id": 1
@@ -2573,7 +2549,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_controller.h#%401268%3A1286%40HttpAuthController%3Anet%23c%23kTeUfqfy8NF%23chromium%23src%2Fnet%2Fhttp%2Fhttp_auth_controller.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream_request.h#JXTXW2BC%2B4SP3%2F%2F62MLhkasZRZuTqWhhF%2FFvZohdvy0%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_controller.h#HttpAuthController%3Anet%23c%23kTeUfqfy8NF"
           }, 
           "type": {
             "id": 1
@@ -2700,27 +2676,19 @@
           }
         }, 
         {
-          "kythe_xref_kind": 1500, 
           "range": {
             "start_line": 312, 
             "end_line": 312, 
             "start_column": 3, 
             "end_column": 29
           }, 
-          "internal_link": {
-            "path": "src/net/base/completion_repeating_callback.h", 
-            "range": {
-              "start_line": 17, 
-              "end_line": 17, 
-              "start_column": 7, 
-              "end_column": 33
-            }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/completion_repeating_callback.h#%40520%3A547%402JAkG7NY95MVfjq6PpzGE4bpvI83n5OgIiyG1MyjIQM%3D", 
-            "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#2JAkG7NY95MVfjq6PpzGE4bpvI83n5OgIiyG1MyjIQM%3D"
-          }, 
+          "kythe_xref_kind": 1500, 
           "type": {
-            "id": 1
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe:?lang=c%2B%2B#2JAkG7NY95MVfjq6PpzGE4bpvI83n5OgIiyG1MyjIQM%3D"
           }
         }, 
         {
@@ -2765,7 +2733,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_session.h#%402343%3A2361%40HttpNetworkSession%3Anet%23c%23miG2o9qa44n%23chromium%23src%2Fnet%2Fhttp%2Fhttp_network_session.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream.h#yaDAHyCEGr36c4e73r2%2BrNp67xpe%2FH45pkdeUNVrDcE%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_session.h#HttpNetworkSession%3Anet%23c%23miG2o9qa44n"
           }, 
           "type": {
             "id": 1
@@ -3356,16 +3324,16 @@
             "end_column": 15
           }, 
           "internal_link": {
-            "path": "src/base/memory/scoped_refptr.h", 
+            "path": "src/net/http/http_auth.h", 
             "range": {
-              "start_line": 167, 
-              "end_line": 167, 
-              "start_column": 7, 
-              "end_column": 19
+              "start_line": 16, 
+              "end_line": 16, 
+              "start_column": 26, 
+              "end_column": 38
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/base/memory/scoped_refptr.h#%405341%3A5354%40mWSz%2BcWfWzjzqjlLwsthJPTwwvCT%2F3NBYFSnlNUOpbc%3D%23chromium%23src%2Fbase%2Fmemory%2Fscoped_refptr.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#%40401%3A414%40xTh3LccY5fc3%2F2nNFEOvdBEWcMsw2wBN6mz62QFoU7I%3D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/base/memory/scoped_refptr.h#mWSz%2BcWfWzjzqjlLwsthJPTwwvCT%2F3NBYFSnlNUOpbc%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#xTh3LccY5fc3%2F2nNFEOvdBEWcMsw2wBN6mz62QFoU7I%3D"
           }, 
           "type": {
             "id": 1
@@ -3380,16 +3348,16 @@
             "end_column": 24
           }, 
           "internal_link": {
-            "path": "src/net/http/http_stream.h", 
+            "path": "src/net/base/io_buffer.h", 
             "range": {
-              "start_line": 39, 
-              "end_line": 39, 
-              "start_column": 7, 
-              "end_column": 14
+              "start_line": 76, 
+              "end_line": 76, 
+              "start_column": 18, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream.h#%401145%3A1153%40HbNAua3X64qUtXzmwd7nliKlZpoDdcH3oB9Occ32toA%3D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_stream.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#%403073%3A3081%40IOBuffer%3Anet%23c%23p%24O0ht3pQkw%23chromium%23src%2Fnet%2Fbase%2Fio_buffer.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream.h#HbNAua3X64qUtXzmwd7nliKlZpoDdcH3oB9Occ32toA%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#IOBuffer%3Anet%23c%23p%24O0ht3pQkw"
           }, 
           "type": {
             "id": 1
@@ -3880,7 +3848,6 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/bidirectional_stream_impl.h#%401105%3A1128%40BidirectionalStreamImpl%3Anet%23c%23e7Gy2OJXTlj%23chromium%23src%2Fnet%2Fhttp%2Fbidirectional_stream_impl.h", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.h#bDMyHWM2s8DkBMv2XCYjFXA2H2tTA5tRn6IbaJ5AxTY%3D"
           }
         }, 
@@ -8027,5 +7994,5 @@
       ]
     }
   ], 
-  "elapsed_ms": 1759
+  "elapsed_ms": 1396
 }
