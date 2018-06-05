@@ -1,0 +1,1868 @@
+{
+  "elapsed_ms": 53, 
+  "file_info_response": [
+    {
+      "file_info": {
+        "gob_info": {
+          "repo": "chromium/chromium/src", 
+          "commit": "3ecf1b92c7c344682236143d489e3971c6809af5", 
+          "path": "base/metrics/field_trial.h"
+        }, 
+        "name": "src/base/metrics/field_trial.h", 
+        "language": "c++", 
+        "changelist_num": "3ecf1b92c7c344682236143d489e3971c6809af5", 
+        "package_name": "chromium", 
+        "lines": "802", 
+        "content": {
+          "text": "// Copyright (c) 2012 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n// FieldTrial is a class for handling details of statistical experiments\n// performed by actual users in the field (i.e., in a shipped or beta product).\n// All code is called exclusively on the UI thread currently.\n//\n// The simplest example is an experiment to see whether one of two options\n// produces \"better\" results across our user population.  In that scenario, UMA\n// data is uploaded to aggregate the test results, and this FieldTrial class\n// manages the state of each such experiment (state == which option was\n// pseudo-randomly selected).\n//\n// States are typically generated randomly, either based on a one time\n// randomization (which will yield the same results, in terms of selecting\n// the client for a field trial or not, for every run of the program on a\n// given machine), or by a session randomization (generated each time the\n// application starts up, but held constant during the duration of the\n// process).\n\n//------------------------------------------------------------------------------\n// Example:  Suppose we have an experiment involving memory, such as determining\n// the impact of some pruning algorithm.\n// We assume that we already have a histogram of memory usage, such as:\n\n//   UMA_HISTOGRAM_COUNTS(\"Memory.RendererTotal\", count);\n\n// Somewhere in main thread initialization code, we'd probably define an\n// instance of a FieldTrial, with code such as:\n\n// // FieldTrials are reference counted, and persist automagically until\n// // process teardown, courtesy of their automatic registration in\n// // FieldTrialList.\n// // Note: This field trial will run in Chrome instances compiled through\n// //       8 July, 2015, and after that all instances will be in \"StandardMem\".\n// scoped_refptr<base::FieldTrial> trial(\n//     base::FieldTrialList::FactoryGetFieldTrial(\n//         \"MemoryExperiment\", 1000, \"StandardMem\", 2015, 7, 8,\n//         base::FieldTrial::ONE_TIME_RANDOMIZED, NULL));\n//\n// const int high_mem_group =\n//     trial->AppendGroup(\"HighMem\", 20);  // 2% in HighMem group.\n// const int low_mem_group =\n//     trial->AppendGroup(\"LowMem\", 20);   // 2% in LowMem group.\n// // Take action depending of which group we randomly land in.\n// if (trial->group() == high_mem_group)\n//   SetPruningAlgorithm(kType1);  // Sample setting of browser state.\n// else if (trial->group() == low_mem_group)\n//   SetPruningAlgorithm(kType2);  // Sample alternate setting.\n\n//------------------------------------------------------------------------------\n\n#ifndef BASE_METRICS_FIELD_TRIAL_H_\n#define BASE_METRICS_FIELD_TRIAL_H_\n\n#include <stddef.h>\n#include <stdint.h>\n\n#include <map>\n#include <memory>\n#include <set>\n#include <string>\n#include <vector>\n\n#include \"base/atomicops.h\"\n#include \"base/base_export.h\"\n#include \"base/command_line.h\"\n#include \"base/feature_list.h\"\n#include \"base/files/file.h\"\n#include \"base/gtest_prod_util.h\"\n#include \"base/macros.h\"\n#include \"base/memory/ref_counted.h\"\n#include \"base/memory/shared_memory.h\"\n#include \"base/memory/shared_memory_handle.h\"\n#include \"base/metrics/persistent_memory_allocator.h\"\n#include \"base/observer_list_threadsafe.h\"\n#include \"base/pickle.h\"\n#include \"base/process/launch.h\"\n#include \"base/strings/string_piece.h\"\n#include \"base/synchronization/lock.h\"\n#include \"base/time/time.h\"\n#include \"build/build_config.h\"\n\nnamespace base {\n\nclass FieldTrialList;\n\nclass BASE_EXPORT FieldTrial : public RefCounted<FieldTrial> {\n public:\n  typedef int Probability;  // Probability type for being selected in a trial.\n\n  // TODO(665129): Make private again after crash has been resolved.\n  typedef SharedPersistentMemoryAllocator::Reference FieldTrialRef;\n\n  // Specifies the persistence of the field trial group choice.\n  enum RandomizationType {\n    // One time randomized trials will persist the group choice between\n    // restarts, which is recommended for most trials, especially those that\n    // change user visible behavior.\n    ONE_TIME_RANDOMIZED,\n    // Session randomized trials will roll the dice to select a group on every\n    // process restart.\n    SESSION_RANDOMIZED,\n  };\n\n  // EntropyProvider is an interface for providing entropy for one-time\n  // randomized (persistent) field trials.\n  class BASE_EXPORT EntropyProvider {\n   public:\n    virtual ~EntropyProvider();\n\n    // Returns a double in the range of [0, 1) to be used for the dice roll for\n    // the specified field trial. If |randomization_seed| is not 0, it will be\n    // used in preference to |trial_name| for generating the entropy by entropy\n    // providers that support it. A given instance should always return the same\n    // value given the same input |trial_name| and |randomization_seed| values.\n    virtual double GetEntropyForTrial(const std::string& trial_name,\n                                      uint32_t randomization_seed) const = 0;\n  };\n\n  // A pair representing a Field Trial and its selected group.\n  struct ActiveGroup {\n    std::string trial_name;\n    std::string group_name;\n  };\n\n  // A triplet representing a FieldTrial, its selected group and whether it's\n  // active. String members are pointers to the underlying strings owned by the\n  // FieldTrial object. Does not use StringPiece to avoid conversions back to\n  // std::string.\n  struct BASE_EXPORT State {\n    const std::string* trial_name = nullptr;\n    const std::string* group_name = nullptr;\n    bool activated = false;\n\n    State();\n    State(const State& other);\n    ~State();\n  };\n\n  // We create one FieldTrialEntry per field trial in shared memory, via\n  // AddToAllocatorWhileLocked. The FieldTrialEntry is followed by a\n  // base::Pickle object that we unpickle and read from.\n  struct BASE_EXPORT FieldTrialEntry {\n    // SHA1(FieldTrialEntry): Increment this if structure changes!\n    static constexpr uint32_t kPersistentTypeId = 0xABA17E13 + 2;\n\n    // Expected size for 32/64-bit check.\n    static constexpr size_t kExpectedInstanceSize = 8;\n\n    // Whether or not this field trial is activated. This is really just a\n    // boolean but using a 32 bit value for portability reasons. It should be\n    // accessed via NoBarrier_Load()/NoBarrier_Store() to prevent the compiler\n    // from doing unexpected optimizations because it thinks that only one\n    // thread is accessing the memory location.\n    subtle::Atomic32 activated;\n\n    // Size of the pickled structure, NOT the total size of this entry.\n    uint32_t pickle_size;\n\n    // Calling this is only valid when the entry is initialized. That is, it\n    // resides in shared memory and has a pickle containing the trial name and\n    // group name following it.\n    bool GetTrialAndGroupName(StringPiece* trial_name,\n                              StringPiece* group_name) const;\n\n    // Calling this is only valid when the entry is initialized as well. Reads\n    // the parameters following the trial and group name and stores them as\n    // key-value mappings in |params|.\n    bool GetParams(std::map<std::string, std::string>* params) const;\n\n   private:\n    // Returns an iterator over the data containing names and params.\n    PickleIterator GetPickleIterator() const;\n\n    // Takes the iterator and writes out the first two items into |trial_name|\n    // and |group_name|.\n    bool ReadStringPair(PickleIterator* iter,\n                        StringPiece* trial_name,\n                        StringPiece* group_name) const;\n  };\n\n  typedef std::vector<ActiveGroup> ActiveGroups;\n\n  // A return value to indicate that a given instance has not yet had a group\n  // assignment (and hence is not yet participating in the trial).\n  static const int kNotFinalized;\n\n  // Disables this trial, meaning it always determines the default group\n  // has been selected. May be called immediately after construction, or\n  // at any time after initialization (should not be interleaved with\n  // AppendGroup calls). Once disabled, there is no way to re-enable a\n  // trial.\n  // TODO(mad): http://code.google.com/p/chromium/issues/detail?id=121446\n  // This doesn't properly reset to Default when a group was forced.\n  void Disable();\n\n  // Establish the name and probability of the next group in this trial.\n  // Sometimes, based on construction randomization, this call may cause the\n  // provided group to be *THE* group selected for use in this instance.\n  // The return value is the group number of the new group.\n  int AppendGroup(const std::string& name, Probability group_probability);\n\n  // Return the name of the FieldTrial (excluding the group name).\n  const std::string& trial_name() const { return trial_name_; }\n\n  // Return the randomly selected group number that was assigned, and notify\n  // any/all observers that this finalized group number has presumably been used\n  // (queried), and will never change. Note that this will force an instance to\n  // participate, and make it illegal to attempt to probabilistically add any\n  // other groups to the trial.\n  int group();\n\n  // If the group's name is empty, a string version containing the group number\n  // is used as the group name. This causes a winner to be chosen if none was.\n  const std::string& group_name();\n\n  // Finalizes the group choice and returns the chosen group, but does not mark\n  // the trial as active - so its state will not be reported until group_name()\n  // or similar is called.\n  const std::string& GetGroupNameWithoutActivation();\n\n  // Set the field trial as forced, meaning that it was setup earlier than\n  // the hard coded registration of the field trial to override it.\n  // This allows the code that was hard coded to register the field trial to\n  // still succeed even though the field trial has already been registered.\n  // This must be called after appending all the groups, since we will make\n  // the group choice here. Note that this is a NOOP for already forced trials.\n  // And, as the rest of the FieldTrial code, this is not thread safe and must\n  // be done from the UI thread.\n  void SetForced();\n\n  // Enable benchmarking sets field trials to a common setting.\n  static void EnableBenchmarking();\n\n  // Creates a FieldTrial object with the specified parameters, to be used for\n  // simulation of group assignment without actually affecting global field\n  // trial state in the running process. Group assignment will be done based on\n  // |entropy_value|, which must have a range of [0, 1).\n  //\n  // Note: Using this function will not register the field trial globally in the\n  // running process - for that, use FieldTrialList::FactoryGetFieldTrial().\n  //\n  // The ownership of the returned FieldTrial is transfered to the caller which\n  // is responsible for deref'ing it (e.g. by using scoped_refptr<FieldTrial>).\n  static FieldTrial* CreateSimulatedFieldTrial(\n      const std::string& trial_name,\n      Probability total_probability,\n      const std::string& default_group_name,\n      double entropy_value);\n\n private:\n  // Allow tests to access our innards for testing purposes.\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, Registration);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, AbsoluteProbabilities);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, RemainingProbability);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, FiftyFiftyProbability);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, MiddleProbabilities);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, OneWinner);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, DisableProbability);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, ActiveGroups);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, AllGroups);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, ActiveGroupsNotFinalized);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, Save);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, SaveAll);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, DuplicateRestore);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, SetForcedTurnFeatureOff);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, SetForcedTurnFeatureOn);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, SetForcedChangeDefault_Default);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, SetForcedChangeDefault_NonDefault);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, FloatBoundariesGiveEqualGroupSizes);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialTest, DoesNotSurpassTotalProbability);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialListTest,\n                           DoNotAddSimulatedFieldTrialsToAllocator);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialListTest, ClearParamsFromSharedMemory);\n\n  friend class base::FieldTrialList;\n\n  friend class RefCounted<FieldTrial>;\n\n  // This is the group number of the 'default' group when a choice wasn't forced\n  // by a call to FieldTrialList::CreateFieldTrial. It is kept private so that\n  // consumers don't use it by mistake in cases where the group was forced.\n  static const int kDefaultGroupNumber;\n\n  // Creates a field trial with the specified parameters. Group assignment will\n  // be done based on |entropy_value|, which must have a range of [0, 1).\n  FieldTrial(const std::string& trial_name,\n             Probability total_probability,\n             const std::string& default_group_name,\n             double entropy_value);\n  virtual ~FieldTrial();\n\n  // Return the default group name of the FieldTrial.\n  std::string default_group_name() const { return default_group_name_; }\n\n  // Marks this trial as having been registered with the FieldTrialList. Must be\n  // called no more than once and before any |group()| calls have occurred.\n  void SetTrialRegistered();\n\n  // Sets the chosen group name and number.\n  void SetGroupChoice(const std::string& group_name, int number);\n\n  // Ensures that a group is chosen, if it hasn't yet been. The field trial\n  // might yet be disabled, so this call will *not* notify observers of the\n  // status.\n  void FinalizeGroupChoice();\n\n  // Implements FinalizeGroupChoice() with the added flexibility of being\n  // deadlock-free if |is_locked| is true and the caller is holding a lock.\n  void FinalizeGroupChoiceImpl(bool is_locked);\n\n  // Returns the trial name and selected group name for this field trial via\n  // the output parameter |active_group|, but only if the group has already\n  // been chosen and has been externally observed via |group()| and the trial\n  // has not been disabled. In that case, true is returned and |active_group|\n  // is filled in; otherwise, the result is false and |active_group| is left\n  // untouched.\n  bool GetActiveGroup(ActiveGroup* active_group) const;\n\n  // Returns the trial name and selected group name for this field trial via\n  // the output parameter |field_trial_state| for all the studies when\n  // |bool include_expired| is true. In case when |bool include_expired| is\n  // false, if the trial has not been disabled true is returned and\n  // |field_trial_state| is filled in; otherwise, the result is false and\n  // |field_trial_state| is left untouched.\n  // This function is deadlock-free if the caller is holding a lock.\n  bool GetStateWhileLocked(State* field_trial_state, bool include_expired);\n\n  // Returns the group_name. A winner need not have been chosen.\n  std::string group_name_internal() const { return group_name_; }\n\n  // The name of the field trial, as can be found via the FieldTrialList.\n  const std::string trial_name_;\n\n  // The maximum sum of all probabilities supplied, which corresponds to 100%.\n  // This is the scaling factor used to adjust supplied probabilities.\n  const Probability divisor_;\n\n  // The name of the default group.\n  const std::string default_group_name_;\n\n  // The randomly selected probability that is used to select a group (or have\n  // the instance not participate).  It is the product of divisor_ and a random\n  // number between [0, 1).\n  Probability random_;\n\n  // Sum of the probabilities of all appended groups.\n  Probability accumulated_group_probability_;\n\n  // The number that will be returned by the next AppendGroup() call.\n  int next_group_number_;\n\n  // The pseudo-randomly assigned group number.\n  // This is kNotFinalized if no group has been assigned.\n  int group_;\n\n  // A textual name for the randomly selected group. Valid after |group()|\n  // has been called.\n  std::string group_name_;\n\n  // When enable_field_trial_ is false, field trial reverts to the 'default'\n  // group.\n  bool enable_field_trial_;\n\n  // When forced_ is true, we return the chosen group from AppendGroup when\n  // appropriate.\n  bool forced_;\n\n  // Specifies whether the group choice has been reported to observers.\n  bool group_reported_;\n\n  // Whether this trial is registered with the global FieldTrialList and thus\n  // should notify it when its group is queried.\n  bool trial_registered_;\n\n  // Reference to related field trial struct and data in shared memory.\n  FieldTrialRef ref_;\n\n  // When benchmarking is enabled, field trials all revert to the 'default'\n  // group.\n  static bool enable_benchmarking_;\n\n  DISALLOW_COPY_AND_ASSIGN(FieldTrial);\n};\n\n//------------------------------------------------------------------------------\n// Class with a list of all active field trials.  A trial is active if it has\n// been registered, which includes evaluating its state based on its probaility.\n// Only one instance of this class exists and outside of testing, will live for\n// the entire life time of the process.\nclass BASE_EXPORT FieldTrialList {\n public:\n  typedef SharedPersistentMemoryAllocator FieldTrialAllocator;\n\n  // Type for function pointer passed to |AllParamsToString| used to escape\n  // special characters from |input|.\n  typedef std::string (*EscapeDataFunc)(const std::string& input);\n\n  // Year that is guaranteed to not be expired when instantiating a field trial\n  // via |FactoryGetFieldTrial()|.  Set to two years from the build date.\n  static int kNoExpirationYear;\n\n  // Observer is notified when a FieldTrial's group is selected.\n  class BASE_EXPORT Observer {\n   public:\n    // Notify observers when FieldTrials's group is selected.\n    virtual void OnFieldTrialGroupFinalized(const std::string& trial_name,\n                                            const std::string& group_name) = 0;\n\n   protected:\n    virtual ~Observer();\n  };\n\n  // This singleton holds the global list of registered FieldTrials.\n  //\n  // To support one-time randomized field trials, specify a non-null\n  // |entropy_provider| which should be a source of uniformly distributed\n  // entropy values. If one time randomization is not desired, pass in null for\n  // |entropy_provider|.\n  explicit FieldTrialList(\n      std::unique_ptr<const FieldTrial::EntropyProvider> entropy_provider);\n\n  // Destructor Release()'s references to all registered FieldTrial instances.\n  ~FieldTrialList();\n\n  // Get a FieldTrial instance from the factory.\n  //\n  // |name| is used to register the instance with the FieldTrialList class,\n  // and can be used to find the trial (only one trial can be present for each\n  // name). |default_group_name| is the name of the default group which will\n  // be chosen if none of the subsequent appended groups get to be chosen.\n  // |default_group_number| can receive the group number of the default group as\n  // AppendGroup returns the number of the subsequence groups. |trial_name| and\n  // |default_group_name| may not be empty but |default_group_number| can be\n  // NULL if the value is not needed.\n  //\n  // Group probabilities that are later supplied must sum to less than or equal\n  // to the |total_probability|. Arguments |year|, |month| and |day_of_month|\n  // specify the expiration time. If the build time is after the expiration time\n  // then the field trial reverts to the 'default' group.\n  //\n  // Use this static method to get a startup-randomized FieldTrial or a\n  // previously created forced FieldTrial.\n  static FieldTrial* FactoryGetFieldTrial(\n      const std::string& trial_name,\n      FieldTrial::Probability total_probability,\n      const std::string& default_group_name,\n      const int year,\n      const int month,\n      const int day_of_month,\n      FieldTrial::RandomizationType randomization_type,\n      int* default_group_number);\n\n  // Same as FactoryGetFieldTrial(), but allows specifying a custom seed to be\n  // used on one-time randomized field trials (instead of a hash of the trial\n  // name, which is used otherwise or if |randomization_seed| has value 0). The\n  // |randomization_seed| value (other than 0) should never be the same for two\n  // trials, else this would result in correlated group assignments.  Note:\n  // Using a custom randomization seed is only supported by the\n  // PermutedEntropyProvider (which is used when UMA is not enabled). If\n  // |override_entropy_provider| is not null, then it will be used for\n  // randomization instead of the provider given when the FieldTrialList was\n  // instantiated.\n  static FieldTrial* FactoryGetFieldTrialWithRandomizationSeed(\n      const std::string& trial_name,\n      FieldTrial::Probability total_probability,\n      const std::string& default_group_name,\n      const int year,\n      const int month,\n      const int day_of_month,\n      FieldTrial::RandomizationType randomization_type,\n      uint32_t randomization_seed,\n      int* default_group_number,\n      const FieldTrial::EntropyProvider* override_entropy_provider);\n\n  // The Find() method can be used to test to see if a named trial was already\n  // registered, or to retrieve a pointer to it from the global map.\n  static FieldTrial* Find(const std::string& trial_name);\n\n  // Returns the group number chosen for the named trial, or\n  // FieldTrial::kNotFinalized if the trial does not exist.\n  static int FindValue(const std::string& trial_name);\n\n  // Returns the group name chosen for the named trial, or the empty string if\n  // the trial does not exist. The first call of this function on a given field\n  // trial will mark it as active, so that its state will be reported with usage\n  // metrics, crashes, etc.\n  static std::string FindFullName(const std::string& trial_name);\n\n  // Returns true if the named trial has been registered.\n  static bool TrialExists(const std::string& trial_name);\n\n  // Returns true if the named trial exists and has been activated.\n  static bool IsTrialActive(const std::string& trial_name);\n\n  // Creates a persistent representation of active FieldTrial instances for\n  // resurrection in another process. This allows randomization to be done in\n  // one process, and secondary processes can be synchronized on the result.\n  // The resulting string contains the name and group name pairs of all\n  // registered FieldTrials for which the group has been chosen and externally\n  // observed (via |group()|) and which have not been disabled, with \"/\" used\n  // to separate all names and to terminate the string. This string is parsed\n  // by |CreateTrialsFromString()|.\n  static void StatesToString(std::string* output);\n\n  // Creates a persistent representation of all FieldTrial instances for\n  // resurrection in another process. This allows randomization to be done in\n  // one process, and secondary processes can be synchronized on the result.\n  // The resulting string contains the name and group name pairs of all\n  // registered FieldTrials including disabled based on |include_expired|,\n  // with \"/\" used to separate all names and to terminate the string. All\n  // activated trials have their name prefixed with \"*\". This string is parsed\n  // by |CreateTrialsFromString()|.\n  static void AllStatesToString(std::string* output, bool include_expired);\n\n  // Creates a persistent representation of all FieldTrial params for\n  // resurrection in another process. The returned string contains the trial\n  // name and group name pairs of all registered FieldTrials including disabled\n  // based on |include_expired| separated by '.'. The pair is followed by ':'\n  // separator and list of param name and values separated by '/'. It also takes\n  // |encode_data_func| function pointer for encodeing special charactors.\n  // This string is parsed by |AssociateParamsFromString()|.\n  static std::string AllParamsToString(bool include_expired,\n                                       EscapeDataFunc encode_data_func);\n\n  // Fills in the supplied vector |active_groups| (which must be empty when\n  // called) with a snapshot of all registered FieldTrials for which the group\n  // has been chosen and externally observed (via |group()|) and which have\n  // not been disabled.\n  static void GetActiveFieldTrialGroups(\n      FieldTrial::ActiveGroups* active_groups);\n\n  // Returns the field trials that are marked active in |trials_string|.\n  static void GetActiveFieldTrialGroupsFromString(\n      const std::string& trials_string,\n      FieldTrial::ActiveGroups* active_groups);\n\n  // Returns the field trials that were active when the process was\n  // created. Either parses the field trial string or the shared memory\n  // holding field trial information.\n  // Must be called only after a call to CreateTrialsFromCommandLine().\n  static void GetInitiallyActiveFieldTrials(\n      const base::CommandLine& command_line,\n      FieldTrial::ActiveGroups* active_groups);\n\n  // Use a state string (re: StatesToString()) to augment the current list of\n  // field trials to include the supplied trials, and using a 100% probability\n  // for each trial, force them to have the same group string. This is commonly\n  // used in a non-browser process, to carry randomly selected state in a\n  // browser process into this non-browser process, but could also be invoked\n  // through a command line argument to the browser process. Created field\n  // trials will be marked \"used\" for the purposes of active trial reporting\n  // if they are prefixed with |kActivationMarker|. Trial names in\n  // |ignored_trial_names| are ignored when parsing |trials_string|.\n  static bool CreateTrialsFromString(\n      const std::string& trials_string,\n      const std::set<std::string>& ignored_trial_names);\n\n  // Achieves the same thing as CreateTrialsFromString, except wraps the logic\n  // by taking in the trials from the command line, either via shared memory\n  // handle or command line argument. A bit of a misnomer since on POSIX we\n  // simply get the trials from opening |fd_key| if using shared memory. On\n  // Windows, we expect the |cmd_line| switch for |field_trial_handle_switch| to\n  // contain the shared memory handle that contains the field trial allocator.\n  // We need the |field_trial_handle_switch| and |fd_key| arguments to be passed\n  // in since base/ can't depend on content/.\n  static void CreateTrialsFromCommandLine(const base::CommandLine& cmd_line,\n                                          const char* field_trial_handle_switch,\n                                          int fd_key);\n\n  // Creates base::Feature overrides from the command line by first trying to\n  // use shared memory and then falling back to the command line if it fails.\n  static void CreateFeaturesFromCommandLine(\n      const base::CommandLine& command_line,\n      const char* enable_features_switch,\n      const char* disable_features_switch,\n      FeatureList* feature_list);\n\n#if defined(OS_WIN)\n  // On Windows, we need to explicitly pass down any handles to be inherited.\n  // This function adds the shared memory handle to field trial state to the\n  // list of handles to be inherited.\n  static void AppendFieldTrialHandleIfNeeded(\n      base::HandlesToInheritVector* handles);\n#elif defined(OS_FUCHSIA)\n  // TODO(fuchsia): Implement shared-memory configuration (crbug.com/752368).\n#elif defined(OS_POSIX) && !defined(OS_NACL)\n  // On POSIX, we also need to explicitly pass down this file descriptor that\n  // should be shared with the child process. Returns an invalid handle if it\n  // was not initialized properly.\n  static base::SharedMemoryHandle GetFieldTrialHandle();\n#endif\n\n  // Adds a switch to the command line containing the field trial state as a\n  // string (if not using shared memory to share field trial state), or the\n  // shared memory handle + length.\n  // Needs the |field_trial_handle_switch| argument to be passed in since base/\n  // can't depend on content/.\n  static void CopyFieldTrialStateToFlags(const char* field_trial_handle_switch,\n                                         const char* enable_features_switch,\n                                         const char* disable_features_switch,\n                                         base::CommandLine* cmd_line);\n\n  // Create a FieldTrial with the given |name| and using 100% probability for\n  // the FieldTrial, force FieldTrial to have the same group string as\n  // |group_name|. This is commonly used in a non-browser process, to carry\n  // randomly selected state in a browser process into this non-browser process.\n  // It returns NULL if there is a FieldTrial that is already registered with\n  // the same |name| but has different finalized group string (|group_name|).\n  static FieldTrial* CreateFieldTrial(const std::string& name,\n                                      const std::string& group_name);\n\n  // Add an observer to be notified when a field trial is irrevocably committed\n  // to being part of some specific field_group (and hence the group_name is\n  // also finalized for that field_trial). Returns false and does nothing if\n  // there is no FieldTrialList singleton.\n  static bool AddObserver(Observer* observer);\n\n  // Remove an observer.\n  static void RemoveObserver(Observer* observer);\n\n  // Similar to AddObserver(), but the passed observer will be notified\n  // synchronously when a field trial is activated and its group selected. It\n  // will be notified synchronously on the same thread where the activation and\n  // group selection happened. It is the responsibility of the observer to make\n  // sure that this is a safe operation and the operation must be fast, as this\n  // work is done synchronously as part of group() or related APIs. Only a\n  // single such observer is supported, exposed specifically for crash\n  // reporting. Must be called on the main thread before any other threads\n  // have been started.\n  static void SetSynchronousObserver(Observer* observer);\n\n  // Removes the single synchronous observer.\n  static void RemoveSynchronousObserver(Observer* observer);\n\n  // Grabs the lock if necessary and adds the field trial to the allocator. This\n  // should only be called from FinalizeGroupChoice().\n  static void OnGroupFinalized(bool is_locked, FieldTrial* field_trial);\n\n  // Notify all observers that a group has been finalized for |field_trial|.\n  static void NotifyFieldTrialGroupSelection(FieldTrial* field_trial);\n\n  // Return the number of active field trials.\n  static size_t GetFieldTrialCount();\n\n  // Gets the parameters for |field_trial| from shared memory and stores them in\n  // |params|. This is only exposed for use by FieldTrialParamAssociator and\n  // shouldn't be used by anything else.\n  static bool GetParamsFromSharedMemory(\n      FieldTrial* field_trial,\n      std::map<std::string, std::string>* params);\n\n  // Clears all the params in the allocator.\n  static void ClearParamsFromSharedMemoryForTesting();\n\n  // Dumps field trial state to an allocator so that it can be analyzed after a\n  // crash.\n  static void DumpAllFieldTrialsToPersistentAllocator(\n      PersistentMemoryAllocator* allocator);\n\n  // Retrieves field trial state from an allocator so that it can be analyzed\n  // after a crash. The pointers in the returned vector are into the persistent\n  // memory segment and so are only valid as long as the allocator is valid.\n  static std::vector<const FieldTrial::FieldTrialEntry*>\n  GetAllFieldTrialsFromPersistentAllocator(\n      PersistentMemoryAllocator const& allocator);\n\n  // Returns true if a global field trial list is set. Only used for testing.\n  static bool IsGlobalSetForTesting();\n\n private:\n  // Allow tests to access our innards for testing purposes.\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialListTest, InstantiateAllocator);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialListTest, AddTrialsToAllocator);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialListTest,\n                           DoNotAddSimulatedFieldTrialsToAllocator);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialListTest, AssociateFieldTrialParams);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialListTest, ClearParamsFromSharedMemory);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialListTest,\n                           SerializeSharedMemoryHandleMetadata);\n  FRIEND_TEST_ALL_PREFIXES(FieldTrialListTest, CheckReadOnlySharedMemoryHandle);\n\n  // Serialization is used to pass information about the handle to child\n  // processes. It passes a reference to the relevant OS resource, and it passes\n  // a GUID. Serialization and deserialization doesn't actually transport the\n  // underlying OS resource - that must be done by the Process launcher.\n  static std::string SerializeSharedMemoryHandleMetadata(\n      const SharedMemoryHandle& shm);\n#if defined(OS_WIN) || defined(OS_FUCHSIA)\n  static SharedMemoryHandle DeserializeSharedMemoryHandleMetadata(\n      const std::string& switch_value);\n#elif defined(OS_POSIX) && !defined(OS_NACL)\n  static SharedMemoryHandle DeserializeSharedMemoryHandleMetadata(\n      int fd,\n      const std::string& switch_value);\n#endif\n\n#if defined(OS_WIN) || defined(OS_FUCHSIA)\n  // Takes in |handle_switch| from the command line which represents the shared\n  // memory handle for field trials, parses it, and creates the field trials.\n  // Returns true on success, false on failure.\n  // |switch_value| also contains the serialized GUID.\n  static bool CreateTrialsFromSwitchValue(const std::string& switch_value);\n#elif defined(OS_POSIX) && !defined(OS_NACL)\n  // On POSIX systems that use the zygote, we look up the correct fd that backs\n  // the shared memory segment containing the field trials by looking it up via\n  // an fd key in GlobalDescriptors. Returns true on success, false on failure.\n  // |switch_value| also contains the serialized GUID.\n  static bool CreateTrialsFromDescriptor(int fd_key,\n                                         const std::string& switch_value);\n#endif\n\n  // Takes an unmapped SharedMemoryHandle, creates a SharedMemory object from it\n  // and maps it with the correct size.\n  static bool CreateTrialsFromSharedMemoryHandle(SharedMemoryHandle shm_handle);\n\n  // Expects a mapped piece of shared memory |shm| that was created from the\n  // browser process's field_trial_allocator and shared via the command line.\n  // This function recreates the allocator, iterates through all the field\n  // trials in it, and creates them via CreateFieldTrial(). Returns true if\n  // successful and false otherwise.\n  static bool CreateTrialsFromSharedMemory(\n      std::unique_ptr<base::SharedMemory> shm);\n\n  // Instantiate the field trial allocator, add all existing field trials to it,\n  // and duplicates its handle to a read-only handle, which gets stored in\n  // |readonly_allocator_handle|.\n  static void InstantiateFieldTrialAllocatorIfNeeded();\n\n  // Adds the field trial to the allocator. Caller must hold a lock before\n  // calling this.\n  static void AddToAllocatorWhileLocked(PersistentMemoryAllocator* allocator,\n                                        FieldTrial* field_trial);\n\n  // Activate the corresponding field trial entry struct in shared memory.\n  static void ActivateFieldTrialEntryWhileLocked(FieldTrial* field_trial);\n\n  // A map from FieldTrial names to the actual instances.\n  typedef std::map<std::string, FieldTrial*> RegistrationMap;\n\n  // If one-time randomization is enabled, returns a weak pointer to the\n  // corresponding EntropyProvider. Otherwise, returns NULL.\n  static const FieldTrial::EntropyProvider*\n      GetEntropyProviderForOneTimeRandomization();\n\n  // Helper function should be called only while holding lock_.\n  FieldTrial* PreLockedFind(const std::string& name);\n\n  // Register() stores a pointer to the given trial in a global map.\n  // This method also AddRef's the indicated trial.\n  // This should always be called after creating a new FieldTrial instance.\n  static void Register(FieldTrial* trial);\n\n  // Returns all the registered trials.\n  static RegistrationMap GetRegisteredTrials();\n\n  static FieldTrialList* global_;  // The singleton of this class.\n\n  // This will tell us if there is an attempt to register a field\n  // trial or check if one-time randomization is enabled without\n  // creating the FieldTrialList. This is not an error, unless a\n  // FieldTrialList is created after that.\n  static bool used_without_global_;\n\n  // Lock for access to registered_ and field_trial_allocator_.\n  Lock lock_;\n  RegistrationMap registered_;\n\n  std::map<std::string, std::string> seen_states_;\n\n  // Entropy provider to be used for one-time randomized field trials. If NULL,\n  // one-time randomization is not supported.\n  std::unique_ptr<const FieldTrial::EntropyProvider> entropy_provider_;\n\n  // List of observers to be notified when a group is selected for a FieldTrial.\n  scoped_refptr<ObserverListThreadSafe<Observer> > observer_list_;\n\n  // Single synchronous observer to be notified when a trial group is chosen.\n  Observer* synchronous_observer_ = nullptr;\n\n  // Allocator in shared memory containing field trial data. Used in both\n  // browser and child processes, but readonly in the child.\n  // In the future, we may want to move this to a more generic place if we want\n  // to start passing more data other than field trials.\n  std::unique_ptr<FieldTrialAllocator> field_trial_allocator_ = nullptr;\n\n  // Readonly copy of the handle to the allocator. Needs to be a member variable\n  // because it's needed from both CopyFieldTrialStateToFlags() and\n  // AppendFieldTrialHandleIfNeeded().\n  base::SharedMemoryHandle readonly_allocator_handle_;\n\n  // Tracks whether CreateTrialsFromCommandLine() has been called.\n  bool create_trials_from_command_line_called_ = false;\n\n  DISALLOW_COPY_AND_ASSIGN(FieldTrialList);\n};\n\n}  // namespace base\n\n#endif  // BASE_METRICS_FIELD_TRIAL_H_\n"
+        }, 
+        "generated": false, 
+        "mime_type": "text/plain", 
+        "size": "37896", 
+        "type": 1, 
+        "md5": "743f5f3b0ad62b89775c40a53519a587", 
+        "codeblock": [
+          {
+            "type": 40, 
+            "name": "BASE_METRICS_FIELD_TRIAL_H_", 
+            "text_range": {
+              "start_line": 55, 
+              "end_line": 56, 
+              "start_column": 1, 
+              "end_column": 1
+            }, 
+            "signature": ""
+          }, 
+          {
+            "child": [
+              {
+                "name": "FieldTrial", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Probability", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 10, 
+                    "text_range": {
+                      "start_line": 91, 
+                      "end_line": 91, 
+                      "start_column": 3, 
+                      "end_column": 27
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "FieldTrialRef", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 10, 
+                    "text_range": {
+                      "start_line": 94, 
+                      "end_line": 94, 
+                      "start_column": 3, 
+                      "end_column": 68
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RandomizationType", 
+                    "signature": "", 
+                    "child": [
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "ONE_TIME_RANDOMIZED", 
+                        "signature": "", 
+                        "name_prefix": "", 
+                        "type": 14, 
+                        "text_range": {
+                          "start_line": 101, 
+                          "end_line": 101, 
+                          "start_column": 5, 
+                          "end_column": 24
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "SESSION_RANDOMIZED", 
+                        "signature": "", 
+                        "name_prefix": "", 
+                        "type": 14, 
+                        "text_range": {
+                          "start_line": 104, 
+                          "end_line": 104, 
+                          "start_column": 5, 
+                          "end_column": 23
+                        }
+                      }
+                    ], 
+                    "name_prefix": "", 
+                    "type": 4, 
+                    "text_range": {
+                      "start_line": 97, 
+                      "end_line": 105, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "EntropyProvider", 
+                    "signature": "", 
+                    "child": [
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "~EntropyProvider", 
+                        "signature": "()", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 111, 
+                          "end_line": 111, 
+                          "start_column": 5, 
+                          "end_column": 32
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "GetEntropyForTrial", 
+                        "signature": "(const std::string& trial_name, uint32_t randomization_seed)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 118, 
+                          "end_line": 119, 
+                          "start_column": 5, 
+                          "end_column": 78
+                        }
+                      }
+                    ], 
+                    "name_prefix": "", 
+                    "type": 1, 
+                    "text_range": {
+                      "start_line": 109, 
+                      "end_line": 120, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ActiveGroup", 
+                    "signature": "", 
+                    "child": [
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "trial_name", 
+                        "signature": "", 
+                        "name_prefix": "", 
+                        "type": 9, 
+                        "text_range": {
+                          "start_line": 124, 
+                          "end_line": 124, 
+                          "start_column": 5, 
+                          "end_column": 28
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "group_name", 
+                        "signature": "", 
+                        "name_prefix": "", 
+                        "type": 9, 
+                        "text_range": {
+                          "start_line": 125, 
+                          "end_line": 125, 
+                          "start_column": 5, 
+                          "end_column": 28
+                        }
+                      }
+                    ], 
+                    "name_prefix": "", 
+                    "type": 3, 
+                    "text_range": {
+                      "start_line": 123, 
+                      "end_line": 126, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "State", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 132, 
+                      "end_line": 140, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "FieldTrialEntry", 
+                    "signature": "(FieldTrialEntry)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 145, 
+                      "end_line": 182, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ActiveGroups", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 10, 
+                    "text_range": {
+                      "start_line": 184, 
+                      "end_line": 184, 
+                      "start_column": 3, 
+                      "end_column": 49
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "kNotFinalized", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 188, 
+                      "end_line": 188, 
+                      "start_column": 3, 
+                      "end_column": 34
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Disable", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 197, 
+                      "end_line": 197, 
+                      "start_column": 3, 
+                      "end_column": 18
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "AppendGroup", 
+                    "signature": "(const std::string& name, Probability group_probability)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 203, 
+                      "end_line": 203, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "trial_name", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 206, 
+                      "end_line": 206, 
+                      "start_column": 3, 
+                      "end_column": 64
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "group", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 213, 
+                      "end_line": 213, 
+                      "start_column": 3, 
+                      "end_column": 15
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "group_name", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 217, 
+                      "end_line": 217, 
+                      "start_column": 3, 
+                      "end_column": 35
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetGroupNameWithoutActivation", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 222, 
+                      "end_line": 222, 
+                      "start_column": 3, 
+                      "end_column": 54
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetForced", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 232, 
+                      "end_line": 232, 
+                      "start_column": 3, 
+                      "end_column": 20
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "EnableBenchmarking", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 235, 
+                      "end_line": 235, 
+                      "start_column": 3, 
+                      "end_column": 36
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "CreateSimulatedFieldTrial", 
+                    "signature": "(const std::string& trial_name, Probability total_probability, const std::string& default_group_name, double entropy_value)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 247, 
+                      "end_line": 251, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "kDefaultGroupNumber", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 285, 
+                      "end_line": 285, 
+                      "start_column": 3, 
+                      "end_column": 40
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "FieldTrial", 
+                    "signature": "(const std::string& trial_name, Probability total_probability, const std::string& default_group_name, double entropy_value)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 289, 
+                      "end_line": 292, 
+                      "start_column": 3, 
+                      "end_column": 36
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "~FieldTrial", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 293, 
+                      "end_line": 293, 
+                      "start_column": 3, 
+                      "end_column": 25
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "default_group_name", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 296, 
+                      "end_line": 296, 
+                      "start_column": 3, 
+                      "end_column": 73
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "SetTrialRegistered", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 300, 
+                      "end_line": 300, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "SetGroupChoice", 
+                    "signature": "(const std::string& group_name, int number)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 303, 
+                      "end_line": 303, 
+                      "start_column": 3, 
+                      "end_column": 66
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "FinalizeGroupChoice", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 308, 
+                      "end_line": 308, 
+                      "start_column": 3, 
+                      "end_column": 30
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "FinalizeGroupChoiceImpl", 
+                    "signature": "(bool is_locked)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 312, 
+                      "end_line": 312, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "GetActiveGroup", 
+                    "signature": "(ActiveGroup* active_group)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 320, 
+                      "end_line": 320, 
+                      "start_column": 3, 
+                      "end_column": 56
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "GetStateWhileLocked", 
+                    "signature": "(State* field_trial_state, bool include_expired)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 329, 
+                      "end_line": 329, 
+                      "start_column": 3, 
+                      "end_column": 76
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "group_name_internal", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 332, 
+                      "end_line": 332, 
+                      "start_column": 3, 
+                      "end_column": 66
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "trial_name_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 335, 
+                      "end_line": 335, 
+                      "start_column": 3, 
+                      "end_column": 33
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "divisor_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 339, 
+                      "end_line": 339, 
+                      "start_column": 3, 
+                      "end_column": 30
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "default_group_name_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 342, 
+                      "end_line": 342, 
+                      "start_column": 3, 
+                      "end_column": 41
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "random_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 347, 
+                      "end_line": 347, 
+                      "start_column": 3, 
+                      "end_column": 23
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "accumulated_group_probability_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 350, 
+                      "end_line": 350, 
+                      "start_column": 3, 
+                      "end_column": 46
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "next_group_number_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 353, 
+                      "end_line": 353, 
+                      "start_column": 3, 
+                      "end_column": 26
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "group_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 357, 
+                      "end_line": 357, 
+                      "start_column": 3, 
+                      "end_column": 14
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "group_name_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 361, 
+                      "end_line": 361, 
+                      "start_column": 3, 
+                      "end_column": 27
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "enable_field_trial_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 365, 
+                      "end_line": 365, 
+                      "start_column": 3, 
+                      "end_column": 28
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "forced_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 369, 
+                      "end_line": 369, 
+                      "start_column": 3, 
+                      "end_column": 16
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "group_reported_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 372, 
+                      "end_line": 372, 
+                      "start_column": 3, 
+                      "end_column": 24
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "trial_registered_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 376, 
+                      "end_line": 376, 
+                      "start_column": 3, 
+                      "end_column": 26
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "ref_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 379, 
+                      "end_line": 379, 
+                      "start_column": 3, 
+                      "end_column": 22
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "enable_benchmarking_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 383, 
+                      "end_line": 383, 
+                      "start_column": 3, 
+                      "end_column": 36
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 89, 
+                  "end_line": 386, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }, 
+              {
+                "name": "FieldTrialList", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "FieldTrialAllocator", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 10, 
+                    "text_range": {
+                      "start_line": 395, 
+                      "end_line": 395, 
+                      "start_column": 3, 
+                      "end_column": 63
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "string", 
+                    "signature": "", 
+                    "name_prefix": "std::", 
+                    "type": 10, 
+                    "text_range": {
+                      "start_line": 399, 
+                      "end_line": 399, 
+                      "start_column": 3, 
+                      "end_column": 67
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "kNoExpirationYear", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 403, 
+                      "end_line": 403, 
+                      "start_column": 3, 
+                      "end_column": 32
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Observer", 
+                    "signature": "", 
+                    "child": [
+                      {
+                        "modifiers": {
+                          "public": true
+                        }, 
+                        "name": "OnFieldTrialGroupFinalized", 
+                        "signature": "(const std::string& trial_name, const std::string& group_name)", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 409, 
+                          "end_line": 410, 
+                          "start_column": 5, 
+                          "end_column": 80
+                        }
+                      }, 
+                      {
+                        "modifiers": {
+                          "protected": true
+                        }, 
+                        "name": "~Observer", 
+                        "signature": "()", 
+                        "name_prefix": "", 
+                        "type": 8, 
+                        "text_range": {
+                          "start_line": 413, 
+                          "end_line": 413, 
+                          "start_column": 5, 
+                          "end_column": 25
+                        }
+                      }
+                    ], 
+                    "name_prefix": "", 
+                    "type": 1, 
+                    "text_range": {
+                      "start_line": 406, 
+                      "end_line": 414, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "FieldTrialList", 
+                    "signature": "(std::unique_ptr<const FieldTrial::EntropyProvider> entropy_provider)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 422, 
+                      "end_line": 423, 
+                      "start_column": 3, 
+                      "end_column": 76
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "~FieldTrialList", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 426, 
+                      "end_line": 426, 
+                      "start_column": 3, 
+                      "end_column": 21
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "FactoryGetFieldTrial", 
+                    "signature": "(const std::string& trial_name, FieldTrial::Probability total_probability, const std::string& default_group_name, const int year, const int month, const int day_of_month, FieldTrial::RandomizationType randomization_type, int* default_group_number)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 446, 
+                      "end_line": 454, 
+                      "start_column": 3, 
+                      "end_column": 34
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "FactoryGetFieldTrialWithRandomizationSeed", 
+                    "signature": "(const std::string& trial_name, FieldTrial::Probability total_probability, const std::string& default_group_name, const int year, const int month, const int day_of_month, FieldTrial::RandomizationType randomization_type, uint32_t randomization_seed, int* default_group_number, const FieldTrial::EntropyProvider* override_entropy_provider)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 466, 
+                      "end_line": 476, 
+                      "start_column": 3, 
+                      "end_column": 69
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "Find", 
+                    "signature": "(const std::string& trial_name)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 480, 
+                      "end_line": 480, 
+                      "start_column": 3, 
+                      "end_column": 58
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "FindValue", 
+                    "signature": "(const std::string& trial_name)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 484, 
+                      "end_line": 484, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "FindFullName", 
+                    "signature": "(const std::string& trial_name)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 490, 
+                      "end_line": 490, 
+                      "start_column": 3, 
+                      "end_column": 66
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "TrialExists", 
+                    "signature": "(const std::string& trial_name)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 493, 
+                      "end_line": 493, 
+                      "start_column": 3, 
+                      "end_column": 58
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "IsTrialActive", 
+                    "signature": "(const std::string& trial_name)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 496, 
+                      "end_line": 496, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "StatesToString", 
+                    "signature": "(std::string* output)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 506, 
+                      "end_line": 506, 
+                      "start_column": 3, 
+                      "end_column": 51
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "AllStatesToString", 
+                    "signature": "(std::string* output, bool include_expired)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 516, 
+                      "end_line": 516, 
+                      "start_column": 3, 
+                      "end_column": 76
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "AllParamsToString", 
+                    "signature": "(bool include_expired, EscapeDataFunc encode_data_func)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 525, 
+                      "end_line": 526, 
+                      "start_column": 3, 
+                      "end_column": 73
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "GetActiveFieldTrialGroups", 
+                    "signature": "(FieldTrial::ActiveGroups* active_groups)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 532, 
+                      "end_line": 533, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "GetActiveFieldTrialGroupsFromString", 
+                    "signature": "(const std::string& trials_string, FieldTrial::ActiveGroups* active_groups)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 536, 
+                      "end_line": 538, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "GetInitiallyActiveFieldTrials", 
+                    "signature": "(const base::CommandLine& command_line, FieldTrial::ActiveGroups* active_groups)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 544, 
+                      "end_line": 546, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "CreateTrialsFromString", 
+                    "signature": "(const std::string& trials_string, const std::set<std::string>& ignored_trial_names)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 557, 
+                      "end_line": 559, 
+                      "start_column": 3, 
+                      "end_column": 57
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "CreateTrialsFromCommandLine", 
+                    "signature": "(const base::CommandLine& cmd_line, const char* field_trial_handle_switch, int fd_key)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 569, 
+                      "end_line": 571, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "CreateFeaturesFromCommandLine", 
+                    "signature": "(const base::CommandLine& command_line, const char* enable_features_switch, const char* disable_features_switch, FeatureList* feature_list)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 575, 
+                      "end_line": 579, 
+                      "start_column": 3, 
+                      "end_column": 34
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "AppendFieldTrialHandleIfNeeded", 
+                    "signature": "(base::HandlesToInheritVector* handles)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 585, 
+                      "end_line": 586, 
+                      "start_column": 3, 
+                      "end_column": 46
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "GetFieldTrialHandle", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 593, 
+                      "end_line": 593, 
+                      "start_column": 3, 
+                      "end_column": 57
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "CopyFieldTrialStateToFlags", 
+                    "signature": "(const char* field_trial_handle_switch, const char* enable_features_switch, const char* disable_features_switch, base::CommandLine* cmd_line)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 601, 
+                      "end_line": 604, 
+                      "start_column": 3, 
+                      "end_column": 71
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "CreateFieldTrial", 
+                    "signature": "(const std::string& name, const std::string& group_name)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 612, 
+                      "end_line": 613, 
+                      "start_column": 3, 
+                      "end_column": 70
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "AddObserver", 
+                    "signature": "(Observer* observer)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 619, 
+                      "end_line": 619, 
+                      "start_column": 3, 
+                      "end_column": 47
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "RemoveObserver", 
+                    "signature": "(Observer* observer)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 622, 
+                      "end_line": 622, 
+                      "start_column": 3, 
+                      "end_column": 50
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "SetSynchronousObserver", 
+                    "signature": "(Observer* observer)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 633, 
+                      "end_line": 633, 
+                      "start_column": 3, 
+                      "end_column": 58
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "RemoveSynchronousObserver", 
+                    "signature": "(Observer* observer)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 636, 
+                      "end_line": 636, 
+                      "start_column": 3, 
+                      "end_column": 61
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "OnGroupFinalized", 
+                    "signature": "(bool is_locked, FieldTrial* field_trial)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 640, 
+                      "end_line": 640, 
+                      "start_column": 3, 
+                      "end_column": 73
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "NotifyFieldTrialGroupSelection", 
+                    "signature": "(FieldTrial* field_trial)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 643, 
+                      "end_line": 643, 
+                      "start_column": 3, 
+                      "end_column": 71
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "GetFieldTrialCount", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 646, 
+                      "end_line": 646, 
+                      "start_column": 3, 
+                      "end_column": 38
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "GetParamsFromSharedMemory", 
+                    "signature": "(FieldTrial* field_trial, std::map<std::string, std::string>* params)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 651, 
+                      "end_line": 653, 
+                      "start_column": 3, 
+                      "end_column": 51
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "ClearParamsFromSharedMemoryForTesting", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 656, 
+                      "end_line": 656, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "DumpAllFieldTrialsToPersistentAllocator", 
+                    "signature": "(PersistentMemoryAllocator* allocator)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 660, 
+                      "end_line": 661, 
+                      "start_column": 3, 
+                      "end_column": 45
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "GetAllFieldTrialsFromPersistentAllocator", 
+                    "signature": "(PersistentMemoryAllocator const& allocator)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 666, 
+                      "end_line": 668, 
+                      "start_column": 3, 
+                      "end_column": 51
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "IsGlobalSetForTesting", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 671, 
+                      "end_line": 671, 
+                      "start_column": 3, 
+                      "end_column": 39
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "SerializeSharedMemoryHandleMetadata", 
+                    "signature": "(const SharedMemoryHandle& shm)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 689, 
+                      "end_line": 690, 
+                      "start_column": 3, 
+                      "end_column": 38
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "DeserializeSharedMemoryHandleMetadata", 
+                    "signature": "(const std::string& switch_value)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 692, 
+                      "end_line": 693, 
+                      "start_column": 3, 
+                      "end_column": 40
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "DeserializeSharedMemoryHandleMetadata", 
+                    "signature": "(int fd, const std::string& switch_value)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 695, 
+                      "end_line": 697, 
+                      "start_column": 3, 
+                      "end_column": 40
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "CreateTrialsFromSwitchValue", 
+                    "signature": "(const std::string& switch_value)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 705, 
+                      "end_line": 705, 
+                      "start_column": 3, 
+                      "end_column": 76
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "CreateTrialsFromDescriptor", 
+                    "signature": "(int fd_key, const std::string& switch_value)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 711, 
+                      "end_line": 712, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "CreateTrialsFromSharedMemoryHandle", 
+                    "signature": "(SharedMemoryHandle shm_handle)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 717, 
+                      "end_line": 717, 
+                      "start_column": 3, 
+                      "end_column": 81
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "CreateTrialsFromSharedMemory", 
+                    "signature": "(std::unique_ptr<base::SharedMemory> shm)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 724, 
+                      "end_line": 725, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "InstantiateFieldTrialAllocatorIfNeeded", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 730, 
+                      "end_line": 730, 
+                      "start_column": 3, 
+                      "end_column": 56
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "AddToAllocatorWhileLocked", 
+                    "signature": "(PersistentMemoryAllocator* allocator, FieldTrial* field_trial)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 734, 
+                      "end_line": 735, 
+                      "start_column": 3, 
+                      "end_column": 66
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "ActivateFieldTrialEntryWhileLocked", 
+                    "signature": "(FieldTrial* field_trial)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 738, 
+                      "end_line": 738, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "RegistrationMap", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 10, 
+                    "text_range": {
+                      "start_line": 741, 
+                      "end_line": 741, 
+                      "start_column": 3, 
+                      "end_column": 62
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "GetEntropyProviderForOneTimeRandomization", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 745, 
+                      "end_line": 746, 
+                      "start_column": 3, 
+                      "end_column": 51
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "PreLockedFind", 
+                    "signature": "(const std::string& name)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 749, 
+                      "end_line": 749, 
+                      "start_column": 3, 
+                      "end_column": 54
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "Register", 
+                    "signature": "(FieldTrial* trial)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 754, 
+                      "end_line": 754, 
+                      "start_column": 3, 
+                      "end_column": 43
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "GetRegisteredTrials", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 757, 
+                      "end_line": 757, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "global_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 759, 
+                      "end_line": 759, 
+                      "start_column": 3, 
+                      "end_column": 34
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "private": true
+                    }, 
+                    "name": "used_without_global_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 765, 
+                      "end_line": 765, 
+                      "start_column": 3, 
+                      "end_column": 36
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "lock_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 768, 
+                      "end_line": 768, 
+                      "start_column": 3, 
+                      "end_column": 14
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "registered_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 769, 
+                      "end_line": 769, 
+                      "start_column": 3, 
+                      "end_column": 31
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "seen_states_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 771, 
+                      "end_line": 771, 
+                      "start_column": 3, 
+                      "end_column": 51
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "entropy_provider_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 775, 
+                      "end_line": 775, 
+                      "start_column": 3, 
+                      "end_column": 72
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "observer_list_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 778, 
+                      "end_line": 778, 
+                      "start_column": 3, 
+                      "end_column": 67
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "synchronous_observer_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 781, 
+                      "end_line": 781, 
+                      "start_column": 3, 
+                      "end_column": 45
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "field_trial_allocator_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 787, 
+                      "end_line": 787, 
+                      "start_column": 3, 
+                      "end_column": 73
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "readonly_allocator_handle_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 792, 
+                      "end_line": 792, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "create_trials_from_command_line_called_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 795, 
+                      "end_line": 795, 
+                      "start_column": 3, 
+                      "end_column": 56
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 393, 
+                  "end_line": 798, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }
+            ], 
+            "type": 11, 
+            "name": "base", 
+            "text_range": {
+              "start_line": 85, 
+              "end_line": 800, 
+              "start_column": 1, 
+              "end_column": 2
+            }, 
+            "signature": ""
+          }
+        ]
+      }, 
+      "return_code": 1
+    }
+  ]
+}
