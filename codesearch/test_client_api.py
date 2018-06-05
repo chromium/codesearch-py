@@ -72,26 +72,42 @@ class TestCodeSearch(unittest.TestCase):
     self.assertEqual(3, len(signatures))
 
   def test_get_signature_for_symbol(self):
+    # These values are likely to change pretty often. So this test will likely
+    # fail each time we refresh the test data corpus. If that happens, open up
+    # field_trial.h in https://cs.chromium.org and verify that the tickets that
+    # get picked up by the API make sense.
 
     TARGET_FILE = '/src/chrome/src/base/metrics/field_trial.h'
     cs = CodeSearch(source_root=SOURCE_ROOT)
 
+    # A class definition. The name appears numerous times in the file.
+    self.assertEqual(
+        cs.GetSignatureForSymbol(TARGET_FILE, 'FieldTrial'),
+        'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#FieldTrial%3Abase%23c%23cGxmCcu4cj8'
+    )
+
+    # An enum defined within the class.
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'RandomizationType'),
         'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#sffJe7wAnF2I9rS3Yd%2B8%2FcTJryczxcrLGG1xREnxhKU%3D'
     )
+
+    # A struct field.
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'pickle_size'),
         'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#5j4rU1ruIZUCxPWsXAOsTjOIQPiJdmvDwkVVxoqsqT8%3D'
     )
+
+    # A parameter to a function.
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'override_entropy_provider'),
-        'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#CovtgPJr0GhjW8v68pJEvcKvc4Qq6H89sC5MGPOElkc%3D'
+        'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#lAGs5biYnnRyEje0KIGqTe4V5ZkjOY6%2B7I2jg8Jlxdk%3D'
     )
+
+    # A builtin type.
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'uint32_t'),
-        'kythe:?lang=c%2B%2B#talias%28uint32_t%23n%2Cunsigned%20int%23builtin%29'
-    )
+        'kythe:?lang=c%2B%2B#9Q1Qo0dt%2BgETZA3AE5IlwTBVpnGb9lT0KTUS8YtMp7E%3D')
 
   def test_search_for_symbol(self):
     cs = CodeSearch(source_root='.')

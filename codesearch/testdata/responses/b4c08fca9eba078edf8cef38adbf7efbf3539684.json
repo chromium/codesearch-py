@@ -1,75 +1,19 @@
 {
   "search_response": [
     {
+      "status": 0, 
       "hit_max_results": true, 
-      "maybe_skipped_documents": true, 
-      "estimated_total_number_of_results": 4532, 
+      "estimated_total_number_of_results": 3335, 
+      "stats": {
+        "retries": 0, 
+        "filter_ratio": 0
+      }, 
       "search_result": [
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "    // Enter the context for compiling and running the hello world script.\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 56, 
-                      "end_column": 61
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 62, 
-                      "end_column": 67
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 34, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "        v8::String::NewFromUtf8(isolate, \"'Hello' + ', World!'\",\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 44, 
-                      "end_column": 49
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 56, 
-                      "end_column": 61
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 39, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "fYOPj_1RjeM", 
           "best_matching_line_number": 39, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -103,41 +47,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "log(\"Hello World\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 6, 
-                      "end_column": 11
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 5, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "pqDb6Zlk-0Q", 
           "best_matching_line_number": 5, 
           "language": "javascript", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -164,41 +77,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "console.log('hello world');\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 14, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 20, 
-                      "end_column": 25
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 1, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "wRyuUxg5Q4A", 
           "best_matching_line_number": 1, 
           "language": "", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -206,7 +88,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "6be02374db118b9fb99cd98c6b403e5a558d0d57", 
               "name": "src/v8/test/fuzzer/parser/hello-world", 
               "package_name": "chromium", 
               "revision": "0"
@@ -225,89 +107,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "void hello_world(void) {\n  printf(\"Hello, World!\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 6, 
-                      "end_column": 11
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 13, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "  hello_world();\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 3, 
-                      "end_column": 8
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 18, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "OK7nJctWRUA", 
           "best_matching_line_number": 13, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -316,7 +119,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "44b363dfcdaf8fbb97dd31c12d19272a0bbad2a0", 
               "name": "src/native_client/tests/hello_world/hello_world.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -349,41 +152,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  printf(\"Hello, world!\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 9, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "BkR89JvXSj8", 
           "best_matching_line_number": 9, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -391,7 +163,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "0a4c806019e86416cad8dda7ee87a6bcad66f888", 
               "name": "src/tools/gyp/test/hello/hello.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -410,41 +182,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  printf(\"Hello, world.\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 8, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "FxHPIDsWszA", 
           "best_matching_line_number": 8, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -452,7 +193,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "84ffc3fc38738e37f2a68751a1046185eba7405f", 
               "name": "src/tools/gn/tutorial/hello_world.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -471,93 +212,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "message HelloRequest {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 10, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "message HelloReply {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 15, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "service Hello {\n  rpc Greet(HelloRequest) returns (HelloReply);\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 13, 
-                      "end_column": 18
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 36, 
-                      "end_column": 41
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 19, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }
-          ], 
           "docid": "dE3QfWEsHU8", 
           "best_matching_line_number": 19, 
           "language": "proto", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -566,7 +224,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "b3e7d887158add24ac32c1484038fefa4de5e0fb", 
               "name": "infra/go/src/go.chromium.org/luci/grpc/prpc/e2etest/helloworld_test.proto", 
               "package_name": "chromium", 
               "revision": "0"
@@ -606,168 +264,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "# Hello World service\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 3, 
-                      "end_column": 8
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 1, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "    *   Prod instance: [helloworld.appspot.com](http://helloworld.appspot.com)\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 25, 
-                      "end_column": 35
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 56, 
-                      "end_column": 66
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 6, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "*   [API](http://helloworld.appspot.com/_ah/api/explorer)\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 28
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 11, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "*   Crbug label: [Infra-HelloWorld](https://code.google.com/p/chromium/issues/list?q=Infra%3DHelloWorld)\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 25, 
-                      "end_column": 35
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 94, 
-                      "end_column": 104
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 14, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "`HelloWorldCfg` message in\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 2, 
-                      "end_column": 12
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 21, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "Hello World service is safe to use for internal projects.\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 1, 
-                      "end_column": 6
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 7, 
-                      "end_column": 12
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 29, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "blR0XixLEAQ", 
           "best_matching_line_number": 29, 
           "language": "markdown", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -775,7 +275,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "e385808c66b0feef2bed5f823cd900d088f6bf42", 
               "name": "infra/doc/users/services/hello_world.md", 
               "package_name": "chromium", 
               "revision": "0"
@@ -843,59 +343,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "      \"//build/android/gyp/test:hello_world\",\n      \"//build/android/gyp/test:hello_world\",\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 33, 
-                      "end_column": 38
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 39, 
-                      "end_column": 44
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 33, 
-                      "end_column": 38
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 39, 
-                      "end_column": 44
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 287, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "CDw9foFHOlc", 
-          "best_matching_line_number": 287, 
+          "best_matching_line_number": 290, 
           "language": "gn", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -903,7 +354,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "cbe07a0e5d36fbccfb8e74e7c1ad2009254458dd", 
+              "changelist": "378aa8822becbbaefaa59c3fdf294be9c47122b1", 
               "name": "src/BUILD.gn", 
               "package_name": "chromium", 
               "revision": "0"
@@ -913,14 +364,14 @@
           "num_matches": 0, 
           "match": [
             {
-              "line_number": 287, 
+              "line_number": 290, 
               "score": -14, 
               "match_offset": 38, 
               "match_length": 5, 
               "line_text": "      \"//build/android/gyp/test:hello_world\",\n"
             }, 
             {
-              "line_number": 288, 
+              "line_number": 291, 
               "score": -14, 
               "match_offset": 38, 
               "match_length": 5, 
@@ -929,93 +380,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "#ifndef HelloWorld_DEFINED\n#define HelloWorld_DEFINED\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 9, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 8, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "class HelloWorld : public sk_app::Application, sk_app::Window::Layer {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 7, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 16, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "    HelloWorld(int argc, char** argv, void* platformData);\n    ~HelloWorld() override;\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 5, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 6, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 18, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }
-          ], 
           "docid": "LgEmJqZG4gY", 
           "best_matching_line_number": 16, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -1071,89 +439,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "void hello_world(void) {\n  printf(\"Hello, World!\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 6, 
-                      "end_column": 11
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 10, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "    atexit(hello_world);\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 17, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "LvOgV3Ahej4", 
           "best_matching_line_number": 10, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -1162,7 +451,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "f9e8f2feca4a0e548b36e96c1797b84e8508a2bb", 
               "name": "src/native_client/tests/hello_world/at_exit.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -1195,129 +484,47 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "HelloWorld::HelloWorld(int argc, char** argv, void* platformData)\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 1, 
-                      "end_column": 11
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 13, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 21, 
-              "match_reason": {
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "HelloWorld::~HelloWorld() {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 1, 
-                      "end_column": 11
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 14, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 35, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "    SkString title(\"Hello World \");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 21, 
-                      "end_column": 26
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 27, 
-                      "end_column": 32
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 45, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "    static const char message[] = \"Hello World\";\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 36, 
-                      "end_column": 41
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 42, 
-                      "end_column": 47
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 87, 
-              "match_reason": {
-                "content": true
-              }
+          "docid": "g2tIq8SNLzs", 
+          "best_matching_line_number": 45, 
+          "language": "", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "5385d555eb0e5490a0f8d6c3c6d3247bd24993f9", 
+              "name": "src/pdf/test/data/hello_world2.pdf", 
+              "package_name": "chromium", 
+              "revision": "0"
             }
-          ], 
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 45, 
+              "score": 86, 
+              "match_offset": 1, 
+              "match_length": 5, 
+              "line_text": "(Hello, world!) Tj\n"
+            }, 
+            {
+              "line_number": 48, 
+              "score": 29, 
+              "match_offset": 10, 
+              "match_length": 5, 
+              "line_text": "(Goodbye, world!) Tj\n"
+            }
+          ]
+        }, 
+        {
           "docid": "oGG6CAUhgx4", 
           "best_matching_line_number": 21, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -1326,7 +533,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "5954e7153254430d3059638301ee878017369bcd", 
+              "changelist": "b20d30a780729c4dccbeffee1f9179f1e0312b7f", 
               "name": "src/third_party/skia/example/HelloWorld.cpp", 
               "package_name": "chromium", 
               "revision": "0"
@@ -1373,62 +580,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "class HelloWorld(ScriptBase):\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 7, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 24, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "        self.log('Hello World!!!')\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 19, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 25, 
-                      "end_column": 30
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 27, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "d38FA8bHhBU", 
           "best_matching_line_number": 24, 
           "language": "python", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -1437,7 +592,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "680873ce179ee8c78af1cd9ecc8fbeb8d4983b57", 
               "name": "tools/depot_tools/third_party/boto/pyami/helloworld.py", 
               "package_name": "chromium", 
               "revision": "0"
@@ -1463,141 +618,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "package helloworld;\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 7, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "  // SayHello greets a user.\n  rpc SayHello (HelloRequest) returns (HelloReply) {}\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 10, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 17, 
-                      "end_column": 22
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 40, 
-                      "end_column": 45
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 11, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "// HelloRequest contains the user's name.\nmessage HelloRequest {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 4, 
-                      "end_column": 9
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 15, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "// HelloReply contains a greeting.\nmessage HelloReply {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 4, 
-                      "end_column": 9
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 21, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }
-          ], 
           "docid": "y92OT1VfSIQ", 
           "best_matching_line_number": 22, 
           "language": "proto", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -1606,7 +630,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "2707522bcee1abca42acba0bc2b9d3c2e2b13070", 
               "name": "infra/go/src/go.chromium.org/luci/grpc/prpc/talk/helloworld/proto/helloworld.proto", 
               "package_name": "chromium", 
               "revision": "0"
@@ -1674,99 +698,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "    \":v8_hello_world\",\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 10, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 16, 
-                      "end_column": 21
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 2793, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "v8_executable(\"v8_hello_world\") {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 19, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 25, 
-                      "end_column": 30
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 2974, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "    \"samples/hello-world.cc\",\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 14, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 20, 
-                      "end_column": 25
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 2976, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "quaC6hMQ-fc", 
-          "best_matching_line_number": 2976, 
+          "best_matching_line_number": 3337, 
           "language": "gn", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -1774,7 +709,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "9296083630e67b91ccb83f80b926b6d64241e6c0", 
+              "changelist": "2c50262a7e08b4dcc67e67b45d16986e51244619", 
               "name": "src/v8/BUILD.gn", 
               "package_name": "chromium", 
               "revision": "0"
@@ -1784,21 +719,21 @@
           "num_matches": 0, 
           "match": [
             {
-              "line_number": 2976, 
+              "line_number": 3337, 
               "score": 29, 
               "match_offset": 19, 
               "match_length": 5, 
               "line_text": "    \"samples/hello-world.cc\",\n"
             }, 
             {
-              "line_number": 2793, 
+              "line_number": 3176, 
               "score": -14, 
               "match_offset": 15, 
               "match_length": 5, 
               "line_text": "    \":v8_hello_world\",\n"
             }, 
             {
-              "line_number": 2974, 
+              "line_number": 3335, 
               "score": -14, 
               "match_offset": 24, 
               "match_length": 5, 
@@ -1807,76 +742,38 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "/*\n"
-              }, 
-              "first_line_number": 1, 
-              "match_reason": {}, 
-              "scope": ""
-            }
-          ], 
           "docid": "GVoCPURvh-4", 
           "best_matching_line_number": 1, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {}, 
           "full_history_search": false, 
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "a1f2151778a78e21f68ba2f42fca6a06ea43f2b6", 
               "name": "src/native_client/tests/hello_world/abi.c", 
               "package_name": "chromium", 
               "revision": "0"
             }
           }, 
-          "has_unshown_matches": true, 
+          "has_unshown_matches": false, 
           "num_matches": 0, 
           "match": [
             {
               "line_number": 1, 
               "score": 0, 
+              "match_offset": 0, 
+              "match_length": 0, 
               "line_text": "/*\n"
             }
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  printf(\"Hello, world!\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 6, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "AxjU0NI_Nhg", 
           "best_matching_line_number": 6, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -1884,7 +781,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "3d535d3ec6dd386b3d21cad70c3871834ec9f96f", 
               "name": "src/tools/gyp/test/target/hello.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -1903,71 +800,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "extern int hello2();\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 7, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "  printf(\"Hello, world!\\n\");\n  hello2();\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 3, 
-                      "end_column": 8
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 10, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "kmyfY2-zP7s", 
           "best_matching_line_number": 7, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -1976,7 +812,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "06e6a029052bf70e747fd35bb04a08a4aca32644", 
               "name": "src/tools/gyp/test/msvs/uldi2010/hello.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -2009,76 +845,38 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "/*\n"
-              }, 
-              "first_line_number": 1, 
-              "match_reason": {}, 
-              "scope": ""
-            }
-          ], 
           "docid": "Y7Hnn8rLe6U", 
           "best_matching_line_number": 1, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {}, 
           "full_history_search": false, 
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "46eb653b9f8a51d6117c2cbfcd46dcc9b6943dc6", 
               "name": "src/native_client/tests/hello_world/float.c", 
               "package_name": "chromium", 
               "revision": "0"
             }
           }, 
-          "has_unshown_matches": true, 
+          "has_unshown_matches": false, 
           "num_matches": 0, 
           "match": [
             {
               "line_number": 1, 
               "score": 0, 
+              "match_offset": 0, 
+              "match_length": 0, 
               "line_text": "/*\n"
             }
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "Hello, World!\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 1, 
-                      "end_column": 6
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 8, 
-                      "end_column": 13
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 1, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "UDp5yqLx8dg", 
           "best_matching_line_number": 1, 
           "language": "", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -2086,7 +884,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "8ab686eafeb1f44702738c8b0f24f2567c36da6d", 
               "name": "src/native_client/tests/hello_world/hello_world.stdout", 
               "package_name": "chromium", 
               "revision": "0"
@@ -2105,135 +903,38 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "/*\n"
-              }, 
-              "first_line_number": 1, 
-              "match_reason": {}, 
-              "scope": ""
-            }
-          ], 
           "docid": "tEBreshLAbE", 
           "best_matching_line_number": 1, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {}, 
           "full_history_search": false, 
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "b39192c2cfae0cf600fbc9cea174cf111f6883e1", 
               "name": "src/native_client/tests/hello_world/exit.c", 
               "package_name": "chromium", 
               "revision": "0"
             }
           }, 
-          "has_unshown_matches": true, 
+          "has_unshown_matches": false, 
           "num_matches": 0, 
           "match": [
             {
               "line_number": 1, 
               "score": 0, 
+              "match_offset": 0, 
+              "match_length": 0, 
               "line_text": "/*\n"
             }
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "function hello_world() {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 10, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 16, 
-                      "end_column": 21
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 5, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "  div.textContent = 'Hello, World!';\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 22, 
-                      "end_column": 27
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 29, 
-                      "end_column": 34
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 8, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "hello_world();\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 1, 
-                      "end_column": 6
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 7, 
-                      "end_column": 12
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 11, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "go6W_4cep9M", 
           "best_matching_line_number": 5, 
           "language": "javascript", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -2242,7 +943,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "46d266ac131304112ea428501e3ce2bb16d2acb6", 
               "name": "src/chrome/test/data/devtools/indexer/hello_world.js", 
               "package_name": "chromium", 
               "revision": "0"
@@ -2275,41 +976,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "<h1>Hello headless world!</h1>\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 5, 
-                      "end_column": 10
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 20, 
-                      "end_column": 25
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 2, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "I7dSNabwlNw", 
           "best_matching_line_number": 2, 
           "language": "html", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -2317,7 +987,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "0aa881e8b3eef0758d62029e87f8aa6b032924a4", 
               "name": "src/headless/test/data/hello.html", 
               "package_name": "chromium", 
               "revision": "0"
@@ -2336,41 +1006,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  printf(\"Hello, world!\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 12, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "cuoUC-jI1ok", 
           "best_matching_line_number": 12, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -2378,7 +1017,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "41fdff0e382361da1e120bdc9d0f233c527437cb", 
               "name": "src/tools/gyp/test/product/hello.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -2397,227 +1036,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "// This file implements two versions of the LLVM \"Hello World\" pass described\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 51, 
-                      "end_column": 56
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 57, 
-                      "end_column": 62
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 10, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "  struct Hello : public FunctionPass {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 10, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 26, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "    Hello() : FunctionPass(ID) {}\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 5, 
-                      "end_column": 10
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 28, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "      ++HelloCounter;\n      errs() << \"Hello: \";\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 31, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "char Hello::ID = 0;\nstatic RegisterPass<Hello> X(\"hello\", \"Hello World Pass\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 6, 
-                      "end_column": 11
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 21, 
-                      "end_column": 26
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 31, 
-                      "end_column": 36
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 40, 
-                      "end_column": 45
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 46, 
-                      "end_column": 51
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 39, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "  // Hello2 - The second implementation with getAnalysisUsage implemented.\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 6, 
-                      "end_column": 11
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 43, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "Y(\"hello2\", \"Hello World Pass (with getAnalysisUsage implemented)\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 4, 
-                      "end_column": 9
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 14, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 20, 
-                      "end_column": 25
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 64, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "u8uxD99Fyys", 
           "best_matching_line_number": 26, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -2626,7 +1048,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "b0e22de8d7ed648af5b270627542b5a1ccc63798", 
               "name": "src/third_party/swiftshader/third_party/LLVM/lib/Transforms/Hello/Hello.cpp", 
               "package_name": "chromium", 
               "revision": "0"
@@ -2708,141 +1130,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "package helloworld;\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 3, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "  // SayHello greets a user.\n  rpc SayHello (HelloRequest) returns (HelloReply) {}\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 10, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 17, 
-                      "end_column": 22
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 40, 
-                      "end_column": 45
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 7, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "// HelloRequest contains the user's name.\nmessage HelloRequest {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 4, 
-                      "end_column": 9
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 11, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "// HelloReply contains a greeting.\nmessage HelloReply {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 4, 
-                      "end_column": 9
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 17, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }
-          ], 
           "docid": "XhiyYwixBhw", 
           "best_matching_line_number": 18, 
           "language": "proto", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -2851,7 +1142,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "f57f3d4f3d25b750b96008b9fccdd124b6e9b2a4", 
               "name": "infra/go/src/go.chromium.org/luci/grpc/prpc/talk/slides/helloworld.proto", 
               "package_name": "chromium", 
               "revision": "0"
@@ -2919,41 +1210,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  print('Hello world: ' + sys.argv[1])\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 10, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 16, 
-                      "end_column": 21
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 14, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "tgroQjzkkeI", 
           "best_matching_line_number": 14, 
           "language": "python", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -2980,117 +1240,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "HELLO_WORLD_CPP = \"\"\"\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 1, 
-                      "end_column": 6
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 7, 
-                      "end_column": 12
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 24, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "  std::cout << \"Hello, world!\" << std::endl;\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 17, 
-                      "end_column": 22
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 24, 
-                      "end_column": 29
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 30, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "    'hello_world.cpp': HELLO_WORLD_CPP,\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 6, 
-                      "end_column": 11
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 24, 
-                      "end_column": 29
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 30, 
-                      "end_column": 35
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 52, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "1TGbiq8EuXA", 
           "best_matching_line_number": 30, 
           "language": "python", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -3098,7 +1251,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0c6e5b028134b29a57a17dfac7408db243545166", 
+              "changelist": "f734546c6ab56077531f1fc1721876a23a8d0a03", 
               "name": "infra/recipes/recipes/goma_hello_world.py", 
               "package_name": "chromium", 
               "revision": "0"
@@ -3131,41 +1284,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  printf(\"Hello, world!\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 10, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "3NP7hGHg54g", 
           "best_matching_line_number": 10, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -3173,7 +1295,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "c63204b9485a276c9bf0ebe23d6668f0adb72fe9", 
               "name": "src/tools/gyp/test/symlinks/hello.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -3192,76 +1314,38 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "/*\n"
-              }, 
-              "first_line_number": 1, 
-              "match_reason": {}, 
-              "scope": ""
-            }
-          ], 
           "docid": "4jVcIuBzp4U", 
           "best_matching_line_number": 1, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {}, 
           "full_history_search": false, 
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "00e3700c632846e38927f70458a7ee64c3f935bd", 
               "name": "src/native_client/tests/hello_world/printf.c", 
               "package_name": "chromium", 
               "revision": "0"
             }
           }, 
-          "has_unshown_matches": true, 
+          "has_unshown_matches": false, 
           "num_matches": 0, 
           "match": [
             {
               "line_number": 1, 
               "score": 0, 
+              "match_offset": 0, 
+              "match_length": 0, 
               "line_text": "/*\n"
             }
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  printf(\"Hello, world!\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 11, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "VEwaOPS-rV8", 
           "best_matching_line_number": 11, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -3269,7 +1353,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "f6ad129fd7a3db6381e0d65a6064a6fec380b94f", 
               "name": "src/tools/gyp/test/build-option/hello.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -3288,41 +1372,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  printf(\"Hello, world!\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 12, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "GNkz_01eah0", 
           "best_matching_line_number": 12, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -3330,7 +1383,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "6e7dc8e419a842bc15bdeb62b5fe039e3bb759de", 
               "name": "src/tools/gyp/test/exclusion/hello.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -3349,139 +1402,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "Verifies simplest-possible build of a \"Hello, world!\" program\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 40, 
-                      "end_column": 45
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 47, 
-                      "end_column": 52
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 8, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "test.run_gyp('hello.gyp')\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 15, 
-                      "end_column": 20
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 16, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "test.build('hello.gyp', test.ALL)\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 13, 
-                      "end_column": 18
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 18, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "test.run_built_executable('hello', stdout=\"Hello, world!\\n\")\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 28, 
-                      "end_column": 33
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 44, 
-                      "end_column": 49
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 51, 
-                      "end_column": 56
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 20, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "test.up_to_date('hello.gyp', test.ALL)\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 22, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "5X7NNypkUlg", 
           "best_matching_line_number": 8, 
           "language": "python", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -3489,7 +1413,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "1739b6886e9fb0955ce2163ebe94de75ef1e5b9b", 
               "name": "src/tools/gyp/test/hello/gyptest-all.py", 
               "package_name": "chromium", 
               "revision": "0"
@@ -3543,70 +1467,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "    <title>Hello, World!</title>\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 19, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 3, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "    Hello, World!\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 5, 
-                      "end_column": 10
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 6, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "WJm-X7Vpsno", 
           "best_matching_line_number": 3, 
           "language": "html", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -3614,7 +1478,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "8974ba78de7d60da706156a01f4fcc10aa17ff1a", 
               "name": "src/android_webview/test/data/hello_world.html", 
               "package_name": "chromium", 
               "revision": "0"
@@ -3640,93 +1504,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  rpc SayHello (HelloRequest) returns (HelloReply) {}\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 10, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 17, 
-                      "end_column": 22
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 40, 
-                      "end_column": 45
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 12, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "message HelloRequest {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 16, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "message HelloReply {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 21, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }
-          ], 
           "docid": "DezxUpcJNbQ", 
           "best_matching_line_number": 21, 
           "language": "proto", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -3735,7 +1516,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "0d5e5e907b57e72cd752595c8d66d84196ffd1cd", 
               "name": "infra/go/src/go.chromium.org/luci/grpc/prpc/helloworld_test.proto", 
               "package_name": "chromium", 
               "revision": "0"
@@ -3768,114 +1549,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "package helloworld;\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 7, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "  rpc SayHello (HelloRequest) returns (HelloReply) {}\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 10, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 17, 
-                      "end_column": 22
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 40, 
-                      "end_column": 45
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 12, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "message HelloRequest {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 16, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "message HelloReply {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 21, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }
-          ], 
           "docid": "lFXTjVSOsAE", 
           "best_matching_line_number": 21, 
           "language": "proto", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -3884,7 +1561,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "7c6ca6754fb6245900fa9650a14e3519b4cac423", 
               "name": "infra/go/src/go.chromium.org/luci/examples/appengine/helloworld_standard/proto/helloworld.proto", 
               "package_name": "chromium", 
               "revision": "0"
@@ -3931,41 +1608,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  printf(\"Hello, World!\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 8, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "6V8C0ugUlYs", 
           "best_matching_line_number": 8, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -3973,7 +1619,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "6739103c3c800725aeb8eb9a28849981cd28b96d", 
               "name": "src/chrome/test/data/devtools/indexer/hello_world.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -3992,179 +1638,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "base::FilePath HelloWorldPath() {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 16, 
-                      "end_column": 26
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 22, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "    .AppendASCII(\"hello_world.js\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 19, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 25, 
-                      "end_column": 30
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 28, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "TEST(GinShellTest, HelloWorld) {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 20, 
-                      "end_column": 30
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 31, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "  base::FilePath hello_world_path(HelloWorldPath());\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 24, 
-                      "end_column": 29
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 35, 
-                      "end_column": 45
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 33, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "  ASSERT_TRUE(base::PathExists(hello_world_path));\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 32, 
-                      "end_column": 37
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 38, 
-                      "end_column": 43
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 35, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "  ASSERT_EQ(\"Hello World\", output);\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 14, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 20, 
-                      "end_column": 25
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 42, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "vjcy9igsdgg", 
           "best_matching_line_number": 31, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -4173,7 +1650,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "5c7dd0cd9e2469d0ae05ce59f6a9f4f1ccb991c2", 
               "name": "src/gin/shell/gin_shell_unittest.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -4227,41 +1704,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  printf(\"Hello, world!\\n\");\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 9, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "qZQTFUU5KNo", 
           "best_matching_line_number": 9, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -4269,7 +1715,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "faadc75e2c0a5975e50cc6e9a8ee1c83e2c248bb", 
               "name": "src/tools/gyp/test/msvs/props/hello.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -4288,41 +1734,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "    \"shell/hello_world.js\",\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 170, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "oSDhe419aP0", 
-          "best_matching_line_number": 170, 
+          "best_matching_line_number": 163, 
           "language": "gn", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -4330,7 +1745,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "6b3a66391f1225f857f547992a8b18f1abecc16c", 
+              "changelist": "5670afca7f4bbb0d3c2073fb00245a52ea2ab454", 
               "name": "src/gin/BUILD.gn", 
               "package_name": "chromium", 
               "revision": "0"
@@ -4340,7 +1755,7 @@
           "num_matches": 0, 
           "match": [
             {
-              "line_number": 170, 
+              "line_number": 163, 
               "score": -14, 
               "match_offset": 17, 
               "match_length": 5, 
@@ -4349,105 +1764,38 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "/*\n"
-              }, 
-              "first_line_number": 1, 
-              "match_reason": {}, 
-              "scope": ""
-            }
-          ], 
           "docid": "5EghSoWgrns", 
           "best_matching_line_number": 1, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {}, 
           "full_history_search": false, 
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "45fb96e81f66570177f722afc91acae68c58631d", 
               "name": "src/native_client/tests/hello_world/dump_env.c", 
               "package_name": "chromium", 
               "revision": "0"
             }
           }, 
-          "has_unshown_matches": true, 
+          "has_unshown_matches": false, 
           "num_matches": 0, 
           "match": [
             {
               "line_number": 1, 
               "score": 0, 
+              "match_offset": 0, 
+              "match_length": 0, 
               "line_text": "/*\n"
             }
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "executable(\"hello_world\") {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 13, 
-                      "end_column": 18
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 19, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 5, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "    \"hello_world.c\",\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 6, 
-                      "end_column": 11
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 7, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "19J58DFIXhQ", 
           "best_matching_line_number": 5, 
           "language": "gn", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -4455,7 +1803,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "27c58999842bfcff4a81787ca6eefcdf610d2154", 
               "name": "src/native_client/tests/hello_world/BUILD.gn", 
               "package_name": "chromium", 
               "revision": "0"
@@ -4481,74 +1829,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "package org.chromium.helloworld;\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 22, 
-                      "end_column": 32
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 5, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "public class HelloWorldMain {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 14, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 7, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "        HelloWorldPrinter.print();\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 12, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "TygXQOaFEF0", 
           "best_matching_line_number": 7, 
           "language": "java", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -4557,7 +1841,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "10860d8332d3ba2cd504279d0bd51ba315855205", 
               "name": "src/build/android/gyp/test/java/org/chromium/helloworld/HelloWorldMain.java", 
               "package_name": "chromium", 
               "revision": "0"
@@ -4590,62 +1874,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "class HelloWorld(ScriptBase):\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 7, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 24, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "        self.log('Hello World!!!')\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 19, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 25, 
-                      "end_column": 30
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 27, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "MWj5PCpznnY", 
           "best_matching_line_number": 24, 
           "language": "python", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -4654,7 +1886,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "680873ce179ee8c78af1cd9ecc8fbeb8d4983b57", 
               "name": "src/third_party/depot_tools/third_party/boto/pyami/helloworld.py", 
               "package_name": "chromium", 
               "revision": "0"
@@ -4680,114 +1912,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "package test.helloworld;\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 14, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 7, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "  rpc SayHello (HelloRequest) returns (HelloReply) {}\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 10, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 17, 
-                      "end_column": 22
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 40, 
-                      "end_column": 45
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 12, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "message HelloRequest {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 16, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "message HelloReply {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 9, 
-                      "end_column": 14
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 21, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }
-          ], 
           "docid": "PUo1NDelLTI", 
           "best_matching_line_number": 21, 
           "language": "proto", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -4796,7 +1924,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "bdeed51281f31262df90cc2a1594a51de0b89540", 
               "name": "infra/go/src/go.chromium.org/luci/grpc/cmd/cproto/testdata/helloworld/test.proto", 
               "package_name": "chromium", 
               "revision": "0"
@@ -4843,41 +1971,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "print \"Hello World!\";\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 8, 
-                      "end_column": 13
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 14, 
-                      "end_column": 19
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 4, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
           "docid": "wrCwQOjxuj8", 
           "best_matching_line_number": 4, 
           "language": "perl", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true
           }, 
@@ -4885,7 +1982,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "a1e012b2535666bd1c58e9ffac56d0160a9b6c4d", 
               "name": "src/third_party/WebKit/LayoutTests/http/tests/xmlhttprequest/hello-world.cgi", 
               "package_name": "chromium", 
               "revision": "0"
@@ -4904,71 +2001,10 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "extern int hello2();\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 12, 
-                      "end_column": 17
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 8, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "  printf(\"Hello, world!\\n\");\n  hello2();\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 18, 
-                      "end_column": 23
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 3, 
-                      "end_column": 8
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 11, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "j8iFY3J2L5U", 
           "best_matching_line_number": 8, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -4977,7 +2013,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "ffb47bf822198467ec691b4763cfc455f0d6c562", 
               "name": "src/tools/gyp/test/win/precompiled/hello.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -5010,202 +2046,38 @@
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "/*\n"
-              }, 
-              "first_line_number": 1, 
-              "match_reason": {}, 
-              "scope": ""
-            }
-          ], 
           "docid": "A_338kEwqhg", 
           "best_matching_line_number": 1, 
           "language": "c", 
+          "is_augmented": false, 
           "match_reason": {}, 
           "full_history_search": false, 
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "f50df1821705b8864ad6713cb7cc61ffa3702dc1", 
               "name": "src/native_client/tests/hello_world/misc_math.c", 
               "package_name": "chromium", 
               "revision": "0"
             }
           }, 
-          "has_unshown_matches": true, 
+          "has_unshown_matches": false, 
           "num_matches": 0, 
           "match": [
             {
               "line_number": 1, 
               "score": 0, 
+              "match_offset": 0, 
+              "match_length": 0, 
               "line_text": "/*\n"
             }
           ]
         }, 
         {
-          "snippet": [
-            {
-              "text": {
-                "text": "  if not check_hello_world(toolset_root):\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 16, 
-                      "end_column": 21
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 22, 
-                      "end_column": 27
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 186, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }, 
-            {
-              "text": {
-                "text": "def check_hello_world(toolset_root):\n  \"\"\"Compiles and runs 'hello world' program to verify that toolset works.\"\"\"\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 16
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 17, 
-                      "end_column": 22
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 25, 
-                      "end_column": 30
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 31, 
-                      "end_column": 36
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 212, 
-              "match_reason": {
-                "content": true, 
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "    path = os.path.join(tmp, 'hello.go')\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 31, 
-                      "end_column": 36
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 215, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "        func main() { println(\"hello, world\\n\") }\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 32, 
-                      "end_column": 37
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 39, 
-                      "end_column": 44
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 218, 
-              "match_reason": {
-                "content": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "    if out.strip() != 'hello, world':\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 24, 
-                      "end_column": 29
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 31, 
-                      "end_column": 36
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 226, 
-              "match_reason": {
-                "content": true
-              }
-            }
-          ], 
           "docid": "QRo4ZyWLoR8", 
-          "best_matching_line_number": 212, 
+          "best_matching_line_number": 210, 
           "language": "python", 
+          "is_augmented": false, 
           "match_reason": {
             "content": true, 
             "scoped_symbol": true
@@ -5214,7 +2086,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "d90694d670b2b9d21ac3e0dbf780bf3536ffc059", 
+              "changelist": "7a4dad5015f106c256bbb8658e0e0663f1bdcbb3", 
               "name": "infra/go/bootstrap.py", 
               "package_name": "chromium", 
               "revision": "0"
@@ -5224,28 +2096,28 @@
           "num_matches": 4, 
           "match": [
             {
-              "line_number": 212, 
+              "line_number": 210, 
               "score": 135, 
               "match_offset": 16, 
               "match_length": 5, 
               "line_text": "def check_hello_world(toolset_root):\n"
             }, 
             {
-              "line_number": 213, 
+              "line_number": 211, 
               "score": 57, 
               "match_offset": 30, 
               "match_length": 5, 
               "line_text": "  \"\"\"Compiles and runs 'hello world' program to verify that toolset works.\"\"\"\n"
             }, 
             {
-              "line_number": 218, 
+              "line_number": 216, 
               "score": 57, 
               "match_offset": 38, 
               "match_length": 5, 
               "line_text": "        func main() { println(\"hello, world\\n\") }\n"
             }, 
             {
-              "line_number": 215, 
+              "line_number": 213, 
               "score": 57, 
               "match_offset": 30, 
               "match_length": 5, 
@@ -5259,14 +2131,14 @@
               "line_text": "    if out.strip() != 'hello, world':\n"
             }, 
             {
-              "line_number": 218, 
+              "line_number": 216, 
               "score": 57, 
               "match_offset": 31, 
               "match_length": 5, 
               "line_text": "        func main() { println(\"hello, world\\n\") }\n"
             }, 
             {
-              "line_number": 186, 
+              "line_number": 184, 
               "score": -14, 
               "match_offset": 21, 
               "match_length": 5, 
@@ -5280,71 +2152,12 @@
               "line_text": "    if out.strip() != 'hello, world':\n"
             }
           ]
-        }, 
-        {
-          "snippet": [
-            {
-              "text": {
-                "text": "  print 'Hello world from', args.name\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 10, 
-                      "end_column": 15
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 16, 
-                      "end_column": 21
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 22, 
-              "match_reason": {
-                "content": true
-              }, 
-              "scope": ""
-            }
-          ], 
-          "docid": "kp0E_-jKme8", 
-          "best_matching_line_number": 22, 
-          "language": "python", 
-          "match_reason": {
-            "content": true
-          }, 
-          "full_history_search": false, 
-          "num_duplicates": 0, 
-          "top_file": {
-            "file": {
-              "changelist": "0", 
-              "name": "src/testing/legion/examples/hello_world/task_test.py", 
-              "package_name": "chromium", 
-              "revision": "0"
-            }
-          }, 
-          "has_unshown_matches": false, 
-          "num_matches": 0, 
-          "match": [
-            {
-              "line_number": 22, 
-              "score": 86, 
-              "match_offset": 9, 
-              "match_length": 5, 
-              "line_text": "  print 'Hello world from', args.name\n"
-            }
-          ]
         }
       ], 
-      "results_offset": 0
+      "results_offset": 0, 
+      "maybe_skipped_documents": false, 
+      "hit_max_to_score": false
     }
   ], 
-  "elapsed_ms": 195
+  "elapsed_ms": 41
 }

@@ -1,5 +1,5 @@
 {
-  "elapsed_ms": 9, 
+  "elapsed_ms": 20, 
   "call_graph_response": [
     {
       "node": {
@@ -7,16 +7,16 @@
         "children": [
           {
             "call_scope_range": {
-              "start_line": 222, 
-              "end_line": 222, 
+              "start_line": 223, 
+              "end_line": 223, 
               "start_column": 25, 
               "end_column": 43
             }, 
             "package_name": "chromium", 
             "snippet_package_name": "chromium", 
             "call_site_range": {
-              "start_line": 288, 
-              "end_line": 290, 
+              "start_line": 289, 
+              "end_line": 291, 
               "start_column": 7, 
               "end_column": 74
             }, 
@@ -24,11 +24,11 @@
               "text": {
                 "text": "      HttpAuth::ChooseBestChallenge(http_auth_handler_factory_, *headers,"
               }, 
-              "first_line_number": 288
+              "first_line_number": 289
             }, 
             "snippet_file_path": "src/net/http/http_auth_controller.cc", 
             "node_kind": "FUNCTION", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_controller.cc#GtcwscFl%2FOrKkHN649fanpArN6xKK%2BDVhhEx%2BfB2FAw%3D", 
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_controller.cc#7yq7ZTyAWt%2Fna9WmUw6MtaBTaBo5xR9tctJTPnzmifc%3D", 
             "params": [
               "headers", 
               "ssl_info", 
@@ -67,7 +67,7 @@
             "file_path": "src/net/http/http_auth_unittest.cc"
           }
         ], 
-        "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#YddxnghqOet%2BOOR1CG17TPUbhdiZwtDQLfDND%2Bk218g%3D"
+        "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#XuQjjB%2FAKTA9o5vtXL1SZ6VRmQTtjfVt5Jh%2Bsorw5eg%3D"
       }, 
       "is_from_kythe": true, 
       "return_code": 1, 

@@ -1,5 +1,5 @@
 {
-  "elapsed_ms": 11, 
+  "elapsed_ms": 20, 
   "xref_search_response": [
     {
       "status": 0, 
@@ -47,8 +47,8 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#%404802%3A4821%40YddxnghqOet%2BOOR1CG17TPUbhdiZwtDQLfDND%2Bk218g%3D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
-              "line_number": 138, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#%404950%3A4969%40XuQjjB%2FAKTA9o5vtXL1SZ6VRmQTtjfVt5Jh%2Bsorw5eg%3D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+              "line_number": 142, 
               "type_id": 2, 
               "type": "DECLARATION", 
               "line_text": "  static void ChooseBestChallenge("
@@ -62,8 +62,8 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_controller.cc#%4010227%3A10246", 
-              "line_number": 288, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_controller.cc#%4010262%3A10281", 
+              "line_number": 289, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "      HttpAuth::ChooseBestChallenge(http_auth_handler_factory_, *headers,"

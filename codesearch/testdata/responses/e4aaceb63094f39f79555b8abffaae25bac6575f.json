@@ -1,26 +1,26 @@
 {
-  "elapsed_ms": 24, 
+  "elapsed_ms": 83, 
   "file_info_response": [
     {
       "file_info": {
         "gob_info": {
           "repo": "chromium/chromium/src", 
-          "commit": "8d737563f986f1ece3016211a26aae2c323ae73d", 
+          "commit": "5fff84af92ec0ebc40e51fd723191dfc5e4aace2", 
           "path": "net/http/http_auth.h"
         }, 
         "name": "src/net/http/http_auth.h", 
         "language": "c++", 
-        "changelist_num": "8d737563f986f1ece3016211a26aae2c323ae73d", 
+        "changelist_num": "5fff84af92ec0ebc40e51fd723191dfc5e4aace2", 
         "package_name": "chromium", 
-        "lines": "179", 
+        "lines": "183", 
         "content": {
-          "text": "// Copyright (c) 2011 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_HTTP_HTTP_AUTH_H_\n#define NET_HTTP_HTTP_AUTH_H_\n\n#include <memory>\n#include <set>\n#include <string>\n\n#include \"net/base/auth.h\"\n#include \"net/base/net_export.h\"\n#include \"net/http/http_util.h\"\n\ntemplate <class T> class scoped_refptr;\n\nnamespace net {\n\nclass HttpAuthHandler;\nclass HttpAuthHandlerFactory;\nclass HttpResponseHeaders;\nclass NetLogWithSource;\nclass SSLInfo;\n\n// Utility class for http authentication.\nclass NET_EXPORT_PRIVATE HttpAuth {\n public:\n  // Http authentication can be done the the proxy server, origin server,\n  // or both. This enum tracks who the target is.\n  enum Target {\n    AUTH_NONE = -1,\n    // We depend on the valid targets (!= AUTH_NONE) being usable as indexes\n    // in an array, so start from 0.\n    AUTH_PROXY = 0,\n    AUTH_SERVER = 1,\n    AUTH_NUM_TARGETS = 2,\n  };\n\n  // What the HTTP WWW-Authenticate/Proxy-Authenticate headers indicate about\n  // the previous authorization attempt.\n  enum AuthorizationResult {\n    AUTHORIZATION_RESULT_ACCEPT,   // The authorization attempt was accepted,\n                                   // although there still may be additional\n                                   // rounds of challenges.\n\n    AUTHORIZATION_RESULT_REJECT,   // The authorization attempt was rejected.\n\n    AUTHORIZATION_RESULT_STALE,    // (Digest) The nonce used in the\n                                   // authorization attempt is stale, but\n                                   // otherwise the attempt was valid.\n\n    AUTHORIZATION_RESULT_INVALID,  // The authentication challenge headers are\n                                   // poorly formed (the authorization attempt\n                                   // itself may have been fine).\n\n    AUTHORIZATION_RESULT_DIFFERENT_REALM,  // The authorization\n                                           // attempt was rejected,\n                                           // but the realm associated\n                                           // with the new challenge\n                                           // is different from the\n                                           // previous attempt.\n  };\n\n  // Describes where the identity used for authentication came from.\n  enum IdentitySource {\n    // Came from nowhere -- the identity is not initialized.\n    IDENT_SRC_NONE,\n\n    // The identity came from the auth cache, by doing a path-based\n    // lookup (premptive authorization).\n    IDENT_SRC_PATH_LOOKUP,\n\n    // The identity was extracted from a URL of the form:\n    // http://<username>:<password>@host:port\n    IDENT_SRC_URL,\n\n    // The identity was retrieved from the auth cache, by doing a\n    // realm lookup.\n    IDENT_SRC_REALM_LOOKUP,\n\n    // The identity was provided by RestartWithAuth -- it likely\n    // came from a prompt (or maybe the password manager).\n    IDENT_SRC_EXTERNAL,\n\n    // The identity used the default credentials for the computer,\n    // on schemes that support single sign-on.\n    IDENT_SRC_DEFAULT_CREDENTIALS,\n  };\n\n  enum Scheme {\n    AUTH_SCHEME_BASIC = 0,\n    AUTH_SCHEME_DIGEST,\n    AUTH_SCHEME_NTLM,\n    AUTH_SCHEME_NEGOTIATE,\n    AUTH_SCHEME_SPDYPROXY,\n    AUTH_SCHEME_MOCK,\n    AUTH_SCHEME_MAX,\n  };\n\n  // Helper structure used by HttpNetworkTransaction to track\n  // the current identity being used for authorization.\n  struct Identity {\n    Identity();\n\n    IdentitySource source;\n    bool invalid;\n    AuthCredentials credentials;\n  };\n\n  // Get the name of the header containing the auth challenge\n  // (either WWW-Authenticate or Proxy-Authenticate).\n  static std::string GetChallengeHeaderName(Target target);\n\n  // Get the name of the header where the credentials go\n  // (either Authorization or Proxy-Authorization).\n  static std::string GetAuthorizationHeaderName(Target target);\n\n  // Returns a string representation of a Target value that can be used in log\n  // messages.\n  static std::string GetAuthTargetString(Target target);\n\n  // Returns a string representation of an authentication Scheme.\n  static const char* SchemeToString(Scheme scheme);\n\n  // Iterate through |response_headers|, and pick the best one that we support.\n  // Obtains the implementation class for handling the challenge, and passes it\n  // back in |*handler|. If no supported challenge was found, |*handler| is set\n  // to NULL.\n  //\n  // |disabled_schemes| is the set of schemes that we should not use.\n  //\n  // |origin| is used by the NTLM and Negotiation authentication scheme to\n  // construct the service principal name. It is ignored by other schemes.\n  //\n  // |ssl_info| is passed through to the scheme specific authentication handlers\n  // to use as appropriate.\n  static void ChooseBestChallenge(\n      HttpAuthHandlerFactory* http_auth_handler_factory,\n      const HttpResponseHeaders& response_headers,\n      const SSLInfo& ssl_info,\n      Target target,\n      const GURL& origin,\n      const std::set<Scheme>& disabled_schemes,\n      const NetLogWithSource& net_log,\n      std::unique_ptr<HttpAuthHandler>* handler);\n\n  // Handle a 401/407 response from a server/proxy after a previous\n  // authentication attempt. For connection-based authentication schemes, the\n  // new response may be another round in a multi-round authentication sequence.\n  // For request-based schemes, a 401/407 response is typically treated like a\n  // rejection of the previous challenge, except in the Digest case when a\n  // \"stale\" attribute is present.\n  //\n  // |handler| must be non-NULL, and is the HttpAuthHandler from the previous\n  // authentication round.\n  //\n  // |response_headers| must contain the new HTTP response.\n  //\n  // |target| specifies whether the authentication challenge response came\n  // from a server or a proxy.\n  //\n  // |disabled_schemes| are the authentication schemes to ignore.\n  //\n  // |challenge_used| is the text of the authentication challenge used in\n  // support of the returned AuthorizationResult. If no headers were used for\n  // the result (for example, all headers have unknown authentication schemes),\n  // the value is cleared.\n  static AuthorizationResult HandleChallengeResponse(\n      HttpAuthHandler* handler,\n      const HttpResponseHeaders& response_headers,\n      Target target,\n      const std::set<Scheme>& disabled_schemes,\n      std::string* challenge_used);\n};\n\n}  // namespace net\n\n#endif  // NET_HTTP_HTTP_AUTH_H_\n"
+          "text": "// Copyright (c) 2011 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_HTTP_HTTP_AUTH_H_\n#define NET_HTTP_HTTP_AUTH_H_\n\n#include <memory>\n#include <set>\n#include <string>\n\n#include \"net/base/auth.h\"\n#include \"net/base/net_export.h\"\n#include \"net/http/http_util.h\"\n\ntemplate <class T> class scoped_refptr;\n\nnamespace net {\n\nclass HttpAuthHandler;\nclass HttpAuthHandlerFactory;\nclass HttpResponseHeaders;\nclass NetLogWithSource;\nclass SSLInfo;\n\n// Utility class for http authentication.\nclass NET_EXPORT_PRIVATE HttpAuth {\n public:\n  // Http authentication can be done the the proxy server, origin server,\n  // or both. This enum tracks who the target is.\n  enum Target {\n    AUTH_NONE = -1,\n    // We depend on the valid targets (!= AUTH_NONE) being usable as indexes\n    // in an array, so start from 0.\n    AUTH_PROXY = 0,\n    AUTH_SERVER = 1,\n    AUTH_NUM_TARGETS = 2,\n  };\n\n  // What the HTTP WWW-Authenticate/Proxy-Authenticate headers indicate about\n  // the previous authorization attempt.\n  enum AuthorizationResult {\n    AUTHORIZATION_RESULT_ACCEPT,   // The authorization attempt was accepted,\n                                   // although there still may be additional\n                                   // rounds of challenges.\n\n    AUTHORIZATION_RESULT_REJECT,   // The authorization attempt was rejected.\n\n    AUTHORIZATION_RESULT_STALE,    // (Digest) The nonce used in the\n                                   // authorization attempt is stale, but\n                                   // otherwise the attempt was valid.\n\n    AUTHORIZATION_RESULT_INVALID,  // The authentication challenge headers are\n                                   // poorly formed (the authorization attempt\n                                   // itself may have been fine).\n\n    AUTHORIZATION_RESULT_DIFFERENT_REALM,  // The authorization\n                                           // attempt was rejected,\n                                           // but the realm associated\n                                           // with the new challenge\n                                           // is different from the\n                                           // previous attempt.\n  };\n\n  // Describes where the identity used for authentication came from.\n  enum IdentitySource {\n    // Came from nowhere -- the identity is not initialized.\n    IDENT_SRC_NONE,\n\n    // The identity came from the auth cache, by doing a path-based\n    // lookup (premptive authorization).\n    IDENT_SRC_PATH_LOOKUP,\n\n    // The identity was extracted from a URL of the form:\n    // http://<username>:<password>@host:port\n    IDENT_SRC_URL,\n\n    // The identity was retrieved from the auth cache, by doing a\n    // realm lookup.\n    IDENT_SRC_REALM_LOOKUP,\n\n    // The identity was provided by RestartWithAuth -- it likely\n    // came from a prompt (or maybe the password manager).\n    IDENT_SRC_EXTERNAL,\n\n    // The identity used the default credentials for the computer,\n    // on schemes that support single sign-on.\n    IDENT_SRC_DEFAULT_CREDENTIALS,\n  };\n\n  // Identifier for auth scheme.\n  //\n  // The values are used for calculating UMA buckets. Add but don't remove or\n  // reuse.\n  enum Scheme {\n    AUTH_SCHEME_BASIC = 0,\n    AUTH_SCHEME_DIGEST,\n    AUTH_SCHEME_NTLM,\n    AUTH_SCHEME_NEGOTIATE,\n    AUTH_SCHEME_SPDYPROXY,  // No longer used.\n    AUTH_SCHEME_MOCK,\n    AUTH_SCHEME_MAX,\n  };\n\n  // Helper structure used by HttpNetworkTransaction to track\n  // the current identity being used for authorization.\n  struct Identity {\n    Identity();\n\n    IdentitySource source;\n    bool invalid;\n    AuthCredentials credentials;\n  };\n\n  // Get the name of the header containing the auth challenge\n  // (either WWW-Authenticate or Proxy-Authenticate).\n  static std::string GetChallengeHeaderName(Target target);\n\n  // Get the name of the header where the credentials go\n  // (either Authorization or Proxy-Authorization).\n  static std::string GetAuthorizationHeaderName(Target target);\n\n  // Returns a string representation of a Target value that can be used in log\n  // messages.\n  static std::string GetAuthTargetString(Target target);\n\n  // Returns a string representation of an authentication Scheme.\n  static const char* SchemeToString(Scheme scheme);\n\n  // Iterate through |response_headers|, and pick the best one that we support.\n  // Obtains the implementation class for handling the challenge, and passes it\n  // back in |*handler|. If no supported challenge was found, |*handler| is set\n  // to NULL.\n  //\n  // |disabled_schemes| is the set of schemes that we should not use.\n  //\n  // |origin| is used by the NTLM and Negotiation authentication scheme to\n  // construct the service principal name. It is ignored by other schemes.\n  //\n  // |ssl_info| is passed through to the scheme specific authentication handlers\n  // to use as appropriate.\n  static void ChooseBestChallenge(\n      HttpAuthHandlerFactory* http_auth_handler_factory,\n      const HttpResponseHeaders& response_headers,\n      const SSLInfo& ssl_info,\n      Target target,\n      const GURL& origin,\n      const std::set<Scheme>& disabled_schemes,\n      const NetLogWithSource& net_log,\n      std::unique_ptr<HttpAuthHandler>* handler);\n\n  // Handle a 401/407 response from a server/proxy after a previous\n  // authentication attempt. For connection-based authentication schemes, the\n  // new response may be another round in a multi-round authentication sequence.\n  // For request-based schemes, a 401/407 response is typically treated like a\n  // rejection of the previous challenge, except in the Digest case when a\n  // \"stale\" attribute is present.\n  //\n  // |handler| must be non-NULL, and is the HttpAuthHandler from the previous\n  // authentication round.\n  //\n  // |response_headers| must contain the new HTTP response.\n  //\n  // |target| specifies whether the authentication challenge response came\n  // from a server or a proxy.\n  //\n  // |disabled_schemes| are the authentication schemes to ignore.\n  //\n  // |challenge_used| is the text of the authentication challenge used in\n  // support of the returned AuthorizationResult. If no headers were used for\n  // the result (for example, all headers have unknown authentication schemes),\n  // the value is cleared.\n  static AuthorizationResult HandleChallengeResponse(\n      HttpAuthHandler* handler,\n      const HttpResponseHeaders& response_headers,\n      Target target,\n      const std::set<Scheme>& disabled_schemes,\n      std::string* challenge_used);\n};\n\n}  // namespace net\n\n#endif  // NET_HTTP_HTTP_AUTH_H_\n"
         }, 
         "generated": false, 
         "mime_type": "text/plain", 
-        "size": "6484", 
+        "size": "6632", 
         "type": 1, 
-        "md5": "30b4cf916d01851983e36f0660c89813", 
+        "md5": "ca17de855a27d6153e4fae30f19cc960", 
         "codeblock": [
           {
             "type": 40, 
@@ -331,8 +331,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 92, 
-                          "end_line": 92, 
+                          "start_line": 96, 
+                          "end_line": 96, 
                           "start_column": 5, 
                           "end_column": 26
                         }
@@ -346,8 +346,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 93, 
-                          "end_line": 93, 
+                          "start_line": 97, 
+                          "end_line": 97, 
                           "start_column": 5, 
                           "end_column": 23
                         }
@@ -361,8 +361,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 94, 
-                          "end_line": 94, 
+                          "start_line": 98, 
+                          "end_line": 98, 
                           "start_column": 5, 
                           "end_column": 21
                         }
@@ -376,8 +376,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 95, 
-                          "end_line": 95, 
+                          "start_line": 99, 
+                          "end_line": 99, 
                           "start_column": 5, 
                           "end_column": 26
                         }
@@ -391,8 +391,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 96, 
-                          "end_line": 96, 
+                          "start_line": 100, 
+                          "end_line": 100, 
                           "start_column": 5, 
                           "end_column": 26
                         }
@@ -406,8 +406,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 97, 
-                          "end_line": 97, 
+                          "start_line": 101, 
+                          "end_line": 101, 
                           "start_column": 5, 
                           "end_column": 21
                         }
@@ -421,8 +421,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 98, 
-                          "end_line": 98, 
+                          "start_line": 102, 
+                          "end_line": 102, 
                           "start_column": 5, 
                           "end_column": 20
                         }
@@ -431,8 +431,8 @@
                     "name_prefix": "", 
                     "type": 4, 
                     "text_range": {
-                      "start_line": 91, 
-                      "end_line": 99, 
+                      "start_line": 95, 
+                      "end_line": 103, 
                       "start_column": 3, 
                       "end_column": 4
                     }
@@ -453,8 +453,8 @@
                         "name_prefix": "", 
                         "type": 8, 
                         "text_range": {
-                          "start_line": 104, 
-                          "end_line": 104, 
+                          "start_line": 108, 
+                          "end_line": 108, 
                           "start_column": 5, 
                           "end_column": 16
                         }
@@ -468,8 +468,8 @@
                         "name_prefix": "", 
                         "type": 9, 
                         "text_range": {
-                          "start_line": 106, 
-                          "end_line": 106, 
+                          "start_line": 110, 
+                          "end_line": 110, 
                           "start_column": 5, 
                           "end_column": 27
                         }
@@ -483,8 +483,8 @@
                         "name_prefix": "", 
                         "type": 9, 
                         "text_range": {
-                          "start_line": 107, 
-                          "end_line": 107, 
+                          "start_line": 111, 
+                          "end_line": 111, 
                           "start_column": 5, 
                           "end_column": 18
                         }
@@ -498,8 +498,8 @@
                         "name_prefix": "", 
                         "type": 9, 
                         "text_range": {
-                          "start_line": 108, 
-                          "end_line": 108, 
+                          "start_line": 112, 
+                          "end_line": 112, 
                           "start_column": 5, 
                           "end_column": 33
                         }
@@ -508,8 +508,8 @@
                     "name_prefix": "", 
                     "type": 3, 
                     "text_range": {
-                      "start_line": 103, 
-                      "end_line": 109, 
+                      "start_line": 107, 
+                      "end_line": 113, 
                       "start_column": 3, 
                       "end_column": 4
                     }
@@ -524,8 +524,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 113, 
-                      "end_line": 113, 
+                      "start_line": 117, 
+                      "end_line": 117, 
                       "start_column": 3, 
                       "end_column": 60
                     }
@@ -540,8 +540,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 117, 
-                      "end_line": 117, 
+                      "start_line": 121, 
+                      "end_line": 121, 
                       "start_column": 3, 
                       "end_column": 64
                     }
@@ -556,8 +556,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 121, 
-                      "end_line": 121, 
+                      "start_line": 125, 
+                      "end_line": 125, 
                       "start_column": 3, 
                       "end_column": 57
                     }
@@ -572,8 +572,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 124, 
-                      "end_line": 124, 
+                      "start_line": 128, 
+                      "end_line": 128, 
                       "start_column": 3, 
                       "end_column": 52
                     }
@@ -588,8 +588,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 138, 
-                      "end_line": 146, 
+                      "start_line": 142, 
+                      "end_line": 150, 
                       "start_column": 3, 
                       "end_column": 50
                     }
@@ -604,8 +604,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 169, 
-                      "end_line": 174, 
+                      "start_line": 173, 
+                      "end_line": 178, 
                       "start_column": 3, 
                       "end_column": 36
                     }
@@ -615,7 +615,7 @@
                 "type": 1, 
                 "text_range": {
                   "start_line": 27, 
-                  "end_line": 175, 
+                  "end_line": 179, 
                   "start_column": 1, 
                   "end_column": 2
                 }
@@ -625,7 +625,7 @@
             "name": "net", 
             "text_range": {
               "start_line": 18, 
-              "end_line": 177, 
+              "end_line": 181, 
               "start_column": 1, 
               "end_column": 2
             }, 

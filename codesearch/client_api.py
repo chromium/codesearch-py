@@ -73,6 +73,7 @@ class CsFile(object):
   """Represents a source file known to CodeSearch and allows looking up annotations."""
 
   def __init__(self, cs, file_info):
+    # type: (CodeSearch, FileInfo) -> None
     assert isinstance(cs, CodeSearch)
     assert isinstance(file_info, FileInfo)
 
@@ -95,10 +96,12 @@ class CsFile(object):
     self.annotations = None
 
   def Path(self):
+    # type: () -> str
     """Return the path to the file relative to the root of the source directory."""
     return self.file_info.name
 
   def Text(self, text_range):
+    # type: (TextRange) -> str
     """Given a TextRange, returns the text corresponding to said range in this file.
 
     Any intervening newlines will be represented with a single '\n'."""
@@ -129,6 +132,7 @@ class CsFile(object):
     return '\n'.join(first + middle + end)
 
   def GetCodeBlock(self):
+    # type: () -> CodeBlock
     """Retrieves a CodeBlocks of type ROOT for the file or None if one is not found.
 
     Note that a CodeBlock list is only preset if one is requested explicitly at
@@ -138,6 +142,7 @@ class CsFile(object):
     return self.codeblock
 
   def FindCodeBlock(self, name="", type=CodeBlockType.ROOT):
+    # type: (str, int) -> CodeBlock
     """Find a codeblock in this file that matches the name and type. If there
     are more than one, could return any."""
     if self.codeblock is None:
@@ -145,6 +150,7 @@ class CsFile(object):
     return self.codeblock.Find(name, type)
 
   def GetSignatureForCodeBlock(self, codeblock):
+    # type: (CodeBlock) -> str
     """Return a signature for a CodeBlock or None if no signature could be determined.
 
     The ``signature`` field included included in the CodeBlock is the function
@@ -181,10 +187,12 @@ class CsFile(object):
     return None
 
   def GetFileSpec(self):
+    # type: () -> FileSpec
     return FileSpec(
         name=self.file_info.name, package_name=self.file_info.package_name)
 
   def GetAnnotations(self):
+    # type: () -> List[Annotation]
     if self.annotations == None:
       response = self.cs.GetAnnotationsForFile(self.GetFileSpec())
       if not hasattr(response.annotation_response[0], 'annotation'):
@@ -196,7 +204,8 @@ class CsFile(object):
     return self.annotations
 
   def GetAnchorText(self, signature):
-    # Fetch annotations if we haven't already.
+    # type: (str) -> str
+
     self.GetAnnotations()
     assert isinstance(self.annotations, list)
     assert len(self.annotations) == 0 or isinstance(self.annotations[0],
@@ -249,6 +258,7 @@ class XrefNode(object):
   """
 
   def __init__(self, cs, single_match, filespec=None, parent=None):
+    # type: (CodeSearch, XrefSingleMatch, FileSpec, XrefNode) -> None
     """Constructs an XrefNode.
 
     This is probably not what you are looking for. Instead figure out the
@@ -270,6 +280,7 @@ class XrefNode(object):
     assert self.parent is None or isinstance(self.parent, XrefNode)
 
   def Traverse(self, xref_kinds=None, max_num_results=500):
+    # type: (Union[int,List[int]], int) -> List[XrefNode]
     """Gets outgoing edges for this node.
 
     Returns a list of XrefNode objects. If there are no results, then returns
@@ -296,7 +307,7 @@ class XrefNode(object):
 
     # Make sure that the incoming filter is based on KytheXrefKind and not the
     # deprecated NodeEnumKind. Fortunately, the valid numbers for each type are
-    # disjoint despite being sparse.
+    # disjoint.
     for v in xrset:
       assert KytheXrefKind.ToSymbol(v) != v
 
@@ -310,6 +321,7 @@ class XrefNode(object):
     return list(filter(lambda n: n.single_match.type_id in xrset, results)) + cg
 
   def _GetCallGraphNode(self, max_num_results=500):
+    # type: (int) -> XrefNode
     """Returns a single Node containing one level of the incoming call graph."""
 
     cg_response = self.cs.GetCallGraph(
@@ -328,6 +340,7 @@ class XrefNode(object):
     return response.node
 
   def GetFile(self):
+    # type: () -> FileInfo
     """Return the file containing this XrefNode as a CsFile."""
     if not self.filespec:
       raise NoFileSpecError('no filespec found for XrefNode')
@@ -367,6 +380,7 @@ class XrefNode(object):
         self.single_match.signature))
 
   def GetRelatedAnnotations(self):
+    # type: () -> List[Annotation]
     """Get related annotations. Currently this is defined to be annotations
     that surround the current xref location."""
 
@@ -394,6 +408,7 @@ class XrefNode(object):
     return related
 
   def GetRelatedDefinitions(self):
+    # type: () -> List[XrefNode]
     """Get related definitions. Currently this is defined to be linked
     definitions that surround the current xref location.
 
@@ -453,10 +468,12 @@ class XrefNode(object):
     return related
 
   def GetSignature(self):
+    # type: () -> str
     """Return the signature for this node"""
     return self.single_match.signature.split(' ')[0]
 
   def GetSignatures(self):
+    # type: () -> List(str)
     return self.single_match.GetSignatures()
 
   def __str__(self):
@@ -469,6 +486,7 @@ class XrefNode(object):
 
   @staticmethod
   def FromSignature(cs, signature, filename=None):
+    # type: (CodeSearch, str, Optional[str]) -> XrefNode
     """Construct a XrefNode object for |signature|.
 
     Other than the |signature| the constructured node will have no other
@@ -490,6 +508,7 @@ class XrefNode(object):
 
   @staticmethod
   def FromNode(cs, node):
+    # type: (CodeSearch, Node) -> XrefNode
     """Construct a XrefNode based on a Node.
     """
 
@@ -513,6 +532,7 @@ class XrefNode(object):
 
   @staticmethod
   def FromAnnotation(cs, annotation):
+    # type: (CodeSearch, Annotation) -> XrefNode
     """Construct a XrefNode based on an Annotation.
 
     This is currently limited to annotations that have a LINK_TO_DEFINITION."""
@@ -529,6 +549,7 @@ class XrefNode(object):
 
   @staticmethod
   def FromSearchResults(cs, results, parent=None):
+    # type: (CodeSearch, List[XrefSingleMatch], Optinoal[XrefNode]) -> XrefNode
     """Construct a *list* of XrefNode objects from a list of XrefSearchResult
     objects.
     """
@@ -557,16 +578,19 @@ class CodeSearch(object):
       self.cache_hits = 0
       self.cache_misses = 0  # == number of network requests made
 
-  def __init__(self,
-               should_cache=False,
-               cache_dir=None,
-               cache_timeout_in_seconds=1800,
-               source_root=None,
-               a_path_inside_source_dir=None,
-               package_name='chromium',
-               codesearch_host='https://cs.chromium.org',
-               request_timeout_in_seconds=3,
-               user_agent_string='Python-CodeSearch-Client'):
+  def __init__(
+      self,
+      should_cache=False,  # type: bool
+      cache_dir=None,  # type: Optional[str]
+      cache_timeout_in_seconds=1800,  # type: int
+      source_root=None,  # type: Optional[str]
+      a_path_inside_source_dir=None,  # type: Optional[str]
+      package_name='chromium',  # type: str
+      codesearch_host='https://cs.chromium.org',  # type: str
+      request_timeout_in_seconds=3,  # type: int
+      user_agent_string='Python-CodeSearch-Client'  # type: str
+  ):
+    # type: (...) -> None
     """Initialize a CodeSearch object.
 
     Creating a CodeSearch object is probably the first thing you are going to
@@ -652,12 +676,15 @@ class CodeSearch(object):
         cache_dir=cache_dir, expiration_in_seconds=cache_timeout_in_seconds)
 
   def GetSourceRoot(self):
+    # type: () -> str
     return self.source_root
 
   def GetLogger(self):
+    # type: () -> logging.Logger
     return self.logger
 
   def GetFileSpec(self, path=None):
+    # type: (Optional[str]) -> FileSpec
     if not path:
       return FileSpec(name='.', package_name=self.package_name)
 
@@ -669,6 +696,7 @@ class CodeSearch(object):
     return FileSpec(name=relpath, package_name=self.package_name)
 
   def GetFileSpecFromSignature(self, signature):
+    # type: (str) -> FileSpec
     KYTHE_PREFIX = "kythe://"
     assert signature.startswith(KYTHE_PREFIX)
     signature = signature[len(KYTHE_PREFIX):].split('#')[0]
@@ -682,12 +710,14 @@ class CodeSearch(object):
     return FileSpec(name=path, package_name=args[0])
 
   def TeardownCache(self):
+    # type: () -> None
     if self.file_cache:
       self.file_cache.close()
 
     self.file_cache = None
 
   def _Retrieve(self, url):
+    # type: (str) -> str
     """Retrieve the URL, optionally using the cache.
 
     If a cache is in use, checks if the URL is cached, otherwise sends it to the
@@ -725,6 +755,7 @@ class CodeSearch(object):
     return StringFromBytes(result)
 
   def SendRequestToServer(self, compound_request):
+    # type: (CompoundRequest) -> CompoundResponse
     if not isinstance(compound_request, CompoundRequest):
       raise ValueError(
           '|compound_request| should be an instance of CompoundRequest')
@@ -735,6 +766,7 @@ class CodeSearch(object):
     return CompoundResponse.FromJsonString(result)
 
   def GetCallGraph(self, signature, max_num_results=500):
+    # type: (str, int) -> CompoundResponse
     """Retrieves a list of call graph nodes corresponding to all call sites of
     |signature|.
 
@@ -754,6 +786,7 @@ class CodeSearch(object):
           AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE),
           AnnotationType(id=AnnotationTypeValue.LINK_TO_DEFINITION)
       ]):
+    # type: (str, List[AnnotationType]) -> CompoundResponse
     """Retrieves a list of annotations for a file.
 
     Note that it is much more efficient in your scripts to use
@@ -769,6 +802,7 @@ class CodeSearch(object):
         ]))
 
   def GetSignatureForLocation(self, filename, line, column):
+    # type: (str, int, int) -> str
     """Get the signature of the symbol at a specific location in a source file.
 
     All locations are 1-based."""
@@ -794,12 +828,15 @@ class CodeSearch(object):
     raise NotFoundError(
         "can't determine signature for %s at %d:%d" % (filename, line, column))
 
-  def GetFileInfo(self,
-                  filename,
-                  fetch_html_content=False,
-                  fetch_outline=True,
-                  fetch_folding=False,
-                  fetch_generated_from=False):
+  def GetFileInfo(
+      self,
+      filename,  # type: str
+      fetch_html_content=False,  # type: bool
+      fetch_outline=True,  # type: bool
+      fetch_folding=False,  # type: bool
+      fetch_generated_from=False  # type: bool
+  ):
+    # type: (...) -> FileInfo
     """Return a CsFile object corresponding to the file named by |filename|.
 
     If |filename| is a FileSpec object, then that FileSpec object is used as-is
@@ -839,6 +876,7 @@ class CodeSearch(object):
         (filename))
 
   def GetSignatureForSymbol(self, filename, symbol):
+    # type: (str, str) -> str
     """Return a signature matching |symbol| in |filename|.
     """
 
@@ -857,6 +895,7 @@ class CodeSearch(object):
         "Can't determine signature for %s:%s" % (filename, symbol))
 
   def GetSignaturesForSymbol(self, filename, symbol, node_kind=None):
+    # type: (str, str, Optional[int]) -> str
     """Get all matching signatures given a symbol.
 
     Returns all the signatures matching the given symbol in |filename|. If
@@ -894,11 +933,14 @@ class CodeSearch(object):
 
     return list(signatures)
 
-  def SearchForSymbol(self,
-                      symbol,
-                      xref_kind=None,
-                      max_results_to_analyze=5,
-                      return_all_results=False):
+  def SearchForSymbol(
+      self,
+      symbol,  # type: str
+      xref_kind=None,  # type: Optional[int]
+      max_results_to_analyze=5,  # type: int
+      return_all_results=False  # type: bool
+  ):
+    # type: (...) -> List[XrefNode]
     """Search for a specified symbol.
 
     Use this when you know the symbol name and its type, and don't mind a few
@@ -991,6 +1033,7 @@ class CodeSearch(object):
     return [XrefNode.FromSignature(self, signature=s) for s in signatures]
 
   def GetXrefsFor(self, signature, max_num_results=500):
+    # type: (str, int) -> XrefSearchResult
     refs = self.SendRequestToServer(
         CompoundRequest(xref_search_request=[
             XrefSearchRequest(
@@ -1003,6 +1046,7 @@ class CodeSearch(object):
     return refs.xref_search_response[0].search_result
 
   def GetOverridingDefinitions(self, signature):
+    # type: (str) -> List[XrefNode]
     """GetOverridingDefinitions returns a list of XrefSearchResult objects
     representing all the overrides of the symbol corresponding to |signature|.
 
@@ -1017,6 +1061,8 @@ class CodeSearch(object):
     return filter(lambda result: len(result.match) > 0, refs)
 
   def GetCallTargets(self, signature):
+    # type: (str) -> List[XrefNode]
+
     # First look up the declaration(s) for the callsite.
     decl_signatures = []
     for decl in self.GetXrefsFor(signature):
@@ -1037,6 +1083,7 @@ class CodeSearch(object):
     return candidates
 
   def IsContentStale(self, filename, buffer_lines, check_prefix=False):
+    # type: (str, List[str], bool) -> bool
     """Returns true if the file known to codesearch has different contents from
     what's expected.
 

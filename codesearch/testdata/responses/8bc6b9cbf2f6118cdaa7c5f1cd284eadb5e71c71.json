@@ -1,7 +1,13 @@
 {
   "search_response": [
     {
+      "status": 0, 
+      "hit_max_results": false, 
       "estimated_total_number_of_results": 14, 
+      "stats": {
+        "retries": 0, 
+        "filter_ratio": 0
+      }, 
       "search_result": [
         {
           "snippet": [
@@ -30,6 +36,7 @@
           "docid": "E-D1G49vcaA", 
           "best_matching_line_number": 89, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -37,7 +44,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "c58666ce255116df6d3696da4877da27e50b9a66", 
+              "changelist": "ac4ea1c044e4b1c4106d1716b44a10489df7e9a7", 
               "name": "src/base/metrics/field_trial.h", 
               "package_name": "chromium", 
               "revision": "0"
@@ -72,7 +79,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 609, 
+              "first_line_number": 617, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -80,8 +87,9 @@
             }
           ], 
           "docid": "laY-Uf24kOw", 
-          "best_matching_line_number": 610, 
+          "best_matching_line_number": 618, 
           "language": "proto", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -89,7 +97,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "686b81ece39ed6ac099da4529f934cb85d1785d5", 
+              "changelist": "8bbfb922858f2609d169d40b923caa58c2f6a4fc", 
               "name": "src/third_party/metrics_proto/system_profile.proto", 
               "package_name": "chromium", 
               "revision": "0"
@@ -99,7 +107,7 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 610, 
+              "line_number": 618, 
               "score": 1252, 
               "match_offset": 28, 
               "match_length": 10, 
@@ -124,7 +132,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 217, 
+              "first_line_number": 219, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -132,8 +140,9 @@
             }
           ], 
           "docid": "aAc-ElGhUlI", 
-          "best_matching_line_number": 218, 
+          "best_matching_line_number": 220, 
           "language": "proto", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -141,7 +150,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "72656983433a323db819fc35f25c41d3469c8dfb", 
               "name": "src/components/browser_watcher/stability_report.proto", 
               "package_name": "chromium", 
               "revision": "0"
@@ -151,7 +160,7 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 218, 
+              "line_number": 220, 
               "score": 1252, 
               "match_offset": 22, 
               "match_length": 10, 
@@ -176,7 +185,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 33, 
+              "first_line_number": 35, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -184,8 +193,9 @@
             }
           ], 
           "docid": "PJW1vtuApXQ", 
-          "best_matching_line_number": 34, 
+          "best_matching_line_number": 36, 
           "language": "proto", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -193,7 +203,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "8002d2741d7e22b6a0af355fc21b59db0a8bdef6", 
+              "changelist": "5cd436f7d4eb19032da70adfe5ce1eb879aec198", 
               "name": "src/components/sync/protocol/user_event_specifics.proto", 
               "package_name": "chromium", 
               "revision": "0"
@@ -203,7 +213,7 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 34, 
+              "line_number": 36, 
               "score": 1252, 
               "match_offset": 61, 
               "match_length": 10, 
@@ -215,7 +225,7 @@
           "snippet": [
             {
               "text": {
-                "text": "  // influenced by the field trial.\n  message FieldTrial {\n    // The name of the field trial, as a 32-bit identifier. Currently, the\n", 
+                "text": "  // registered as important to other event types.\n  message FieldTrial { repeated fixed32 variation_ids = 1; }\n\n", 
                 "range": [
                   {
                     "range": {
@@ -228,16 +238,17 @@
                   }
                 ]
               }, 
-              "first_line_number": 112, 
+              "first_line_number": 35, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
               "scope": ""
             }
           ], 
-          "docid": "AHIYXF2RaK0", 
-          "best_matching_line_number": 113, 
+          "docid": "1u6oCFnMd8o", 
+          "best_matching_line_number": 36, 
           "language": "proto", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -245,8 +256,8 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "06b9ddbb19be2738e85c821468e391aff3e5f419", 
-              "name": "src/chrome/common/safe_browsing/permission_report.proto", 
+              "changelist": "323d73d3150c35e84819d9f8d1b5989e63d69ad5", 
+              "name": "src/out/chromium-android/Debug/gen/test_support_proto_java_prepare/user_event_specifics.proto", 
               "package_name": "chromium", 
               "revision": "0"
             }
@@ -255,20 +266,19 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 113, 
+              "line_number": 36, 
               "score": 1252, 
-              "match_offset": 46, 
+              "match_offset": 61, 
               "match_length": 10, 
-              "line_text": "  // influenced by the field trial.\n  message FieldTrial {\n    // The name of the field trial, as a 32-bit identifier. Currently, the\n"
+              "line_text": "  // registered as important to other event types.\n  message FieldTrial { repeated fixed32 variation_ids = 1; }\n\n"
             }
           ]
         }
       ], 
       "results_offset": 0, 
       "maybe_skipped_documents": false, 
-      "percent_shards_skipped": 2, 
-      "hit_max_to_score": true
+      "hit_max_to_score": false
     }
   ], 
-  "elapsed_ms": 88
+  "elapsed_ms": 22
 }

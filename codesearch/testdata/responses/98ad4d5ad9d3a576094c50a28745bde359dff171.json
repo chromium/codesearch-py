@@ -5,12 +5,12 @@
       "file_info": {
         "gob_info": {
           "repo": "chromium/chromium/src", 
-          "commit": "8d737563f986f1ece3016211a26aae2c323ae73d", 
+          "commit": "85b96ea98619ea7d775e1277ab859cea6d613dbb", 
           "path": "net/http/http_transaction.h"
         }, 
         "name": "src/net/http/http_transaction.h", 
         "language": "c++", 
-        "changelist_num": "8d737563f986f1ece3016211a26aae2c323ae73d", 
+        "changelist_num": "85b96ea98619ea7d775e1277ab859cea6d613dbb", 
         "package_name": "chromium", 
         "lines": "210", 
         "content": {
