@@ -70,16 +70,16 @@
             "end_column": 22
           }, 
           "internal_link": {
-            "path": "src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h", 
+            "path": "src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h", 
             "range": {
-              "start_line": 49, 
-              "end_line": 49, 
-              "start_column": 28, 
-              "end_column": 35
+              "start_line": 25, 
+              "end_line": 25, 
+              "start_column": 20, 
+              "end_column": 27
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h#%401402%3A1410%40talias%28uint16_t%23n%2Cunsigned%20short%23builtin%29", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h#%40946%3A954%400V0BvWq%2FpDFJ5RUtIcYsOeUWlPZMS3CGYY78ryImtO4%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28uint16_t%23n%2Cunsigned%20short%23builtin%29"
+            "signature": "kythe:?lang=c%2B%2B#0V0BvWq%2FpDFJ5RUtIcYsOeUWlPZMS3CGYY78ryImtO4%3D"
           }, 
           "type": {
             "id": 1
@@ -94,16 +94,16 @@
             "end_column": 38
           }, 
           "internal_link": {
-            "path": "src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h", 
+            "path": "src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h", 
             "range": {
-              "start_line": 49, 
-              "end_line": 49, 
-              "start_column": 28, 
-              "end_column": 35
+              "start_line": 25, 
+              "end_line": 25, 
+              "start_column": 20, 
+              "end_column": 27
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h#%401402%3A1410%40talias%28uint16_t%23n%2Cunsigned%20short%23builtin%29", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h#%40946%3A954%400V0BvWq%2FpDFJ5RUtIcYsOeUWlPZMS3CGYY78ryImtO4%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28uint16_t%23n%2Cunsigned%20short%23builtin%29"
+            "signature": "kythe:?lang=c%2B%2B#0V0BvWq%2FpDFJ5RUtIcYsOeUWlPZMS3CGYY78ryImtO4%3D"
           }, 
           "type": {
             "id": 1
@@ -190,16 +190,16 @@
             "end_column": 10
           }, 
           "internal_link": {
-            "path": "src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h", 
+            "path": "src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h", 
             "range": {
-              "start_line": 49, 
-              "end_line": 49, 
-              "start_column": 28, 
-              "end_column": 35
+              "start_line": 25, 
+              "end_line": 25, 
+              "start_column": 20, 
+              "end_column": 27
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h#%401402%3A1410%40talias%28uint16_t%23n%2Cunsigned%20short%23builtin%29", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h#%40946%3A954%400V0BvWq%2FpDFJ5RUtIcYsOeUWlPZMS3CGYY78ryImtO4%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28uint16_t%23n%2Cunsigned%20short%23builtin%29"
+            "signature": "kythe:?lang=c%2B%2B#0V0BvWq%2FpDFJ5RUtIcYsOeUWlPZMS3CGYY78ryImtO4%3D"
           }, 
           "type": {
             "id": 1
@@ -238,16 +238,16 @@
             "end_column": 10
           }, 
           "internal_link": {
-            "path": "src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h", 
+            "path": "src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h", 
             "range": {
-              "start_line": 49, 
-              "end_line": 49, 
-              "start_column": 28, 
-              "end_column": 35
+              "start_line": 25, 
+              "end_line": 25, 
+              "start_column": 20, 
+              "end_column": 27
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h#%401402%3A1410%40talias%28uint16_t%23n%2Cunsigned%20short%23builtin%29", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h#%40946%3A954%400V0BvWq%2FpDFJ5RUtIcYsOeUWlPZMS3CGYY78ryImtO4%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28uint16_t%23n%2Cunsigned%20short%23builtin%29"
+            "signature": "kythe:?lang=c%2B%2B#0V0BvWq%2FpDFJ5RUtIcYsOeUWlPZMS3CGYY78ryImtO4%3D"
           }, 
           "type": {
             "id": 1
@@ -862,16 +862,16 @@
             "end_column": 10
           }, 
           "internal_link": {
-            "path": "src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h", 
+            "path": "src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h", 
             "range": {
-              "start_line": 51, 
-              "end_line": 51, 
-              "start_column": 23, 
-              "end_column": 30
+              "start_line": 26, 
+              "end_line": 26, 
+              "start_column": 20, 
+              "end_column": 27
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h#%401461%3A1469%40talias%28uint32_t%23n%2Cunsigned%20int%23builtin%29", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h#%40975%3A983%409Q1Qo0dt%2BgETZA3AE5IlwTBVpnGb9lT0KTUS8YtMp7E%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28uint32_t%23n%2Cunsigned%20int%23builtin%29"
+            "signature": "kythe:?lang=c%2B%2B#9Q1Qo0dt%2BgETZA3AE5IlwTBVpnGb9lT0KTUS8YtMp7E%3D"
           }, 
           "type": {
             "id": 1
@@ -1231,5 +1231,5 @@
       ]
     }
   ], 
-  "elapsed_ms": 77
+  "elapsed_ms": 87
 }

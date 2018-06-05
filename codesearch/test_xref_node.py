@@ -7,7 +7,7 @@ import unittest
 
 from .client_api import CodeSearch, XrefNode
 from .messages import FileSpec, XrefSingleMatch, KytheXrefKind, KytheNodeKind, \
-CodeBlockType, CodeBlock
+    CodeBlockType, CodeBlock
 from .testing_support import InstallTestRequestHandler, DumpCallers
 
 
@@ -21,20 +21,22 @@ class TestXrefNode(unittest.TestCase):
 
   def test_simple_xref_lookup(self):
     cs = CodeSearch(source_root='/chrome/')
-    sig = cs.GetSignatureForSymbol(
-        '/chrome/src/net/http/http_network_transaction.cc',
-        'HttpNetworkTransaction')
-    self.assertNotEqual(sig, "", "signature lookup failed")
+    sigs = [
+        'kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#CcZF9ULBJvZBNAWPWKhzZ7xbQc1vl21xLHnAyiu2B3Y%3D','kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#HttpTransaction%3Anet%23c%23mw7xVzyyv7D', 'kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#pGcqgSa0Alyp5vsTSxVwKkgW86AW0h7GTXQyJ4ry9IM%3D']
+    sig = sigs[1]
 
     node = XrefNode.FromSignature(cs, sig)
-    members = node.Traverse(KytheXrefKind.EXTENDS)
+    members = node.Traverse(KytheXrefKind.EXTENDED_BY)
     self.assertIsInstance(members, list)
-    self.assertEqual(3, len(members))
+    self.assertEqual(5, len(members))
     self.assertIsInstance(members[0], XrefNode)
 
     display_names = set([m.GetDisplayName() for m in members])
-    self.assertSetEqual(
-        display_names, set(["ThrottleDelegate", "Delegate", "HttpTransaction"]))
+    self.assertSetEqual( display_names, set(['HttpNetworkTransaction',
+                                             'FailingHttpTransaction',
+                                             'Transaction',
+                                             'MockNetworkTransaction',
+                                             'ThrottlingNetworkTransaction']))
 
   def test_related_annotations(self):
     cs = CodeSearch(source_root='/chrome/')

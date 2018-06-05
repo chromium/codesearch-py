@@ -1,0 +1,3549 @@
+{
+  "elapsed_ms": 45, 
+  "xref_search_response": [
+    {
+      "status": 0, 
+      "search_result": [
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%403448%3A3470", 
+              "line_number": 94, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "HttpNetworkTransaction::HttpNetworkTransaction(RequestPriority priority,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%403686%3A3708", 
+              "line_number": 97, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      io_callback_(base::BindRepeating(&HttpNetworkTransaction::OnIOComplete,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%404416%3A4438", 
+              "line_number": 119, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "HttpNetworkTransaction::~HttpNetworkTransaction() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%405260%3A5282", 
+              "line_number": 139, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::Start(const HttpRequestInfo* request_info,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%406259%3A6281", 
+              "line_number": 169, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::RestartIgnoringLastError("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%406646%3A6668", 
+              "line_number": 186, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::RestartWithCertificate("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%407802%3A7824", 
+              "line_number": 217, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::RestartWithAuth("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%408960%3A8982", 
+              "line_number": 255, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::PrepareForAuthRestart(HttpAuth::Target target) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4010103%3A10125", 
+              "line_number": 286, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::DidDrainBodyForAuthRestart(bool keep_alive) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4011277%3A11299", 
+              "line_number": 319, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::IsReadyToRestartForAuth() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4011430%3A11452", 
+              "line_number": 324, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::Read(IOBuffer* buf, int buf_len,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4012949%3A12971", 
+              "line_number": 361, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::StopCaching() {}"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4012996%3A13018", 
+              "line_number": 363, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::GetFullRequestHeaders("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4013209%3A13231", 
+              "line_number": 370, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int64_t HttpNetworkTransaction::GetTotalReceivedBytes() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4013440%3A13462", 
+              "line_number": 377, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int64_t HttpNetworkTransaction::GetTotalSentBytes() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4013644%3A13666", 
+              "line_number": 384, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::DoneReading() {}"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4013710%3A13732", 
+              "line_number": 386, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const HttpResponseInfo* HttpNetworkTransaction::GetResponseInfo() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4013794%3A13816", 
+              "line_number": 390, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "LoadState HttpNetworkTransaction::GetLoadState() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4014552%3A14574", 
+              "line_number": 411, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::SetQuicServerInfo("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4014642%3A14664", 
+              "line_number": 414, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::GetLoadTimingInfo("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4015102%3A15124", 
+              "line_number": 427, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::GetRemoteEndpoint(IPEndPoint* endpoint) const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4015290%3A15312", 
+              "line_number": 435, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::PopulateNetErrorDetails("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4015480%3A15502", 
+              "line_number": 442, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::SetPriority(RequestPriority priority) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4015755%3A15777", 
+              "line_number": 453, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::SetWebSocketHandshakeStreamCreateHelper("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4015959%3A15981", 
+              "line_number": 458, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::SetBeforeNetworkStartCallback("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4016117%3A16139", 
+              "line_number": 463, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::SetBeforeHeadersSentCallback("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4016272%3A16294", 
+              "line_number": 468, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::SetRequestHeadersCallback("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4016441%3A16463", 
+              "line_number": 474, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::SetResponseHeadersCallback("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4016612%3A16634", 
+              "line_number": 480, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::ResumeNetworkStart() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4016735%3A16757", 
+              "line_number": 485, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::OnStreamReady(const SSLConfig& used_ssl_config,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4017995%3A18017", 
+              "line_number": 513, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::OnBidirectionalStreamImplReady("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4018206%3A18228", 
+              "line_number": 520, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::OnWebSocketHandshakeStreamReady("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4018477%3A18499", 
+              "line_number": 527, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::OnStreamFailed("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4018874%3A18896", 
+              "line_number": 541, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::OnCertificateError("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4019601%3A19623", 
+              "line_number": 562, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::OnNeedsProxyAuth("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4020391%3A20413", 
+              "line_number": 589, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::OnNeedsClientAuth("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4020706%3A20728", 
+              "line_number": 599, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::OnHttpsProxyTunnelResponse("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4021507%3A21529", 
+              "line_number": 622, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::OnQuicBroken() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4021597%3A21619", 
+              "line_number": 626, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::GetConnectionAttempts("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4021720%3A21742", 
+              "line_number": 631, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::IsSecureRequest() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4021826%3A21848", 
+              "line_number": 635, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::IsTokenBindingEnabled() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4022150%3A22172", 
+              "line_number": 645, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::RecordTokenBindingSupport() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4022976%3A22998", 
+              "line_number": 671, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::UsingHttpProxyWithoutTunnel() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4023223%3A23245", 
+              "line_number": 677, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::DoCallback(int rv) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4023465%3A23487", 
+              "line_number": 685, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::OnIOComplete(int result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4023598%3A23620", 
+              "line_number": 691, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoLoop(int result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4027714%3A27736", 
+              "line_number": 814, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoNotifyBeforeCreateStream() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4027986%3A28008", 
+              "line_number": 824, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoCreateStream() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4029059%3A29081", 
+              "line_number": 848, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoCreateStreamComplete(int result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4032064%3A32086", 
+              "line_number": 917, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoInitStream() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4032370%3A32392", 
+              "line_number": 927, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoInitStreamComplete(int result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4032868%3A32890", 
+              "line_number": 945, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoGenerateProxyAuthToken() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4033584%3A33606", 
+              "line_number": 961, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoGenerateProxyAuthTokenComplete(int rv) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4033772%3A33794", 
+              "line_number": 968, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoGenerateServerAuthToken() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4034624%3A34646", 
+              "line_number": 987, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoGenerateServerAuthTokenComplete(int rv) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4034817%3A34839", 
+              "line_number": 994, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoGetProvidedTokenBindingKey() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4035308%3A35330", 
+              "line_number": 1006, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoGetProvidedTokenBindingKeyComplete(int rv) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4035651%3A35673", 
+              "line_number": 1018, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoGetReferredTokenBindingKey() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4036198%3A36220", 
+              "line_number": 1030, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoGetReferredTokenBindingKeyComplete(int rv) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4036572%3A36594", 
+              "line_number": 1041, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::BuildRequestHeaders("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4039495%3A39517", 
+              "line_number": 1110, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::BuildTokenBindingHeader(std::string* out) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4041384%3A41406", 
+              "line_number": 1156, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoInitRequestBody() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4041600%3A41622", 
+              "line_number": 1161, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        base::BindOnce(&HttpNetworkTransaction::OnIOComplete,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4041725%3A41747", 
+              "line_number": 1167, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoInitRequestBodyComplete(int result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4041872%3A41894", 
+              "line_number": 1173, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoBuildRequest() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4042301%3A42323", 
+              "line_number": 1187, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoBuildRequestComplete(int result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4042444%3A42466", 
+              "line_number": 1193, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoSendRequest() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4042659%3A42681", 
+              "line_number": 1200, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoSendRequestComplete(int result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4043005%3A43027", 
+              "line_number": 1214, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoReadHeaders() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4043152%3A43174", 
+              "line_number": 1219, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoReadHeadersComplete(int result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4048557%3A48579", 
+              "line_number": 1355, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoReadBody() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4048820%3A48842", 
+              "line_number": 1365, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoReadBodyComplete(int result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4050499%3A50521", 
+              "line_number": 1410, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoDrainBodyForAuthRestart() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4051061%3A51083", 
+              "line_number": 1422, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::DoDrainBodyForAuthRestartComplete(int result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4051675%3A51697", 
+              "line_number": 1444, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::HandleCertificateRequest(int error) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4054454%3A54476", 
+              "line_number": 1514, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::HandleHttp11Required(int error) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4054838%3A54860", 
+              "line_number": 1527, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::HandleSSLClientAuthError(int error) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4056364%3A56386", 
+              "line_number": 1559, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::HandleIOError(int error) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4060126%3A60148", 
+              "line_number": 1642, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::ResetStateForRestart() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4060392%3A60414", 
+              "line_number": 1651, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::ResetStateForAuthRestart() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4060960%3A60982", 
+              "line_number": 1669, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::CacheNetErrorDetailsAndResetStream() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4061140%3A61162", 
+              "line_number": 1675, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "HttpResponseHeaders* HttpNetworkTransaction::GetResponseHeaders() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4061235%3A61257", 
+              "line_number": 1679, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::ShouldResendRequest() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4061712%3A61734", 
+              "line_number": 1691, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::HasExceededMaxRetries() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4061825%3A61847", 
+              "line_number": 1695, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::CheckMaxRestarts() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4061936%3A61958", 
+              "line_number": 1700, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::ResetConnectionAndRequestForResend() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4062367%3A62389", 
+              "line_number": 1713, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::ShouldApplyProxyAuth() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4062470%3A62492", 
+              "line_number": 1717, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::ShouldApplyServerAuth() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4062596%3A62618", 
+              "line_number": 1721, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int HttpNetworkTransaction::HandleAuthChallenge() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4063821%3A63843", 
+              "line_number": 1755, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::HaveAuth(HttpAuth::Target target) const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4063984%3A64006", 
+              "line_number": 1760, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "GURL HttpNetworkTransaction::AuthURL(HttpAuth::Target target) const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4064961%3A64983", 
+              "line_number": 1789, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::ForWebSocketHandshake() const {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4065126%3A65148", 
+              "line_number": 1794, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void HttpNetworkTransaction::CopyConnectionAttemptsFromStreamRequest() {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.cc#%4065551%3A65573", 
+              "line_number": 1804, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool HttpNetworkTransaction::ContentEncodingsValid() const {"
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_network_transaction.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.h#%401430%3A1452%40HttpNetworkTransaction%3Anet%23c%23on7pd5%24PY8V%23chromium%23src%2Fnet%2Fhttp%2Fhttp_network_transaction.h", 
+              "line_number": 50, 
+              "type_id": 1, 
+              "type": "DEFINITION", 
+              "line_text": "class NET_EXPORT_PRIVATE HttpNetworkTransaction"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction.h#%4016962%3A16984", 
+              "line_number": 433, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  DISALLOW_COPY_AND_ASSIGN(HttpNetworkTransaction);"
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_network_transaction.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_ssl_unittest.cc#%404176%3A4198", 
+              "line_number": 115, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, &session);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_ssl_unittest.cc#%405247%3A5269", 
+              "line_number": 139, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, &session);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_ssl_unittest.cc#%406075%3A6097", 
+              "line_number": 158, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, &session);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_ssl_unittest.cc#%407374%3A7396", 
+              "line_number": 188, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, &session);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_ssl_unittest.cc#%409389%3A9411", 
+              "line_number": 233, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, &session);"
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_network_transaction_ssl_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4014078%3A14100", 
+              "line_number": 364, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4026120%3A26142", 
+              "line_number": 714, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4027761%3A27783", 
+              "line_number": 761, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4028467%3A28489", 
+              "line_number": 777, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4029930%3A29952", 
+              "line_number": 818, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4040516%3A40538", 
+              "line_number": 1106, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4042237%3A42259", 
+              "line_number": 1151, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4045075%3A45097", 
+              "line_number": 1231, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4046642%3A46664", 
+              "line_number": 1274, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4048123%3A48145", 
+              "line_number": 1316, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4049419%3A49441", 
+              "line_number": 1355, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4050425%3A50447", 
+              "line_number": 1386, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4052719%3A52741", 
+              "line_number": 1460, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4057032%3A57054", 
+              "line_number": 1580, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4059446%3A59468", 
+              "line_number": 1644, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4061435%3A61457", 
+              "line_number": 1693, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4065098%3A65120", 
+              "line_number": 1788, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4067213%3A67235", 
+              "line_number": 1845, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4068699%3A68721", 
+              "line_number": 1887, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4072848%3A72870", 
+              "line_number": 1994, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    auto trans = std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4074471%3A74493", 
+              "line_number": 2041, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4076436%3A76458", 
+              "line_number": 2095, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4077354%3A77376", 
+              "line_number": 2119, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4079241%3A79263", 
+              "line_number": 2173, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4080181%3A80203", 
+              "line_number": 2197, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4082099%3A82121", 
+              "line_number": 2251, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4083039%3A83061", 
+              "line_number": 2275, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4084835%3A84857", 
+              "line_number": 2319, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4086198%3A86220", 
+              "line_number": 2353, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4090440%3A90462", 
+              "line_number": 2461, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4095001%3A95023", 
+              "line_number": 2573, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%4097704%3A97726", 
+              "line_number": 2639, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40101188%3A101210", 
+              "line_number": 2729, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40104724%3A104746", 
+              "line_number": 2819, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40107703%3A107725", 
+              "line_number": 2900, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40110882%3A110904", 
+              "line_number": 2986, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40114471%3A114493", 
+              "line_number": 3079, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40119250%3A119272", 
+              "line_number": 3204, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40122525%3A122547", 
+              "line_number": 3286, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40127443%3A127465", 
+              "line_number": 3399, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40134236%3A134258", 
+              "line_number": 3564, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40136893%3A136915", 
+              "line_number": 3631, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40140407%3A140429", 
+              "line_number": 3720, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40142630%3A142652", 
+              "line_number": 3779, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40144893%3A144915", 
+              "line_number": 3837, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40147743%3A147765", 
+              "line_number": 3913, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40151578%3A151600", 
+              "line_number": 4007, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40156455%3A156477", 
+              "line_number": 4127, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40161159%3A161181", 
+              "line_number": 4242, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40165317%3A165339", 
+              "line_number": 4341, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40170030%3A170052", 
+              "line_number": 4459, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40178656%3A178678", 
+              "line_number": 4679, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<HttpNetworkTransaction> trans ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40178713%3A178735", 
+              "line_number": 4680, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40182468%3A182490", 
+              "line_number": 4777, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40183208%3A183230", 
+              "line_number": 4799, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40186144%3A186166", 
+              "line_number": 4881, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40186874%3A186896", 
+              "line_number": 4903, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40188948%3A188970", 
+              "line_number": 4963, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40191301%3A191323", 
+              "line_number": 5025, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40193722%3A193744", 
+              "line_number": 5086, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40197686%3A197708", 
+              "line_number": 5184, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40199469%3A199491", 
+              "line_number": 5232, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40202672%3A202694", 
+              "line_number": 5317, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40206334%3A206356", 
+              "line_number": 5408, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40211789%3A211811", 
+              "line_number": 5547, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40212514%3A212536", 
+              "line_number": 5565, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40216808%3A216830", 
+              "line_number": 5671, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40217613%3A217635", 
+              "line_number": 5693, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40220812%3A220834", 
+              "line_number": 5778, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40221656%3A221678", 
+              "line_number": 5799, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40224415%3A224437", 
+              "line_number": 5867, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40227216%3A227238", 
+              "line_number": 5943, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40233622%3A233644", 
+              "line_number": 6141, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40242434%3A242456", 
+              "line_number": 6363, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40250742%3A250764", 
+              "line_number": 6570, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40257747%3A257769", 
+              "line_number": 6756, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40263597%3A263619", 
+              "line_number": 6918, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40266179%3A266201", 
+              "line_number": 6979, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40267739%3A267761", 
+              "line_number": 7020, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40269743%3A269765", 
+              "line_number": 7072, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40272325%3A272347", 
+              "line_number": 7149, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40274769%3A274791", 
+              "line_number": 7214, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40275841%3A275863", 
+              "line_number": 7243, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40277275%3A277297", 
+              "line_number": 7281, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40280119%3A280141", 
+              "line_number": 7352, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40283729%3A283751", 
+              "line_number": 7444, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40286359%3A286381", 
+              "line_number": 7512, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40290042%3A290064", 
+              "line_number": 7612, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40291318%3A291340", 
+              "line_number": 7647, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40294231%3A294253", 
+              "line_number": 7729, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40298031%3A298053", 
+              "line_number": 7837, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40300766%3A300788", 
+              "line_number": 7916, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40303326%3A303348", 
+              "line_number": 7992, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40306343%3A306365", 
+              "line_number": 8076, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40307993%3A308015", 
+              "line_number": 8124, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40310423%3A310445", 
+              "line_number": 8194, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40314483%3A314505", 
+              "line_number": 8306, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40317321%3A317343", 
+              "line_number": 8385, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40318796%3A318818", 
+              "line_number": 8426, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40320720%3A320742", 
+              "line_number": 8473, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40324336%3A324358", 
+              "line_number": 8575, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40326615%3A326637", 
+              "line_number": 8639, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40328793%3A328815", 
+              "line_number": 8698, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40331938%3A331960", 
+              "line_number": 8778, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40333717%3A333739", 
+              "line_number": 8828, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40335756%3A335778", 
+              "line_number": 8881, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40339696%3A339718", 
+              "line_number": 8978, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40344324%3A344346", 
+              "line_number": 9100, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40344698%3A344720", 
+              "line_number": 9110, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40348509%3A348531", 
+              "line_number": 9212, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40351801%3A351823", 
+              "line_number": 9303, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40355001%3A355023", 
+              "line_number": 9387, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40356078%3A356100", 
+              "line_number": 9417, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40357611%3A357633", 
+              "line_number": 9459, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40359079%3A359101", 
+              "line_number": 9497, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40360340%3A360362", 
+              "line_number": 9535, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40361579%3A361601", 
+              "line_number": 9573, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40362819%3A362841", 
+              "line_number": 9611, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40364066%3A364088", 
+              "line_number": 9648, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40365392%3A365414", 
+              "line_number": 9688, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40366684%3A366706", 
+              "line_number": 9727, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40368082%3A368104", 
+              "line_number": 9768, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40369580%3A369602", 
+              "line_number": 9814, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40371687%3A371709", 
+              "line_number": 9874, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40373974%3A373996", 
+              "line_number": 9938, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40375994%3A376016", 
+              "line_number": 9997, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40378695%3A378717", 
+              "line_number": 10070, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40382099%3A382121", 
+              "line_number": 10168, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40388704%3A388726", 
+              "line_number": 10362, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40389834%3A389856", 
+              "line_number": 10390, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40390805%3A390827", 
+              "line_number": 10415, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40393412%3A393434", 
+              "line_number": 10476, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40394499%3A394521", 
+              "line_number": 10508, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40397047%3A397069", 
+              "line_number": 10584, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40398856%3A398878", 
+              "line_number": 10637, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40399491%3A399513", 
+              "line_number": 10654, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40401386%3A401408", 
+              "line_number": 10703, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40403325%3A403347", 
+              "line_number": 10753, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40405227%3A405249", 
+              "line_number": 10808, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40408885%3A408907", 
+              "line_number": 10912, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40412842%3A412864", 
+              "line_number": 11008, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40414795%3A414817", 
+              "line_number": 11063, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40416905%3A416927", 
+              "line_number": 11119, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40419553%3A419575", 
+              "line_number": 11184, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40421217%3A421239", 
+              "line_number": 11224, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40423093%3A423115", 
+              "line_number": 11272, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40424799%3A424821", 
+              "line_number": 11319, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40428275%3A428297", 
+              "line_number": 11400, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40431454%3A431476", 
+              "line_number": 11476, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40433564%3A433586", 
+              "line_number": 11528, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40436426%3A436448", 
+              "line_number": 11593, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40438742%3A438764", 
+              "line_number": 11644, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40440899%3A440921", 
+              "line_number": 11694, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40443138%3A443160", 
+              "line_number": 11744, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40445332%3A445354", 
+              "line_number": 11794, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40447114%3A447136", 
+              "line_number": 11835, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40449724%3A449746", 
+              "line_number": 11901, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40450319%3A450341", 
+              "line_number": 11917, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40453921%3A453943", 
+              "line_number": 12002, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40454525%3A454547", 
+              "line_number": 12018, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40454745%3A454767", 
+              "line_number": 12023, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans3(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40457548%3A457570", 
+              "line_number": 12092, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40458143%3A458165", 
+              "line_number": 12108, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40462950%3A462972", 
+              "line_number": 12235, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40466586%3A466608", 
+              "line_number": 12328, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40467275%3A467297", 
+              "line_number": 12346, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40469952%3A469974", 
+              "line_number": 12416, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40470887%3A470909", 
+              "line_number": 12439, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40498133%3A498155", 
+              "line_number": 13361, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40501421%3A501443", 
+              "line_number": 13439, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40503505%3A503527", 
+              "line_number": 13509, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans_compete(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40508141%3A508163", 
+              "line_number": 13624, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40509876%3A509898", 
+              "line_number": 13672, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40511989%3A512011", 
+              "line_number": 13726, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40513753%3A513775", 
+              "line_number": 13771, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40515673%3A515695", 
+              "line_number": 13827, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40518629%3A518651", 
+              "line_number": 13902, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40521952%3A521974", 
+              "line_number": 13987, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40524738%3A524760", 
+              "line_number": 14060, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40526791%3A526813", 
+              "line_number": 14112, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40527963%3A527985", 
+              "line_number": 14140, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40532126%3A532148", 
+              "line_number": 14227, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40538137%3A538159", 
+              "line_number": 14345, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40542534%3A542556", 
+              "line_number": 14442, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40546564%3A546586", 
+              "line_number": 14531, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40547920%3A547942", 
+              "line_number": 14564, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40550320%3A550342", 
+              "line_number": 14621, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40551122%3A551144", 
+              "line_number": 14642, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40555461%3A555483", 
+              "line_number": 14744, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40556362%3A556384", 
+              "line_number": 14767, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40560898%3A560920", 
+              "line_number": 14877, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40561799%3A561821", 
+              "line_number": 14900, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40565097%3A565119", 
+              "line_number": 14983, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40566427%3A566449", 
+              "line_number": 15015, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40568908%3A568930", 
+              "line_number": 15083, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(LOWEST, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40569514%3A569536", 
+              "line_number": 15099, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(MEDIUM, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40571457%3A571479", 
+              "line_number": 15142, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40574391%3A574413", 
+              "line_number": 15209, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40575584%3A575606", 
+              "line_number": 15239, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40579007%3A579029", 
+              "line_number": 15321, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40580263%3A580285", 
+              "line_number": 15347, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40580859%3A580881", 
+              "line_number": 15361, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans3(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40585123%3A585145", 
+              "line_number": 15461, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(LOWEST, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40586030%3A586052", 
+              "line_number": 15484, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(MEDIUM, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40590797%3A590819", 
+              "line_number": 15600, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(LOWEST, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40591517%3A591539", 
+              "line_number": 15619, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(MEDIUM, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40593801%3A593823", 
+              "line_number": 15679, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(MEDIUM, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40594363%3A594385", 
+              "line_number": 15692, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(MEDIUM, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40598073%3A598095", 
+              "line_number": 15785, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40599385%3A599407", 
+              "line_number": 15817, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40600714%3A600736", 
+              "line_number": 15848, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40601839%3A601861", 
+              "line_number": 15876, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40603153%3A603175", 
+              "line_number": 15913, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40604458%3A604480", 
+              "line_number": 15950, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40605574%3A605596", 
+              "line_number": 15983, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40606682%3A606704", 
+              "line_number": 16016, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40607857%3A607879", 
+              "line_number": 16052, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40609099%3A609121", 
+              "line_number": 16089, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40612197%3A612219", 
+              "line_number": 16184, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction ssl_trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40612501%3A612523", 
+              "line_number": 16191, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction http_trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40615730%3A615752", 
+              "line_number": 16273, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction http_trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40617049%3A617071", 
+              "line_number": 16303, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40619670%3A619692", 
+              "line_number": 16378, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40620900%3A620922", 
+              "line_number": 16411, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40622172%3A622194", 
+              "line_number": 16445, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40623986%3A624008", 
+              "line_number": 16497, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40626211%3A626233", 
+              "line_number": 16556, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40628044%3A628066", 
+              "line_number": 16609, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40629599%3A629621", 
+              "line_number": 16651, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40631252%3A631274", 
+              "line_number": 16694, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40632750%3A632772", 
+              "line_number": 16734, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40635543%3A635565", 
+              "line_number": 16810, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(LOW, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40639079%3A639101", 
+              "line_number": 16895, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40642830%3A642852", 
+              "line_number": 16995, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40644108%3A644130", 
+              "line_number": 17033, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40645734%3A645756", 
+              "line_number": 17076, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40647217%3A647239", 
+              "line_number": 17117, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40649689%3A649711", 
+              "line_number": 17180, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40650898%3A650920", 
+              "line_number": 17208, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40653645%3A653667", 
+              "line_number": 17285, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40654858%3A654880", 
+              "line_number": 17313, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_transaction_unittest.cc#%40655876%3A655898", 
+              "line_number": 17339, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session.get());"
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_network_transaction_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4028052%3A28074", 
+              "line_number": 675, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  void CheckWasQuicResponse(HttpNetworkTransaction* trans) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4028551%3A28573", 
+              "line_number": 686, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  void CheckResponsePort(HttpNetworkTransaction* trans, uint16_t port) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4028789%3A28811", 
+              "line_number": 692, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  void CheckWasHttpResponse(HttpNetworkTransaction* trans) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4029279%3A29301", 
+              "line_number": 703, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  void CheckWasSpdyResponse(HttpNetworkTransaction* trans) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4029759%3A29781", 
+              "line_number": 714, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  void CheckResponseData(HttpNetworkTransaction* trans,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4030009%3A30031", 
+              "line_number": 721, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  void RunTransaction(HttpNetworkTransaction* trans) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4030333%3A30355", 
+              "line_number": 729, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4030719%3A30741", 
+              "line_number": 738, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4039132%3A39154", 
+              "line_number": 927, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4040848%3A40870", 
+              "line_number": 972, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4042264%3A42286", 
+              "line_number": 1004, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4053485%3A53507", 
+              "line_number": 1260, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4069593%3A69615", 
+              "line_number": 1594, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4071504%3A71526", 
+              "line_number": 1641, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4092398%3A92420", 
+              "line_number": 2117, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%4097673%3A97695", 
+              "line_number": 2223, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40103361%3A103383", 
+              "line_number": 2337, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40109272%3A109294", 
+              "line_number": 2456, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  auto trans = std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40112442%3A112464", 
+              "line_number": 2525, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40118643%3A118665", 
+              "line_number": 2652, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40125009%3A125031", 
+              "line_number": 2784, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40131342%3A131364", 
+              "line_number": 2918, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40138148%3A138170", 
+              "line_number": 3059, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40144511%3A144533", 
+              "line_number": 3189, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  auto trans = std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40148435%3A148457", 
+              "line_number": 3275, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40152714%3A152736", 
+              "line_number": 3371, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40200041%3A200063", 
+              "line_number": 4416, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40202472%3A202494", 
+              "line_number": 4468, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40205478%3A205500", 
+              "line_number": 4532, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40208422%3A208444", 
+              "line_number": 4590, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40211386%3A211408", 
+              "line_number": 4652, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40214835%3A214857", 
+              "line_number": 4738, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40217395%3A217417", 
+              "line_number": 4789, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40219946%3A219968", 
+              "line_number": 4842, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40221829%3A221851", 
+              "line_number": 4887, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40233906%3A233928", 
+              "line_number": 5165, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40235390%3A235412", 
+              "line_number": 5202, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40237277%3A237299", 
+              "line_number": 5247, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<HttpNetworkTransaction> trans("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40241349%3A241371", 
+              "line_number": 5341, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40243110%3A243132", 
+              "line_number": 5379, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40244823%3A244845", 
+              "line_number": 5417, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40252212%3A252234", 
+              "line_number": 5574, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  auto trans2 = std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40252818%3A252840", 
+              "line_number": 5588, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans3(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40274770%3A274792", 
+              "line_number": 6100, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40278810%3A278832", 
+              "line_number": 6201, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40297154%3A297176", 
+              "line_number": 6600, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40300665%3A300687", 
+              "line_number": 6680, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40305627%3A305649", 
+              "line_number": 6792, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans_1(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40306211%3A306233", 
+              "line_number": 6805, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans_2(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40312097%3A312119", 
+              "line_number": 6933, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans_1(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40312685%3A312707", 
+              "line_number": 6946, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans_2(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40315047%3A315069", 
+              "line_number": 6998, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40316704%3A316726", 
+              "line_number": 7035, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40320943%3A320965", 
+              "line_number": 7125, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40323480%3A323502", 
+              "line_number": 7183, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40325247%3A325269", 
+              "line_number": 7225, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(request_priority, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40330715%3A330737", 
+              "line_number": 7346, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      HttpNetworkTransaction trans(DEFAULT_PRIORITY, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40340223%3A340245", 
+              "line_number": 7540, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans_0(HIGHEST, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40340519%3A340541", 
+              "line_number": 7547, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans_1(MEDIUM, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40340814%3A340836", 
+              "line_number": 7554, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans_2(MEDIUM, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/quic/chromium/quic_network_transaction_unittest.cc#%40341193%3A341215", 
+              "line_number": 7562, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans_3(HIGHEST, session_.get());"
+            }
+          ], 
+          "file": {
+            "name": "src/net/quic/chromium/quic_network_transaction_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%405099%3A5121", 
+              "line_number": 143, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          std::make_unique<HttpNetworkTransaction>(priority_, session_.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%409091%3A9113", 
+              "line_number": 253, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction* trans() { return trans_.get(); }"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%409925%3A9947", 
+              "line_number": 270, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<HttpNetworkTransaction> trans_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4014404%3A14426", 
+              "line_number": 378, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  int ReadResult(HttpNetworkTransaction* trans, std::string* result) {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4016173%3A16195", 
+              "line_number": 423, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4016573%3A16595", 
+              "line_number": 435, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4018509%3A18531", 
+              "line_number": 485, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4019733%3A19755", 
+              "line_number": 519, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans(DEFAULT_PRIORITY, session);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4021587%3A21609", 
+              "line_number": 574, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY, session.get());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4025543%3A25565", 
+              "line_number": 674, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(MEDIUM, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4031163%3A31185", 
+              "line_number": 831, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4031232%3A31254", 
+              "line_number": 832, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4031301%3A31323", 
+              "line_number": 833, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans3(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4034057%3A34079", 
+              "line_number": 902, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4034126%3A34148", 
+              "line_number": 903, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4037212%3A37234", 
+              "line_number": 981, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4037281%3A37303", 
+              "line_number": 982, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4041588%3A41610", 
+              "line_number": 1092, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans1(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4041659%3A41681", 
+              "line_number": 1093, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4041730%3A41752", 
+              "line_number": 1094, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans3(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4047046%3A47068", 
+              "line_number": 1223, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4047115%3A47137", 
+              "line_number": 1224, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4047184%3A47206", 
+              "line_number": 1225, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans3(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4047253%3A47275", 
+              "line_number": 1226, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans4(HIGHEST, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4052013%3A52035", 
+              "line_number": 1341, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  auto trans1 = std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4052164%3A52186", 
+              "line_number": 1343, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  auto trans2 = std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4052315%3A52337", 
+              "line_number": 1345, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  auto trans3 = std::make_unique<HttpNetworkTransaction>(DEFAULT_PRIORITY,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4054166%3A54188", 
+              "line_number": 1395, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  explicit KillerCallback(HttpNetworkTransaction* transaction)"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4054586%3A54608", 
+              "line_number": 1413, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* transaction_;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4056728%3A56750", 
+              "line_number": 1469, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4056797%3A56819", 
+              "line_number": 1470, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4056866%3A56888", 
+              "line_number": 1471, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans3("
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4074114%3A74136", 
+              "line_number": 1947, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4078136%3A78158", 
+              "line_number": 2059, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4079400%3A79422", 
+              "line_number": 2094, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4081333%3A81355", 
+              "line_number": 2146, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4083078%3A83100", 
+              "line_number": 2193, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%4099030%3A99052", 
+              "line_number": 2597, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40102052%3A102074", 
+              "line_number": 2668, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40107729%3A107751", 
+              "line_number": 2813, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(HIGHEST, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40107789%3A107811", 
+              "line_number": 2814, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans3(MEDIUM, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40107848%3A107870", 
+              "line_number": 2815, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans5(MEDIUM, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40108496%3A108518", 
+              "line_number": 2833, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(HIGHEST, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40110234%3A110256", 
+              "line_number": 2878, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40125632%3A125654", 
+              "line_number": 3260, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40128186%3A128208", 
+              "line_number": 3322, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans1 = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40128553%3A128575", 
+              "line_number": 3331, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40131130%3A131152", 
+              "line_number": 3393, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans1 = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40132199%3A132221", 
+              "line_number": 3418, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40135809%3A135831", 
+              "line_number": 3502, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans1 = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40137564%3A137586", 
+              "line_number": 3541, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40160955%3A160977", 
+              "line_number": 4137, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40163645%3A163667", 
+              "line_number": 4214, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40166397%3A166419", 
+              "line_number": 4294, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40169002%3A169024", 
+              "line_number": 4370, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40171604%3A171626", 
+              "line_number": 4448, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40177307%3A177329", 
+              "line_number": 4591, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40188200%3A188222", 
+              "line_number": 4849, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40191370%3A191392", 
+              "line_number": 4928, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40194167%3A194189", 
+              "line_number": 4997, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans_proxy = helper_proxy.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40196960%3A196982", 
+              "line_number": 5068, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      HttpNetworkTransaction trans(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40200406%3A200428", 
+              "line_number": 5160, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40207270%3A207292", 
+              "line_number": 5339, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40207894%3A207916", 
+              "line_number": 5357, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40215868%3A215890", 
+              "line_number": 5558, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40218734%3A218756", 
+              "line_number": 5642, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans0 = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40219487%3A219509", 
+              "line_number": 5660, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40223678%3A223700", 
+              "line_number": 5772, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans0 = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40224069%3A224091", 
+              "line_number": 5781, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40225610%3A225632", 
+              "line_number": 5816, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40228102%3A228124", 
+              "line_number": 5887, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40231300%3A231322", 
+              "line_number": 5960, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40231818%3A231840", 
+              "line_number": 5972, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(MEDIUM, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40232052%3A232074", 
+              "line_number": 5978, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans3(HIGHEST, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40236568%3A236590", 
+              "line_number": 6081, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40242063%3A242085", 
+              "line_number": 6211, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40245375%3A245397", 
+              "line_number": 6296, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40253029%3A253051", 
+              "line_number": 6469, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40259501%3A259523", 
+              "line_number": 6629, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40266293%3A266315", 
+              "line_number": 6794, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40287312%3A287334", 
+              "line_number": 7298, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40288137%3A288159", 
+              "line_number": 7320, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction transaction2(DEFAULT_PRIORITY, session);"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40291510%3A291532", 
+              "line_number": 7409, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans1(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40293197%3A293219", 
+              "line_number": 7448, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40297375%3A297397", 
+              "line_number": 7547, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(MEDIUM, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40299667%3A299689", 
+              "line_number": 7606, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40301127%3A301149", 
+              "line_number": 7642, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40302705%3A302727", 
+              "line_number": 7679, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans1 = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40303069%3A303091", 
+              "line_number": 7688, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction trans2(DEFAULT_PRIORITY, helper.session());"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40306240%3A306262", 
+              "line_number": 7762, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_network_transaction_unittest.cc#%40308986%3A309008", 
+              "line_number": 7822, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  HttpNetworkTransaction* trans = helper.trans();"
+            }
+          ], 
+          "file": {
+            "name": "src/net/spdy/spdy_network_transaction_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }
+      ], 
+      "estimated_total_type_count": [
+        {
+          "count": 1, 
+          "type": "DEFINITION", 
+          "type_id": 1
+        }, 
+        {
+          "count": 509, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }, 
+        {
+          "count": 2, 
+          "type": "EXTENDS", 
+          "type_id": 6
+        }
+      ], 
+      "kythe_next_page_token": "CygiCQoEc2tpcBD0Aw==", 
+      "eliminated_type_count": [
+        {
+          "count": 5, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }
+      ], 
+      "from_kythe": true
+    }
+  ]
+}

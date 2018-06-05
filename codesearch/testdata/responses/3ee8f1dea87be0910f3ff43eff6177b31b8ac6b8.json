@@ -216,14 +216,14 @@
           "internal_link": {
             "path": "src/buildtools/third_party/libc++/trunk/include/memory", 
             "range": {
-              "start_line": 2295, 
-              "end_line": 2295, 
+              "start_line": 2383, 
+              "end_line": 2383, 
               "start_column": 28, 
               "end_column": 37
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4076794%3A76804%40MStJvKZB2Vjh12uiUcWchKepi2SMRwEMZMwQcSTRghE%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4079621%3A79631%40sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#MStJvKZB2Vjh12uiUcWchKepi2SMRwEMZMwQcSTRghE%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D"
           }, 
           "type": {
             "id": 1
@@ -264,14 +264,14 @@
           "internal_link": {
             "path": "src/buildtools/third_party/libc++/trunk/include/memory", 
             "range": {
-              "start_line": 2295, 
-              "end_line": 2295, 
+              "start_line": 2383, 
+              "end_line": 2383, 
               "start_column": 28, 
               "end_column": 37
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4076794%3A76804%40MStJvKZB2Vjh12uiUcWchKepi2SMRwEMZMwQcSTRghE%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4079621%3A79631%40sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#MStJvKZB2Vjh12uiUcWchKepi2SMRwEMZMwQcSTRghE%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D"
           }, 
           "type": {
             "id": 1
@@ -310,16 +310,16 @@
             "end_column": 23
           }, 
           "internal_link": {
-            "path": "src/buildtools/third_party/libc++/trunk/include/iterator", 
+            "path": "src/buildtools/third_party/libc++/trunk/include/vector", 
             "range": {
-              "start_line": 1413, 
-              "end_line": 1413, 
-              "start_column": 74, 
-              "end_column": 79
+              "start_line": 447, 
+              "end_line": 447, 
+              "start_column": 28, 
+              "end_column": 33
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#%4053480%3A53486%40yeqlOVHisJ8bJflzDtq6KV%2BQiZG2AqGwJClsAuklYuU%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fiterator", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#yeqlOVHisJ8bJflzDtq6KV%2BQiZG2AqGwJClsAuklYuU%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
           }, 
           "type": {
             "id": 1
@@ -334,16 +334,16 @@
             "end_column": 31
           }, 
           "internal_link": {
-            "path": "src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h", 
+            "path": "src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h", 
             "range": {
-              "start_line": 48, 
-              "end_line": 48, 
-              "start_column": 24, 
-              "end_column": 30
+              "start_line": 24, 
+              "end_line": 24, 
+              "start_column": 19, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h#%401366%3A1373%40talias%28uint8_t%23n%2Cunsigned%20char%23builtin%29", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h#%40918%3A925%408VL2YT%2B5Q09UlL2yvpqEyAjWtPfkLVB51xlAfy2NxTA%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28uint8_t%23n%2Cunsigned%20char%23builtin%29"
+            "signature": "kythe:?lang=c%2B%2B#8VL2YT%2B5Q09UlL2yvpqEyAjWtPfkLVB51xlAfy2NxTA%3D"
           }, 
           "type": {
             "id": 1
@@ -360,14 +360,14 @@
           "internal_link": {
             "path": "src/buildtools/third_party/libc++/trunk/include/memory", 
             "range": {
-              "start_line": 2295, 
-              "end_line": 2295, 
+              "start_line": 2383, 
+              "end_line": 2383, 
               "start_column": 28, 
               "end_column": 37
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4076794%3A76804%40MStJvKZB2Vjh12uiUcWchKepi2SMRwEMZMwQcSTRghE%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4079621%3A79631%40sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#MStJvKZB2Vjh12uiUcWchKepi2SMRwEMZMwQcSTRghE%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D"
           }, 
           "type": {
             "id": 1
@@ -406,16 +406,16 @@
             "end_column": 23
           }, 
           "internal_link": {
-            "path": "src/buildtools/third_party/libc++/trunk/include/iterator", 
+            "path": "src/buildtools/third_party/libc++/trunk/include/vector", 
             "range": {
-              "start_line": 1413, 
-              "end_line": 1413, 
-              "start_column": 74, 
-              "end_column": 79
+              "start_line": 447, 
+              "end_line": 447, 
+              "start_column": 28, 
+              "end_column": 33
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#%4053480%3A53486%40yeqlOVHisJ8bJflzDtq6KV%2BQiZG2AqGwJClsAuklYuU%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fiterator", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#yeqlOVHisJ8bJflzDtq6KV%2BQiZG2AqGwJClsAuklYuU%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
           }, 
           "type": {
             "id": 1
@@ -430,16 +430,16 @@
             "end_column": 31
           }, 
           "internal_link": {
-            "path": "src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h", 
+            "path": "src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h", 
             "range": {
-              "start_line": 48, 
-              "end_line": 48, 
-              "start_column": 24, 
-              "end_column": 30
+              "start_line": 24, 
+              "end_line": 24, 
+              "start_column": 19, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h#%401366%3A1373%40talias%28uint8_t%23n%2Cunsigned%20char%23builtin%29", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h#%40918%3A925%408VL2YT%2B5Q09UlL2yvpqEyAjWtPfkLVB51xlAfy2NxTA%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28uint8_t%23n%2Cunsigned%20char%23builtin%29"
+            "signature": "kythe:?lang=c%2B%2B#8VL2YT%2B5Q09UlL2yvpqEyAjWtPfkLVB51xlAfy2NxTA%3D"
           }, 
           "type": {
             "id": 1
@@ -456,14 +456,14 @@
           "internal_link": {
             "path": "src/buildtools/third_party/libc++/trunk/include/memory", 
             "range": {
-              "start_line": 2295, 
-              "end_line": 2295, 
+              "start_line": 2383, 
+              "end_line": 2383, 
               "start_column": 28, 
               "end_column": 37
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4076794%3A76804%40MStJvKZB2Vjh12uiUcWchKepi2SMRwEMZMwQcSTRghE%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4079621%3A79631%40sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#MStJvKZB2Vjh12uiUcWchKepi2SMRwEMZMwQcSTRghE%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D"
           }, 
           "type": {
             "id": 1
@@ -506,7 +506,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28EVP_PKEY%23n%2Cevp_pkey_st%23c%23t%29"
+            "signature": "kythe:?lang=c%2B%2B#H8NNxl6FrGQVTNkTYfxF2tsD8ovD2iFAVbM%2FJvI2Ii4%3D"
           }
         }, 
         {
@@ -544,14 +544,14 @@
           "internal_link": {
             "path": "src/buildtools/third_party/libc++/trunk/include/memory", 
             "range": {
-              "start_line": 2518, 
-              "end_line": 2518, 
+              "start_line": 2606, 
+              "end_line": 2606, 
               "start_column": 11, 
               "end_column": 13
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4084226%3A84229%40TLHjmD44xtV6cYchzr5WYfVUMllp3RR84KuPw1XeroY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4087053%3A87056%40GDKJlrcj4joWP0Pt%2FrfNoXcnVohAyhHprn1hRuXH73k%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#9DxpuRfWzZplV8AfAK1KEVIPsmnGQ1KElD2kUk79m%2FE%3D"
+            "signature": "kythe:?lang=c%2B%2B#cTPFBhTHHcoYafNIkl9XTtMXSbY1IE7t0QGEuSb%2Bu%2Fc%3D"
           }, 
           "type": {
             "id": 1
@@ -566,16 +566,16 @@
             "end_column": 35
           }, 
           "internal_link": {
-            "path": "src/buildtools/third_party/libc++/trunk/include/iterator", 
+            "path": "src/buildtools/third_party/libc++/trunk/include/vector", 
             "range": {
-              "start_line": 1413, 
-              "end_line": 1413, 
-              "start_column": 74, 
-              "end_column": 79
+              "start_line": 447, 
+              "end_line": 447, 
+              "start_column": 28, 
+              "end_column": 33
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#%4053480%3A53486%40yeqlOVHisJ8bJflzDtq6KV%2BQiZG2AqGwJClsAuklYuU%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fiterator", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#yeqlOVHisJ8bJflzDtq6KV%2BQiZG2AqGwJClsAuklYuU%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
           }, 
           "type": {
             "id": 1
@@ -590,16 +590,16 @@
             "end_column": 43
           }, 
           "internal_link": {
-            "path": "src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h", 
+            "path": "src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h", 
             "range": {
-              "start_line": 48, 
-              "end_line": 48, 
-              "start_column": 24, 
-              "end_column": 30
+              "start_line": 24, 
+              "end_line": 24, 
+              "start_column": 19, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h#%401366%3A1373%40talias%28uint8_t%23n%2Cunsigned%20char%23builtin%29", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h#%40918%3A925%408VL2YT%2B5Q09UlL2yvpqEyAjWtPfkLVB51xlAfy2NxTA%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28uint8_t%23n%2Cunsigned%20char%23builtin%29"
+            "signature": "kythe:?lang=c%2B%2B#8VL2YT%2B5Q09UlL2yvpqEyAjWtPfkLVB51xlAfy2NxTA%3D"
           }, 
           "type": {
             "id": 1
@@ -614,16 +614,16 @@
             "end_column": 44
           }, 
           "internal_link": {
-            "path": "src/buildtools/third_party/libc++/trunk/include/iterator", 
+            "path": "src/buildtools/third_party/libc++/trunk/include/vector", 
             "range": {
-              "start_line": 1413, 
-              "end_line": 1413, 
-              "start_column": 74, 
-              "end_column": 79
+              "start_line": 447, 
+              "end_line": 447, 
+              "start_column": 28, 
+              "end_column": 33
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#%4053480%3A53486%40yeqlOVHisJ8bJflzDtq6KV%2BQiZG2AqGwJClsAuklYuU%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fiterator", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#yeqlOVHisJ8bJflzDtq6KV%2BQiZG2AqGwJClsAuklYuU%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
           }, 
           "type": {
             "id": 1
@@ -638,16 +638,16 @@
             "end_column": 52
           }, 
           "internal_link": {
-            "path": "src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h", 
+            "path": "src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h", 
             "range": {
-              "start_line": 48, 
-              "end_line": 48, 
-              "start_column": 24, 
-              "end_column": 30
+              "start_line": 24, 
+              "end_line": 24, 
+              "start_column": 19, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h#%401366%3A1373%40talias%28uint8_t%23n%2Cunsigned%20char%23builtin%29", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h#%40918%3A925%408VL2YT%2B5Q09UlL2yvpqEyAjWtPfkLVB51xlAfy2NxTA%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28uint8_t%23n%2Cunsigned%20char%23builtin%29"
+            "signature": "kythe:?lang=c%2B%2B#8VL2YT%2B5Q09UlL2yvpqEyAjWtPfkLVB51xlAfy2NxTA%3D"
           }, 
           "type": {
             "id": 1
@@ -662,16 +662,16 @@
             "end_column": 34
           }, 
           "internal_link": {
-            "path": "src/buildtools/third_party/libc++/trunk/include/iterator", 
+            "path": "src/buildtools/third_party/libc++/trunk/include/vector", 
             "range": {
-              "start_line": 1413, 
-              "end_line": 1413, 
-              "start_column": 74, 
-              "end_column": 79
+              "start_line": 447, 
+              "end_line": 447, 
+              "start_column": 28, 
+              "end_column": 33
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#%4053480%3A53486%40yeqlOVHisJ8bJflzDtq6KV%2BQiZG2AqGwJClsAuklYuU%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fiterator", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#yeqlOVHisJ8bJflzDtq6KV%2BQiZG2AqGwJClsAuklYuU%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
           }, 
           "type": {
             "id": 1
@@ -686,16 +686,16 @@
             "end_column": 42
           }, 
           "internal_link": {
-            "path": "src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h", 
+            "path": "src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h", 
             "range": {
-              "start_line": 48, 
-              "end_line": 48, 
-              "start_column": 24, 
-              "end_column": 30
+              "start_line": 24, 
+              "end_line": 24, 
+              "start_column": 19, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_stretch_amd64-sysroot/usr/include/stdint.h#%401366%3A1373%40talias%28uint8_t%23n%2Cunsigned%20char%23builtin%29", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/build/linux/debian_sid_amd64-sysroot/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h#%40918%3A925%408VL2YT%2B5Q09UlL2yvpqEyAjWtPfkLVB51xlAfy2NxTA%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28uint8_t%23n%2Cunsigned%20char%23builtin%29"
+            "signature": "kythe:?lang=c%2B%2B#8VL2YT%2B5Q09UlL2yvpqEyAjWtPfkLVB51xlAfy2NxTA%3D"
           }, 
           "type": {
             "id": 1
@@ -717,9 +717,9 @@
               "start_column": 65, 
               "end_column": 70
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iosfwd#%407594%3A7600%40hHndEw0s81%2FERe72eYFm7PTsQpVMxQBKv21ruRgVjkI%3D", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iosfwd#%407594%3A7600%40%2BQ3nrKP%2Fg%2FG9sFpu55Ogak7LDcXhmVs5kZ4ADH6mQiM%3D", 
             "package_name": "chromium", 
-            "signature": "kythe:?lang=c%2B%2B#hHndEw0s81%2FERe72eYFm7PTsQpVMxQBKv21ruRgVjkI%3D"
+            "signature": "kythe:?lang=c%2B%2B#%2BQ3nrKP%2Fg%2FG9sFpu55Ogak7LDcXhmVs5kZ4ADH6mQiM%3D"
           }, 
           "type": {
             "id": 1
@@ -736,14 +736,14 @@
           "internal_link": {
             "path": "src/buildtools/third_party/libc++/trunk/include/memory", 
             "range": {
-              "start_line": 2295, 
-              "end_line": 2295, 
+              "start_line": 2383, 
+              "end_line": 2383, 
               "start_column": 28, 
               "end_column": 37
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4076794%3A76804%40MStJvKZB2Vjh12uiUcWchKepi2SMRwEMZMwQcSTRghE%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4079621%3A79631%40sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#MStJvKZB2Vjh12uiUcWchKepi2SMRwEMZMwQcSTRghE%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#sjnbX14SGq6APkrVKRHg2cBO27xGz4xfLVlgC3AwlDo%3D"
           }, 
           "type": {
             "id": 1
@@ -762,7 +762,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "signature": "kythe:?lang=c%2B%2B#talias%28EVP_PKEY%23n%2Cevp_pkey_st%23c%23t%29"
+            "signature": "kythe:?lang=c%2B%2B#H8NNxl6FrGQVTNkTYfxF2tsD8ovD2iFAVbM%2FJvI2Ii4%3D"
           }
         }, 
         {
@@ -1164,5 +1164,5 @@
       ]
     }
   ], 
-  "elapsed_ms": 70
+  "elapsed_ms": 74
 }

@@ -1,0 +1,699 @@
+{
+  "elapsed_ms": 20, 
+  "file_info_response": [
+    {
+      "file_info": {
+        "gob_info": {
+          "repo": "chromium/chromium/src", 
+          "commit": "4f72b1c20517c96291c1e9509e7dc01bbbc88cc7", 
+          "path": "services/network/throttling/throttling_network_transaction.h"
+        }, 
+        "name": "src/services/network/throttling/throttling_network_transaction.h", 
+        "language": "c++", 
+        "changelist_num": "4f72b1c20517c96291c1e9509e7dc01bbbc88cc7", 
+        "package_name": "chromium", 
+        "lines": "136", 
+        "content": {
+          "text": "// Copyright 2014 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef SERVICES_NETWORK_THROTTLING_THROTTLING_NETWORK_TRANSACTION_H_\n#define SERVICES_NETWORK_THROTTLING_THROTTLING_NETWORK_TRANSACTION_H_\n\n#include <stdint.h>\n\n#include <memory>\n\n#include \"base/component_export.h\"\n#include \"base/macros.h\"\n#include \"base/memory/weak_ptr.h\"\n#include \"net/base/completion_callback.h\"\n#include \"net/base/load_states.h\"\n#include \"net/base/net_error_details.h\"\n#include \"net/base/request_priority.h\"\n#include \"net/http/http_transaction.h\"\n#include \"net/websockets/websocket_handshake_stream_base.h\"\n#include \"services/network/throttling/throttling_network_interceptor.h\"\n\nnamespace net {\nclass AuthCredentials;\nclass HttpRequestHeaders;\nstruct HttpRequestInfo;\nclass HttpResponseInfo;\nclass IOBuffer;\nstruct LoadTimingInfo;\nclass NetLogWithSource;\nclass X509Certificate;\n}  // namespace net\n\nnamespace network {\n\nclass ThrottlingController;\nclass ThrottlingControllerHelper;\nclass ThrottlingUploadDataStream;\n\n// ThrottlingNetworkTransaction is a wrapper for network transaction. All\n// HttpTransaction methods are proxied to real transaction, but |callback|\n// parameter is saved and replaced with proxy callback. Fail method should be\n// used to simulate network outage. It runs saved callback (if any) with\n// net::ERR_INTERNET_DISCONNECTED result value.\nclass COMPONENT_EXPORT(NETWORK_SERVICE) ThrottlingNetworkTransaction\n    : public net::HttpTransaction {\n public:\n  static const char kDevToolsEmulateNetworkConditionsClientId[];\n\n  explicit ThrottlingNetworkTransaction(\n      std::unique_ptr<net::HttpTransaction> network_transaction);\n\n  ~ThrottlingNetworkTransaction() override;\n\n  // HttpTransaction methods:\n  int Start(const net::HttpRequestInfo* request,\n            const net::CompletionCallback& callback,\n            const net::NetLogWithSource& net_log) override;\n  int RestartIgnoringLastError(\n      const net::CompletionCallback& callback) override;\n  int RestartWithCertificate(\n      scoped_refptr<net::X509Certificate> client_cert,\n      scoped_refptr<net::SSLPrivateKey> client_private_key,\n      const net::CompletionCallback& callback) override;\n  int RestartWithAuth(const net::AuthCredentials& credentials,\n                      const net::CompletionCallback& callback) override;\n  bool IsReadyToRestartForAuth() override;\n\n  int Read(net::IOBuffer* buf,\n           int buf_len,\n           const net::CompletionCallback& callback) override;\n  void StopCaching() override;\n  bool GetFullRequestHeaders(net::HttpRequestHeaders* headers) const override;\n  int64_t GetTotalReceivedBytes() const override;\n  int64_t GetTotalSentBytes() const override;\n  void DoneReading() override;\n  const net::HttpResponseInfo* GetResponseInfo() const override;\n  net::LoadState GetLoadState() const override;\n  void SetQuicServerInfo(net::QuicServerInfo* quic_server_info) override;\n  bool GetLoadTimingInfo(net::LoadTimingInfo* load_timing_info) const override;\n  bool GetRemoteEndpoint(net::IPEndPoint* endpoint) const override;\n  void PopulateNetErrorDetails(net::NetErrorDetails* details) const override;\n  void SetPriority(net::RequestPriority priority) override;\n  void SetWebSocketHandshakeStreamCreateHelper(\n      net::WebSocketHandshakeStreamBase::CreateHelper* create_helper) override;\n  void SetBeforeNetworkStartCallback(\n      const BeforeNetworkStartCallback& callback) override;\n  void SetBeforeHeadersSentCallback(\n      const BeforeHeadersSentCallback& callback) override;\n  void SetRequestHeadersCallback(net::RequestHeadersCallback callback) override;\n  void SetResponseHeadersCallback(\n      net::ResponseHeadersCallback callback) override;\n  int ResumeNetworkStart() override;\n  void GetConnectionAttempts(net::ConnectionAttempts* out) const override;\n\n protected:\n  friend class ThrottlingControllerHelper;\n\n private:\n  void Fail();\n  bool CheckFailed();\n\n  void IOCallback(const net::CompletionCallback& callback,\n                  bool start,\n                  int result);\n  int Throttle(const net::CompletionCallback& callback, bool start, int result);\n  void ThrottleCallback(const net::CompletionCallback& callback,\n                        int result,\n                        int64_t bytes);\n\n  ThrottlingNetworkInterceptor::ThrottleCallback throttle_callback_;\n  int64_t throttled_byte_count_;\n\n  ThrottlingController* controller_;\n  base::WeakPtr<ThrottlingNetworkInterceptor> interceptor_;\n\n  // Modified upload data stream. Should be destructed after |custom_request_|.\n  std::unique_ptr<ThrottlingUploadDataStream> custom_upload_data_stream_;\n\n  // Modified request. Should be destructed after |network_transaction_|.\n  std::unique_ptr<net::HttpRequestInfo> custom_request_;\n\n  // Real network transaction.\n  std::unique_ptr<net::HttpTransaction> network_transaction_;\n\n  const net::HttpRequestInfo* request_;\n\n  // True if Fail was already invoked.\n  bool failed_;\n\n  DISALLOW_COPY_AND_ASSIGN(ThrottlingNetworkTransaction);\n};\n\n}  // namespace network\n\n#endif  // SERVICES_NETWORK_THROTTLING_THROTTLING_NETWORK_TRANSACTION_H_\n"
+        }, 
+        "generated": false, 
+        "mime_type": "text/plain", 
+        "size": "5169", 
+        "type": 1, 
+        "md5": "b4ce70994dcfa49221478c11d1c99ffa", 
+        "codeblock": [
+          {
+            "type": 40, 
+            "name": "SERVICES_NETWORK_THROTTLING_THROTTLING_NETWORK_TRANSACTION_H_", 
+            "text_range": {
+              "start_line": 6, 
+              "end_line": 7, 
+              "start_column": 1, 
+              "end_column": 1
+            }, 
+            "signature": ""
+          }, 
+          {
+            "child": [
+              {
+                "name": "ThrottlingNetworkTransaction", 
+                "signature": "", 
+                "child": [
+                  {
+                    "modifiers": {
+                      "static": true, 
+                      "public": true
+                    }, 
+                    "name": "kDevToolsEmulateNetworkConditionsClientId", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 48, 
+                      "end_line": 48, 
+                      "start_column": 3, 
+                      "end_column": 65
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ThrottlingNetworkTransaction", 
+                    "signature": "(std::unique_ptr<net::HttpTransaction> network_transaction)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 50, 
+                      "end_line": 51, 
+                      "start_column": 3, 
+                      "end_column": 66
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "~ThrottlingNetworkTransaction", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 53, 
+                      "end_line": 53, 
+                      "start_column": 3, 
+                      "end_column": 44
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Start", 
+                    "signature": "(const net::HttpRequestInfo* request, const net::CompletionCallback& callback, const net::NetLogWithSource& net_log)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 56, 
+                      "end_line": 58, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RestartIgnoringLastError", 
+                    "signature": "(const net::CompletionCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 59, 
+                      "end_line": 60, 
+                      "start_column": 3, 
+                      "end_column": 57
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RestartWithCertificate", 
+                    "signature": "(scoped_refptr<net::X509Certificate> client_cert, scoped_refptr<net::SSLPrivateKey> client_private_key, const net::CompletionCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 61, 
+                      "end_line": 64, 
+                      "start_column": 3, 
+                      "end_column": 57
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "RestartWithAuth", 
+                    "signature": "(const net::AuthCredentials& credentials, const net::CompletionCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 65, 
+                      "end_line": 66, 
+                      "start_column": 3, 
+                      "end_column": 73
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "IsReadyToRestartForAuth", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 67, 
+                      "end_line": 67, 
+                      "start_column": 3, 
+                      "end_column": 43
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "Read", 
+                    "signature": "(net::IOBuffer* buf, int buf_len, const net::CompletionCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 69, 
+                      "end_line": 71, 
+                      "start_column": 3, 
+                      "end_column": 62
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "StopCaching", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 72, 
+                      "end_line": 72, 
+                      "start_column": 3, 
+                      "end_column": 31
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetFullRequestHeaders", 
+                    "signature": "(net::HttpRequestHeaders* headers)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 73, 
+                      "end_line": 73, 
+                      "start_column": 3, 
+                      "end_column": 79
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetTotalReceivedBytes", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 74, 
+                      "end_line": 74, 
+                      "start_column": 3, 
+                      "end_column": 50
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetTotalSentBytes", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 75, 
+                      "end_line": 75, 
+                      "start_column": 3, 
+                      "end_column": 46
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "DoneReading", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 76, 
+                      "end_line": 76, 
+                      "start_column": 3, 
+                      "end_column": 31
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetResponseInfo", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 77, 
+                      "end_line": 77, 
+                      "start_column": 3, 
+                      "end_column": 65
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetLoadState", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 78, 
+                      "end_line": 78, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetQuicServerInfo", 
+                    "signature": "(net::QuicServerInfo* quic_server_info)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 79, 
+                      "end_line": 79, 
+                      "start_column": 3, 
+                      "end_column": 74
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetLoadTimingInfo", 
+                    "signature": "(net::LoadTimingInfo* load_timing_info)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 80, 
+                      "end_line": 80, 
+                      "start_column": 3, 
+                      "end_column": 80
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetRemoteEndpoint", 
+                    "signature": "(net::IPEndPoint* endpoint)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 81, 
+                      "end_line": 81, 
+                      "start_column": 3, 
+                      "end_column": 68
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "PopulateNetErrorDetails", 
+                    "signature": "(net::NetErrorDetails* details)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 82, 
+                      "end_line": 82, 
+                      "start_column": 3, 
+                      "end_column": 78
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetPriority", 
+                    "signature": "(net::RequestPriority priority)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 83, 
+                      "end_line": 83, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetWebSocketHandshakeStreamCreateHelper", 
+                    "signature": "(net::WebSocketHandshakeStreamBase::CreateHelper* create_helper)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 84, 
+                      "end_line": 85, 
+                      "start_column": 3, 
+                      "end_column": 80
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetBeforeNetworkStartCallback", 
+                    "signature": "(const BeforeNetworkStartCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 86, 
+                      "end_line": 87, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetBeforeHeadersSentCallback", 
+                    "signature": "(const BeforeHeadersSentCallback& callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 88, 
+                      "end_line": 89, 
+                      "start_column": 3, 
+                      "end_column": 59
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetRequestHeadersCallback", 
+                    "signature": "(net::RequestHeadersCallback callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 90, 
+                      "end_line": 90, 
+                      "start_column": 3, 
+                      "end_column": 81
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "SetResponseHeadersCallback", 
+                    "signature": "(net::ResponseHeadersCallback callback)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 91, 
+                      "end_line": 92, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "ResumeNetworkStart", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 93, 
+                      "end_line": 93, 
+                      "start_column": 3, 
+                      "end_column": 37
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "public": true
+                    }, 
+                    "name": "GetConnectionAttempts", 
+                    "signature": "(net::ConnectionAttempts* out)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 94, 
+                      "end_line": 94, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "Fail", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 100, 
+                      "end_line": 100, 
+                      "start_column": 3, 
+                      "end_column": 15
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "CheckFailed", 
+                    "signature": "()", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 101, 
+                      "end_line": 101, 
+                      "start_column": 3, 
+                      "end_column": 22
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "IOCallback", 
+                    "signature": "(const net::CompletionCallback& callback, bool start, int result)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 103, 
+                      "end_line": 105, 
+                      "start_column": 3, 
+                      "end_column": 31
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "Throttle", 
+                    "signature": "(const net::CompletionCallback& callback, bool start, int result)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 106, 
+                      "end_line": 106, 
+                      "start_column": 3, 
+                      "end_column": 81
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "ThrottleCallback", 
+                    "signature": "(const net::CompletionCallback& callback, int result, int64_t bytes)", 
+                    "name_prefix": "", 
+                    "type": 8, 
+                    "text_range": {
+                      "start_line": 107, 
+                      "end_line": 109, 
+                      "start_column": 3, 
+                      "end_column": 40
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "throttle_callback_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 111, 
+                      "end_line": 111, 
+                      "start_column": 3, 
+                      "end_column": 69
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "throttled_byte_count_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 112, 
+                      "end_line": 112, 
+                      "start_column": 3, 
+                      "end_column": 33
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "controller_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 114, 
+                      "end_line": 114, 
+                      "start_column": 3, 
+                      "end_column": 37
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "interceptor_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 115, 
+                      "end_line": 115, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "custom_upload_data_stream_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 118, 
+                      "end_line": 118, 
+                      "start_column": 3, 
+                      "end_column": 74
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "custom_request_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 121, 
+                      "end_line": 121, 
+                      "start_column": 3, 
+                      "end_column": 57
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "network_transaction_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 124, 
+                      "end_line": 124, 
+                      "start_column": 3, 
+                      "end_column": 62
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "request_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 126, 
+                      "end_line": 126, 
+                      "start_column": 3, 
+                      "end_column": 40
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
+                    "name": "failed_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 129, 
+                      "end_line": 129, 
+                      "start_column": 3, 
+                      "end_column": 16
+                    }
+                  }
+                ], 
+                "name_prefix": "", 
+                "type": 1, 
+                "text_range": {
+                  "start_line": 45, 
+                  "end_line": 132, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }
+              }
+            ], 
+            "type": 11, 
+            "name": "network", 
+            "text_range": {
+              "start_line": 34, 
+              "end_line": 134, 
+              "start_column": 1, 
+              "end_column": 2
+            }, 
+            "signature": ""
+          }
+        ]
+      }, 
+      "return_code": 1
+    }
+  ]
+}

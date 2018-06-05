@@ -1,9 +1,13 @@
 {
   "search_response": [
     {
-      "maybe_skipped_documents": false, 
-      "hit_max_to_score": true, 
-      "estimated_total_number_of_results": 52, 
+      "status": 0, 
+      "hit_max_results": false, 
+      "estimated_total_number_of_results": 51, 
+      "stats": {
+        "retries": 0, 
+        "filter_ratio": 0
+      }, 
       "search_result": [
         {
           "snippet": [
@@ -32,6 +36,7 @@
           "docid": "rg8u7oPj_WM", 
           "best_matching_line_number": 50, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -39,7 +44,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "389315a25d7da30d71b59e3803ab795bc4c18e1c", 
+              "changelist": "89a708ecc66fab795f4866201c7f7f8d8e5d86d2", 
               "name": "src/net/url_request/url_request_job.h", 
               "package_name": "chromium", 
               "revision": "0"
@@ -93,6 +98,7 @@
           "docid": "-OkUmzJC19I", 
           "best_matching_line_number": 54, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -100,7 +106,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "cf3bb707cf64395c36cd3b26a212e97b0ee45d01", 
+              "changelist": "24cd62505182c455f14bc48a1e05f24ce8163995", 
               "name": "src/net/url_request/url_request_job.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -154,6 +160,7 @@
           "docid": "91HGIa329k8", 
           "best_matching_line_number": 27, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -161,7 +168,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "af268239e57931156dc9e56fcf6aa9df733c8eff", 
               "name": "src/net/url_request/url_request_test_job.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -215,6 +222,7 @@
           "docid": "UHjQj0aGOK8", 
           "best_matching_line_number": 17, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -222,7 +230,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0", 
+              "changelist": "b510f8895b7fa9d5d8a66b6b1e07df104f319c85", 
               "name": "src/headless/test/test_url_request_job.h", 
               "package_name": "chromium", 
               "revision": "0"
@@ -257,7 +265,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 336, 
+              "first_line_number": 340, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -265,8 +273,9 @@
             }
           ], 
           "docid": "Y_tvmPdbMWE", 
-          "best_matching_line_number": 337, 
+          "best_matching_line_number": 341, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -274,7 +283,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "2aeb8ae3aea2b7e78457ec774722a0e35e30a07d", 
+              "changelist": "f10af3bbe23b2c719ce1f90a75a67725718d674b", 
               "name": "src/net/url_request/url_request_unittest.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -284,7 +293,7 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 337, 
+              "line_number": 341, 
               "score": 498, 
               "match_offset": 71, 
               "match_length": 13, 
@@ -293,8 +302,10 @@
           ]
         }
       ], 
-      "results_offset": 0
+      "results_offset": 0, 
+      "maybe_skipped_documents": false, 
+      "hit_max_to_score": false
     }
   ], 
-  "elapsed_ms": 79
+  "elapsed_ms": 22
 }
