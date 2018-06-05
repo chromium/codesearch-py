@@ -1,9 +1,14 @@
 {
   "search_response": [
     {
-      "maybe_skipped_documents": false, 
-      "hit_max_to_score": true, 
+      "status": 0, 
+      "hit_max_results": false, 
       "estimated_total_number_of_results": 2, 
+      "stats": {
+        "retries": 0, 
+        "filter_ratio": 0, 
+        "first_phase_latency_micros": "75213"
+      }, 
       "search_result": [
         {
           "snippet": [
@@ -22,7 +27,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 41, 
+              "first_line_number": 40, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -30,8 +35,9 @@
             }
           ], 
           "docid": "tA3Iii9cIUY", 
-          "best_matching_line_number": 42, 
+          "best_matching_line_number": 41, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -39,7 +45,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "1f050c2c4cf525cd5d80ab01e5fc0cb99d6f95c8", 
+              "changelist": "7fb07ff59db42b099214676ab8ed811c0bebbb97", 
               "name": "src/net/url_request/url_request_http_job.h", 
               "package_name": "chromium", 
               "revision": "0"
@@ -49,7 +55,7 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 42, 
+              "line_number": 41, 
               "score": 1252, 
               "match_offset": 80, 
               "match_length": 17, 
@@ -83,7 +89,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 87, 
+              "first_line_number": 90, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -91,7 +97,7 @@
             }, 
             {
               "text": {
-                "text": "class URLRequestHttpJobSetUpSourceTest : public ::testing::Test {\n public:\n", 
+                "text": "class URLRequestHttpJobSetUpSourceTest : public TestWithScopedTaskEnvironment {\n public:\n", 
                 "range": [
                   {
                     "range": {
@@ -104,14 +110,14 @@
                   }
                 ]
               }, 
-              "first_line_number": 120, 
+              "first_line_number": 123, 
               "match_reason": {
                 "scoped_symbol": true
               }
             }, 
             {
               "text": {
-                "text": "class URLRequestHttpJobWithProxy {\n public:\n", 
+                "text": "class URLRequestHttpJobWithProxy : public WithScopedTaskEnvironment {\n public:\n", 
                 "range": [
                   {
                     "range": {
@@ -124,14 +130,14 @@
                   }
                 ]
               }, 
-              "first_line_number": 189, 
+              "first_line_number": 190, 
               "match_reason": {
                 "scoped_symbol": true
               }
             }, 
             {
               "text": {
-                "text": "class URLRequestHttpJobTest : public ::testing::Test {\n protected:\n", 
+                "text": "class URLRequestHttpJobTest : public TestWithScopedTaskEnvironment {\n protected:\n", 
                 "range": [
                   {
                     "range": {
@@ -144,14 +150,14 @@
                   }
                 ]
               }, 
-              "first_line_number": 356, 
+              "first_line_number": 350, 
               "match_reason": {
                 "scoped_symbol": true
               }
             }, 
             {
               "text": {
-                "text": "class URLRequestHttpJobWithMockSocketsTest : public ::testing::Test {\n protected:\n", 
+                "text": "class URLRequestHttpJobWithMockSocketsTest\n    : public TestWithScopedTaskEnvironment {\n", 
                 "range": [
                   {
                     "range": {
@@ -164,14 +170,14 @@
                   }
                 ]
               }, 
-              "first_line_number": 386, 
+              "first_line_number": 380, 
               "match_reason": {
                 "scoped_symbol": true
               }
             }, 
             {
               "text": {
-                "text": "class URLRequestHttpJobWithBrotliSupportTest : public ::testing::Test {\n protected:\n", 
+                "text": "class URLRequestHttpJobWithBrotliSupportTest\n    : public TestWithScopedTaskEnvironment {\n", 
                 "range": [
                   {
                     "range": {
@@ -184,34 +190,14 @@
                   }
                 ]
               }, 
-              "first_line_number": 1387, 
+              "first_line_number": 1333, 
               "match_reason": {
                 "scoped_symbol": true
               }
             }, 
             {
               "text": {
-                "text": "// constructor is called.\nclass URLRequestHttpJobWebSocketTestBase : public ::testing::Test {\n protected:\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 7, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 1519, 
-              "match_reason": {
-                "scoped_symbol": true
-              }
-            }, 
-            {
-              "text": {
-                "text": "class URLRequestHttpJobWebSocketTest\n    : public URLRequestHttpJobWebSocketTestBase {\n", 
+                "text": "class URLRequestHttpJobWebSocketTest : public TestWithScopedTaskEnvironment {\n protected:\n", 
                 "range": [
                   {
                     "range": {
@@ -221,27 +207,19 @@
                       "end_column": 24
                     }, 
                     "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 2, 
-                      "end_line": 2, 
-                      "start_column": 14, 
-                      "end_column": 31
-                    }, 
-                    "type": 41
                   }
                 ]
               }, 
-              "first_line_number": 1541, 
+              "first_line_number": 1461, 
               "match_reason": {
                 "scoped_symbol": true
               }
             }
           ], 
           "docid": "eKSepoZdL7E", 
-          "best_matching_line_number": 88, 
+          "best_matching_line_number": 91, 
           "language": "c++", 
+          "is_augmented": false, 
           "match_reason": {
             "scoped_symbol": true
           }, 
@@ -249,76 +227,71 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "bef92b1828743591c6c8f91c773fbfeca560b81c", 
+              "changelist": "9dab4ec6cce457bfdc1241fd375565fce6784fd3", 
               "name": "src/net/url_request/url_request_http_job_unittest.cc", 
               "package_name": "chromium", 
               "revision": "0"
             }
           }, 
           "has_unshown_matches": false, 
-          "num_matches": 8, 
+          "num_matches": 7, 
           "match": [
             {
-              "line_number": 88, 
+              "line_number": 91, 
               "score": 552, 
               "match_offset": 37, 
               "match_length": 17, 
               "line_text": "// other hidden functions.\nclass TestURLRequestHttpJob : public URLRequestHttpJob {\n public:\n"
             }, 
             {
-              "line_number": 356, 
-              "score": 552, 
-              "match_offset": 7, 
-              "match_length": 17, 
-              "line_text": "\nclass URLRequestHttpJobTest : public ::testing::Test {\n protected:\n"
-            }, 
-            {
-              "line_number": 189, 
-              "score": 531, 
-              "match_offset": 7, 
-              "match_length": 17, 
-              "line_text": "\nclass URLRequestHttpJobWithProxy {\n public:\n"
-            }, 
-            {
-              "line_number": 1541, 
-              "score": 518, 
-              "match_offset": 7, 
-              "match_length": 17, 
-              "line_text": "\nclass URLRequestHttpJobWebSocketTest\n    : public URLRequestHttpJobWebSocketTestBase {\n"
-            }, 
-            {
-              "line_number": 120, 
+              "line_number": 123, 
               "score": 513, 
               "match_offset": 7, 
               "match_length": 17, 
-              "line_text": "\nclass URLRequestHttpJobSetUpSourceTest : public ::testing::Test {\n public:\n"
+              "line_text": "\nclass URLRequestHttpJobSetUpSourceTest : public TestWithScopedTaskEnvironment {\n public:\n"
             }, 
             {
-              "line_number": 1520, 
-              "score": 509, 
-              "match_offset": 32, 
+              "line_number": 190, 
+              "score": 531, 
+              "match_offset": 7, 
               "match_length": 17, 
-              "line_text": "// constructor is called.\nclass URLRequestHttpJobWebSocketTestBase : public ::testing::Test {\n protected:\n"
+              "line_text": "\nclass URLRequestHttpJobWithProxy : public WithScopedTaskEnvironment {\n public:\n"
             }, 
             {
-              "line_number": 386, 
+              "line_number": 350, 
+              "score": 552, 
+              "match_offset": 7, 
+              "match_length": 17, 
+              "line_text": "\nclass URLRequestHttpJobTest : public TestWithScopedTaskEnvironment {\n protected:\n"
+            }, 
+            {
+              "line_number": 380, 
               "score": 505, 
               "match_offset": 7, 
               "match_length": 17, 
-              "line_text": "\nclass URLRequestHttpJobWithMockSocketsTest : public ::testing::Test {\n protected:\n"
+              "line_text": "\nclass URLRequestHttpJobWithMockSocketsTest\n    : public TestWithScopedTaskEnvironment {\n"
             }, 
             {
-              "line_number": 1387, 
+              "line_number": 1333, 
               "score": 502, 
               "match_offset": 7, 
               "match_length": 17, 
-              "line_text": "\nclass URLRequestHttpJobWithBrotliSupportTest : public ::testing::Test {\n protected:\n"
+              "line_text": "\nclass URLRequestHttpJobWithBrotliSupportTest\n    : public TestWithScopedTaskEnvironment {\n"
+            }, 
+            {
+              "line_number": 1461, 
+              "score": 518, 
+              "match_offset": 7, 
+              "match_length": 17, 
+              "line_text": "\nclass URLRequestHttpJobWebSocketTest : public TestWithScopedTaskEnvironment {\n protected:\n"
             }
           ]
         }
       ], 
-      "results_offset": 0
+      "results_offset": 0, 
+      "maybe_skipped_documents": false, 
+      "hit_max_to_score": false
     }
   ], 
-  "elapsed_ms": 68
+  "elapsed_ms": 108
 }
