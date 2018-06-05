@@ -18,10 +18,10 @@ try:
   from urllib.request import urlopen, Request, HTTPSHandler, install_opener, build_opener
   from urllib.response import addinfourl
   from urllib.error import URLError
-  from urllib.parse import urlparse, parse_qsl
+  from urllib.parse import urlparse, parse_qsl, urlunparse
 except ImportError:
   from urllib2 import urlopen, Request, HTTPSHandler, install_opener, build_opener, addinfourl, URLError
-  from urlparse import urlparse, parse_qsl, parse_qs
+  from urlparse import urlparse, parse_qsl, parse_qs, urlunparse
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_DATA_DIR = os.path.join(SCRIPT_DIR, 'testdata')
@@ -248,6 +248,9 @@ def LastRequest():
 
 if __name__ == '__main__':
   # Attempt to resolve all missing resource requests.
+  HOST_MAPPING = {
+      'cs.chromium.org': 'cs-staging.chromium.org'
+  }
 
   resolved_count = 0
 
@@ -265,6 +268,10 @@ if __name__ == '__main__':
       o = json.load(f, encoding='utf-8')
 
     url, data, filename = o["url"], o["data"], o["filename"]
+    uq = urlparse(url)
+    if uq.netloc in HOST_MAPPING:
+      url = urlunparse([] + [uq[0], HOST_MAPPING[uq.netloc]] + list(uq)[2:6])
+
     req = Request(url=url)
     if data != '':
       AddDataToRequest(req, data.encode('utf-8'))

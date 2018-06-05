@@ -319,7 +319,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D"
           }, 
           "type": {
             "id": 1
@@ -415,7 +415,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D"
           }, 
           "type": {
             "id": 1
@@ -575,7 +575,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D"
           }, 
           "type": {
             "id": 1
@@ -623,7 +623,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D"
           }, 
           "type": {
             "id": 1
@@ -671,7 +671,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D"
           }, 
           "type": {
             "id": 1
@@ -1164,5 +1164,5 @@
       ]
     }
   ], 
-  "elapsed_ms": 86
+  "elapsed_ms": 143
 }

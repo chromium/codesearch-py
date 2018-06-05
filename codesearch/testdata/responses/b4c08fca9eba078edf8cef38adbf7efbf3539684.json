@@ -6,7 +6,8 @@
       "estimated_total_number_of_results": 3335, 
       "stats": {
         "retries": 0, 
-        "filter_ratio": 0
+        "filter_ratio": 0, 
+        "first_phase_latency_micros": "80647"
       }, 
       "search_result": [
         {
@@ -2159,5 +2160,5 @@
       "hit_max_to_score": false
     }
   ], 
-  "elapsed_ms": 40
+  "elapsed_ms": 122
 }

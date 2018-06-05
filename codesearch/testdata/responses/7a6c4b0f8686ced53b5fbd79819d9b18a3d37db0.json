@@ -6,7 +6,8 @@
       "estimated_total_number_of_results": 51, 
       "stats": {
         "retries": 0, 
-        "filter_ratio": 0
+        "filter_ratio": 0, 
+        "first_phase_latency_micros": "86565"
       }, 
       "search_result": [
         {
@@ -283,7 +284,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "86fdb0b1883b9dcb8a7fec62226e329bbca9c8c2", 
+              "changelist": "849daa30af1514af2f5aef98977190e0d8ffad1a", 
               "name": "src/net/url_request/url_request_unittest.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -307,5 +308,5 @@
       "hit_max_to_score": false
     }
   ], 
-  "elapsed_ms": 22
+  "elapsed_ms": 161
 }
