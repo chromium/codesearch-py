@@ -22,7 +22,10 @@ class TestXrefNode(unittest.TestCase):
   def test_simple_xref_lookup(self):
     cs = CodeSearch(source_root='/chrome/')
     sigs = [
-        'kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#CcZF9ULBJvZBNAWPWKhzZ7xbQc1vl21xLHnAyiu2B3Y%3D','kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#HttpTransaction%3Anet%23c%23mw7xVzyyv7D', 'kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#pGcqgSa0Alyp5vsTSxVwKkgW86AW0h7GTXQyJ4ry9IM%3D']
+        'kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#CcZF9ULBJvZBNAWPWKhzZ7xbQc1vl21xLHnAyiu2B3Y%3D',
+        'kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#HttpTransaction%3Anet%23c%23mw7xVzyyv7D',
+        'kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#pGcqgSa0Alyp5vsTSxVwKkgW86AW0h7GTXQyJ4ry9IM%3D'
+    ]
     sig = sigs[1]
 
     node = XrefNode.FromSignature(cs, sig)
@@ -32,11 +35,12 @@ class TestXrefNode(unittest.TestCase):
     self.assertIsInstance(members[0], XrefNode)
 
     display_names = set([m.GetDisplayName() for m in members])
-    self.assertSetEqual( display_names, set(['HttpNetworkTransaction',
-                                             'FailingHttpTransaction',
-                                             'Transaction',
-                                             'MockNetworkTransaction',
-                                             'ThrottlingNetworkTransaction']))
+    self.assertSetEqual(
+        display_names,
+        set([
+            'HttpNetworkTransaction', 'FailingHttpTransaction', 'Transaction',
+            'MockNetworkTransaction', 'ThrottlingNetworkTransaction'
+        ]))
 
   def test_related_annotations(self):
     cs = CodeSearch(source_root='/chrome/')

@@ -578,17 +578,18 @@ class CodeSearch(object):
       self.cache_hits = 0
       self.cache_misses = 0  # == number of network requests made
 
-  def __init__(self,
-               should_cache=False, # type: bool
-               cache_dir=None, # type: Optional[str]
-               cache_timeout_in_seconds=1800, # type: int
-               source_root=None, # type: Optional[str]
-               a_path_inside_source_dir=None, # type: Optional[str]
-               package_name='chromium', # type: str
-               codesearch_host='https://cs.chromium.org', # type: str
-               request_timeout_in_seconds=3, # type: int
-               user_agent_string='Python-CodeSearch-Client' # type: str
-               ):
+  def __init__(
+      self,
+      should_cache=False,  # type: bool
+      cache_dir=None,  # type: Optional[str]
+      cache_timeout_in_seconds=1800,  # type: int
+      source_root=None,  # type: Optional[str]
+      a_path_inside_source_dir=None,  # type: Optional[str]
+      package_name='chromium',  # type: str
+      codesearch_host='https://cs.chromium.org',  # type: str
+      request_timeout_in_seconds=3,  # type: int
+      user_agent_string='Python-CodeSearch-Client'  # type: str
+  ):
     # type: (...) -> None
     """Initialize a CodeSearch object.
 
@@ -827,13 +828,14 @@ class CodeSearch(object):
     raise NotFoundError(
         "can't determine signature for %s at %d:%d" % (filename, line, column))
 
-  def GetFileInfo(self,
-                  filename, # type: str
-                  fetch_html_content=False, # type: bool
-                  fetch_outline=True, # type: bool
-                  fetch_folding=False, # type: bool
-                  fetch_generated_from=False # type: bool
-                  ):
+  def GetFileInfo(
+      self,
+      filename,  # type: str
+      fetch_html_content=False,  # type: bool
+      fetch_outline=True,  # type: bool
+      fetch_folding=False,  # type: bool
+      fetch_generated_from=False  # type: bool
+  ):
     # type: (...) -> FileInfo
     """Return a CsFile object corresponding to the file named by |filename|.
 

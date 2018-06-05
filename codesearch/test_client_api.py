@@ -107,8 +107,7 @@ class TestCodeSearch(unittest.TestCase):
     # A builtin type.
     self.assertEqual(
         cs.GetSignatureForSymbol(TARGET_FILE, 'uint32_t'),
-        'kythe:?lang=c%2B%2B#9Q1Qo0dt%2BgETZA3AE5IlwTBVpnGb9lT0KTUS8YtMp7E%3D'
-    )
+        'kythe:?lang=c%2B%2B#9Q1Qo0dt%2BgETZA3AE5IlwTBVpnGb9lT0KTUS8YtMp7E%3D')
 
   def test_search_for_symbol(self):
     cs = CodeSearch(source_root='.')
