@@ -6,26 +6,72 @@
 
 from __future__ import absolute_import
 
-from .client_api import CodeSearch, XrefNode, ServerError, NoFileSpecError, \
-        NotFoundError
+from .client_api import \
+    CodeSearch, \
+    NoFileSpecError, \
+    NotFoundError, \
+    ServerError, \
+    XrefNode
 
-from .messages import Message, AnnotationTypeValue, AnnotationType, \
-        InternalLink, XrefSignature, NodeEnumKind, KytheNodeKind, KytheXrefKind, \
-        Annotation, FileSpec, FormatType, FormatRange, AnnotatedText, \
-        CodeBlockType, Modifiers, CodeBlock, FileInfo, FileInfoResponse, \
-        FileInfoRequest, AnnotationResponse, MatchReason, Snippet, Node, \
-        CallGraphResponse, CallGraphRequest, EdgeEnumKind, XrefTypeCount, \
-        XrefSingleMatch, XrefSearchResult, XrefSearchResponse, \
-        XrefSearchRequest, VanityGitOnBorgHostname, InternalPackage, \
-        StatusResponse, GobInfo, DirInfoResponseChild, DirInfoResponse, \
-        DirInfoRequest, FileResult, SingleMatch, SearchResult, SearchResponse, \
-        SearchRequest, StatusRequest, CompoundResponse, CompoundRequest, \
-        CodeSearchProtoJsonEncoder, CodeSearchProtoJsonSymbolizedEncoder
+from .messages import \
+    AnnotatedText, \
+    Annotation,  \
+    AnnotationResponse,  \
+    AnnotationType, \
+    AnnotationTypeValue,  \
+    CallGraphRequest,  \
+    CallGraphResponse,  \
+    CodeBlock,  \
+    CodeBlockType,  \
+    CodeSearchProtoJsonEncoder,  \
+    CodeSearchProtoJsonSymbolizedEncoder, \
+    CompoundRequest, \
+    CompoundResponse,  \
+    DirInfoRequest,  \
+    DirInfoResponse, \
+    DirInfoResponseChild,  \
+    EdgeEnumKind,  \
+    FileInfo,  \
+    FileInfoRequest,  \
+    FileInfoResponse, \
+    FileResult,  \
+    FileSpec,  \
+    FormatRange,  \
+    FormatType,  \
+    GobInfo,  \
+    InternalLink,  \
+    InternalPackage, \
+    KytheNodeKind,  \
+    KytheXrefKind, \
+    MatchReason,  \
+    Message, \
+    Modifiers,  \
+    Node, \
+    NodeEnumKind,  \
+    SearchRequest,  \
+    SearchResponse, \
+    SearchResult,  \
+    SingleMatch,  \
+    Snippet,  \
+    StatusRequest,  \
+    StatusResponse,  \
+    VanityGitOnBorgHostname,  \
+    XrefSearchRequest,  \
+    XrefSearchResponse, \
+    XrefSearchResult,  \
+    XrefSignature,  \
+    XrefSingleMatch,  \
+    XrefTypeCount
 
-from .paths import GetPackageRelativePath, GetSourceRoot, NoSourceRootError
+from .paths import \
+    GetPackageRelativePath, \
+    GetSourceRoot, \
+    NoSourceRootError
 
 # Only useful for testing against this library.
-from .testing_support import DisableNetwork, EnableNetwork, \
-        InstallTestRequestHandler
+from .testing_support import \
+    DisableNetwork, \
+    EnableNetwork, \
+    InstallTestRequestHandler
 
 __all__ = []

@@ -1,5 +1,5 @@
 {
-  "elapsed_ms": 195, 
+  "elapsed_ms": 62, 
   "xref_search_response": [
     {
       "status": 0, 
@@ -16,6 +16,21 @@
           ], 
           "file": {
             "name": "src/headless/lib/browser/headless_network_transaction_factory.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/headless/lib/browser/headless_network_transaction_factory.h#%401284%3A1299", 
+              "line_number": 34, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                        std::unique_ptr<net::HttpTransaction>* trans) override;"
+            }
+          ], 
+          "file": {
+            "name": "src/headless/lib/browser/headless_network_transaction_factory.h", 
             "package_name": "chromium"
           }
         }, 
@@ -75,6 +90,21 @@
           ], 
           "file": {
             "name": "src/net/http/http_cache.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache.h#%409589%3A9604", 
+              "line_number": 237, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                        std::unique_ptr<HttpTransaction>* trans) override;"
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_cache.h", 
             "package_name": "chromium"
           }
         }, 
@@ -573,6 +603,21 @@
         {
           "match": [
             {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_layer.h#%401142%3A1157", 
+              "line_number": 34, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                        std::unique_ptr<HttpTransaction>* trans) override;"
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_network_layer.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
               "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_network_layer_unittest.cc#%403301%3A3316", 
               "line_number": 79, 
               "type_id": 3, 
@@ -650,10 +695,39 @@
               "type_id": 1, 
               "type": "DEFINITION", 
               "line_text": "class NET_EXPORT_PRIVATE HttpTransaction {"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction.h#%401190%3A1205%40HttpTransaction%3Anet%23c%23mw7xVzyyv7D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_transaction.h", 
+              "line_number": 38, 
+              "type_id": 1, 
+              "type": "DEFINITION", 
+              "line_text": "class NET_EXPORT_PRIVATE HttpTransaction {"
             }
           ], 
           "file": {
             "name": "src/net/http/http_transaction.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction_factory.h#%40419%3A434%40n6rnWiTmtQYYsZYhtU6pXgN6tboZh6aoBLQOmSLESc4%3D%23chromium%23src%2Fnet%2Fhttp%2Fhttp_transaction_factory.h", 
+              "line_number": 17, 
+              "type_id": 2, 
+              "type": "DECLARATION", 
+              "line_text": "class HttpTransaction;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_transaction_factory.h#%40812%3A827", 
+              "line_number": 27, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                std::unique_ptr<HttpTransaction>* trans) = 0;"
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_transaction_factory.h", 
             "package_name": "chromium"
           }
         }, 
@@ -792,6 +866,36 @@
         {
           "match": [
             {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_http_job.h#%406922%3A6937", 
+              "line_number": 191, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<HttpTransaction> transaction_;"
+            }
+          ], 
+          "file": {
+            "name": "src/net/url_request/url_request_http_job.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_unittest.cc#%40341323%3A341338", 
+              "line_number": 9169, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                        std::unique_ptr<HttpTransaction>* trans) override {"
+            }
+          ], 
+          "file": {
+            "name": "src/net/url_request/url_request_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
               "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/throttling/throttling_controller_unittest.cc#%402192%3A2207", 
               "line_number": 70, 
               "type_id": 3, 
@@ -895,12 +999,17 @@
       ], 
       "estimated_total_type_count": [
         {
-          "count": 1, 
+          "count": 2, 
           "type": "DEFINITION", 
           "type_id": 1
         }, 
         {
-          "count": 97, 
+          "count": 1, 
+          "type": "DECLARATION", 
+          "type_id": 2
+        }, 
+        {
+          "count": 103, 
           "type": "REFERENCE", 
           "type_id": 3
         }, 

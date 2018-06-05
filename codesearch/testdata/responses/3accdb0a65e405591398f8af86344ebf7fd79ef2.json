@@ -1,8 +1,26 @@
 {
-  "elapsed_ms": 556, 
+  "elapsed_ms": 73, 
   "xref_search_response": [
     {
       "status": 0, 
+      "estimated_total_type_count": [
+        {
+          "count": 2, 
+          "type": "DEFINITION", 
+          "type_id": 1
+        }, 
+        {
+          "count": 7, 
+          "type": "DECLARATION", 
+          "type_id": 2
+        }, 
+        {
+          "count": 328, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }
+      ], 
+      "kythe_next_page_token": "", 
       "search_result": [
         {
           "match": [
@@ -930,6 +948,28 @@
         {
           "match": [
             {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/crypto/ec_signature_creator.cc#%40497%3A509", 
+              "line_number": 21, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    ECPrivateKey* key) {"
+            }
+          ], 
+          "file": {
+            "name": "src/crypto/ec_signature_creator.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/crypto/ec_signature_creator.h#%40386%3A398%40V3onqOEfNg2sIm5iFueIEOant3UAcvE8nzoqoNxiw0Y%3D%23chromium%23src%2Fcrypto%2Fec_signature_creator.h", 
+              "line_number": 18, 
+              "type_id": 2, 
+              "type": "DECLARATION", 
+              "line_text": "class ECPrivateKey;"
+            }, 
+            {
               "signature": "kythe://chromium?lang=c%2B%2B?path=src/crypto/ec_signature_creator.h#%40580%3A592", 
               "line_number": 25, 
               "type_id": 3, 
@@ -1077,6 +1117,35 @@
           ], 
           "file": {
             "name": "src/device/fido/virtual_fido_device.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/device/fido/virtual_fido_device.h#%401040%3A1052", 
+              "line_number": 37, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    RegistrationData(std::unique_ptr<crypto::ECPrivateKey> private_key,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/device/fido/virtual_fido_device.h#%401334%3A1346", 
+              "line_number": 46, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<crypto::ECPrivateKey> private_key;"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/device/fido/virtual_fido_device.h#%403720%3A3732", 
+              "line_number": 111, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static bool Sign(crypto::ECPrivateKey* private_key,"
+            }
+          ], 
+          "file": {
+            "name": "src/device/fido/virtual_fido_device.h", 
             "package_name": "chromium"
           }
         }, 
@@ -1752,6 +1821,13 @@
         {
           "match": [
             {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_session.h#%401919%3A1931%40u5OPW0%2F9MWvH77Mm%2Fc9OiKHvVavUz6bIh0qLDDDSd%2FA%3D%23chromium%23src%2Fnet%2Fspdy%2Fspdy_session.h", 
+              "line_number": 57, 
+              "type_id": 2, 
+              "type": "DECLARATION", 
+              "line_text": "class ECPrivateKey;"
+            }, 
+            {
               "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_session.h#%4017050%3A17062", 
               "line_number": 419, 
               "type_id": 3, 
@@ -1781,6 +1857,13 @@
         }, 
         {
           "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_stream.h#%401104%3A1116%40MmRKmXgvOp%2Fd6xsspdP2sYX2p8zOMVlT8AMReGMDWrw%3D%23chromium%23src%2Fnet%2Fspdy%2Fspdy_stream.h", 
+              "line_number": 36, 
+              "type_id": 2, 
+              "type": "DECLARATION", 
+              "line_text": "class ECPrivateKey;"
+            }, 
             {
               "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/spdy/spdy_stream.h#%4014075%3A14087", 
               "line_number": 345, 
@@ -1953,13 +2036,6 @@
         }, 
         {
           "match": [
-            {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/ssl/channel_id_service.h#%40661%3A673%40CmxFxmBQXJk3RCMo%2BZrYaOVJYmoelBP6kuafB63c1Uk%3D%23chromium%23src%2Fnet%2Fssl%2Fchannel_id_service.h", 
-              "line_number": 26, 
-              "type_id": 2, 
-              "type": "DECLARATION", 
-              "line_text": "class ECPrivateKey;"
-            }, 
             {
               "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/ssl/channel_id_service.h#%401335%3A1347", 
               "line_number": 53, 
@@ -2968,31 +3044,6 @@
             "name": "src/services/network/network_context_unittest.cc", 
             "package_name": "chromium"
           }
-        }
-      ], 
-      "estimated_total_type_count": [
-        {
-          "count": 2, 
-          "type": "DEFINITION", 
-          "type_id": 1
-        }, 
-        {
-          "count": 5, 
-          "type": "DECLARATION", 
-          "type_id": 2
-        }, 
-        {
-          "count": 334, 
-          "type": "REFERENCE", 
-          "type_id": 3
-        }
-      ], 
-      "kythe_next_page_token": "", 
-      "eliminated_type_count": [
-        {
-          "count": 10, 
-          "type": "REFERENCE", 
-          "type_id": 3
         }
       ], 
       "from_kythe": true

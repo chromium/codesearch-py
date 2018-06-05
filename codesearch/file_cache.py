@@ -102,7 +102,7 @@ class FileCache:
     f.seek(0)
     return f.read()
 
-  def gc(self):
+  def gc(self, purge=True):
     """Garbage collect. Should be invoked periodically to keep cache directory clean."""
     dir_to_purge = None
     expiration = None
@@ -110,12 +110,15 @@ class FileCache:
       expired = datetime.datetime.now() - self.expiration
       remove = []
       for url, (_, timestamp) in self.store.items():
-        if timestamp < expired:
+        if purge or timestamp < expired:
           remove.append(url)
       for url in remove:
         self.store.pop(url)
-      self.timer = threading.Timer(15 * 60, self.gc)
-      self.timer.start()
+      if not purge:
+        if self.timer is not None:
+          self.timer.cancel()
+        self.timer = threading.Timer(15 * 60, self.gc)
+        self.timer.start()
       dir_to_purge = self.cache_dir
       expiration = self.expiration
 
@@ -128,7 +131,7 @@ class FileCache:
       full_path = os.path.join(dir_to_purge, entry)
       st = os.stat(full_path)
       expires_on = datetime.datetime.utcfromtimestamp(st.st_mtime) + expiration
-      if expires_on < now:
+      if purge or expires_on < now:
         os.remove(full_path)
 
   def close(self):

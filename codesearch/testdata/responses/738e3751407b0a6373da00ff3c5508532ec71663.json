@@ -996,6 +996,30 @@
           }
         }, 
         {
+          "kythe_xref_kind": 1000, 
+          "range": {
+            "start_line": 76, 
+            "end_line": 76, 
+            "start_column": 7, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/content/common/content_export.h", 
+            "range": {
+              "start_line": 21, 
+              "end_line": 21, 
+              "start_column": 9, 
+              "end_column": 22
+            }, 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#%40654%3A668%40CONTENT_EXPORT%23m%40654%23chromium%23src%2Fcontent%2Fcommon%2Fcontent_export.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#CONTENT_EXPORT%23m%40654"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
           "kythe_xref_kind": 1310, 
           "range": {
             "start_line": 77, 
@@ -1476,6 +1500,30 @@
           }
         }, 
         {
+          "kythe_xref_kind": 1000, 
+          "range": {
+            "start_line": 105, 
+            "end_line": 105, 
+            "start_column": 7, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/content/common/content_export.h", 
+            "range": {
+              "start_line": 21, 
+              "end_line": 21, 
+              "start_column": 9, 
+              "end_column": 22
+            }, 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#%40654%3A668%40CONTENT_EXPORT%23m%40654%23chromium%23src%2Fcontent%2Fcommon%2Fcontent_export.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#CONTENT_EXPORT%23m%40654"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
           "kythe_xref_kind": 1310, 
           "range": {
             "start_line": 105, 
@@ -1638,6 +1686,30 @@
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/out/Debug/gen/third_party/blink/public/platform/modules/background_sync/background_sync.mojom.h#%403851%3A3875%40ECJtjI1KTfm%2Fd3vc8nZuLqFqltonmprFbNQjQ4xCmTU%3D", 
             "package_name": "chromium", 
             "signature": "kythe:?lang=c%2B%2B#ECJtjI1KTfm%2Fd3vc8nZuLqFqltonmprFbNQjQ4xCmTU%3D"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1000, 
+          "range": {
+            "start_line": 110, 
+            "end_line": 110, 
+            "start_column": 7, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/content/common/content_export.h", 
+            "range": {
+              "start_line": 21, 
+              "end_line": 21, 
+              "start_column": 9, 
+              "end_column": 22
+            }, 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#%40654%3A668%40CONTENT_EXPORT%23m%40654%23chromium%23src%2Fcontent%2Fcommon%2Fcontent_export.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#CONTENT_EXPORT%23m%40654"
           }, 
           "type": {
             "id": 1
@@ -1932,6 +2004,30 @@
           }
         }, 
         {
+          "kythe_xref_kind": 1000, 
+          "range": {
+            "start_line": 125, 
+            "end_line": 125, 
+            "start_column": 7, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/content/common/content_export.h", 
+            "range": {
+              "start_line": 21, 
+              "end_line": 21, 
+              "start_column": 9, 
+              "end_column": 22
+            }, 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#%40654%3A668%40CONTENT_EXPORT%23m%40654%23chromium%23src%2Fcontent%2Fcommon%2Fcontent_export.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#CONTENT_EXPORT%23m%40654"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
           "kythe_xref_kind": 1310, 
           "range": {
             "start_line": 126, 
@@ -2118,6 +2214,30 @@
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/mojo/public/cpp/bindings/message.h#%409088%3A9116%407mxa5lDF7FlmR4StJ1y4yxk55eeSBIZwcdDuL%2BFGFF4%3D%23chromium%23src%2Fmojo%2Fpublic%2Fcpp%2Fbindings%2Fmessage.h", 
             "package_name": "chromium", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/mojo/public/cpp/bindings/message.h#7mxa5lDF7FlmR4StJ1y4yxk55eeSBIZwcdDuL%2BFGFF4%3D"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1000, 
+          "range": {
+            "start_line": 135, 
+            "end_line": 135, 
+            "start_column": 7, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/content/common/content_export.h", 
+            "range": {
+              "start_line": 21, 
+              "end_line": 21, 
+              "start_column": 9, 
+              "end_column": 22
+            }, 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#%40654%3A668%40CONTENT_EXPORT%23m%40654%23chromium%23src%2Fcontent%2Fcommon%2Fcontent_export.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#CONTENT_EXPORT%23m%40654"
           }, 
           "type": {
             "id": 1
@@ -2956,6 +3076,30 @@
           }
         }, 
         {
+          "kythe_xref_kind": 1000, 
+          "range": {
+            "start_line": 176, 
+            "end_line": 176, 
+            "start_column": 7, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/content/common/content_export.h", 
+            "range": {
+              "start_line": 21, 
+              "end_line": 21, 
+              "start_column": 9, 
+              "end_column": 22
+            }, 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#%40654%3A668%40CONTENT_EXPORT%23m%40654%23chromium%23src%2Fcontent%2Fcommon%2Fcontent_export.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#CONTENT_EXPORT%23m%40654"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
           "kythe_xref_kind": 1310, 
           "range": {
             "start_line": 176, 
@@ -3004,6 +3148,30 @@
           }
         }, 
         {
+          "kythe_xref_kind": 1000, 
+          "range": {
+            "start_line": 180, 
+            "end_line": 180, 
+            "start_column": 7, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/content/common/content_export.h", 
+            "range": {
+              "start_line": 21, 
+              "end_line": 21, 
+              "start_column": 9, 
+              "end_column": 22
+            }, 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#%40654%3A668%40CONTENT_EXPORT%23m%40654%23chromium%23src%2Fcontent%2Fcommon%2Fcontent_export.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#CONTENT_EXPORT%23m%40654"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
           "kythe_xref_kind": 1310, 
           "range": {
             "start_line": 180, 
@@ -3046,6 +3214,30 @@
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/mojo/public/cpp/bindings/message.h#%401265%3A1272%40Message%3Amojo%23c%23j6ZIF1pJgcU%23chromium%23src%2Fmojo%2Fpublic%2Fcpp%2Fbindings%2Fmessage.h", 
             "package_name": "chromium", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/mojo/public/cpp/bindings/message.h#Message%3Amojo%23c%23j6ZIF1pJgcU"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1000, 
+          "range": {
+            "start_line": 186, 
+            "end_line": 186, 
+            "start_column": 7, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/content/common/content_export.h", 
+            "range": {
+              "start_line": 21, 
+              "end_line": 21, 
+              "start_column": 9, 
+              "end_column": 22
+            }, 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#%40654%3A668%40CONTENT_EXPORT%23m%40654%23chromium%23src%2Fcontent%2Fcommon%2Fcontent_export.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#CONTENT_EXPORT%23m%40654"
           }, 
           "type": {
             "id": 1
@@ -3549,7 +3741,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
           }, 
           "type": {
             "id": 1
@@ -3925,7 +4117,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
           }, 
           "type": {
             "id": 1
@@ -4021,7 +4213,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#%4016335%3A16341%40wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D%23chromium%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fvector", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/vector#wDO0RKRyzFadM7W2Y44TnD5m731JtOQj3siOhWoeCAY%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iterator#qjbwFc9XojRxH6F6d31wiaChaI0q5vkkW2RWY7TgDCI%3D"
           }, 
           "type": {
             "id": 1
@@ -5185,6 +5377,30 @@
           "xref_signature": {
             "signature_hash": "", 
             "signature": "kythe://chromium?lang=c%2B%2B#mojo%23n%23namespace"
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1000, 
+          "range": {
+            "start_line": 328, 
+            "end_line": 328, 
+            "start_column": 8, 
+            "end_column": 21
+          }, 
+          "internal_link": {
+            "path": "src/content/common/content_export.h", 
+            "range": {
+              "start_line": 21, 
+              "end_line": 21, 
+              "start_column": 9, 
+              "end_column": 22
+            }, 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#%40654%3A668%40CONTENT_EXPORT%23m%40654%23chromium%23src%2Fcontent%2Fcommon%2Fcontent_export.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/content/common/content_export.h#CONTENT_EXPORT%23m%40654"
+          }, 
+          "type": {
+            "id": 1
           }
         }, 
         {
@@ -8803,5 +9019,5 @@
       ]
     }
   ], 
-  "elapsed_ms": 340
+  "elapsed_ms": 285
 }

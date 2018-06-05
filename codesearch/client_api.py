@@ -28,6 +28,7 @@ from .messages import \
         FileInfo, \
         FileInfoRequest, \
         FileSpec, \
+        GobInfo, \
         KytheNodeKind, \
         KytheXrefKind, \
         Node, \
@@ -188,6 +189,13 @@ class CsFile(object):
 
   def GetFileSpec(self):
     # type: () -> FileSpec
+    if hasattr(self.file_info, 'gob_info') and hasattr(self.file_info.gob_info,
+                                                       'commit'):
+      return FileSpec(
+          name=self.file_info.name,
+          package_name=self.file_info.package_name,
+          changelist=self.file_info.gob_info.commit)
+
     return FileSpec(
         name=self.file_info.name, package_name=self.file_info.package_name)
 
@@ -258,7 +266,7 @@ class XrefNode(object):
   """
 
   def __init__(self, cs, single_match, filespec=None, parent=None):
-    # type: (CodeSearch, XrefSingleMatch, FileSpec, XrefNode) -> None
+    # type: (CodeSearch, XrefSingleMatch, Optional[FileSpec], Optional[XrefNode]) -> None
     """Constructs an XrefNode.
 
     This is probably not what you are looking for. Instead figure out the
@@ -575,8 +583,10 @@ class CodeSearch(object):
     """Used internally to track how many requests are being made."""
 
     def __init__(self):
-      self.cache_hits = 0
-      self.cache_misses = 0  # == number of network requests made
+      self.cache_hits = 0  # type: int
+
+      # cache_misses is also the number of network requests made.
+      self.cache_misses = 0  # type: int
 
   def __init__(
       self,
@@ -649,10 +659,10 @@ class CodeSearch(object):
     """
 
     # An instance of FileCache or None if no caching is to be performed.
-    self.file_cache = None
+    self.file_cache = None  # type: FileCache
 
     # A cache mapping path -> CsFile objects.
-    self.file_info_cache = {}
+    self.file_info_cache = {}  # type: Dict[str, CsFile]
 
     self.logger = logging.getLogger('codesearch')
 
@@ -665,15 +675,19 @@ class CodeSearch(object):
     self.source_root = source_root if source_root else GetSourceRoot(
         a_path_inside_source_dir)
 
-    self.extra_headers = {'User-Agent': user_agent_string}
+    self.extra_headers = {
+        'User-Agent': user_agent_string
+    }  # type: Dict[str, str]
 
     self.stats = CodeSearch.Stats()
 
-    if not should_cache:
-      self.file_cache = None
-      return
-    self.file_cache = FileCache(
-        cache_dir=cache_dir, expiration_in_seconds=cache_timeout_in_seconds)
+    # Latest known GOB revision (i.e. a Git commit digest). It starts out empty,
+    # but will be populated with the latest revision we know of.
+    self.gob_revision = ''  # type: str
+
+    if should_cache:
+      self.file_cache = FileCache(
+          cache_dir=cache_dir, expiration_in_seconds=cache_timeout_in_seconds)
 
   def GetSourceRoot(self):
     # type: () -> str
@@ -684,12 +698,12 @@ class CodeSearch(object):
     return self.logger
 
   def GetFileSpec(self, path=None):
-    # type: (Optional[str]) -> FileSpec
-    if not path:
+    # type: (Union[str,FileSpec,None]) -> FileSpec
+    if path is None:
       return FileSpec(name='.', package_name=self.package_name)
 
     if isinstance(path, FileSpec):
-      return FileSpec(name=path.name, package_name=path.package_name)
+      return path
 
     relpath = os.path.relpath(os.path.abspath(path), self.source_root).replace(
         '\\', '/')
@@ -708,6 +722,11 @@ class CodeSearch(object):
         path = unquote(a[5:])
     assert path != ""
     return FileSpec(name=path, package_name=args[0])
+
+  def GetRevision(self):
+    # type: () -> str
+    '''Retrieve the Git revision for the current search index.'''
+    return self.gob_revision
 
   def TeardownCache(self):
     # type: () -> None
@@ -828,9 +847,35 @@ class CodeSearch(object):
     raise NotFoundError(
         "can't determine signature for %s at %d:%d" % (filename, line, column))
 
+  def _PurgeCaches(self):
+    self.file_info_cache = {}
+    if self.file_cache is not None:
+      self.file_cache.gc(purge=True)
+
+  def _RefreshGobRevision(self):
+    i = self.GetFileInfo(
+        FileSpec(name='src/README.md', package_name=self.package_name))
+    self._RefreshGobRevisionFromFileInfo(i)
+
+  def _RefreshGobRevisionFromFileInfo(self, file_info):
+    # type: (FileInfo) -> None
+    assert isinstance(file_info, FileInfo)
+
+    if not hasattr(file_info, 'gob_info'):
+      raise ServerError(
+          'FileInfo response doesn\'t specify Git-on-Borg revision')
+
+    # We only track the revision for the root Chromium repo.
+    if file_info.gob_info.repo != 'chromium/chromium/src':
+      return
+
+    if self.gob_revision != '' and self.gob_revision != file_info.gob_info.commit:
+      self._PurgeCaches()
+    self.gob_revision = file_info.gob_info.commit
+
   def GetFileInfo(
       self,
-      filename,  # type: str
+      filename,  # type: Union[str, FileSpec]
       fetch_html_content=False,  # type: bool
       fetch_outline=True,  # type: bool
       fetch_folding=False,  # type: bool
@@ -844,8 +889,12 @@ class CodeSearch(object):
     should then map to a file known to CodeSearch."""
 
     file_spec = self.GetFileSpec(filename)
-    cacheable = (not fetch_html_content) and fetch_outline and (
-        not fetch_folding) and (not fetch_generated_from)
+
+    # If fetch_outline is present, then the result can be cached. It doesn't
+    # hurt for the cache entry to have extra data. I.e. it's okay for any of the
+    # other options to be true.
+    cacheable = fetch_outline
+
     if cacheable and (file_spec.name in self.file_info_cache):
       return self.file_info_cache[file_spec.name]
 
@@ -868,7 +917,7 @@ class CodeSearch(object):
       file_info = CsFile(self, file_info=result.file_info_response[0].file_info)
       if cacheable:
         self.file_info_cache[file_spec.name] = file_info
-
+      self._RefreshGobRevisionFromFileInfo(file_info.file_info)
       return file_info
 
     raise ServerError(

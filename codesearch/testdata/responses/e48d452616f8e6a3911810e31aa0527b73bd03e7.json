@@ -3628,14 +3628,14 @@
             "end_column": 91
           }, 
           "internal_link": {
-            "path": "src/third_party/blink/renderer/platform/heap/heap_allocator.h", 
+            "path": "src/third_party/blink/renderer/platform/wtf/vector.h", 
             "range": {
-              "start_line": 309, 
-              "end_line": 309, 
-              "start_column": 21, 
-              "end_column": 26
+              "start_line": 982, 
+              "end_line": 982, 
+              "start_column": 7, 
+              "end_column": 12
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/heap/heap_allocator.h#%4012875%3A12881%40QajvXou4%2BKurcKHGQbI2nhK5GkWudj8ud1Tckxk8xu4%3D%23chromium%23src%2Fthird_party%2Fblink%2Frenderer%2Fplatform%2Fheap%2Fheap_allocator.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/wtf/vector.h#%4034920%3A34926%40wODIycWTj8TU4laa%2B6x8cZEFECDEG44ibpNpfJ7JW1g%3D%23chromium%23src%2Fthird_party%2Fblink%2Frenderer%2Fplatform%2Fwtf%2Fvector.h", 
             "package_name": "chromium", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/heap/heap_allocator.h#QajvXou4%2BKurcKHGQbI2nhK5GkWudj8ud1Tckxk8xu4%3D"
           }, 
@@ -4108,14 +4108,14 @@
             "end_column": 87
           }, 
           "internal_link": {
-            "path": "src/third_party/blink/renderer/platform/heap/heap_allocator.h", 
+            "path": "src/third_party/blink/renderer/platform/wtf/vector.h", 
             "range": {
-              "start_line": 309, 
-              "end_line": 309, 
-              "start_column": 21, 
-              "end_column": 26
+              "start_line": 982, 
+              "end_line": 982, 
+              "start_column": 7, 
+              "end_column": 12
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/heap/heap_allocator.h#%4012875%3A12881%40QajvXou4%2BKurcKHGQbI2nhK5GkWudj8ud1Tckxk8xu4%3D%23chromium%23src%2Fthird_party%2Fblink%2Frenderer%2Fplatform%2Fheap%2Fheap_allocator.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/wtf/vector.h#%4034920%3A34926%40wODIycWTj8TU4laa%2B6x8cZEFECDEG44ibpNpfJ7JW1g%3D%23chromium%23src%2Fthird_party%2Fblink%2Frenderer%2Fplatform%2Fwtf%2Fvector.h", 
             "package_name": "chromium", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/heap/heap_allocator.h#QajvXou4%2BKurcKHGQbI2nhK5GkWudj8ud1Tckxk8xu4%3D"
           }, 
@@ -5932,14 +5932,14 @@
             "end_column": 20
           }, 
           "internal_link": {
-            "path": "src/third_party/blink/renderer/platform/heap/heap_allocator.h", 
+            "path": "src/third_party/blink/renderer/platform/wtf/vector.h", 
             "range": {
-              "start_line": 309, 
-              "end_line": 309, 
-              "start_column": 21, 
-              "end_column": 26
+              "start_line": 982, 
+              "end_line": 982, 
+              "start_column": 7, 
+              "end_column": 12
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/heap/heap_allocator.h#%4012875%3A12881%40QajvXou4%2BKurcKHGQbI2nhK5GkWudj8ud1Tckxk8xu4%3D%23chromium%23src%2Fthird_party%2Fblink%2Frenderer%2Fplatform%2Fheap%2Fheap_allocator.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/wtf/vector.h#%4034920%3A34926%40wODIycWTj8TU4laa%2B6x8cZEFECDEG44ibpNpfJ7JW1g%3D%23chromium%23src%2Fthird_party%2Fblink%2Frenderer%2Fplatform%2Fwtf%2Fvector.h", 
             "package_name": "chromium", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/heap/heap_allocator.h#QajvXou4%2BKurcKHGQbI2nhK5GkWudj8ud1Tckxk8xu4%3D"
           }, 
@@ -6404,14 +6404,14 @@
             "end_column": 43
           }, 
           "internal_link": {
-            "path": "src/third_party/blink/renderer/platform/heap/heap_allocator.h", 
+            "path": "src/third_party/blink/renderer/platform/wtf/vector.h", 
             "range": {
-              "start_line": 309, 
-              "end_line": 309, 
-              "start_column": 21, 
-              "end_column": 26
+              "start_line": 982, 
+              "end_line": 982, 
+              "start_column": 7, 
+              "end_column": 12
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/heap/heap_allocator.h#%4012875%3A12881%40QajvXou4%2BKurcKHGQbI2nhK5GkWudj8ud1Tckxk8xu4%3D%23chromium%23src%2Fthird_party%2Fblink%2Frenderer%2Fplatform%2Fheap%2Fheap_allocator.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/wtf/vector.h#%4034920%3A34926%40wODIycWTj8TU4laa%2B6x8cZEFECDEG44ibpNpfJ7JW1g%3D%23chromium%23src%2Fthird_party%2Fblink%2Frenderer%2Fplatform%2Fwtf%2Fvector.h", 
             "package_name": "chromium", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/heap/heap_allocator.h#QajvXou4%2BKurcKHGQbI2nhK5GkWudj8ud1Tckxk8xu4%3D"
           }, 
@@ -12481,5 +12481,5 @@
       ]
     }
   ], 
-  "elapsed_ms": 839
+  "elapsed_ms": 477
 }

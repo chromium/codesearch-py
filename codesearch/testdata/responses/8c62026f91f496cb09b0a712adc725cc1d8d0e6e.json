@@ -1,31 +1,8 @@
 {
-  "elapsed_ms": 81, 
+  "elapsed_ms": 78, 
   "xref_search_response": [
     {
       "status": 0, 
-      "estimated_total_type_count": [
-        {
-          "count": 2, 
-          "type": "DEFINITION", 
-          "type_id": 1
-        }, 
-        {
-          "count": 1, 
-          "type": "DECLARATION", 
-          "type_id": 2
-        }, 
-        {
-          "count": 453, 
-          "type": "REFERENCE", 
-          "type_id": 3
-        }, 
-        {
-          "count": 1, 
-          "type": "EXTENDS", 
-          "type_id": 6
-        }
-      ], 
-      "kythe_next_page_token": "", 
       "search_result": [
         {
           "match": [
@@ -3873,6 +3850,36 @@
             "name": "src/services/network/resource_scheduler_unittest.cc", 
             "package_name": "chromium"
           }
+        }
+      ], 
+      "estimated_total_type_count": [
+        {
+          "count": 2, 
+          "type": "DEFINITION", 
+          "type_id": 1
+        }, 
+        {
+          "count": 1, 
+          "type": "DECLARATION", 
+          "type_id": 2
+        }, 
+        {
+          "count": 467, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }, 
+        {
+          "count": 1, 
+          "type": "EXTENDS", 
+          "type_id": 6
+        }
+      ], 
+      "kythe_next_page_token": "", 
+      "eliminated_type_count": [
+        {
+          "count": 14, 
+          "type": "REFERENCE", 
+          "type_id": 3
         }
       ], 
       "from_kythe": true
