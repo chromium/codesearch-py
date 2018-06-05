@@ -1,5 +1,5 @@
 {
-  "elapsed_ms": 22, 
+  "elapsed_ms": 556, 
   "xref_search_response": [
     {
       "status": 0, 
@@ -2819,13 +2819,6 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/test/channel_id_test_util.h#%40377%3A389%40iCsJwtvEUxfmhMakCUmeI95AlyKzxYA2mHRVlBvbQEQ%3D%23chromium%23src%2Fnet%2Ftest%2Fchannel_id_test_util.h", 
-              "line_number": 14, 
-              "type_id": 2, 
-              "type": "DECLARATION", 
-              "line_text": "class ECPrivateKey;"
-            }, 
-            {
               "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/test/channel_id_test_util.h#%40477%3A489", 
               "line_number": 19, 
               "type_id": 3, 
@@ -2848,8 +2841,8 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/websockets/websocket_basic_handshake_stream.cc#%4011840%3A11852", 
-              "line_number": 344, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/websockets/websocket_basic_handshake_stream.cc#%4012150%3A12162", 
+              "line_number": 348, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    crypto::ECPrivateKey* key,"
@@ -2863,7 +2856,7 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/websockets/websocket_basic_handshake_stream.h#%402976%3A2988", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/websockets/websocket_basic_handshake_stream.h#%402982%3A2994", 
               "line_number": 77, 
               "type_id": 3, 
               "type": "REFERENCE", 
@@ -2878,7 +2871,7 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/websockets/websocket_http2_handshake_stream.cc#%407005%3A7017", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/websockets/websocket_http2_handshake_stream.cc#%407008%3A7020", 
               "line_number": 220, 
               "type_id": 3, 
               "type": "REFERENCE", 
@@ -2893,7 +2886,7 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/websockets/websocket_http2_handshake_stream.h#%403232%3A3244", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/websockets/websocket_http2_handshake_stream.h#%403235%3A3247", 
               "line_number": 91, 
               "type_id": 3, 
               "type": "REFERENCE", 
@@ -2984,12 +2977,12 @@
           "type_id": 1
         }, 
         {
-          "count": 6, 
+          "count": 5, 
           "type": "DECLARATION", 
           "type_id": 2
         }, 
         {
-          "count": 337, 
+          "count": 334, 
           "type": "REFERENCE", 
           "type_id": 3
         }
@@ -2997,7 +2990,7 @@
       "kythe_next_page_token": "", 
       "eliminated_type_count": [
         {
-          "count": 13, 
+          "count": 10, 
           "type": "REFERENCE", 
           "type_id": 3
         }

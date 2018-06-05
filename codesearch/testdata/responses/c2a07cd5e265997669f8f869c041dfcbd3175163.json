@@ -481,7 +481,7 @@
             }, 
             "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_factory.h#%40860%3A882%40HttpAuthHandlerFactory%3Anet%23c%23j%24O_zoH6ypw%23chromium%23src%2Fnet%2Fhttp%2Fhttp_auth_handler_factory.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_factory.h#HttpAuthHandlerFactory%3Anet%23c%23j%24O_zoH6ypw"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h#simfJOgidaquaRxnmgSRFUBWHh1xKsXnHxVi4MPRcpU%3D"
           }, 
           "type": {
             "id": 1
@@ -2041,5 +2041,5 @@
       ]
     }
   ], 
-  "elapsed_ms": 69
+  "elapsed_ms": 1146
 }
