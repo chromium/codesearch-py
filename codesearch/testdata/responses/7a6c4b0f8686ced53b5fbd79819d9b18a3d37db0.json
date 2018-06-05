@@ -106,7 +106,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "24cd62505182c455f14bc48a1e05f24ce8163995", 
+              "changelist": "ce35b438d7a20817dcbe349e1833a3a7b5025abc", 
               "name": "src/net/url_request/url_request_job.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -265,7 +265,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 340, 
+              "first_line_number": 341, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -273,7 +273,7 @@
             }
           ], 
           "docid": "Y_tvmPdbMWE", 
-          "best_matching_line_number": 341, 
+          "best_matching_line_number": 342, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -283,7 +283,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "f10af3bbe23b2c719ce1f90a75a67725718d674b", 
+              "changelist": "86fdb0b1883b9dcb8a7fec62226e329bbca9c8c2", 
               "name": "src/net/url_request/url_request_unittest.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -293,7 +293,7 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 341, 
+              "line_number": 342, 
               "score": 498, 
               "match_offset": 71, 
               "match_length": 13, 

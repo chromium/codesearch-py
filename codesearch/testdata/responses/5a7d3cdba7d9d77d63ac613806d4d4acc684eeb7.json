@@ -461,9 +461,9 @@
               "start_column": 18, 
               "end_column": 27
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#%402446%3A2456%40URLRequest%3Anet%23c%23fMjN85_M2Sv%23chromium%23src%2Fnet%2Furl_request%2Furl_request.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#%402446%3A2456%40URLRequest%3Anet%23c%23fxQ8uWtCuho%23chromium%23src%2Fnet%2Furl_request%2Furl_request.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#URLRequest%3Anet%23c%23fMjN85_M2Sv"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#URLRequest%3Anet%23c%23fxQ8uWtCuho"
           }, 
           "type": {
             "id": 1
@@ -509,9 +509,9 @@
               "start_column": 18, 
               "end_column": 27
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#%402446%3A2456%40URLRequest%3Anet%23c%23fMjN85_M2Sv%23chromium%23src%2Fnet%2Furl_request%2Furl_request.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#%402446%3A2456%40URLRequest%3Anet%23c%23fxQ8uWtCuho%23chromium%23src%2Fnet%2Furl_request%2Furl_request.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#URLRequest%3Anet%23c%23fMjN85_M2Sv"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#URLRequest%3Anet%23c%23fxQ8uWtCuho"
           }, 
           "type": {
             "id": 1
@@ -622,16 +622,16 @@
             "end_column": 19
           }, 
           "internal_link": {
-            "path": "src/net/filter/source_stream.h", 
+            "path": "src/net/base/io_buffer.h", 
             "range": {
-              "start_line": 19, 
-              "end_line": 19, 
-              "start_column": 7, 
-              "end_column": 14
+              "start_line": 76, 
+              "end_line": 76, 
+              "start_column": 18, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/filter/source_stream.h#%40479%3A487%40wSmmbXNuwfaTtawMp%2BAhEFoDddITASjV3d46jUvwJ8s%3D%23chromium%23src%2Fnet%2Ffilter%2Fsource_stream.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#%403073%3A3081%40IOBuffer%3Anet%23c%23p%24O0ht3pQkw%23chromium%23src%2Fnet%2Fbase%2Fio_buffer.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/filter/source_stream.h#wSmmbXNuwfaTtawMp%2BAhEFoDddITASjV3d46jUvwJ8s%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#IOBuffer%3Anet%23c%23p%24O0ht3pQkw"
           }, 
           "type": {
             "id": 1
@@ -1502,19 +1502,27 @@
           }
         }, 
         {
+          "kythe_xref_kind": 1500, 
           "range": {
             "start_line": 246, 
             "end_line": 246, 
             "start_column": 43, 
             "end_column": 65
           }, 
-          "kythe_xref_kind": 1500, 
-          "type": {
-            "id": 4
-          }, 
-          "xref_signature": {
-            "signature_hash": "", 
+          "internal_link": {
+            "path": "src/net/http/http_response_headers.h", 
+            "range": {
+              "start_line": 397, 
+              "end_line": 397, 
+              "start_column": 7, 
+              "end_column": 29
+            }, 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_response_headers.h#%4017707%3A17730%40fmUlE8nfgM63bEuUPBwQOMEnaB4%2FPizyw%2F7ZaJDWpSo%3D", 
+            "package_name": "chromium", 
             "signature": "kythe:?lang=c%2B%2B#fmUlE8nfgM63bEuUPBwQOMEnaB4%2FPizyw%2F7ZaJDWpSo%3D"
+          }, 
+          "type": {
+            "id": 1
           }
         }, 
         {
@@ -1629,9 +1637,9 @@
               "start_column": 18, 
               "end_column": 27
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#%402446%3A2456%40URLRequest%3Anet%23c%23fMjN85_M2Sv%23chromium%23src%2Fnet%2Furl_request%2Furl_request.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#%402446%3A2456%40URLRequest%3Anet%23c%23fxQ8uWtCuho%23chromium%23src%2Fnet%2Furl_request%2Furl_request.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#URLRequest%3Anet%23c%23fMjN85_M2Sv"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#URLRequest%3Anet%23c%23fxQ8uWtCuho"
           }, 
           "type": {
             "id": 1
@@ -1912,12 +1920,12 @@
           "internal_link": {
             "path": "src/net/url_request/url_request_job.cc", 
             "range": {
-              "start_line": 489, 
-              "end_line": 489, 
+              "start_line": 497, 
+              "end_line": 497, 
               "start_column": 21, 
               "end_column": 39
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4016065%3A16084%40W%2BUXjR7U1xluwT0nEq2SavTr4FNI%2FwCf82rQYtFtNNw%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4016419%3A16438%401OotmOcjYWYXxmZbIqzrFJ%2BjazbfLfgyho7yelIzfqU%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "package_name": "chromium", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#Rfe7%2B72TGuLrQWYwl%2FjyPa23Qq6iA54curRNJ50Cj5E%3D"
           }, 
@@ -1958,16 +1966,16 @@
             "end_column": 34
           }, 
           "internal_link": {
-            "path": "src/net/filter/source_stream.h", 
+            "path": "src/net/base/io_buffer.h", 
             "range": {
-              "start_line": 19, 
-              "end_line": 19, 
-              "start_column": 7, 
-              "end_column": 14
+              "start_line": 76, 
+              "end_line": 76, 
+              "start_column": 18, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/filter/source_stream.h#%40479%3A487%40wSmmbXNuwfaTtawMp%2BAhEFoDddITASjV3d46jUvwJ8s%3D%23chromium%23src%2Fnet%2Ffilter%2Fsource_stream.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#%403073%3A3081%40IOBuffer%3Anet%23c%23p%24O0ht3pQkw%23chromium%23src%2Fnet%2Fbase%2Fio_buffer.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/filter/source_stream.h#wSmmbXNuwfaTtawMp%2BAhEFoDddITASjV3d46jUvwJ8s%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#IOBuffer%3Anet%23c%23p%24O0ht3pQkw"
           }, 
           "type": {
             "id": 1
@@ -2296,12 +2304,12 @@
           "internal_link": {
             "path": "src/net/url_request/url_request_job.cc", 
             "range": {
-              "start_line": 591, 
-              "end_line": 591, 
+              "start_line": 599, 
+              "end_line": 599, 
               "start_column": 20, 
               "end_column": 30
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019301%3A19312%40EYMtly3dYLyAyVZ8sYGXtGGaL2ZxnnGZQHldb53o3fg%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019655%3A19666%40jISMPqg%2BBQfrqIpw3om7ONI5O%2Fkz6vVVgKM72o1Ic1I%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "package_name": "chromium", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#87WYlHzY%2F9d6K4K4rUwPURhc%2B4UaE3aKI2cHQ3LxV50%3D"
           }, 
@@ -2349,9 +2357,9 @@
               "start_column": 18, 
               "end_column": 27
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#%402446%3A2456%40URLRequest%3Anet%23c%23fMjN85_M2Sv%23chromium%23src%2Fnet%2Furl_request%2Furl_request.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#%402446%3A2456%40URLRequest%3Anet%23c%23fxQ8uWtCuho%23chromium%23src%2Fnet%2Furl_request%2Furl_request.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#URLRequest%3Anet%23c%23fMjN85_M2Sv"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request.h#URLRequest%3Anet%23c%23fxQ8uWtCuho"
           }, 
           "type": {
             "id": 1
@@ -2438,16 +2446,16 @@
             "end_column": 32
           }, 
           "internal_link": {
-            "path": "src/net/filter/source_stream.h", 
+            "path": "src/net/base/io_buffer.h", 
             "range": {
-              "start_line": 19, 
-              "end_line": 19, 
-              "start_column": 7, 
-              "end_column": 14
+              "start_line": 76, 
+              "end_line": 76, 
+              "start_column": 18, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/filter/source_stream.h#%40479%3A487%40wSmmbXNuwfaTtawMp%2BAhEFoDddITASjV3d46jUvwJ8s%3D%23chromium%23src%2Fnet%2Ffilter%2Fsource_stream.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#%403073%3A3081%40IOBuffer%3Anet%23c%23p%24O0ht3pQkw%23chromium%23src%2Fnet%2Fbase%2Fio_buffer.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/filter/source_stream.h#wSmmbXNuwfaTtawMp%2BAhEFoDddITASjV3d46jUvwJ8s%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#IOBuffer%3Anet%23c%23p%24O0ht3pQkw"
           }, 
           "type": {
             "id": 1
@@ -2942,16 +2950,16 @@
             "end_column": 24
           }, 
           "internal_link": {
-            "path": "src/net/filter/source_stream.h", 
+            "path": "src/net/base/io_buffer.h", 
             "range": {
-              "start_line": 19, 
-              "end_line": 19, 
-              "start_column": 7, 
-              "end_column": 14
+              "start_line": 76, 
+              "end_line": 76, 
+              "start_column": 18, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/filter/source_stream.h#%40479%3A487%40wSmmbXNuwfaTtawMp%2BAhEFoDddITASjV3d46jUvwJ8s%3D%23chromium%23src%2Fnet%2Ffilter%2Fsource_stream.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#%403073%3A3081%40IOBuffer%3Anet%23c%23p%24O0ht3pQkw%23chromium%23src%2Fnet%2Fbase%2Fio_buffer.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/filter/source_stream.h#wSmmbXNuwfaTtawMp%2BAhEFoDddITASjV3d46jUvwJ8s%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#IOBuffer%3Anet%23c%23p%24O0ht3pQkw"
           }, 
           "type": {
             "id": 1
@@ -2990,16 +2998,16 @@
             "end_column": 24
           }, 
           "internal_link": {
-            "path": "src/net/filter/source_stream.h", 
+            "path": "src/net/base/io_buffer.h", 
             "range": {
-              "start_line": 19, 
-              "end_line": 19, 
-              "start_column": 7, 
-              "end_column": 14
+              "start_line": 76, 
+              "end_line": 76, 
+              "start_column": 18, 
+              "end_column": 25
             }, 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/filter/source_stream.h#%40479%3A487%40wSmmbXNuwfaTtawMp%2BAhEFoDddITASjV3d46jUvwJ8s%3D%23chromium%23src%2Fnet%2Ffilter%2Fsource_stream.h", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#%403073%3A3081%40IOBuffer%3Anet%23c%23p%24O0ht3pQkw%23chromium%23src%2Fnet%2Fbase%2Fio_buffer.h", 
             "package_name": "chromium", 
-            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/filter/source_stream.h#wSmmbXNuwfaTtawMp%2BAhEFoDddITASjV3d46jUvwJ8s%3D"
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/base/io_buffer.h#IOBuffer%3Anet%23c%23p%24O0ht3pQkw"
           }, 
           "type": {
             "id": 1
@@ -4136,7 +4144,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%406216%3A6238%40fAojkj2OKRLjKtXN2XQJQKxGYLnDP1MkDV5X29sLPxg%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%406570%3A6592%40DC7FZ3XxEcsxmrMbtEmMiBm%2Fh%2FvwHb%2FL7nEJtncfwEc%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#8zeXi1OTBN7LVyndPDswKTqWQwQg0W2FRxqnTrROt%2FI%3D"
           }
         }, 
@@ -4169,7 +4177,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%406307%3A6321%405HkQf%2BO9atLYDmu8qF%2FZ2uhNxaJgZZ8LQR8A3g%2BW%2BLg%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%406661%3A6675%40KVYrOWXNDLBN54ghRih1%2BPwuWx3XQ79XutdythzAXW8%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#ss5vTzxAIIOHTltSJkxPqkP%2BK7NNKdGqj3NbXAr1bDo%3D"
           }
         }, 
@@ -4202,7 +4210,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%406384%3A6393%40Z33xybhKYBriaCrATiYlFzBJJgqUeTKC7inWwFlSux8%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%406738%3A6747%40c6Hdwo2qsqkcX9xNOPItzUErOsBeivcD6fiZ8%2Fid3ZM%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#5WgU7i9SqYbeHjafJ5%2BSME48Znj0gInlJtHlhRj3v1o%3D"
           }
         }, 
@@ -4219,7 +4227,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%406437%3A6457%40Q9ltPggxNfde9w4L%2F0b9vcOhIcipnS5fs1wQ%2BBnXP%2B8%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%406791%3A6811%40N14HpMBTZeEy2nx9Nth%2F890OWcZkEQ4G%2BBsNf0wA9CM%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#OzEqKESbi0pbtC9K60zbln69tYp4n%2BxzMRgbTvu%2F3EI%3D"
           }
         }, 
@@ -4252,7 +4260,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%406668%3A6675%409zJg3bRjLhGmmdPlVJqZ%2BtkFTxiKeDbLHwaB%2BmMcMuI%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%407022%3A7029%40rPRQ4crqrZU8tIhggUJ2lfLv%2BE1UoBMzurqrYsH1X4I%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#6Y6ZCm5bzoBPRQtkRF%2BIsob%2Bspc2LrJnQQdl8MVO0hQ%3D"
           }
         }, 
@@ -4285,7 +4293,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%406872%3A6882%40Q642d80t8WBGfiMGtDxJNMP0E02%2FKpsebrw2z7J2iXQ%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%407226%3A7236%40hZNMZxI7F3tSsfDnhj6w5%2F5lPWfbWNWnK19xpeMnvck%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#ey5jVWG6H1h5OV1DIu%2FdnIuWG3vqp2g9RQagZ%2FZkwF0%3D"
           }
         }, 
@@ -4302,7 +4310,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%407045%3A7068%40JHfgLHqwXfKnZAYELvEXfn%2B4BUAr9aKud4vzFw3kRLM%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%407399%3A7422%4047vZoNheCuHz6arql0mZTSZFqQF5qr7uvueGZChMnG0%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#Y9AIn904VsyZNC29dTn9MQCE1DTuG%2Bfs1o4%2FRdqyzfM%3D"
           }
         }, 
@@ -4351,7 +4359,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%407258%3A7282%40LD0Dsy0VexIn%2F%2F6UWiJWHbSJjkNlrJVWDgGphZRxBwE%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%407612%3A7636%403ChXsx0TOuoX7OHL9qS4cUz3XHz5oK47JP%2FG6sTA7pc%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#L0kxNmxZBTFI1g1%2Foy4KwXwaCEEMTn54iISuzyYu1VE%3D"
           }
         }, 
@@ -4368,7 +4376,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%407516%3A7538%40wGREVAtZ%2B0%2FJxK80eyZCb3dBBL6EluiUnxKI12dFIQM%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%407870%3A7892%40cNEdu2V86OMJ4i%2FpJEavJmL7BBf2KidjEkxiP9jRqD0%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#XpP7iys%2FPOUpfcfo3Hp9TCJiQXatnnlSevz514lA6CQ%3D"
           }
         }, 
@@ -4485,7 +4493,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%408016%3A8036%40Suo4fEkZUGK9HzRGt3h4fMdCTkQrQ9BRLwg9oUG3zVU%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%408370%3A8390%40VDw%2B52QfvqyHri99%2FmMpSQO0RyUIZkN9VpLDOaC%2FQlM%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#DSI6yF5KV8SymD8a1eJlAG0OU1h3Xuz00RmMQ83m7UY%3D"
           }
         }, 
@@ -4502,7 +4510,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%408102%3A8113%40vZy%2BP%2F8uEOgrad9d%2BW1b7kkEkOX2MvEc3BQO1nwezzQ%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%408456%3A8467%40XmzRp35atV5f%2B5Ci%2BC64TtZv1NehcM5a5sWKKnkiqGQ%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#cJPvVqjNyKD4xf0vNWcE0ScwykBaoAVQEpawd1wNjyo%3D"
           }
         }, 
@@ -4535,7 +4543,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%408184%3A8199%40I0S4Gw03BrzJXadwWbRKG02LMC4gViRGl224N8ceSzw%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%408538%3A8553%4007xRsTdvRu8mZYqNs4jCHIk6WcGNi%2FMfl6zHL4PQH%2BY%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#j9TFuscr2BuT90C1V5qu0KkClz55Otezk42HZIU3B54%3D"
           }
         }, 
@@ -4552,7 +4560,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%408370%3A8386%402r1aJJTqja4dIlqbXyRC0RnJRlQfBzAKdyGGIu6kYL4%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%408724%3A8740%40TZ04xC%2BvHU9SYipabAv%2Fme9dxMyWSfMtzn%2FDmtQ6Qgs%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#qazoxqldAxEbJFzVCV96902bQQ6K9HZPlSDvZYKqWWs%3D"
           }
         }, 
@@ -4569,7 +4577,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%408445%3A8454%40zwNFN5451gVlK26bXs8V%2FQ%2Bih8Hbo5zUTbwAEfVaVRI%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%408799%3A8808%4096DIOjH3BMqyCACiBQ49LJdi3Eee49AEe1R7Q28HJ8A%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#zxTxZZzGgyiFOTHfKnHYvb%2FFjGeROdA4PcWHao%2FoNFY%3D"
           }
         }, 
@@ -4586,7 +4594,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%409121%3A9146%40C3MujtFxBzdbuSA5o5nKahwzq1QENcd9ednZ3hqlcZk%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%409475%3A9500%40GSuTDPatKWNo9kyK%2F3WRve%2F78Kf%2FqtY1C%2F5%2BPZ2lz14%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#qvRPeB9qtOZ6vYr5UcqsfiIDUyEbNkkfDyBGnu9xjsM%3D"
           }
         }, 
@@ -4603,7 +4611,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%409174%3A9195%40HL8xifN9HTDfy3YsTepsj26Idsf1evFiw615fzOaEGw%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%409528%3A9549%40ZNCbPjgKLPRvAtto6kHHuAX0Bdvbj0Qj8iE3G4Ym9Sg%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#KTfoX6T0XnDui4fHe4ujZk1Cv171jHp1plvg7KYSntI%3D"
           }
         }, 
@@ -4703,7 +4711,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%409278%3A9302%40TLBg8gsqs8X41SmYUrRR2D7b7N8zHraYrSzP8%2FAhu7E%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%409632%3A9656%40dbP7Ah%2FCJoKd6r2HKmaicb0iF2vajdp%2BXoReXFM0CJ0%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#NVeHGq6SRb6FiBn9yeAF6xLpbEYX2rQS3et7HzAFfDM%3D"
           }
         }, 
@@ -4770,7 +4778,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4011123%3A11149%40Ke6cEyltZgenjiVD4yR6mAhrJ4N8nY93Ay2G4h47b1M%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4011477%3A11503%40OdjQmHXSWE5AH37q8LyLsON3c6QAaIZEUyz0PVPQEjY%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#ISoJxQ16Io5MHc0ddlg9qnz7Bb0mJAcPwTLHsJGYnqM%3D"
           }
         }, 
@@ -4803,7 +4811,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4011278%3A11303%40nusetnV6ZojTHtv6YZujKcAKicjhqw0%2FWKZvt5y5ezY%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4011632%3A11657%40WY2J8v5FPMxsuYdn6Q062jtvek5BKZUGAeFxkYCxd2o%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#O7yxBsi1ypf7qKfoyFcdpW2HNprijauM0KN0vb4L63I%3D"
           }
         }, 
@@ -4852,7 +4860,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4011468%3A11481%408Ie%2Bk9ht8g3cfL9EMr9xNNBUU0cvX%2FCozsxDtTSUCac%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4011822%3A11835%40AfFuqWf1luc0FTJO0UvO2hp6Pp2QJ7EBkxKZxGEeSC4%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#DVO4cleiSAtxu0pUd2gNa1A%2FmmEnznMs9%2BY7X9bhjNA%3D"
           }
         }, 
@@ -4885,7 +4893,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4011591%3A11603%40yVcgnHkGDeMD3kYSG1Z1xP36WfwPBhdc2EIQBNUjQL0%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4011945%3A11957%40g%2FxNGBu6qyFHsoAIvYz6ums6pdhVXWj1S%2BU6SP%2BiI9w%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#yFGL%2B4KMC5yAZevm3fa6Y%2Fx6mUtLCj7Gi9pUc43peqY%3D"
           }
         }, 
@@ -4934,7 +4942,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4011778%3A11798%40RTyYi9%2Bp%2FaJKl1Qw8rDL0rrXOahXqZ79zVJWt%2Bib%2FkE%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4012132%3A12152%40Hmt4paEUBitbfXlmk3OR%2BYwFxwh754d2Fg0zEi7yByc%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#HLuXn%2FqJ%2FwVvJKa7j6tBcVk3RprCQb9HSp%2F%2BbbfkZHk%3D"
           }
         }, 
@@ -4951,7 +4959,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4011875%3A11896%40qlSgxeinR6FXU1M%2BFy4tkyw9NqNyleHAkSIkJNyCSRs%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4012229%3A12250%40pFqF3fl3Dqp9CiwawxhDtKGnPK03w%2F1nZrfJBXzrSzE%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#gxTZsAlyCvVGgdu3zYG%2BEQKGqZral6Vv6tAEPZAPgMg%3D"
           }
         }, 
@@ -4968,7 +4976,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4016498%3A16514%40adJR%2FV9JGxkFcrWF8ASlvPgK%2FTAxQFyWeKQpv3H26%2Fo%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4016852%3A16868%40Y7TXBacFwkXTm1mLTn9CxNonP5yqq675vPns%2BrPUa3w%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#eyFJrDS6OeeXX8vGW6zhm3Pi6H1vL0%2Fdlwozi4QP6xo%3D"
           }
         }, 
@@ -5001,7 +5009,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4018829%3A18843%40HbTc9cC8B9Q5uQe9exe6cywRG5yqbu4xiFDxdbMeaZo%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019183%3A19197%400bmenpaRLxY1%2FiacLE57TyWx2dQ2k6NkCGE9ayjU2OM%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#wt4I%2F13u3numI%2F1KL%2FUVNd317tos35uWhi00st3vUfM%3D"
           }
         }, 
@@ -5018,7 +5026,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4018968%3A18989%403tCEQAulMdOtxKpqwkKn2%2FZMQqWa5nQGOUp2CWC5ZqA%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019322%3A19343%40qF5eaoC8k0draZqdyo4IsvbXkcbfmmAZRjgsj%2Fr0dME%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#h1flcjRxUWwxjpe%2Fw8dmgOp5W%2FM6r1FgswAQ%2BzUJGCo%3D"
           }
         }, 
@@ -5035,7 +5043,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019134%3A19150%403l3mCcTRZlQfQ2ysk8GsVJIl0BOHHe9c6i0ZFUqaMZQ%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019488%3A19504%40YXS0LpPcrOuf72CIXhfTy0FjiWhQGLfd4FrG%2Bxswjxg%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#hC3bhb2c95lvxxKiVNttAvSNVGywQ4St4JrKpgeX%2FfE%3D"
           }
         }, 
@@ -5052,7 +5060,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019210%3A19234%40SaphApbpCZkuxmvaU%2Bp4k0ALY3le82LFfn8CxfPNBws%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019564%3A19588%40IYV5O2RwJ6ywEoNXBSH%2F4uv9pVH3JO9ezdR07rd3pFQ%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#jGVvugP7HSqpFhyFZZjnK5wys4NoG15MMOO12zWp%2FIs%3D"
           }
         }, 
@@ -5069,7 +5077,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019301%3A19312%40EYMtly3dYLyAyVZ8sYGXtGGaL2ZxnnGZQHldb53o3fg%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019655%3A19666%40jISMPqg%2BBQfrqIpw3om7ONI5O%2Fkz6vVVgKM72o1Ic1I%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#87WYlHzY%2F9d6K4K4rUwPURhc%2B4UaE3aKI2cHQ3LxV50%3D"
           }
         }, 
@@ -5120,7 +5128,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019379%3A19390%40Kkvg6k%2FgL0P9Mk5Er8H7LFP4RjAtLkrp%2FpKT%2Bk5%2F2k4%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019733%3A19744%40P6gz9pXrFwYK0t1wPFZcX3pbQmeGIV4LBlRKuZtC7lI%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#tD0Qx9q7C8Px3rXqxOECqiwt6Ym5jgd5VYewt0IRRtk%3D"
           }
         }, 
@@ -5137,7 +5145,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019435%3A19462%407R1DPodaZc8PTPw7cU0zKihMjhShjXDHa2JF7PSe49E%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019789%3A19816%408ROle%2BJoECM7XMMl%2BgKyNGM2mKTeDG7PVrD6SuBnwCk%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#J%2BvdoeyOTg0DuNDpBvsvQybUzIxSbg%2BwL%2FpxWcWzdY4%3D"
           }
         }, 
@@ -5154,7 +5162,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019515%3A19532%40bvis8kCyYNzkmvSdPve2e76E7jX4xxKFTyrFr%2BsbjDU%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019869%3A19886%40QXQ7SKOeGLSbFsE7rhA5cRMJFcP0KjD2G2E7kbqrj2o%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#KnId7k6PgxZWlvRQnCvUYnVkirI12xSzn5QXvWYmWec%3D"
           }
         }, 
@@ -5188,7 +5196,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019638%3A19647%40h7idhN5%2F0BDE4y6FRbNbbG%2FW%2F%2BccN8jMNmKhINHr7FY%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019992%3A20001%405EnJU1J5GlFtr%2FNCgNw4Y2%2FcmFptDUUV3NYDY6v1ZrU%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#trbwXCIEJ6Pg%2FznBGc2QMRWULX2%2F%2BgGpdcSp3KQjmkA%3D"
           }
         }, 
@@ -5205,7 +5213,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019704%3A19718%403ksXT8Rjzia81am338j%2BGv9LZ8lVqqBw5Unvk0FSw%2Bg%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4020058%3A20072%40iAtRe%2Fg2Juw4XP56EgJlldy1Icw4a8ufocgUWYnq2vU%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#3GuerCxHe40vUpJNU4a5epTfeRPYbPZut60zOPq4Pxk%3D"
           }
         }, 
@@ -5255,7 +5263,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4015850%3A15870%404tKm3g7149mxILb06iRrIOP7ue1ueiBSoZqTRTorxdQ%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4016204%3A16224%40vtu%2BcZPelXW5DREJmjcbyernfjC89HDUn%2BfVARfj%2Fag%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#p7Nvj2BQI67ibhEbZlue3tYI6X2j892JWOUa6glfQwc%3D"
           }
         }, 
@@ -5321,7 +5329,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4016065%3A16084%40W%2BUXjR7U1xluwT0nEq2SavTr4FNI%2FwCf82rQYtFtNNw%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4016419%3A16438%401OotmOcjYWYXxmZbIqzrFJ%2BjazbfLfgyho7yelIzfqU%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#Rfe7%2B72TGuLrQWYwl%2FjyPa23Qq6iA54curRNJ50Cj5E%3D"
           }
         }, 
@@ -5389,7 +5397,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4019819%3A19843%40wRl5pXrl5dTNjD2iWLSDE%2BPq9NfR%2BfBre1pLe965KhA%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4020173%3A20197%40Ll5BQp5HQdVOVyXbfpu1i%2BYlVj%2BcHsv6sqXq6%2F5beCo%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#dc09zxj15OLtAqG3%2BZDuCC3pFXSDCpz%2F7pHlK6aay8s%3D"
           }
         }, 
@@ -5439,7 +5447,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4020719%3A20736%40KFTjIzBqZ8I6OTN%2B00YRifFWRqa1AvNqPJtLZ%2BcPQpw%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4021073%3A21090%40W7VoSfFuOWUoizcBxu5olhr15Ak%2Bzr%2BdgMS2E93Bn6Y%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#vFCb9W6MmoQgFRtye4VHlPPXDZ5E2T0x15HnVHDEKAg%3D"
           }
         }, 
@@ -5504,7 +5512,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4021546%3A21563%40%2Bk4WUT6EyygzAwq9YB%2FVNKmkemP%2FDw%2Funr5m7SVXyGc%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4021900%3A21917%40K5fGITwUCwZIhULwVB%2FkdpoFCEWcDPKmgjdLG30rRC0%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#S39otGBqqqq25cL0X3ozTcPCV6BH4TCbAvEmUfIy0IM%3D"
           }
         }, 
@@ -5538,7 +5546,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4021947%3A21961%40ZZkDos%2FDNezuIUFXIxOAEbNzXpKgOnOfeFc6Wkaw2z4%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4022301%3A22315%40YDKWmvJd%2BAjcYdvjH03YrrbbszeqpRIO%2BTLfPVUk%2BuM%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#%2BhNr9GS3ntcpzdkVOW1HbypuibzexLHShR6KJE8ZBKM%3D"
           }
         }, 
@@ -5587,7 +5595,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4022167%3A22185%40r3TPeL3esdOPSFLLJyNMiPXHmOQgLizG%2B1JzqjQ7Y5c%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4022521%3A22539%4020%2Fzeq2WFKv%2BV%2Fw1n%2BLPVI9gQEyarwKxVmmoZ8%2BZYos%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#dVBHWefDNE%2F7QwBnVsrpkN15MbEvIlVgqheuzNCDuGg%3D"
           }
         }, 
@@ -5621,7 +5629,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4022752%3A22767%40JZoOLKOZnu1nKhDHdJ%2BPbX4qSHCDHmwbbk8%2BaNCpVZ8%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4023106%3A23121%40TYjwESCoVRvozYFygzvisGNdYfFQubTsAy3zSyDB%2Bps%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#zsattS8sokKI%2FRJF7hK6urVoyTWxAha5r2FfGQ1XtYs%3D"
           }
         }, 
@@ -5655,7 +5663,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4016934%3A16940%40f%2F9zutDb3d%2Fp67XSLIquNevbKSi3uIgKjjXvZkYjCqg%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4017288%3A17294%40xCimzXJlEZhh4CgoOn6MKkJg91m27p7ydLFAu3EyBnk%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#6AL8Q4BUVIO8JTzFZ%2FHVJukWYV8Yu%2BVDUYxKtZPu1ug%3D"
           }
         }, 
@@ -5705,7 +5713,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4018286%3A18296%40xB%2F4mbQRT12ZZnPskWyG8smDPWvyA4wf3dPwWSIFx1I%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4018640%3A18650%40de77EH4FqjC%2BieIBPQViqgLHN%2B1NP%2BIrAq4JnKWp%2F5g%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#Y%2Bj4Hao80t4qUfC8%2FuGenMS25Y5cJTRF%2BAWnXed5fuc%3D"
           }
         }, 
@@ -5722,7 +5730,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4024313%3A24334%400j8niU1LtpX3GONTpr9BDDt2MgsbjE8MM81a2%2BPNDd8%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4024667%3A24688%40W5%2BGkUojYoN%2BZoKZSukJxs%2FKUUW%2BwHBrYAaWz5zgYxw%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#5BmCBEp8epbdaYrxmKbKXqvQ%2FeC51zE5WdA%2BFrryqCI%3D"
           }
         }, 
@@ -5739,7 +5747,7 @@
           }, 
           "xref_signature": {
             "signature_hash": "", 
-            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4024362%3A24385%40Xh007Dfp3%2BVpkMZROb8FPxqw8LLH7CZteOqHqavRbOM%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
+            "highlight_signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.cc#%4024716%3A24739%40%2Bwp0E9YtxCnnSK7ijO7v1dIuPF69LfOcD%2BAq8EQitxk%3D%23chromium%23src%2Fnet%2Furl_request%2Furl_request_job.cc", 
             "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_job.h#nzP5LFldVpXDbqcHiwDK9qWF%2BBnC8cv%2BElR5Tpk8P%2BU%3D"
           }
         }, 
@@ -5999,5 +6007,5 @@
       ]
     }
   ], 
-  "elapsed_ms": 87
+  "elapsed_ms": 1064
 }
