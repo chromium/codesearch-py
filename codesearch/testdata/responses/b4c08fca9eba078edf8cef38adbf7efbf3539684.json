@@ -7,7 +7,7 @@
       "stats": {
         "retries": 0, 
         "filter_ratio": 0, 
-        "first_phase_latency_micros": "163010"
+        "first_phase_latency_micros": "78133"
       }, 
       "search_result": [
         {
@@ -700,7 +700,7 @@
         }, 
         {
           "docid": "quaC6hMQ-fc", 
-          "best_matching_line_number": 3343, 
+          "best_matching_line_number": 3347, 
           "language": "gn", 
           "is_augmented": false, 
           "match_reason": {
@@ -710,7 +710,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "1562beab557a09f12e69683c8e0959917f923764", 
+              "changelist": "568f589ba79eee7fb712ea2463c16d3055db3b1c", 
               "name": "src/v8/BUILD.gn", 
               "package_name": "chromium", 
               "revision": "0"
@@ -720,21 +720,21 @@
           "num_matches": 0, 
           "match": [
             {
-              "line_number": 3343, 
+              "line_number": 3347, 
               "score": 29, 
               "match_offset": 19, 
               "match_length": 5, 
               "line_text": "    \"samples/hello-world.cc\",\n"
             }, 
             {
-              "line_number": 3182, 
+              "line_number": 3186, 
               "score": -14, 
               "match_offset": 15, 
               "match_length": 5, 
               "line_text": "    \":v8_hello_world\",\n"
             }, 
             {
-              "line_number": 3341, 
+              "line_number": 3345, 
               "score": -14, 
               "match_offset": 24, 
               "match_length": 5, 
@@ -1736,7 +1736,7 @@
         }, 
         {
           "docid": "oSDhe419aP0", 
-          "best_matching_line_number": 161, 
+          "best_matching_line_number": 168, 
           "language": "gn", 
           "is_augmented": false, 
           "match_reason": {
@@ -1746,7 +1746,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "0a70a9143eeba24a0c17dd17f8767f657615d1c7", 
+              "changelist": "3ba457270cf22c3d7eb13f143ed710793b925a69", 
               "name": "src/gin/BUILD.gn", 
               "package_name": "chromium", 
               "revision": "0"
@@ -1756,11 +1756,11 @@
           "num_matches": 0, 
           "match": [
             {
-              "line_number": 161, 
+              "line_number": 168, 
               "score": -14, 
-              "match_offset": 17, 
+              "match_offset": 27, 
               "match_length": 5, 
-              "line_text": "    \"shell/hello_world.js\",\n"
+              "line_text": "    data += [ \"shell/hello_world.js\" ]\n"
             }
           ]
         }, 
@@ -2160,5 +2160,5 @@
       "hit_max_to_score": false
     }
   ], 
-  "elapsed_ms": 202
+  "elapsed_ms": 118
 }

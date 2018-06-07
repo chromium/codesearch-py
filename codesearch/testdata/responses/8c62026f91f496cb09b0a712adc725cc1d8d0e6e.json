@@ -1,5 +1,5 @@
 {
-  "elapsed_ms": 78, 
+  "elapsed_ms": 86, 
   "xref_search_response": [
     {
       "status": 0, 
@@ -2420,8 +2420,8 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/prefs/chrome_pref_service_factory.cc#%4010927%3A10937", 
-              "line_number": 247, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/prefs/chrome_pref_service_factory.cc#%4011128%3A11138", 
+              "line_number": 252, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  base::FieldTrial* trial ="
@@ -3738,7 +3738,7 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/transport_security_state_unittest.cc#%40107832%3A107842", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/transport_security_state_unittest.cc#%40107840%3A107850", 
               "line_number": 2490, 
               "type_id": 3, 
               "type": "REFERENCE", 
@@ -3864,7 +3864,7 @@
           "type_id": 2
         }, 
         {
-          "count": 467, 
+          "count": 455, 
           "type": "REFERENCE", 
           "type_id": 3
         }, 
@@ -3877,7 +3877,7 @@
       "kythe_next_page_token": "", 
       "eliminated_type_count": [
         {
-          "count": 14, 
+          "count": 2, 
           "type": "REFERENCE", 
           "type_id": 3
         }
