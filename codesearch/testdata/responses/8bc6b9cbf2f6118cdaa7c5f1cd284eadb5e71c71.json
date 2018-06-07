@@ -7,7 +7,7 @@
       "stats": {
         "retries": 0, 
         "filter_ratio": 0, 
-        "first_phase_latency_micros": "153735"
+        "first_phase_latency_micros": "37363"
       }, 
       "search_result": [
         {
@@ -281,5 +281,5 @@
       "hit_max_to_score": false
     }
   ], 
-  "elapsed_ms": 190
+  "elapsed_ms": 73
 }

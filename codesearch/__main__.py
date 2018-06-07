@@ -157,7 +157,7 @@ annotate_command.add_argument(
     help='Type',
     action='append',
     choices=['LINK_TO_DEFINITION', 'LINK_TO_URL', 'XREF_SIGNATURE'],
-    default=[])
+    default=['LINK_TO_DEFINITION', 'XREF_SIGNATURE'])
 annotate_command.set_defaults(
     func=lambda cs, a: cs.GetAnnotationsForFile(
         a.path, [{'id': x} for x in a.type]))

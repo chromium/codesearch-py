@@ -553,19 +553,32 @@ class Annotation(Message):
   }
 
   def MatchesSignature(self, signature):
+    # type: () -> bool
     if self.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
       return self.internal_link.MatchesSignature(signature)
     if self.type.id == AnnotationTypeValue.XREF_SIGNATURE:
       return self.xref_signature.MatchesSignature(signature)
+    return False
 
   def HasSignature(self):
+    # type: () -> bool
     return self.type.id == AnnotationTypeValue.LINK_TO_DEFINITION or self.type.id == AnnotationTypeValue.XREF_SIGNATURE
 
   def GetSignature(self):
+    # type: () -> Optional[str]
     if self.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
       return self.internal_link.GetSignature()
     if self.type.id == AnnotationTypeValue.XREF_SIGNATURE:
       return self.xref_signature.GetSignature()
+    return None
+
+  def GetSignatures(self):
+    # type: () -> Optional[List[str]]
+    if self.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
+      return self.internal_link.GetSignatures()
+    if self.type.id == AnnotationTypeValue.XREF_SIGNATURE:
+      return self.xref_signature.GetSignatures()
+    return None
 
 
 @message

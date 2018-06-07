@@ -1,5 +1,5 @@
 {
-  "elapsed_ms": 62, 
+  "elapsed_ms": 599, 
   "xref_search_response": [
     {
       "status": 0, 
@@ -204,29 +204,29 @@
               "line_text": "  const HttpTransaction* transaction = GetOwnedOrMovedNetworkTransaction();"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_transaction.cc#%40109649%3A109664", 
-              "line_number": 3175, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_transaction.cc#%40109703%3A109718", 
+              "line_number": 3176, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "const HttpTransaction* HttpCache::Transaction::network_transaction() const {"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_transaction.cc#%40109872%3A109887", 
-              "line_number": 3183, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_transaction.cc#%40109926%3A109941", 
+              "line_number": 3184, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "const HttpTransaction*"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_transaction.cc#%40110144%3A110159", 
-              "line_number": 3192, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_transaction.cc#%40110198%3A110213", 
+              "line_number": 3193, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "HttpTransaction* HttpCache::Transaction::network_transaction() {"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_transaction.cc#%40120889%3A120904", 
-              "line_number": 3458, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_transaction.cc#%40120943%3A120958", 
+              "line_number": 3459, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    const HttpTransaction& transaction) {"
@@ -297,210 +297,210 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%406510%3A6525", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%406518%3A6533", 
               "line_number": 190, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "void ReadAndVerifyTransaction(HttpTransaction* trans,"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%406812%3A6827", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%406820%3A6835", 
               "line_number": 200, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "void ReadRemainingAndVerifyTransaction(HttpTransaction* trans,"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%407764%3A7779", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%407772%3A7787", 
               "line_number": 224, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%4022398%3A22413", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%4022406%3A22421", 
               "line_number": 640, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%4024380%3A24395", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%4024388%3A24403", 
               "line_number": 704, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%4027672%3A27687", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%4027680%3A27695", 
               "line_number": 794, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%4035151%3A35166", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%4035159%3A35174", 
               "line_number": 992, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%4040991%3A41006", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%4040999%3A41014", 
               "line_number": 1146, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40101091%3A101106", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40101099%3A101114", 
               "line_number": 2786, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> transaction;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40150076%3A150091", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40150084%3A150099", 
               "line_number": 4125, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40193059%3A193074", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40193067%3A193082", 
               "line_number": 5323, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40202872%3A202887", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40202880%3A202895", 
               "line_number": 5583, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40307303%3A307318", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40307311%3A307326", 
               "line_number": 8321, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40308218%3A308233", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40308226%3A308241", 
               "line_number": 8348, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40326081%3A326096", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40326089%3A326104", 
               "line_number": 8827, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40327253%3A327268", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40327261%3A327276", 
               "line_number": 8861, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40334048%3A334063", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40334056%3A334071", 
               "line_number": 9050, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40334492%3A334507", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40334500%3A334515", 
               "line_number": 9063, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40348359%3A348374", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40348367%3A348382", 
               "line_number": 9432, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40349545%3A349560", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40349553%3A349568", 
               "line_number": 9468, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40350387%3A350402", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40350395%3A350410", 
               "line_number": 9495, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40351667%3A351682", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40351675%3A351690", 
               "line_number": 9533, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40353130%3A353145", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40353138%3A353153", 
               "line_number": 9576, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40354024%3A354039", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40354032%3A354047", 
               "line_number": 9604, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40355998%3A356013", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40356006%3A356021", 
               "line_number": 9654, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40365314%3A365329", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40365322%3A365337", 
               "line_number": 9900, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<net::HttpTransaction> http_transaction;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40368985%3A369000", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40368993%3A369008", 
               "line_number": 9998, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40370425%3A370440", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40370433%3A370448", 
               "line_number": 10036, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40371961%3A371976", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40371969%3A371984", 
               "line_number": 10075, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  std::unique_ptr<HttpTransaction> trans;"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40381718%3A381733", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_cache_unittest.cc#%40381726%3A381741", 
               "line_number": 10326, 
               "type_id": 3, 
               "type": "REFERENCE", 
@@ -806,8 +806,8 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/mock_http_cache.cc#%4019159%3A19174", 
-              "line_number": 661, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/mock_http_cache.cc#%4019365%3A19380", 
+              "line_number": 664, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "int MockHttpCache::CreateTransaction(std::unique_ptr<HttpTransaction>* trans) {"
@@ -821,8 +821,8 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/mock_http_cache.h#%409399%3A9414", 
-              "line_number": 264, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/mock_http_cache.h#%409605%3A9620", 
+              "line_number": 268, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  int CreateTransaction(std::unique_ptr<HttpTransaction>* trans);"
@@ -881,7 +881,7 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_unittest.cc#%40341323%3A341338", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/url_request/url_request_unittest.cc#%40341331%3A341346", 
               "line_number": 9169, 
               "type_id": 3, 
               "type": "REFERENCE", 

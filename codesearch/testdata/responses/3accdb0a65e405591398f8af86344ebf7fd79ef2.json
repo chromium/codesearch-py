@@ -1,5 +1,5 @@
 {
-  "elapsed_ms": 73, 
+  "elapsed_ms": 78, 
   "xref_search_response": [
     {
       "status": 0, 
@@ -10,12 +10,12 @@
           "type_id": 1
         }, 
         {
-          "count": 7, 
+          "count": 6, 
           "type": "DECLARATION", 
           "type_id": 2
         }, 
         {
-          "count": 328, 
+          "count": 330, 
           "type": "REFERENCE", 
           "type_id": 3
         }
@@ -271,6 +271,35 @@
           ], 
           "file": {
             "name": "src/components/gcm_driver/crypto/gcm_encryption_provider.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/gcm_driver/crypto/gcm_encryption_provider.h#%403998%3A4010", 
+              "line_number": 96, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                            std::unique_ptr<crypto::ECPrivateKey> key,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/gcm_driver/crypto/gcm_encryption_provider.h#%404198%3A4210", 
+              "line_number": 100, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                               std::unique_ptr<crypto::ECPrivateKey> key,"
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/gcm_driver/crypto/gcm_encryption_provider.h#%404814%3A4826", 
+              "line_number": 111, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                             std::unique_ptr<crypto::ECPrivateKey> key,"
+            }
+          ], 
+          "file": {
+            "name": "src/components/gcm_driver/crypto/gcm_encryption_provider.h", 
             "package_name": "chromium"
           }
         }, 
@@ -948,28 +977,6 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/crypto/ec_signature_creator.cc#%40497%3A509", 
-              "line_number": 21, 
-              "type_id": 3, 
-              "type": "REFERENCE", 
-              "line_text": "    ECPrivateKey* key) {"
-            }
-          ], 
-          "file": {
-            "name": "src/crypto/ec_signature_creator.cc", 
-            "package_name": "chromium"
-          }
-        }, 
-        {
-          "match": [
-            {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/crypto/ec_signature_creator.h#%40386%3A398%40V3onqOEfNg2sIm5iFueIEOant3UAcvE8nzoqoNxiw0Y%3D%23chromium%23src%2Fcrypto%2Fec_signature_creator.h", 
-              "line_number": 18, 
-              "type_id": 2, 
-              "type": "DECLARATION", 
-              "line_text": "class ECPrivateKey;"
-            }, 
-            {
               "signature": "kythe://chromium?lang=c%2B%2B?path=src/crypto/ec_signature_creator.h#%40580%3A592", 
               "line_number": 25, 
               "type_id": 3, 
@@ -1372,7 +1379,7 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream_factory_unittest.cc#%405342%3A5354", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_stream_factory_unittest.cc#%405350%3A5362", 
               "line_number": 149, 
               "type_id": 3, 
               "type": "REFERENCE", 
@@ -1659,14 +1666,14 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/socket/ssl_client_socket_unittest.cc#%4022574%3A22586", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/socket/ssl_client_socket_unittest.cc#%4022582%3A22594", 
               "line_number": 699, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "                   std::unique_ptr<crypto::ECPrivateKey>* key_result,"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/socket/ssl_client_socket_unittest.cc#%4023701%3A23713", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/socket/ssl_client_socket_unittest.cc#%4023709%3A23721", 
               "line_number": 723, 
               "type_id": 3, 
               "type": "REFERENCE", 
@@ -2977,63 +2984,63 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4037650%3A37662", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4037664%3A37676", 
               "line_number": 921, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "      crypto::ECPrivateKey::Create()));"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4037814%3A37826", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4037828%3A37840", 
               "line_number": 924, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "      crypto::ECPrivateKey::Create()));"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4039697%3A39709", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4039711%3A39723", 
               "line_number": 974, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "      crypto::ECPrivateKey::Create()));"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4039861%3A39873", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4039875%3A39887", 
               "line_number": 977, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "      crypto::ECPrivateKey::Create()));"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4041230%3A41242", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4041244%3A41256", 
               "line_number": 1010, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "      crypto::ECPrivateKey::Create()));"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4041394%3A41406", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4041408%3A41420", 
               "line_number": 1013, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "      crypto::ECPrivateKey::Create()));"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4042760%3A42772", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4042774%3A42786", 
               "line_number": 1046, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "      crypto::ECPrivateKey::Create()));"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4042924%3A42936", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4042938%3A42950", 
               "line_number": 1049, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "      crypto::ECPrivateKey::Create()));"
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4043085%3A43097", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/network_context_unittest.cc#%4043099%3A43111", 
               "line_number": 1052, 
               "type_id": 3, 
               "type": "REFERENCE", 

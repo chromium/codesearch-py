@@ -78,8 +78,8 @@ class CsFile(object):
     assert isinstance(cs, CodeSearch)
     assert isinstance(file_info, FileInfo)
 
-    self.cs = cs
-    self.file_info = file_info
+    self.cs = cs  # type: CodeSearch
+    self.file_info = file_info  # type: FileInfo
 
     if hasattr(self.file_info, 'content'):
       self.lines = self.file_info.content.text.splitlines()
@@ -202,7 +202,8 @@ class CsFile(object):
   def GetAnnotations(self):
     # type: () -> List[Annotation]
     if self.annotations == None:
-      response = self.cs.GetAnnotationsForFile(self.GetFileSpec())
+      md5 = self.file_info.md5 if hasattr(self.file_info, 'md5') else ''
+      response = self.cs.GetAnnotationsForFile(self.GetFileSpec(), md5=md5)
       if not hasattr(response.annotation_response[0], 'annotation'):
         return []
       self.annotations = response.annotation_response[0].annotation
@@ -804,8 +805,9 @@ class CodeSearch(object):
       annotation_types=[
           AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE),
           AnnotationType(id=AnnotationTypeValue.LINK_TO_DEFINITION)
-      ]):
-    # type: (str, List[AnnotationType]) -> CompoundResponse
+      ],
+      md5=""):
+    # type: (str, List[AnnotationType], Optional[str]) -> CompoundResponse
     """Retrieves a list of annotations for a file.
 
     Note that it is much more efficient in your scripts to use
@@ -817,7 +819,9 @@ class CodeSearch(object):
     return self.SendRequestToServer(
         CompoundRequest(annotation_request=[
             AnnotationRequest(
-                file_spec=self.GetFileSpec(filename), type=annotation_types)
+                file_spec=self.GetFileSpec(filename),
+                type=annotation_types,
+                md5=md5)
         ]))
 
   def GetSignatureForLocation(self, filename, line, column):
@@ -930,18 +934,22 @@ class CodeSearch(object):
     """
 
     fileinfo = self.GetFileInfo(filename)
+    types_haystack = frozenset([
+        AnnotationTypeValue.LINK_TO_DEFINITION,
+        AnnotationTypeValue.XREF_SIGNATURE
+    ])
+
     for annotation in fileinfo.GetAnnotations():
+      if annotation.type.id not in types_haystack:
+        continue
+
       if symbol not in fileinfo.Text(annotation.range):
         continue
 
-      if annotation.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
-        return annotation.internal_link.GetSignature()
-
-      if annotation.type.id == AnnotationTypeValue.XREF_SIGNATURE:
-        return annotation.xref_signature.GetSignature()
+      return annotation.GetSignature()
 
     raise NotFoundError(
-        "Can't determine signature for %s:%s" % (filename, symbol))
+        "Can't determine signature for %s in %s" % (symbol, filename))
 
   def GetSignaturesForSymbol(self, filename, symbol, node_kind=None):
     # type: (str, str, Optional[int]) -> str
@@ -963,8 +971,15 @@ class CodeSearch(object):
     signatures = set()
     fileinfo = self.GetFileInfo(filename)
     matcher = SymbolSuffixMatcher(symbol)
+    types_haystack = frozenset([
+        AnnotationTypeValue.LINK_TO_DEFINITION,
+        AnnotationTypeValue.XREF_SIGNATURE
+    ])
 
     for annotation in fileinfo.GetAnnotations():
+      if annotation.type.id not in types_haystack:
+        continue
+
       text = fileinfo.Text(annotation.range)
       if not matcher.Match(text):
         continue
@@ -972,13 +987,7 @@ class CodeSearch(object):
       if node_kind is not None and node_kind != annotation.kythe_xref_kind:
         continue
 
-      if annotation.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
-        signatures.update(annotation.internal_link.GetSignatures())
-        continue
-
-      if annotation.type.id == AnnotationTypeValue.XREF_SIGNATURE:
-        signatures.update(annotation.xref_signature.GetSignatures())
-        continue
+      signatures.update(annotation.GetSignatures())
 
     return list(signatures)
 
@@ -1008,6 +1017,7 @@ class CodeSearch(object):
     results will be returned. Note that this can be very slow. By default, the
     search will end as soon as at least one signature has been found.
     """
+
     XREF_KIND_TO_SEARCH_PREFIX = {
         NodeEnumKind.CLASS: "class:",
         NodeEnumKind.FUNCTION: "function:",

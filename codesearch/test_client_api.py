@@ -117,6 +117,16 @@ class TestCodeSearch(unittest.TestCase):
         cs.GetSignatureForSymbol(TARGET_FILE, 'uint32_t'),
         'kythe:?lang=c%2B%2B#9Q1Qo0dt%2BgETZA3AE5IlwTBVpnGb9lT0KTUS8YtMp7E%3D')
 
+    # The absence of the "md5" parameter to the annotation_request was
+    # puzzlingly causing the annotations for this file to be offset by a
+    # constant amount.
+    self.assertEqual(
+        cs.GetSignatureForSymbol(
+            '/src/chrome/src/chrome/browser/chrome_content_browser_client.cc',
+            'IsURLWhitelisted'),
+        'kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/chrome_content_browser_client.cc#AK%2BHFzE3%2B2djaJmaCbz4STa1Cjoh%2FRymZEl1lqkbGZw%3D'
+    )
+
   def test_search_for_symbol(self):
     cs = CodeSearch(source_root='.')
 
