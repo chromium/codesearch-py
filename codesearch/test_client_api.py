@@ -175,7 +175,7 @@ class TestCodeSearch(unittest.TestCase):
     # - *DONT* add any of the new cache entries added to testdata/resource/*
     # - *DO* add the new files that show up in testdata/fixed_cache/*
 
-    #DisableNetwork()
+    DisableNetwork()
     cs = CodeSearch(
         source_root='.',
         should_cache=True,
