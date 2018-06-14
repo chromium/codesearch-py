@@ -51,6 +51,12 @@ except ImportError:
   from urllib import urlencode
   from urlparse import urlparse, unquote
 
+# For type checking. Not needed at runtime.
+try:
+  from typing import List, Optional, Dict, Union, Set
+except ImportError:
+  pass
+
 
 class ServerError(Exception):
   """An error that occurred when talking to the CodeSearch backend."""
@@ -80,21 +86,14 @@ class CsFile(object):
 
     self.cs = cs  # type: CodeSearch
     self.file_info = file_info  # type: FileInfo
+    self.lines = self.file_info.content.text.splitlines()  # type: List[str]
 
-    if hasattr(self.file_info, 'content'):
-      self.lines = self.file_info.content.text.splitlines()
-    else:
-      self.lines = []
-
-    if hasattr(self.file_info, 'codeblock'):
-      codeblocks = self.file_info.codeblock
-      assert isinstance(codeblocks, list)
-      assert len(codeblocks) == 0 or isinstance(codeblocks[0], CodeBlock)
-      self.codeblock = CodeBlock.Make(
-          child=codeblocks, type=CodeBlockType.ROOT, name="")
-    else:
-      self.codeblock = None
-    self.annotations = None
+    codeblocks = self.file_info.codeblock
+    assert isinstance(codeblocks, list)
+    assert len(codeblocks) == 0 or isinstance(codeblocks[0], CodeBlock)
+    self.codeblock = CodeBlock.Make(
+        child=codeblocks, type=CodeBlockType.ROOT, name="")  # type: CodeBlock
+    self.annotations = None  # type: Optional[List[Annotation]]
 
   def Path(self):
     # type: () -> str
@@ -143,7 +142,7 @@ class CsFile(object):
     return self.codeblock
 
   def FindCodeBlock(self, name="", type=CodeBlockType.ROOT):
-    # type: (str, int) -> CodeBlock
+    # type: (str, int) -> Optional[CodeBlock]
     """Find a codeblock in this file that matches the name and type. If there
     are more than one, could return any."""
     if self.codeblock is None:
@@ -151,7 +150,7 @@ class CsFile(object):
     return self.codeblock.Find(name, type)
 
   def GetSignatureForCodeBlock(self, codeblock):
-    # type: (CodeBlock) -> str
+    # type: (CodeBlock) -> Optional[str]
     """Return a signature for a CodeBlock or None if no signature could be determined.
 
     The ``signature`` field included included in the CodeBlock is the function
@@ -171,7 +170,7 @@ class CsFile(object):
     # include any CodeBlock without a name or a range. It's not considered an
     # error since we expect this to be the case for some code blocks that don't
     # map to a signature.
-    if not hasattr(codeblock, 'name') or not hasattr(codeblock, 'text_range'):
+    if not codeblock.name:
       return None
 
     assert isinstance(codeblock.text_range, TextRange)
@@ -189,8 +188,7 @@ class CsFile(object):
 
   def GetFileSpec(self):
     # type: () -> FileSpec
-    if hasattr(self.file_info, 'gob_info') and hasattr(self.file_info.gob_info,
-                                                       'commit'):
+    if self.file_info.gob_info.commit:
       return FileSpec(
           name=self.file_info.name,
           package_name=self.file_info.package_name,
@@ -201,15 +199,18 @@ class CsFile(object):
 
   def GetAnnotations(self):
     # type: () -> List[Annotation]
-    if self.annotations == None:
-      md5 = self.file_info.md5 if hasattr(self.file_info, 'md5') else ''
-      response = self.cs.GetAnnotationsForFile(self.GetFileSpec(), md5=md5)
-      if not hasattr(response.annotation_response[0], 'annotation'):
+    if self.annotations is None:
+      response = self.cs.GetAnnotationsForFile(
+          self.GetFileSpec(), md5=self.file_info.md5)
+      if response.annotation_response is None or len(
+          response.annotation_response) != 1:
         return []
       self.annotations = response.annotation_response[0].annotation
       assert isinstance(self.annotations, list)
       assert isinstance(self.annotations[0], Annotation)
 
+    if self.annotations is None:
+      return []
     return self.annotations
 
   def GetAnchorText(self, signature):
@@ -300,11 +301,12 @@ class XrefNode(object):
     to return.
     """
 
-    results = self.cs.GetXrefsFor(self.single_match.signature, max_num_results)
-    if not results:
+    s_results = self.cs.GetXrefsFor(self.single_match.signature,
+                                    max_num_results)
+    if not s_results:
       return []
 
-    results = XrefNode.FromSearchResults(self.cs, results, self)
+    results = XrefNode.FromSearchResults(self.cs, s_results, self)
     if xref_kinds is None:
       return results
 
@@ -330,26 +332,25 @@ class XrefNode(object):
     return list(filter(lambda n: n.single_match.type_id in xrset, results)) + cg
 
   def _GetCallGraphNode(self, max_num_results=500):
-    # type: (int) -> XrefNode
+    # type: (int) -> Node
     """Returns a single Node containing one level of the incoming call graph."""
 
     cg_response = self.cs.GetCallGraph(
         signature=self.single_match.signature, max_num_results=max_num_results)
 
-    if not isinstance(cg_response, CompoundResponse) or not hasattr(
-        cg_response, 'call_graph_response'):
+    if not cg_response or not cg_response.call_graph_response:
       raise ServerError("Unexpected response. {}".format(cg_response))
 
     response = cg_response.call_graph_response[0]
 
-    if not hasattr(response, 'node') or not hasattr(response.node, 'children'):
+    if not response.node.children:
       raise NotFoundError("No callers for signature {} ({})".format(
           self.single_match.signature, self.GetDisplayName()))
 
     return response.node
 
   def GetFile(self):
-    # type: () -> FileInfo
+    # type: () -> CsFile
     """Return the file containing this XrefNode as a CsFile."""
     if not self.filespec:
       raise NoFileSpecError('no filespec found for XrefNode')
@@ -446,8 +447,8 @@ class XrefNode(object):
     annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
     target_range = None
     for annotation in annotations:
-      sig = getattr(annotation, 'xref_signature', None)
-      if sig and sig.signature == self.single_match.signature:
+      sig = annotation.xref_signature.signature
+      if sig == self.single_match.signature:
         target_range = annotation.range
         break
 
@@ -482,8 +483,8 @@ class XrefNode(object):
     return self.single_match.signature.split(' ')[0]
 
   def GetSignatures(self):
-    # type: () -> List(str)
-    return self.single_match.GetSignatures()
+    # type: () -> List[str]
+    return self.single_match.signature.split(' ')
 
   def __str__(self):
     s = "{"
@@ -495,7 +496,7 @@ class XrefNode(object):
 
   @staticmethod
   def FromSignature(cs, signature, filename=None):
-    # type: (CodeSearch, str, Optional[str]) -> XrefNode
+    # type: (CodeSearch, str, Union[None, str, FileSpec]) -> XrefNode
     """Construct a XrefNode object for |signature|.
 
     Other than the |signature| the constructured node will have no other
@@ -528,7 +529,7 @@ class XrefNode(object):
     line_number = node.call_site_range.start_line
 
     # Snippets for Node results only contain one line of text.
-    if hasattr(node, 'snippet'):
+    if node.snippet.text.text:
       line_text = node.snippet.text.text
       line_number = node.snippet.first_line_number
 
@@ -558,7 +559,7 @@ class XrefNode(object):
 
   @staticmethod
   def FromSearchResults(cs, results, parent=None):
-    # type: (CodeSearch, List[XrefSingleMatch], Optinoal[XrefNode]) -> XrefNode
+    # type: (CodeSearch, List[XrefSearchResult], Optional[XrefNode]) -> List[XrefNode]
     """Construct a *list* of XrefNode objects from a list of XrefSearchResult
     objects.
     """
@@ -660,7 +661,7 @@ class CodeSearch(object):
     """
 
     # An instance of FileCache or None if no caching is to be performed.
-    self.file_cache = None  # type: FileCache
+    self.file_cache = None  # type: Optional[FileCache]
 
     # A cache mapping path -> CsFile objects.
     self.file_info_cache = {}  # type: Dict[str, CsFile]
@@ -801,13 +802,14 @@ class CodeSearch(object):
 
   def GetAnnotationsForFile(
       self,
-      filename,
+      filename,  # type: Union[str, FileSpec]
       annotation_types=[
           AnnotationType(id=AnnotationTypeValue.XREF_SIGNATURE),
           AnnotationType(id=AnnotationTypeValue.LINK_TO_DEFINITION)
-      ],
-      md5=""):
-    # type: (str, List[AnnotationType], Optional[str]) -> CompoundResponse
+      ],  # type: List[AnnotationType]
+      md5=""  # type: str
+  ):
+    # type: (...) -> CompoundResponse
     """Retrieves a list of annotations for a file.
 
     Note that it is much more efficient in your scripts to use
@@ -831,22 +833,13 @@ class CodeSearch(object):
     All locations are 1-based."""
 
     annotations = self.GetFileInfo(filename).GetAnnotations()
-    enclosing_annotation_found = False
     for annotation in annotations:
       if not annotation.range.Contains(line, column):
         continue
 
-      enclosing_annotation_found = True
-
-      if hasattr(annotation, 'xref_signature'):
-        return annotation.xref_signature.signature
-
-      if hasattr(annotation, 'internal_link'):
-        return annotation.internal_link.signature
-
-    if not enclosing_annotation_found:
-      raise NotFoundError(
-          "no annotations found at (%d:%d) for %s" % (line, column, filename))
+      sig = annotation.GetSignature()
+      if sig is not None:
+        return sig
 
     raise NotFoundError(
         "can't determine signature for %s at %d:%d" % (filename, line, column))
@@ -865,7 +858,7 @@ class CodeSearch(object):
     # type: (FileInfo) -> None
     assert isinstance(file_info, FileInfo)
 
-    if not hasattr(file_info, 'gob_info'):
+    if not file_info.gob_info.commit:
       raise ServerError(
           'FileInfo response doesn\'t specify Git-on-Borg revision')
 
@@ -885,7 +878,7 @@ class CodeSearch(object):
       fetch_folding=False,  # type: bool
       fetch_generated_from=False  # type: bool
   ):
-    # type: (...) -> FileInfo
+    # type: (...) -> CsFile
     """Return a CsFile object corresponding to the file named by |filename|.
 
     If |filename| is a FileSpec object, then that FileSpec object is used as-is
@@ -912,21 +905,21 @@ class CodeSearch(object):
                 fetch_generated_from=fetch_generated_from)
         ]))
 
-    if hasattr(result.file_info_response[0], 'error_message'):
+    if not result.file_info_response:
+      raise ServerError(
+          'unexpected message format while fetching file info for %s' %
+          (filename))
+
+    if result.file_info_response[0].error_message:
       raise ServerError(
           'server reported error while fetching FileInfo: {}'.format(
               result.file_info_response[0].error_message))
 
-    if hasattr(result.file_info_response[0], 'file_info'):
-      file_info = CsFile(self, file_info=result.file_info_response[0].file_info)
-      if cacheable:
-        self.file_info_cache[file_spec.name] = file_info
-      self._RefreshGobRevisionFromFileInfo(file_info.file_info)
-      return file_info
-
-    raise ServerError(
-        'unexpected message format while fetching file info for %s' %
-        (filename))
+    file_info = CsFile(self, file_info=result.file_info_response[0].file_info)
+    if cacheable:
+      self.file_info_cache[file_spec.name] = file_info
+    self._RefreshGobRevisionFromFileInfo(file_info.file_info)
+    return file_info
 
   def GetSignatureForSymbol(self, filename, symbol):
     # type: (str, str) -> str
@@ -946,13 +939,15 @@ class CodeSearch(object):
       if symbol not in fileinfo.Text(annotation.range):
         continue
 
-      return annotation.GetSignature()
+      sig = annotation.GetSignature()
+      if sig:
+        return sig
 
     raise NotFoundError(
         "Can't determine signature for %s in %s" % (symbol, filename))
 
   def GetSignaturesForSymbol(self, filename, symbol, node_kind=None):
-    # type: (str, str, Optional[int]) -> str
+    # type: (str, str, Optional[int]) -> List[str]
     """Get all matching signatures given a symbol.
 
     Returns all the signatures matching the given symbol in |filename|. If
@@ -968,7 +963,7 @@ class CodeSearch(object):
 
     assert node_kind is None or KytheNodeKind.ToSymbol(node_kind) != node_kind
 
-    signatures = set()
+    signatures = set()  # type: Set[str]
     fileinfo = self.GetFileInfo(filename)
     matcher = SymbolSuffixMatcher(symbol)
     types_haystack = frozenset([
@@ -994,7 +989,7 @@ class CodeSearch(object):
   def SearchForSymbol(
       self,
       symbol,  # type: str
-      xref_kind=None,  # type: Optional[int]
+      xref_kind=NodeEnumKind.UNRESOLVED_TYPE,  # type: int
       max_results_to_analyze=5,  # type: int
       return_all_results=False  # type: bool
   ):
@@ -1027,7 +1022,7 @@ class CodeSearch(object):
     search_prefix = XREF_KIND_TO_SEARCH_PREFIX.get(xref_kind, "symbol:")
     search_query = "{}{}".format(search_prefix, symbol)
 
-    search_response = self.SendRequestToServer(
+    search_responses = self.SendRequestToServer(
         CompoundRequest(search_request=[
             SearchRequest(
                 query=search_query,
@@ -1039,26 +1034,17 @@ class CodeSearch(object):
                 return_directories=False,
                 return_line_matches=True,
                 return_snippets=True)
-        ])).search_response[0]
-
-    if not hasattr(search_response, 'search_result'):
+        ]))
+    if not search_responses.search_response:
       return []
+    search_response = search_responses.search_response[0]
 
-    signatures = set()
+    signatures = set()  # type: Set[str]
     result = None
-    for r in search_response.search_result:
-      result = r
+    for result in search_response.search_result:
       assert isinstance(result, SearchResult)
 
-      if not hasattr(result, 'top_file'):
-        continue
-
-      if not hasattr(result, 'snippet'):
-        continue
-
       for snippet in result.snippet:
-        if not hasattr(snippet, 'text') or not hasattr(snippet.text, 'range'):
-          continue
         for r in snippet.text.range:
           try:
             s = self.GetSignatureForLocation(
@@ -1092,7 +1078,7 @@ class CodeSearch(object):
     return [XrefNode.FromSignature(self, signature=s) for s in signatures]
 
   def GetXrefsFor(self, signature, max_num_results=500):
-    # type: (str, int) -> XrefSearchResult
+    # type: (str, int) -> List[XrefSearchResult]
     refs = self.SendRequestToServer(
         CompoundRequest(xref_search_request=[
             XrefSearchRequest(
@@ -1100,8 +1086,9 @@ class CodeSearch(object):
                 query=signature,
                 max_num_results=max_num_results)
         ]))
-    if not refs or not hasattr(refs.xref_search_response[0], 'search_result'):
+    if not refs or not refs.xref_search_response:
       return []
+
     return refs.xref_search_response[0].search_result
 
   def GetOverridingDefinitions(self, signature):
@@ -1114,10 +1101,12 @@ class CodeSearch(object):
 
     refs = self.GetXrefsFor(signature)
     for result in refs:
-      result.match = filter(
-          lambda match: getattr(match, 'type_id', -1) == KytheXrefKind.OVERRIDDEN_BY,
-          result.match)
-    return filter(lambda result: len(result.match) > 0, refs)
+      result.match = list(
+          filter(lambda match: match.type_id == KytheXrefKind.OVERRIDDEN_BY,
+                 result.match))
+
+    return XrefNode.FromSearchResults(
+        self, list(filter(lambda result: len(result.match) > 0, refs)))
 
   def GetCallTargets(self, signature):
     # type: (str) -> List[XrefNode]

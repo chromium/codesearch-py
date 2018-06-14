@@ -124,7 +124,7 @@ class TestCodeSearch(unittest.TestCase):
         cs.GetSignatureForSymbol(
             '/src/chrome/src/chrome/browser/chrome_content_browser_client.cc',
             'IsURLWhitelisted'),
-        'kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/chrome_content_browser_client.cc#AK%2BHFzE3%2B2djaJmaCbz4STa1Cjoh%2FRymZEl1lqkbGZw%3D'
+        'kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/chrome_content_browser_client.cc#Fwd4bLZKrcXZ1sb8TmkFDxFtI76Z3V%2BWSTgS%2Bov3Ag8%3D'
     )
 
   def test_search_for_symbol(self):

@@ -10,6 +10,12 @@ import os
 
 from .compat import IsString, ToStringSafe
 
+# For type checking. Not needed at runtime.
+try:
+  from typing import Any, Optional, List, Dict, Union, Type, Tuple
+except ImportError:
+  pass
+
 
 class CodeSearchProtoJsonEncoder(json.JSONEncoder):
 
@@ -83,7 +89,8 @@ class Message(object):
     pass
 
   def AsQueryString(self):
-    values = []
+    # type: () -> List[Tuple[str,str]]
+    values = []  # type: List[Tuple[str,str]]
     for k, v in sorted(self.__dict__.items()):
       values.extend(Message.ToQueryString(k, v))
     return values
@@ -93,6 +100,7 @@ class Message(object):
 
   @staticmethod
   def ToQueryString(k, o):
+    # type: (str, Any) -> List[Tuple[str,str]]
     if o is None:
       return []
     if isinstance(o, Message):
@@ -104,6 +112,8 @@ class Message(object):
       for v in o:
         values.extend(Message.ToQueryString(k, v))
       return values
+    if isinstance(o, str) and not o:
+      return []
     return [(k, str(o))]
 
   @staticmethod
@@ -130,13 +140,13 @@ class Message(object):
         assert isinstance(
             source, dict), 'Source is not a dictionary: %s; Mapping to %s' % (
                 source, target_type)
-        dest = target_type()
+        dest = {}
         for k, v in source.items():
           if k in typespec:
-            dest.__dict__[k] = Message.Coerce(v, typespec[k], target_type)
+            dest[k] = Message.Coerce(v, typespec[k], target_type)
           else:
-            dest.__dict__[k] = v
-        return dest
+            dest[k] = v
+        return target_type(**dest)
       if typespec is None:
         assert isinstance(source, dict)
         m = Message()
@@ -219,18 +229,7 @@ Content follows this line: ----
 
     return cls.FromShallowDict(d)
 
-  DESCRIPTOR = None
-
-
-def message(cls):
-
-  def Constructor(self, **kwargs):
-    if len(kwargs) == 0:
-      return
-    self.__dict__ = cls.Make(**kwargs).__dict__
-
-  setattr(cls, '__init__', Constructor)
-  return cls
+  DESCRIPTOR = None  # type: Union[None, Type[int], Dict[str, Any]]
 
 
 class AnnotationTypeValue(Message):
@@ -253,14 +252,16 @@ class AnnotationTypeValue(Message):
   DESCRIPTOR = int
 
 
-@message
 class AnnotationType(Message):
   DESCRIPTOR = {
       'id': AnnotationTypeValue,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.id = d.get('id', AnnotationTypeValue.UNKNOWN)  # type: int
 
-@message
+
 class TextRange(Message):
   """A range inside a source file. All indices are 1-based and inclusive."""
   DESCRIPTOR = {
@@ -269,6 +270,13 @@ class TextRange(Message):
       'end_line': int,
       'end_column': int,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.start_line = d.get('start_line', 0)
+    self.end_line = d.get('end_line', 0)
+    self.start_column = d.get('start_column', 0)
+    self.end_column = d.get('end_column', 0)
 
   def Contains(self, line, column):
     return not (line < self.start_line or line > self.end_line or
@@ -303,10 +311,7 @@ class TextRange(Message):
     return True
 
   def IsValid(self):
-    return hasattr(self, 'start_line') and \
-            hasattr(self, 'start_column') and \
-            hasattr(self, 'end_line') and \
-            hasattr(self, 'end_column')
+    return self.start_line != 0 or self.start_column != 0 or self.end_line != 0 or self.end_column != 0
 
   def __eq__(self, other):
     if not isinstance(other, TextRange):
@@ -334,20 +339,31 @@ class InternalLink(Message):
       'range': TextRange,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.package_name = d.get('package_name', str())  # type: str
+    self.highlight_signature = d.get('highlight_signature', str())  # type: str
+    self.signature = d.get('signature', str())  # type: str
+    self.signature_hash = d.get('signature_hash', str())  # type: str
+    self.path = d.get('path', str())  # type: str
+    self.range = d.get('range', TextRange())  # type: TextRange
+
   def MatchesSignature(self, signature):
     return signature in getattr(self, 'highlight_signature',
                                 '').split(' ') or (signature in getattr(
                                     self, 'signature', '').split(' '))
 
   def GetSignatures(self):
+    # type: () -> List[str]
     sigs = []
-    if hasattr(self, 'signature'):
+    if self.signature:
       sigs.extend(self.signature.split(' '))
-    if hasattr(self, 'highlight_signature'):
+    if self.highlight_signature:
       sigs.extend(self.highlight_signature.split(' '))
     return sigs
 
   def GetSignature(self):
+    # type: () -> str
     sigs = self.GetSignatures()
     if len(sigs) == 0:
       return ""
@@ -361,20 +377,28 @@ class XrefSignature(Message):
       'signature_hash': str,  # Always '' for Kythe.
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.highlight_signature = d.get('highlight_signature', str())  # type: str
+    self.signature = d.get('signature', str())  # type: str
+    self.signature_hash = d.get('signature_hash', str())  # type: str
+
   def MatchesSignature(self, signature):
     return signature in getattr(self, 'highlight_signature',
                                 '').split(' ') or (signature in getattr(
                                     self, 'signature', '').split(' '))
 
   def GetSignatures(self):
+    # type: () -> List[str]
     sigs = []
-    if hasattr(self, 'signature'):
+    if self.signature:
       sigs.extend(self.signature.split(' '))
-    if hasattr(self, 'highlight_signature'):
+    if self.highlight_signature:
       sigs.extend(self.highlight_signature.split(' '))
     return sigs
 
   def GetSignature(self):
+    # type: () -> str
     sigs = self.GetSignatures()
     if len(sigs) == 0:
       return ""
@@ -552,8 +576,24 @@ class Annotation(Message):
       'xref_signature': XrefSignature,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.content = d.get('content', "")  # type: str
+    self.file_name = d.get('file_name', "")  # type: str
+    self.internal_link = d.get('internal_link',
+                               InternalLink())  # type: InternalLink
+    self.is_implicit_target = d.get('is_implicit_target', False)  # type: bool
+    self.kythe_xref_kind = d.get('kythe_xref_kind',
+                                 KytheNodeKind.UNRESOLVED_TYPE)  # type: int
+    self.range = d.get('range', TextRange())  # type: TextRange
+    self.status = d.get('status', 0)  # type: int
+    self.type = d.get('type', AnnotationType())  # type: AnnotationType
+    self.url = d.get('url', "")  # type: str
+    self.xref_signature = d.get('xref_signature',
+                                XrefSignature())  # type: XrefSignature
+
   def MatchesSignature(self, signature):
-    # type: () -> bool
+    # type: (str) -> bool
     if self.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
       return self.internal_link.MatchesSignature(signature)
     if self.type.id == AnnotationTypeValue.XREF_SIGNATURE:
@@ -573,21 +613,26 @@ class Annotation(Message):
     return None
 
   def GetSignatures(self):
-    # type: () -> Optional[List[str]]
+    # type: () -> List[str]
     if self.type.id == AnnotationTypeValue.LINK_TO_DEFINITION:
       return self.internal_link.GetSignatures()
     if self.type.id == AnnotationTypeValue.XREF_SIGNATURE:
       return self.xref_signature.GetSignatures()
-    return None
+    return []
 
 
-@message
 class FileSpec(Message):
   DESCRIPTOR = {
       'name': str,
       'package_name': str,
       'changelist': str,  # Last known Git commit.
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.name = d.get('name', '')  # type: str
+    self.package_name = d.get('package_name', '')  # type: str
+    self.changelist = d.get('changelist', '')  # type: str
 
 
 class FormatType(Message):
@@ -627,7 +672,17 @@ class FormatType(Message):
 
 
 class FormatRange(Message):
-  DESCRIPTOR = {'type': FormatType, 'range': TextRange, 'target': str}
+  DESCRIPTOR = {
+      'type': FormatType,
+      'range': TextRange,
+      'target': str,
+  }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.type = d.get('type', FormatType())  # type: FormatType
+    self.range = d.get('range', TextRange())  # type: TextRange
+    self.target = d.get('target', str())  # type: str
 
 
 class FileType(Message):
@@ -644,6 +699,11 @@ class FileType(Message):
 
 class AnnotatedText(Message):
   DESCRIPTOR = {'text': str, 'range': [FormatRange]}
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.text = d.get('text', str())  # type: str
+    self.range = d.get('range', [])  # type: [FormatRange]
 
 
 class CodeBlockType(Message):
@@ -753,6 +813,9 @@ class Modifiers(Message):
       'whitelisted': bool,
   }
 
+  def __init__(self, **kwargs):
+    self.__dict__ = kwargs
+
 
 class CodeBlock(Message):
   DESCRIPTOR = {
@@ -769,6 +832,16 @@ class CodeBlock(Message):
       'type': CodeBlockType,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.child = d.get('child', [])  # type: [CodeBlock]
+    self.modifiers = d.get('modifiers', Modifiers())  # type: Modifiers
+    self.name = d.get('name', str())  # type: str
+    self.name_prefix = d.get('name_prefix', str())  # type: str
+    self.signature = d.get('signature', str())  # type: str
+    self.text_range = d.get('text_range', TextRange())  # type: TextRange
+    self.type = d.get('type', 0)  # type: int
+
   def Find(self, name="", type=CodeBlockType.ROOT):
     """Find the self or child CodeBlock that matches the name and type.
 
@@ -777,8 +850,6 @@ class CodeBlock(Message):
 
     if (self.name == name or name == "*") and self.type == type:
       return self
-    if not hasattr(self, 'child'):
-      return None
     for c in self.child:
       n = c.Find(name, type)
       if n is not None:
@@ -792,6 +863,12 @@ class GobInfo(Message):
       'path': str,  # Path relative to repository
       'repo': str,  # Repository path. Chromium's is "chromium/chromium/src"
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.commit = d.get('commit', str())  # type: str
+    self.path = d.get('path', str())  # type: str
+    self.repo = d.get('repo', str())  # type: str
 
 
 class FileInfo(Message):
@@ -820,6 +897,31 @@ class FileInfo(Message):
       'type': FileType,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.actual_name = d.get('actual_name', str())  # type: str
+    self.changelist_num = d.get('changelist_num', str())  # type: str
+    self.codeblock = d.get('codeblock', [])  # type: List[CodeBlock]
+    self.content = d.get('content', AnnotatedText())  # type: AnnotatedText
+    self.converted_content = d.get('converted_content',
+                                   AnnotatedText())  # type: AnnotatedText
+    self.converted_lines = d.get('converted_lines', int())  # type: int
+    self.fold_ranges = d.get('fold_ranges', [])  # type: List[TextRange]
+    self.generated = d.get('generated', bool())  # type: bool
+    self.generated_from = d.get('generated_from', [])  # type: List[str]
+    self.gob_info = d.get('gob_info', GobInfo())  # type: GobInfo
+    self.html_text = d.get('html_text', str())  # type: str
+    self.language = d.get('language', str())  # type: str
+    self.license_path = d.get('license_path', str())  # type: str
+    self.license_type = d.get('license_type', str())  # type: str
+    self.lines = d.get('lines', int())  # type: int
+    self.md5 = d.get('md5', str())  # type: str
+    self.mime_type = d.get('mime_type', str())  # type: str
+    self.name = d.get('name', str())  # type: str
+    self.package_name = d.get('package_name', str())  # type: str
+    self.size = d.get('size', int())  # type: int
+    self.type = d.get('type', FileType())  # type: FileType
+
 
 class FileInfoResponse(Message):
   DESCRIPTOR = {
@@ -829,16 +931,31 @@ class FileInfoResponse(Message):
       'return_code': int,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.announcement = d.get('announcement', str())  # type: str
+    self.error_message = d.get('error_message', str())  # type: str
+    self.file_info = d.get('file_info', FileInfo())  # type: FileInfo
+    self.return_code = d.get('return_code', int())  # type: int
 
-@message
+
 class FileInfoRequest(Message):
   DESCRIPTOR = {
-      'file_spec': FileSpec,
+      'file_spec': FileSpec.__class__,
       'fetch_html_content': bool,
       'fetch_outline': bool,
       'fetch_folding': bool,
       'fetch_generated_from': bool,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.file_spec = d.get('file_spec', FileSpec())  # type: FileSpec
+    self.fetch_html_content = d.get('fetch_html_content', bool())  # type: bool
+    self.fetch_outline = d.get('fetch_outline', bool())  # type: bool
+    self.fetch_folding = d.get('fetch_folding', bool())  # type: bool
+    self.fetch_generated_from = d.get('fetch_generated_from',
+                                      bool())  # type: bool
 
 
 class AnnotationResponse(Message):
@@ -849,14 +966,35 @@ class AnnotationResponse(Message):
       'return_code': int,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.annotation = d.get('annotation', [])  # type: List[Annotation]
+    self.file = d.get('file', str())  # type: str
+    self.max_findings_reached = d.get('max_findings_reached',
+                                      bool())  # type: bool
+    self.return_code = d.get('return_code', int())  # type: int
 
-@message
+
 class AnnotationRequest(Message):
   DESCRIPTOR = {
       'file_spec': FileSpec,
       'type': [AnnotationType],
       'md5': str,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.file_spec = d.get('file_spec', FileSpec())  # type: FileSpec
+    self.type = d.get('type', [])  # type: List[AnnotationType]
+    self.md5 = d.get('md5', str())  # type: str
+
+  def AsQueryString(self):
+    # type: () -> List[Tuple[str,str]]
+    qs = Message.AsQueryString(self)
+    if not self.md5:
+      idx = qs.index(('file_spec', 'e'))
+      qs.insert(idx + 1, ('md5', ''))
+    return qs
 
 
 class MatchReason(Message):
@@ -868,6 +1006,14 @@ class MatchReason(Message):
       'scoped_symbol': bool,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.blame = d.get('blame', bool())  # type: bool
+    self.content = d.get('content', bool())  # type: bool
+    self.filename = d.get('filename', bool())  # type: bool
+    self.filename_lineno = d.get('filename_lineno', bool())  # type: bool
+    self.scoped_symbol = d.get('scoped_symbol', bool())  # type: bool
+
 
 class Snippet(Message):
   DESCRIPTOR = {
@@ -876,6 +1022,14 @@ class Snippet(Message):
       'scope': str,
       'text': AnnotatedText,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.first_line_number = d.get('first_line_number', int())  # type: int
+    self.match_reason = d.get('match_reason',
+                              MatchReason())  # type: MatchReason
+    self.scope = d.get('scope', str())  # type: str
+    self.text = d.get('text', AnnotatedText())  # type: AnnotatedText
 
 
 class Node(Message):
@@ -912,6 +1066,27 @@ class Node(Message):
       'snippet_package_name': str,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.call_scope_range = d.get('call_scope_range',
+                                  TextRange())  # type: TextRange
+    self.call_site_range = d.get('call_site_range',
+                                 TextRange())  # type: TextRange
+    self.children = d.get('children', [])  # type: [Node]
+    self.display_name = d.get('display_name', str())  # type: str
+    self.edge_kind = d.get('edge_kind', str())  # type: str
+    self.file_path = d.get('file_path', str())  # type: str
+    self.identifier = d.get('identifier', str())  # type: str
+    self.node_kind = d.get('node_kind', int)  # type: int
+    self.override = d.get('override', bool())  # type: bool
+    self.package_name = d.get('package_name', str())  # type: str
+    self.params = d.get('params', [str])  # type: [str]
+    self.signature = d.get('signature', str())  # type: str
+    self.snippet = d.get('snippet', Snippet())  # type: Snippet
+    self.snippet_file_path = d.get('snippet_file_path', str())  # type: str
+    self.snippet_package_name = d.get('snippet_package_name',
+                                      str())  # type: str
+
 
 class CallGraphResponse(Message):
   DESCRIPTOR = {
@@ -925,14 +1100,32 @@ class CallGraphResponse(Message):
       'return_code': int,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.debug_message = d.get('debug_message', str())  # type: str
+    self.estimated_total_number_results = d.get(
+        'estimated_total_number_results', int())  # type: int
+    self.is_call_graph = d.get('is_call_graph', bool())  # type: bool
+    self.is_from_kythe = d.get('is_from_kythe', bool())  # type: bool
+    self.kythe_next_page_token = d.get('kythe_next_page_token',
+                                       str())  # type: str
+    self.node = d.get('node', Node())  # type: Node
+    self.results_offset = d.get('results_offset', int())  # type: int
+    self.return_code = d.get('return_code', int())  # type: int
 
-@message
+
 class CallGraphRequest(Message):
   DESCRIPTOR = {
       'file_spec': FileSpec,
       'max_num_results': int,
       'signature': str,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.file_spec = d.get('file_spec', FileSpec())  # type: FileSpec
+    self.max_num_results = d.get('max_num_results', int())  # type: int
+    self.signature = d.get('signature', str())  # type: str
 
 
 class EdgeEnumKind(Message):
@@ -1085,8 +1278,13 @@ class XrefTypeCount(Message):
       'type_id': KytheXrefKind,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.count = d.get('count', int())  # type: int
+    self.type = d.get('type', str())  # type: str
+    self.type_id = d.get('type_id', KytheXrefKind())  # type: KytheXrefKind
 
-@message
+
 class XrefSingleMatch(Message):
   DESCRIPTOR = {
       'line_number': int,
@@ -1098,12 +1296,25 @@ class XrefSingleMatch(Message):
       'signature': str,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.line_number = d.get('line_number', int())  # type: int
+    self.line_text = d.get('line_text', str())  # type: str
+    self.type = d.get('type', str())  # type: str
+    self.type_id = d.get('type_id', KytheXrefKind())  # type: KytheXrefKind
+    self.signature = d.get('signature', str())  # type: str
+
 
 class XrefSearchResult(Message):
   DESCRIPTOR = {
       'file': FileSpec,
       'match': [XrefSingleMatch],
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.file = d.get('file', FileSpec())  # type: FileSpec
+    self.match = d.get('match', [])  # type: List[XrefSingleMatch]
 
 
 class XrefSearchResponse(Message):
@@ -1118,8 +1329,23 @@ class XrefSearchResponse(Message):
       'status_message': str,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.eliminated_type_count = d.get('eliminated_type_count',
+                                       [])  # type: List[XrefTypeCount]
+    self.estimated_total_type_count = d.get('estimated_total_type_count',
+                                            [])  # type: List[XrefTypeCount]
+    self.from_kythe = d.get('from_kythe', bool())  # type: bool
+    self.kythe_next_page_token = d.get('kythe_next_page_token',
+                                       str())  # type: str
+    self.grok_total_number_of_results = d.get('grok_total_number_of_results',
+                                              int())  # type: int
+    self.search_result = d.get('search_result',
+                               [])  # type: List[XrefSearchResult]
+    self.status = d.get('status', int())  # type: int
+    self.status_message = d.get('status_message', str())  # type: str
 
-@message
+
 class XrefSearchRequest(Message):
   DESCRIPTOR = {
       'edge_filter': [EdgeEnumKind],  # DEPRECATED
@@ -1128,12 +1354,23 @@ class XrefSearchRequest(Message):
       'query': str,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.file_spec = d.get('file_spec', FileSpec())  # type: FileSpec
+    self.max_num_results = d.get('max_num_results', int())  # type: int
+    self.query = d.get('query', str())  # type: str
+
 
 class VanityGitOnBorgHostname(Message):
   DESCRIPTOR = {
       'name': str,
       'hostname': str,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.name = d.get('name', str())  # type: str
+    self.hostname = d.get('hostname', str())  # type: str
 
 
 class InternalPackage(Message):
@@ -1150,6 +1387,21 @@ class InternalPackage(Message):
       'vanity_git_on_borg_hostnames': [VanityGitOnBorgHostname],
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.browse_path_prefix = d.get('browse_path_prefix', str())  # type: str
+    self.cs_changelist_num = d.get('cs_changelist_num', str())  # type: str
+    self.grok_languages = d.get('grok_languages', [])  # type: List[str]
+    self.grok_name = d.get('grok_name', str())  # type: str
+    self.grok_path_prefix = d.get('grok_path_prefix', [])  # type: List[str]
+    self.id = d.get('id', str())  # type: str
+    self.kythe_languages = d.get('kythe_languages', [])  # type: List[str]
+    self.name = d.get('name', str())  # type: str
+    self.repo = d.get('repo', str())  # type: str
+    self.vanity_git_on_borg_hostnames = d.get(
+        'vanity_git_on_borg_hostnames',
+        [])  # type: List[VanityGitOnBorgHostname]
+
 
 class StatusResponse(Message):
   DESCRIPTOR = {
@@ -1158,6 +1410,14 @@ class StatusResponse(Message):
       'internal_package': [InternalPackage],
       'success': bool,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.announcement = d.get('announcement', str())  # type: str
+    self.build_label = d.get('build_label', str())  # type: str
+    self.internal_package = d.get('internal_package',
+                                  [])  # type: List[InternalPackage]
+    self.success = d.get('success', bool())  # type: bool
 
 
 class DirInfoResponseChild(Message):
@@ -1170,6 +1430,15 @@ class DirInfoResponseChild(Message):
       'revision_num': str,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.is_deleted = d.get('is_deleted', bool())  # type: bool
+    self.is_directory = d.get('is_directory', bool())  # type: bool
+    self.name = d.get('name', str())  # type: str
+    self.package_id = d.get('package_id', str())  # type: str
+    self.path = d.get('path', str())  # type: str
+    self.revision_num = d.get('revision_num', str())  # type: str
+
 
 class DirInfoResponseParent(Message):
   DESCRIPTOR = {
@@ -1177,6 +1446,12 @@ class DirInfoResponseParent(Message):
       'path': str,
       'package_id': str,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.name = d.get('name', str())  # type: str
+    self.path = d.get('path', str())  # type: str
+    self.package_id = d.get('package_id', str())  # type: str
 
 
 class DirInfoResponse(Message):
@@ -1191,12 +1466,26 @@ class DirInfoResponse(Message):
       'success': bool,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.child = d.get('child', [])  # type: List[DirInfoResponseChild]
+    self.generated = d.get('generated', bool())  # type: bool
+    self.gob_info = d.get('gob_info', GobInfo())  # type: GobInfo
+    self.name = d.get('name', str())  # type: str
+    self.package_id = d.get('package_id', str())  # type: str
+    self.parent = d.get('parent', [])  # type: List[DirInfoResponseParent]
+    self.path = d.get('path', str())  # type: str
+    self.success = d.get('success', bool())  # type: bool
 
-@message
+
 class DirInfoRequest(Message):
   DESCRIPTOR = {
       'file_spec': FileSpec,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.file_spec = d.get('file_spec', FileSpec())  # type: FileSpec
 
 
 class FileResult(Message):
@@ -1207,6 +1496,15 @@ class FileResult(Message):
       'license_type': str,
       'size': int,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.display_name = d.get('display_name',
+                              AnnotatedText())  # type: AnnotatedText
+    self.file = d.get('file', FileSpec())  # type: FileSpec
+    self.license = d.get('license', FileSpec())  # type: FileSpec
+    self.license_type = d.get('license_type', str())  # type: str
+    self.size = d.get('size', int())  # type: int
 
 
 class SingleMatch(Message):
@@ -1221,6 +1519,20 @@ class SingleMatch(Message):
       'pre_context_text': str,
       'score': int,
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.line_number = d.get('line_number', int())  # type: int
+    self.line_text = d.get('line_text', str())  # type: str
+    self.match_length = d.get('match_length', int())  # type: int
+    self.match_offset = d.get('match_offset', int())  # type: int
+    self.post_context_num_lines = d.get('post_context_num_lines',
+                                        int())  # type: int
+    self.post_context_text = d.get('post_context_text', str())  # type: str
+    self.pre_context_num_lines = d.get('pre_context_num_lines',
+                                       int())  # type: int
+    self.pre_context_text = d.get('pre_context_text', str())  # type: str
+    self.score = d.get('score', int())  # type: int
 
 
 class SearchResult(Message):
@@ -1241,6 +1553,26 @@ class SearchResult(Message):
       'top_file': FileResult,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.best_matching_line_number = d.get('best_matching_line_number',
+                                           int())  # type: int
+    self.children = d.get('children', [])  # type: List[str]
+    self.docid = d.get('docid', str())  # type: str
+    self.duplicate = d.get('duplicate', [])  # type: List[FileResult]
+    self.has_unshown_matches = d.get('has_unshown_matches',
+                                     bool())  # type: bool
+    self.hit_max_matches = d.get('hit_max_matches', bool())  # type: bool
+    self.is_augmented = d.get('is_augmented', bool())  # type: bool
+    self.language = d.get('language', str())  # type: str
+    self.match = d.get('match', [])  # type: List[SingleMatch]
+    self.match_reason = d.get('match_reason',
+                              MatchReason())  # type: MatchReason
+    self.num_duplicates = d.get('num_duplicates', int())  # type: int
+    self.num_matches = d.get('num_matches', int())  # type: int
+    self.snippet = d.get('snippet', [])  # type: List[Snippet]
+    self.top_file = d.get('top_file', FileResult())  # type: FileResult
+
 
 class SearchResponse(Message):
   DESCRIPTOR = {
@@ -1255,8 +1587,22 @@ class SearchResponse(Message):
       'status_message': str,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.estimated_total_number_of_results = d.get(
+        'estimated_total_number_of_results', int())  # type: int
+    self.hit_max_matches_per_file = d.get('hit_max_matches_per_file',
+                                          bool())  # type: bool
+    self.hit_max_results = d.get('hit_max_results', bool())  # type: bool
+    self.hit_max_to_score = d.get('hit_max_to_score', bool())  # type: bool
+    self.maybe_skipped_documents = d.get('maybe_skipped_documents',
+                                         bool())  # type: bool
+    self.results_offset = d.get('results_offset', int())  # type: int
+    self.search_result = d.get('search_result', [])  # type: List[SearchResult]
+    self.status = d.get('status', int())  # type: int
+    self.status_message = d.get('status_message', str())  # type: str
 
-@message
+
 class SearchRequest(Message):
   DESCRIPTOR = {
       'exhaustive': bool,
@@ -1271,9 +1617,26 @@ class SearchRequest(Message):
       'return_snippets': bool,
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.exhaustive = d.get('exhaustive', bool())  # type: bool
+    self.lines_context = d.get('lines_context', int())  # type: int
+    self.max_num_results = d.get('max_num_results', int())  # type: int
+    self.query = d.get('query', str())  # type: str
+    self.return_all_duplicates = d.get('return_all_duplicates',
+                                       bool())  # type: bool
+    self.return_all_snippets = d.get('return_all_snippets',
+                                     bool())  # type: bool
+    self.return_decorated_snippets = d.get('return_decorated_snippets',
+                                           bool())  # type: bool
+    self.return_directories = d.get('return_directories', bool())  # type: bool
+    self.return_line_matches = d.get('return_line_matches',
+                                     bool())  # type: bool
+    self.return_snippets = d.get('return_snippets', bool())  # type: bool
+
 
 class StatusRequest(Message):
-  DESCRIPTOR = {}
+  DESCRIPTOR = {}  # type: Dict[str,Any]
 
 
 class CompoundResponse(Message):
@@ -1287,8 +1650,25 @@ class CompoundResponse(Message):
       'xref_search_response': [XrefSearchResponse],
   }
 
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.annotation_response = d.get(
+        'annotation_response', None)  # type: Optional[List[AnnotationResponse]]
+    self.call_graph_response = d.get(
+        'call_graph_response', None)  # type: Optional[List[CallGraphResponse]]
+    self.dir_info_response = d.get(
+        'dir_info_response', None)  # type: Optional[List[DirInfoResponse]]
+    self.file_info_response = d.get(
+        'file_info_response', None)  # type: Optional[List[FileInfoResponse]]
+    self.search_response = d.get('search_response',
+                                 None)  # type: Optional[List[SearchResponse]]
+    self.status_response = d.get('status_response',
+                                 None)  # type: Optional[List[StatusResponse]]
+    self.xref_search_response = d.get(
+        'xref_search_response',
+        None)  # type: Optional[List[XrefSearchResponse]]
 
-@message
+
 class CompoundRequest(Message):
   DESCRIPTOR = {
       'annotation_request': [AnnotationRequest],
@@ -1299,3 +1679,20 @@ class CompoundRequest(Message):
       'status_request': [StatusRequest],
       'xref_search_request': [XrefSearchRequest],
   }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.annotation_request = d.get(
+        'annotation_request', None)  # type: Optional[List[AnnotationRequest]]
+    self.call_graph_request = d.get(
+        'call_graph_request', None)  # type: Optional[List[CallGraphRequest]]
+    self.dir_info_request = d.get('dir_info_request',
+                                  None)  # type: Optional[List[DirInfoRequest]]
+    self.file_info_request = d.get(
+        'file_info_request', None)  # type: Optional[List[FileInfoRequest]]
+    self.search_request = d.get('search_request',
+                                None)  # type: Optional[List[SearchRequest]]
+    self.status_request = d.get('status_request',
+                                None)  # type: Optional[List[StatusRequest]]
+    self.xref_search_request = d.get(
+        'xref_search_request', None)  # type: Optional[List[XrefSearchRequest]]

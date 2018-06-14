@@ -1,26 +1,26 @@
 {
-  "elapsed_ms": 165, 
+  "elapsed_ms": 1339, 
   "file_info_response": [
     {
       "file_info": {
         "gob_info": {
           "repo": "chromium/chromium/src", 
-          "commit": "9a58a15ae3fca2ac65ae394982bd1734ee04171c", 
+          "commit": "14d133d46eaaeea62d68c1cc215dd529145de72b", 
           "path": "net/http/http_network_transaction.h"
         }, 
         "name": "src/net/http/http_network_transaction.h", 
         "language": "c++", 
-        "changelist_num": "9a58a15ae3fca2ac65ae394982bd1734ee04171c", 
+        "changelist_num": "14d133d46eaaeea62d68c1cc215dd529145de72b", 
         "package_name": "chromium", 
-        "lines": "438", 
+        "lines": "439", 
         "content": {
-          "text": "// Copyright (c) 2012 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_HTTP_HTTP_NETWORK_TRANSACTION_H_\n#define NET_HTTP_HTTP_NETWORK_TRANSACTION_H_\n\n#include <stdint.h>\n\n#include <memory>\n#include <string>\n\n#include \"base/gtest_prod_util.h\"\n#include \"base/macros.h\"\n#include \"base/memory/ref_counted.h\"\n#include \"base/time/time.h\"\n#include \"crypto/ec_private_key.h\"\n#include \"net/base/completion_repeating_callback.h\"\n#include \"net/base/net_error_details.h\"\n#include \"net/base/net_export.h\"\n#include \"net/base/request_priority.h\"\n#include \"net/http/http_auth.h\"\n#include \"net/http/http_request_headers.h\"\n#include \"net/http/http_response_info.h\"\n#include \"net/http/http_stream_factory.h\"\n#include \"net/http/http_stream_request.h\"\n#include \"net/http/http_transaction.h\"\n#include \"net/log/net_log_with_source.h\"\n#include \"net/proxy_resolution/proxy_resolution_service.h\"\n#include \"net/socket/connection_attempts.h\"\n#include \"net/ssl/channel_id_service.h\"\n#include \"net/ssl/ssl_config_service.h\"\n#include \"net/websockets/websocket_handshake_stream_base.h\"\n\nnamespace crypto {\nclass ECPrivateKey;\n}\n\nnamespace net {\n\nclass BidirectionalStreamImpl;\nclass HttpAuthController;\nclass HttpNetworkSession;\nclass HttpStream;\nclass IOBuffer;\nclass ProxyInfo;\nclass SSLPrivateKey;\nstruct HttpRequestInfo;\n\nclass NET_EXPORT_PRIVATE HttpNetworkTransaction\n    : public HttpTransaction,\n      public HttpStreamRequest::Delegate {\n public:\n  HttpNetworkTransaction(RequestPriority priority,\n                         HttpNetworkSession* session);\n\n  ~HttpNetworkTransaction() override;\n\n  // HttpTransaction methods:\n  int Start(const HttpRequestInfo* request_info,\n            const CompletionCallback& callback,\n            const NetLogWithSource& net_log) override;\n  int RestartIgnoringLastError(const CompletionCallback& callback) override;\n  int RestartWithCertificate(scoped_refptr<X509Certificate> client_cert,\n                             scoped_refptr<SSLPrivateKey> client_private_key,\n                             const CompletionCallback& callback) override;\n  int RestartWithAuth(const AuthCredentials& credentials,\n                      const CompletionCallback& callback) override;\n  bool IsReadyToRestartForAuth() override;\n\n  int Read(IOBuffer* buf,\n           int buf_len,\n           const CompletionCallback& callback) override;\n  void StopCaching() override;\n  bool GetFullRequestHeaders(HttpRequestHeaders* headers) const override;\n  int64_t GetTotalReceivedBytes() const override;\n  int64_t GetTotalSentBytes() const override;\n  void DoneReading() override;\n  const HttpResponseInfo* GetResponseInfo() const override;\n  LoadState GetLoadState() const override;\n  void SetQuicServerInfo(QuicServerInfo* quic_server_info) override;\n  bool GetLoadTimingInfo(LoadTimingInfo* load_timing_info) const override;\n  bool GetRemoteEndpoint(IPEndPoint* endpoint) const override;\n  void PopulateNetErrorDetails(NetErrorDetails* details) const override;\n  void SetPriority(RequestPriority priority) override;\n  void SetWebSocketHandshakeStreamCreateHelper(\n      WebSocketHandshakeStreamBase::CreateHelper* create_helper) override;\n  void SetBeforeNetworkStartCallback(\n      const BeforeNetworkStartCallback& callback) override;\n  void SetBeforeHeadersSentCallback(\n      const BeforeHeadersSentCallback& callback) override;\n  void SetRequestHeadersCallback(RequestHeadersCallback callback) override;\n  void SetResponseHeadersCallback(ResponseHeadersCallback callback) override;\n\n  int ResumeNetworkStart() override;\n\n  // HttpStreamRequest::Delegate methods:\n  void OnStreamReady(const SSLConfig& used_ssl_config,\n                     const ProxyInfo& used_proxy_info,\n                     std::unique_ptr<HttpStream> stream) override;\n  void OnBidirectionalStreamImplReady(\n      const SSLConfig& used_ssl_config,\n      const ProxyInfo& used_proxy_info,\n      std::unique_ptr<BidirectionalStreamImpl> stream) override;\n  void OnWebSocketHandshakeStreamReady(\n      const SSLConfig& used_ssl_config,\n      const ProxyInfo& used_proxy_info,\n      std::unique_ptr<WebSocketHandshakeStreamBase> stream) override;\n  void OnStreamFailed(int status,\n                      const NetErrorDetails& net_error_details,\n                      const SSLConfig& used_ssl_config) override;\n  void OnCertificateError(int status,\n                          const SSLConfig& used_ssl_config,\n                          const SSLInfo& ssl_info) override;\n  void OnNeedsProxyAuth(const HttpResponseInfo& response_info,\n                        const SSLConfig& used_ssl_config,\n                        const ProxyInfo& used_proxy_info,\n                        HttpAuthController* auth_controller) override;\n  void OnNeedsClientAuth(const SSLConfig& used_ssl_config,\n                         SSLCertRequestInfo* cert_info) override;\n  void OnHttpsProxyTunnelResponse(const HttpResponseInfo& response_info,\n                                  const SSLConfig& used_ssl_config,\n                                  const ProxyInfo& used_proxy_info,\n                                  std::unique_ptr<HttpStream> stream) override;\n\n  void OnQuicBroken() override;\n  void GetConnectionAttempts(ConnectionAttempts* out) const override;\n\n private:\n  FRIEND_TEST_ALL_PREFIXES(HttpNetworkTransactionTest, ResetStateForRestart);\n  FRIEND_TEST_ALL_PREFIXES(HttpNetworkTransactionTest,\n                           CreateWebSocketHandshakeStream);\n  FRIEND_TEST_ALL_PREFIXES(HttpNetworkTransactionSSLTest, ChannelID);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest, WindowUpdateReceived);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest, WindowUpdateSent);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest, WindowUpdateOverflow);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest, FlowControlStallResume);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest,\n                           FlowControlStallResumeAfterSettings);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest,\n                           FlowControlNegativeSendWindowSize);\n\n  enum State {\n    STATE_NOTIFY_BEFORE_CREATE_STREAM,\n    STATE_CREATE_STREAM,\n    STATE_CREATE_STREAM_COMPLETE,\n    STATE_INIT_STREAM,\n    STATE_INIT_STREAM_COMPLETE,\n    STATE_GENERATE_PROXY_AUTH_TOKEN,\n    STATE_GENERATE_PROXY_AUTH_TOKEN_COMPLETE,\n    STATE_GENERATE_SERVER_AUTH_TOKEN,\n    STATE_GENERATE_SERVER_AUTH_TOKEN_COMPLETE,\n    STATE_GET_PROVIDED_TOKEN_BINDING_KEY,\n    STATE_GET_PROVIDED_TOKEN_BINDING_KEY_COMPLETE,\n    STATE_GET_REFERRED_TOKEN_BINDING_KEY,\n    STATE_GET_REFERRED_TOKEN_BINDING_KEY_COMPLETE,\n    STATE_INIT_REQUEST_BODY,\n    STATE_INIT_REQUEST_BODY_COMPLETE,\n    STATE_BUILD_REQUEST,\n    STATE_BUILD_REQUEST_COMPLETE,\n    STATE_SEND_REQUEST,\n    STATE_SEND_REQUEST_COMPLETE,\n    STATE_READ_HEADERS,\n    STATE_READ_HEADERS_COMPLETE,\n    STATE_READ_BODY,\n    STATE_READ_BODY_COMPLETE,\n    STATE_DRAIN_BODY_FOR_AUTH_RESTART,\n    STATE_DRAIN_BODY_FOR_AUTH_RESTART_COMPLETE,\n    STATE_NONE\n  };\n\n  bool IsSecureRequest() const;\n  bool IsTokenBindingEnabled() const;\n  void RecordTokenBindingSupport() const;\n\n  // Returns true if the request is using an HTTP(S) proxy without being\n  // tunneled via the CONNECT method.\n  bool UsingHttpProxyWithoutTunnel() const;\n\n  void DoCallback(int result);\n  void OnIOComplete(int result);\n\n  // Runs the state transition loop.\n  int DoLoop(int result);\n\n  // Each of these methods corresponds to a State value.  Those with an input\n  // argument receive the result from the previous state.  If a method returns\n  // ERR_IO_PENDING, then the result from OnIOComplete will be passed to the\n  // next state method as the result arg.\n  int DoNotifyBeforeCreateStream();\n  int DoCreateStream();\n  int DoCreateStreamComplete(int result);\n  int DoInitStream();\n  int DoInitStreamComplete(int result);\n  int DoGenerateProxyAuthToken();\n  int DoGenerateProxyAuthTokenComplete(int result);\n  int DoGenerateServerAuthToken();\n  int DoGenerateServerAuthTokenComplete(int result);\n  int DoGetProvidedTokenBindingKey();\n  int DoGetProvidedTokenBindingKeyComplete(int result);\n  int DoGetReferredTokenBindingKey();\n  int DoGetReferredTokenBindingKeyComplete(int result);\n  int DoInitRequestBody();\n  int DoInitRequestBodyComplete(int result);\n  int DoBuildRequest();\n  int DoBuildRequestComplete(int result);\n  int DoSendRequest();\n  int DoSendRequestComplete(int result);\n  int DoReadHeaders();\n  int DoReadHeadersComplete(int result);\n  int DoReadBody();\n  int DoReadBodyComplete(int result);\n  int DoDrainBodyForAuthRestart();\n  int DoDrainBodyForAuthRestartComplete(int result);\n\n  int BuildRequestHeaders(bool using_http_proxy_without_tunnel);\n  int BuildTokenBindingHeader(std::string* out);\n\n  // Writes a log message to help debugging in the field when we block a proxy\n  // response to a CONNECT request.\n  void LogBlockedTunnelResponse(int response_code) const;\n\n  // Called to handle a client certificate request.\n  int HandleCertificateRequest(int error);\n\n  // Called wherever ERR_HTTP_1_1_REQUIRED or\n  // ERR_PROXY_HTTP_1_1_REQUIRED has to be handled.\n  int HandleHttp11Required(int error);\n\n  // Called to possibly handle a client authentication error. Sets next_state_\n  // and returns OK if recovering from the error.  Otherwise, the same error\n  // code is returned.\n  int HandleSSLClientAuthError(int error);\n\n  // Called to possibly recover from the given error.  Sets next_state_ and\n  // returns OK if recovering from the error.  Otherwise, the same error code\n  // is returned.\n  int HandleIOError(int error);\n\n  // Gets the response headers from the HttpStream.\n  HttpResponseHeaders* GetResponseHeaders() const;\n\n  // Called when the socket is unexpectedly closed.  Returns true if the request\n  // should be resent in case of a socket reuse/close race.\n  bool ShouldResendRequest() const;\n\n  // Returns true if there have already been |kMaxRetryAttempts| retries for\n  // HTTP2 or QUIC network errors, and no further retries should be attempted.\n  bool HasExceededMaxRetries() const;\n\n  // Increments the number of restarts and returns true if the restart may\n  // proceed.\n  bool CheckMaxRestarts();\n\n  // Resets the connection and the request headers for resend.  Called when\n  // ShouldResendRequest() is true.\n  void ResetConnectionAndRequestForResend();\n\n  // Sets up the state machine to restart the transaction with auth.\n  void PrepareForAuthRestart(HttpAuth::Target target);\n\n  // Called when we don't need to drain the response body or have drained it.\n  // Resets |connection_| unless |keep_alive| is true, then calls\n  // ResetStateForRestart.  Sets |next_state_| appropriately.\n  void DidDrainBodyForAuthRestart(bool keep_alive);\n\n  // Resets the members of the transaction so it can be restarted.\n  void ResetStateForRestart();\n\n  // Resets the members of the transaction, except |stream_|, which needs\n  // to be maintained for multi-round auth.\n  void ResetStateForAuthRestart();\n\n  // Caches network error details from the stream if available\n  // and resets the stream.\n  void CacheNetErrorDetailsAndResetStream();\n\n  // Returns true if we should try to add a Proxy-Authorization header\n  bool ShouldApplyProxyAuth() const;\n\n  // Returns true if we should try to add an Authorization header.\n  bool ShouldApplyServerAuth() const;\n\n  // Handles HTTP status code 401 or 407.\n  // HandleAuthChallenge() returns a network error code, or OK on success.\n  // May update |pending_auth_target_| or |response_.auth_challenge|.\n  int HandleAuthChallenge();\n\n  // Returns true if we have auth credentials for the given target.\n  bool HaveAuth(HttpAuth::Target target) const;\n\n  // Get the {scheme, host, path, port} for the authentication target\n  GURL AuthURL(HttpAuth::Target target) const;\n\n  // Returns true if this transaction is for a WebSocket handshake\n  bool ForWebSocketHandshake() const;\n\n  void CopyConnectionAttemptsFromStreamRequest();\n\n  // Returns true if response \"Content-Encoding\" headers respect\n  // \"Accept-Encoding\".\n  bool ContentEncodingsValid() const;\n\n  scoped_refptr<HttpAuthController>\n      auth_controllers_[HttpAuth::AUTH_NUM_TARGETS];\n\n  // Whether this transaction is waiting for proxy auth, server auth, or is\n  // not waiting for any auth at all. |pending_auth_target_| is read and\n  // cleared by RestartWithAuth().\n  HttpAuth::Target pending_auth_target_;\n\n  CompletionRepeatingCallback io_callback_;\n  CompletionCallback callback_;\n\n  HttpNetworkSession* session_;\n\n  NetLogWithSource net_log_;\n\n  // Reset to null at the start of the Read state machine.\n  const HttpRequestInfo* request_;\n\n  // The requested URL.\n  GURL url_;\n  RequestPriority priority_;\n  HttpResponseInfo response_;\n\n  // |proxy_info_| is the ProxyInfo used by the HttpStreamRequest.\n  ProxyInfo proxy_info_;\n\n  std::unique_ptr<HttpStreamRequest> stream_request_;\n  std::unique_ptr<HttpStream> stream_;\n\n  // True if we've validated the headers that the stream parser has returned.\n  bool headers_valid_;\n\n  // True if we can send the request over early data.\n  bool can_send_early_data_;\n\n  // True if |server_ssl_config_.client_cert| was looked up from the\n  // SSLClientAuthCache, rather than provided externally by the caller.\n  bool server_ssl_client_cert_was_cached_;\n\n  // SSL configuration used for the server and proxy, respectively. Note\n  // |server_ssl_config_| may be updated from the HttpStreamFactory, which will\n  // be applied on retry.\n  //\n  // TODO(davidben): Mutating it is weird and relies on HttpStreamFactory\n  // modifications being idempotent. Address this as part of other work to make\n  // sense of SSLConfig (related to https://crbug.com/488043).\n  SSLConfig server_ssl_config_;\n  SSLConfig proxy_ssl_config_;\n\n  // Keys to use for signing message in Token Binding header.\n  std::unique_ptr<crypto::ECPrivateKey> provided_token_binding_key_;\n  std::unique_ptr<crypto::ECPrivateKey> referred_token_binding_key_;\n  // Object to manage lookup of |provided_token_binding_key_| and\n  // |referred_token_binding_key_|.\n  ChannelIDService::Request token_binding_request_;\n\n  HttpRequestHeaders request_headers_;\n\n  // The size in bytes of the buffer we use to drain the response body that\n  // we want to throw away.  The response body is typically a small error\n  // page just a few hundred bytes long.\n  static const int kDrainBodyBufferSize = 1024;\n\n  // User buffer and length passed to the Read method.\n  scoped_refptr<IOBuffer> read_buf_;\n  int read_buf_len_;\n\n  // Total number of bytes received on all destroyed HttpStreams for this\n  // transaction.\n  int64_t total_received_bytes_;\n\n  // Total number of bytes sent on all destroyed HttpStreams for this\n  // transaction.\n  int64_t total_sent_bytes_;\n\n  // When the transaction started / finished sending the request, including\n  // the body, if present.\n  base::TimeTicks send_start_time_;\n  base::TimeTicks send_end_time_;\n\n  // The next state in the state machine.\n  State next_state_;\n\n  // True when the tunnel is in the process of being established - we can't\n  // read from the socket until the tunnel is done.\n  bool establishing_tunnel_;\n\n  // Enable pooling to a SpdySession with matching IP and certificate\n  // even if the SpdySessionKey is different.\n  bool enable_ip_based_pooling_;\n\n  // Enable using alternative services for the request.\n  bool enable_alternative_services_;\n\n  // When a request is retried because of errors with the alternative service,\n  // this will store the alternative service used.\n  AlternativeService retried_alternative_service_;\n\n  // The helper object to use to create WebSocketHandshakeStreamBase\n  // objects. Only relevant when establishing a WebSocket connection.\n  WebSocketHandshakeStreamBase::CreateHelper*\n      websocket_handshake_stream_base_create_helper_;\n\n  BeforeNetworkStartCallback before_network_start_callback_;\n  BeforeHeadersSentCallback before_headers_sent_callback_;\n  RequestHeadersCallback request_headers_callback_;\n  ResponseHeadersCallback response_headers_callback_;\n\n  ConnectionAttempts connection_attempts_;\n  IPEndPoint remote_endpoint_;\n  // Network error details for this transaction.\n  NetErrorDetails net_error_details_;\n\n  // Number of retries made for network errors like ERR_SPDY_PING_FAILED,\n  // ERR_SPDY_SERVER_REFUSED_STREAM, ERR_QUIC_HANDSHAKE_FAILED and\n  // ERR_QUIC_PROTOCOL_ERROR. Currently we stop after 3 tries\n  // (including the initial request) and fail the request.\n  // This count excludes retries on reused sockets since a well\n  // behaved server may time those out and thus the number\n  // of times we can retry a request on reused sockets is limited.\n  size_t retry_attempts_;\n\n  // Number of times the transaction was restarted via a RestartWith* call.\n  size_t num_restarts_;\n\n  // The net::Error which triggered a TLS 1.3 version interference probe, or OK\n  // if none was triggered.\n  int ssl_version_interference_error_;\n\n  DISALLOW_COPY_AND_ASSIGN(HttpNetworkTransaction);\n};\n\n}  // namespace net\n\n#endif  // NET_HTTP_HTTP_NETWORK_TRANSACTION_H_\n"
+          "text": "// Copyright (c) 2012 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_HTTP_HTTP_NETWORK_TRANSACTION_H_\n#define NET_HTTP_HTTP_NETWORK_TRANSACTION_H_\n\n#include <stdint.h>\n\n#include <memory>\n#include <string>\n\n#include \"base/gtest_prod_util.h\"\n#include \"base/macros.h\"\n#include \"base/memory/ref_counted.h\"\n#include \"base/time/time.h\"\n#include \"crypto/ec_private_key.h\"\n#include \"net/base/completion_once_callback.h\"\n#include \"net/base/completion_repeating_callback.h\"\n#include \"net/base/net_error_details.h\"\n#include \"net/base/net_export.h\"\n#include \"net/base/request_priority.h\"\n#include \"net/http/http_auth.h\"\n#include \"net/http/http_request_headers.h\"\n#include \"net/http/http_response_info.h\"\n#include \"net/http/http_stream_factory.h\"\n#include \"net/http/http_stream_request.h\"\n#include \"net/http/http_transaction.h\"\n#include \"net/log/net_log_with_source.h\"\n#include \"net/proxy_resolution/proxy_resolution_service.h\"\n#include \"net/socket/connection_attempts.h\"\n#include \"net/ssl/channel_id_service.h\"\n#include \"net/ssl/ssl_config_service.h\"\n#include \"net/websockets/websocket_handshake_stream_base.h\"\n\nnamespace crypto {\nclass ECPrivateKey;\n}\n\nnamespace net {\n\nclass BidirectionalStreamImpl;\nclass HttpAuthController;\nclass HttpNetworkSession;\nclass HttpStream;\nclass IOBuffer;\nclass ProxyInfo;\nclass SSLPrivateKey;\nstruct HttpRequestInfo;\n\nclass NET_EXPORT_PRIVATE HttpNetworkTransaction\n    : public HttpTransaction,\n      public HttpStreamRequest::Delegate {\n public:\n  HttpNetworkTransaction(RequestPriority priority,\n                         HttpNetworkSession* session);\n\n  ~HttpNetworkTransaction() override;\n\n  // HttpTransaction methods:\n  int Start(const HttpRequestInfo* request_info,\n            CompletionOnceCallback callback,\n            const NetLogWithSource& net_log) override;\n  int RestartIgnoringLastError(CompletionOnceCallback callback) override;\n  int RestartWithCertificate(scoped_refptr<X509Certificate> client_cert,\n                             scoped_refptr<SSLPrivateKey> client_private_key,\n                             CompletionOnceCallback callback) override;\n  int RestartWithAuth(const AuthCredentials& credentials,\n                      CompletionOnceCallback callback) override;\n  bool IsReadyToRestartForAuth() override;\n\n  int Read(IOBuffer* buf,\n           int buf_len,\n           CompletionOnceCallback callback) override;\n  void StopCaching() override;\n  bool GetFullRequestHeaders(HttpRequestHeaders* headers) const override;\n  int64_t GetTotalReceivedBytes() const override;\n  int64_t GetTotalSentBytes() const override;\n  void DoneReading() override;\n  const HttpResponseInfo* GetResponseInfo() const override;\n  LoadState GetLoadState() const override;\n  void SetQuicServerInfo(QuicServerInfo* quic_server_info) override;\n  bool GetLoadTimingInfo(LoadTimingInfo* load_timing_info) const override;\n  bool GetRemoteEndpoint(IPEndPoint* endpoint) const override;\n  void PopulateNetErrorDetails(NetErrorDetails* details) const override;\n  void SetPriority(RequestPriority priority) override;\n  void SetWebSocketHandshakeStreamCreateHelper(\n      WebSocketHandshakeStreamBase::CreateHelper* create_helper) override;\n  void SetBeforeNetworkStartCallback(\n      const BeforeNetworkStartCallback& callback) override;\n  void SetBeforeHeadersSentCallback(\n      const BeforeHeadersSentCallback& callback) override;\n  void SetRequestHeadersCallback(RequestHeadersCallback callback) override;\n  void SetResponseHeadersCallback(ResponseHeadersCallback callback) override;\n\n  int ResumeNetworkStart() override;\n\n  // HttpStreamRequest::Delegate methods:\n  void OnStreamReady(const SSLConfig& used_ssl_config,\n                     const ProxyInfo& used_proxy_info,\n                     std::unique_ptr<HttpStream> stream) override;\n  void OnBidirectionalStreamImplReady(\n      const SSLConfig& used_ssl_config,\n      const ProxyInfo& used_proxy_info,\n      std::unique_ptr<BidirectionalStreamImpl> stream) override;\n  void OnWebSocketHandshakeStreamReady(\n      const SSLConfig& used_ssl_config,\n      const ProxyInfo& used_proxy_info,\n      std::unique_ptr<WebSocketHandshakeStreamBase> stream) override;\n  void OnStreamFailed(int status,\n                      const NetErrorDetails& net_error_details,\n                      const SSLConfig& used_ssl_config) override;\n  void OnCertificateError(int status,\n                          const SSLConfig& used_ssl_config,\n                          const SSLInfo& ssl_info) override;\n  void OnNeedsProxyAuth(const HttpResponseInfo& response_info,\n                        const SSLConfig& used_ssl_config,\n                        const ProxyInfo& used_proxy_info,\n                        HttpAuthController* auth_controller) override;\n  void OnNeedsClientAuth(const SSLConfig& used_ssl_config,\n                         SSLCertRequestInfo* cert_info) override;\n  void OnHttpsProxyTunnelResponse(const HttpResponseInfo& response_info,\n                                  const SSLConfig& used_ssl_config,\n                                  const ProxyInfo& used_proxy_info,\n                                  std::unique_ptr<HttpStream> stream) override;\n\n  void OnQuicBroken() override;\n  void GetConnectionAttempts(ConnectionAttempts* out) const override;\n\n private:\n  FRIEND_TEST_ALL_PREFIXES(HttpNetworkTransactionTest, ResetStateForRestart);\n  FRIEND_TEST_ALL_PREFIXES(HttpNetworkTransactionTest,\n                           CreateWebSocketHandshakeStream);\n  FRIEND_TEST_ALL_PREFIXES(HttpNetworkTransactionSSLTest, ChannelID);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest, WindowUpdateReceived);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest, WindowUpdateSent);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest, WindowUpdateOverflow);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest, FlowControlStallResume);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest,\n                           FlowControlStallResumeAfterSettings);\n  FRIEND_TEST_ALL_PREFIXES(SpdyNetworkTransactionTest,\n                           FlowControlNegativeSendWindowSize);\n\n  enum State {\n    STATE_NOTIFY_BEFORE_CREATE_STREAM,\n    STATE_CREATE_STREAM,\n    STATE_CREATE_STREAM_COMPLETE,\n    STATE_INIT_STREAM,\n    STATE_INIT_STREAM_COMPLETE,\n    STATE_GENERATE_PROXY_AUTH_TOKEN,\n    STATE_GENERATE_PROXY_AUTH_TOKEN_COMPLETE,\n    STATE_GENERATE_SERVER_AUTH_TOKEN,\n    STATE_GENERATE_SERVER_AUTH_TOKEN_COMPLETE,\n    STATE_GET_PROVIDED_TOKEN_BINDING_KEY,\n    STATE_GET_PROVIDED_TOKEN_BINDING_KEY_COMPLETE,\n    STATE_GET_REFERRED_TOKEN_BINDING_KEY,\n    STATE_GET_REFERRED_TOKEN_BINDING_KEY_COMPLETE,\n    STATE_INIT_REQUEST_BODY,\n    STATE_INIT_REQUEST_BODY_COMPLETE,\n    STATE_BUILD_REQUEST,\n    STATE_BUILD_REQUEST_COMPLETE,\n    STATE_SEND_REQUEST,\n    STATE_SEND_REQUEST_COMPLETE,\n    STATE_READ_HEADERS,\n    STATE_READ_HEADERS_COMPLETE,\n    STATE_READ_BODY,\n    STATE_READ_BODY_COMPLETE,\n    STATE_DRAIN_BODY_FOR_AUTH_RESTART,\n    STATE_DRAIN_BODY_FOR_AUTH_RESTART_COMPLETE,\n    STATE_NONE\n  };\n\n  bool IsSecureRequest() const;\n  bool IsTokenBindingEnabled() const;\n  void RecordTokenBindingSupport() const;\n\n  // Returns true if the request is using an HTTP(S) proxy without being\n  // tunneled via the CONNECT method.\n  bool UsingHttpProxyWithoutTunnel() const;\n\n  void DoCallback(int result);\n  void OnIOComplete(int result);\n\n  // Runs the state transition loop.\n  int DoLoop(int result);\n\n  // Each of these methods corresponds to a State value.  Those with an input\n  // argument receive the result from the previous state.  If a method returns\n  // ERR_IO_PENDING, then the result from OnIOComplete will be passed to the\n  // next state method as the result arg.\n  int DoNotifyBeforeCreateStream();\n  int DoCreateStream();\n  int DoCreateStreamComplete(int result);\n  int DoInitStream();\n  int DoInitStreamComplete(int result);\n  int DoGenerateProxyAuthToken();\n  int DoGenerateProxyAuthTokenComplete(int result);\n  int DoGenerateServerAuthToken();\n  int DoGenerateServerAuthTokenComplete(int result);\n  int DoGetProvidedTokenBindingKey();\n  int DoGetProvidedTokenBindingKeyComplete(int result);\n  int DoGetReferredTokenBindingKey();\n  int DoGetReferredTokenBindingKeyComplete(int result);\n  int DoInitRequestBody();\n  int DoInitRequestBodyComplete(int result);\n  int DoBuildRequest();\n  int DoBuildRequestComplete(int result);\n  int DoSendRequest();\n  int DoSendRequestComplete(int result);\n  int DoReadHeaders();\n  int DoReadHeadersComplete(int result);\n  int DoReadBody();\n  int DoReadBodyComplete(int result);\n  int DoDrainBodyForAuthRestart();\n  int DoDrainBodyForAuthRestartComplete(int result);\n\n  int BuildRequestHeaders(bool using_http_proxy_without_tunnel);\n  int BuildTokenBindingHeader(std::string* out);\n\n  // Writes a log message to help debugging in the field when we block a proxy\n  // response to a CONNECT request.\n  void LogBlockedTunnelResponse(int response_code) const;\n\n  // Called to handle a client certificate request.\n  int HandleCertificateRequest(int error);\n\n  // Called wherever ERR_HTTP_1_1_REQUIRED or\n  // ERR_PROXY_HTTP_1_1_REQUIRED has to be handled.\n  int HandleHttp11Required(int error);\n\n  // Called to possibly handle a client authentication error. Sets next_state_\n  // and returns OK if recovering from the error.  Otherwise, the same error\n  // code is returned.\n  int HandleSSLClientAuthError(int error);\n\n  // Called to possibly recover from the given error.  Sets next_state_ and\n  // returns OK if recovering from the error.  Otherwise, the same error code\n  // is returned.\n  int HandleIOError(int error);\n\n  // Gets the response headers from the HttpStream.\n  HttpResponseHeaders* GetResponseHeaders() const;\n\n  // Called when the socket is unexpectedly closed.  Returns true if the request\n  // should be resent in case of a socket reuse/close race.\n  bool ShouldResendRequest() const;\n\n  // Returns true if there have already been |kMaxRetryAttempts| retries for\n  // HTTP2 or QUIC network errors, and no further retries should be attempted.\n  bool HasExceededMaxRetries() const;\n\n  // Increments the number of restarts and returns true if the restart may\n  // proceed.\n  bool CheckMaxRestarts();\n\n  // Resets the connection and the request headers for resend.  Called when\n  // ShouldResendRequest() is true.\n  void ResetConnectionAndRequestForResend();\n\n  // Sets up the state machine to restart the transaction with auth.\n  void PrepareForAuthRestart(HttpAuth::Target target);\n\n  // Called when we don't need to drain the response body or have drained it.\n  // Resets |connection_| unless |keep_alive| is true, then calls\n  // ResetStateForRestart.  Sets |next_state_| appropriately.\n  void DidDrainBodyForAuthRestart(bool keep_alive);\n\n  // Resets the members of the transaction so it can be restarted.\n  void ResetStateForRestart();\n\n  // Resets the members of the transaction, except |stream_|, which needs\n  // to be maintained for multi-round auth.\n  void ResetStateForAuthRestart();\n\n  // Caches network error details from the stream if available\n  // and resets the stream.\n  void CacheNetErrorDetailsAndResetStream();\n\n  // Returns true if we should try to add a Proxy-Authorization header\n  bool ShouldApplyProxyAuth() const;\n\n  // Returns true if we should try to add an Authorization header.\n  bool ShouldApplyServerAuth() const;\n\n  // Handles HTTP status code 401 or 407.\n  // HandleAuthChallenge() returns a network error code, or OK on success.\n  // May update |pending_auth_target_| or |response_.auth_challenge|.\n  int HandleAuthChallenge();\n\n  // Returns true if we have auth credentials for the given target.\n  bool HaveAuth(HttpAuth::Target target) const;\n\n  // Get the {scheme, host, path, port} for the authentication target\n  GURL AuthURL(HttpAuth::Target target) const;\n\n  // Returns true if this transaction is for a WebSocket handshake\n  bool ForWebSocketHandshake() const;\n\n  void CopyConnectionAttemptsFromStreamRequest();\n\n  // Returns true if response \"Content-Encoding\" headers respect\n  // \"Accept-Encoding\".\n  bool ContentEncodingsValid() const;\n\n  scoped_refptr<HttpAuthController>\n      auth_controllers_[HttpAuth::AUTH_NUM_TARGETS];\n\n  // Whether this transaction is waiting for proxy auth, server auth, or is\n  // not waiting for any auth at all. |pending_auth_target_| is read and\n  // cleared by RestartWithAuth().\n  HttpAuth::Target pending_auth_target_;\n\n  CompletionRepeatingCallback io_callback_;\n  CompletionOnceCallback callback_;\n\n  HttpNetworkSession* session_;\n\n  NetLogWithSource net_log_;\n\n  // Reset to null at the start of the Read state machine.\n  const HttpRequestInfo* request_;\n\n  // The requested URL.\n  GURL url_;\n  RequestPriority priority_;\n  HttpResponseInfo response_;\n\n  // |proxy_info_| is the ProxyInfo used by the HttpStreamRequest.\n  ProxyInfo proxy_info_;\n\n  std::unique_ptr<HttpStreamRequest> stream_request_;\n  std::unique_ptr<HttpStream> stream_;\n\n  // True if we've validated the headers that the stream parser has returned.\n  bool headers_valid_;\n\n  // True if we can send the request over early data.\n  bool can_send_early_data_;\n\n  // True if |server_ssl_config_.client_cert| was looked up from the\n  // SSLClientAuthCache, rather than provided externally by the caller.\n  bool server_ssl_client_cert_was_cached_;\n\n  // SSL configuration used for the server and proxy, respectively. Note\n  // |server_ssl_config_| may be updated from the HttpStreamFactory, which will\n  // be applied on retry.\n  //\n  // TODO(davidben): Mutating it is weird and relies on HttpStreamFactory\n  // modifications being idempotent. Address this as part of other work to make\n  // sense of SSLConfig (related to https://crbug.com/488043).\n  SSLConfig server_ssl_config_;\n  SSLConfig proxy_ssl_config_;\n\n  // Keys to use for signing message in Token Binding header.\n  std::unique_ptr<crypto::ECPrivateKey> provided_token_binding_key_;\n  std::unique_ptr<crypto::ECPrivateKey> referred_token_binding_key_;\n  // Object to manage lookup of |provided_token_binding_key_| and\n  // |referred_token_binding_key_|.\n  ChannelIDService::Request token_binding_request_;\n\n  HttpRequestHeaders request_headers_;\n\n  // The size in bytes of the buffer we use to drain the response body that\n  // we want to throw away.  The response body is typically a small error\n  // page just a few hundred bytes long.\n  static const int kDrainBodyBufferSize = 1024;\n\n  // User buffer and length passed to the Read method.\n  scoped_refptr<IOBuffer> read_buf_;\n  int read_buf_len_;\n\n  // Total number of bytes received on all destroyed HttpStreams for this\n  // transaction.\n  int64_t total_received_bytes_;\n\n  // Total number of bytes sent on all destroyed HttpStreams for this\n  // transaction.\n  int64_t total_sent_bytes_;\n\n  // When the transaction started / finished sending the request, including\n  // the body, if present.\n  base::TimeTicks send_start_time_;\n  base::TimeTicks send_end_time_;\n\n  // The next state in the state machine.\n  State next_state_;\n\n  // True when the tunnel is in the process of being established - we can't\n  // read from the socket until the tunnel is done.\n  bool establishing_tunnel_;\n\n  // Enable pooling to a SpdySession with matching IP and certificate\n  // even if the SpdySessionKey is different.\n  bool enable_ip_based_pooling_;\n\n  // Enable using alternative services for the request.\n  bool enable_alternative_services_;\n\n  // When a request is retried because of errors with the alternative service,\n  // this will store the alternative service used.\n  AlternativeService retried_alternative_service_;\n\n  // The helper object to use to create WebSocketHandshakeStreamBase\n  // objects. Only relevant when establishing a WebSocket connection.\n  WebSocketHandshakeStreamBase::CreateHelper*\n      websocket_handshake_stream_base_create_helper_;\n\n  BeforeNetworkStartCallback before_network_start_callback_;\n  BeforeHeadersSentCallback before_headers_sent_callback_;\n  RequestHeadersCallback request_headers_callback_;\n  ResponseHeadersCallback response_headers_callback_;\n\n  ConnectionAttempts connection_attempts_;\n  IPEndPoint remote_endpoint_;\n  // Network error details for this transaction.\n  NetErrorDetails net_error_details_;\n\n  // Number of retries made for network errors like ERR_SPDY_PING_FAILED,\n  // ERR_SPDY_SERVER_REFUSED_STREAM, ERR_QUIC_HANDSHAKE_FAILED and\n  // ERR_QUIC_PROTOCOL_ERROR. Currently we stop after 3 tries\n  // (including the initial request) and fail the request.\n  // This count excludes retries on reused sockets since a well\n  // behaved server may time those out and thus the number\n  // of times we can retry a request on reused sockets is limited.\n  size_t retry_attempts_;\n\n  // Number of times the transaction was restarted via a RestartWith* call.\n  size_t num_restarts_;\n\n  // The net::Error which triggered a TLS 1.3 version interference probe, or OK\n  // if none was triggered.\n  int ssl_version_interference_error_;\n\n  DISALLOW_COPY_AND_ASSIGN(HttpNetworkTransaction);\n};\n\n}  // namespace net\n\n#endif  // NET_HTTP_HTTP_NETWORK_TRANSACTION_H_\n"
         }, 
         "generated": false, 
         "mime_type": "text/plain", 
-        "size": "17060", 
+        "size": "17096", 
         "type": 1, 
-        "md5": "f9750702f6b6b81a5c781918d3676e8c", 
+        "md5": "17903bb2599cdf9d55c193d4d5379e02", 
         "codeblock": [
           {
             "type": 40, 
@@ -48,8 +48,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 54, 
-                      "end_line": 55, 
+                      "start_line": 55, 
+                      "end_line": 56, 
                       "start_column": 3, 
                       "end_column": 55
                     }
@@ -63,8 +63,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 57, 
-                      "end_line": 57, 
+                      "start_line": 58, 
+                      "end_line": 58, 
                       "start_column": 3, 
                       "end_column": 38
                     }
@@ -74,12 +74,12 @@
                       "public": true
                     }, 
                     "name": "Start", 
-                    "signature": "(const HttpRequestInfo* request_info, const CompletionCallback& callback, const NetLogWithSource& net_log)", 
+                    "signature": "(const HttpRequestInfo* request_info, CompletionOnceCallback callback, const NetLogWithSource& net_log)", 
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 60, 
-                      "end_line": 62, 
+                      "start_line": 61, 
+                      "end_line": 63, 
                       "start_column": 3, 
                       "end_column": 55
                     }
@@ -89,14 +89,14 @@
                       "public": true
                     }, 
                     "name": "RestartIgnoringLastError", 
-                    "signature": "(const CompletionCallback& callback)", 
+                    "signature": "(CompletionOnceCallback callback)", 
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 63, 
-                      "end_line": 63, 
+                      "start_line": 64, 
+                      "end_line": 64, 
                       "start_column": 3, 
-                      "end_column": 77
+                      "end_column": 74
                     }
                   }, 
                   {
@@ -104,14 +104,14 @@
                       "public": true
                     }, 
                     "name": "RestartWithCertificate", 
-                    "signature": "(scoped_refptr<X509Certificate> client_cert, scoped_refptr<SSLPrivateKey> client_private_key, const CompletionCallback& callback)", 
+                    "signature": "(scoped_refptr<X509Certificate> client_cert, scoped_refptr<SSLPrivateKey> client_private_key, CompletionOnceCallback callback)", 
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 64, 
-                      "end_line": 66, 
+                      "start_line": 65, 
+                      "end_line": 67, 
                       "start_column": 3, 
-                      "end_column": 75
+                      "end_column": 72
                     }
                   }, 
                   {
@@ -119,14 +119,14 @@
                       "public": true
                     }, 
                     "name": "RestartWithAuth", 
-                    "signature": "(const AuthCredentials& credentials, const CompletionCallback& callback)", 
+                    "signature": "(const AuthCredentials& credentials, CompletionOnceCallback callback)", 
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 67, 
-                      "end_line": 68, 
+                      "start_line": 68, 
+                      "end_line": 69, 
                       "start_column": 3, 
-                      "end_column": 68
+                      "end_column": 65
                     }
                   }, 
                   {
@@ -138,8 +138,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 69, 
-                      "end_line": 69, 
+                      "start_line": 70, 
+                      "end_line": 70, 
                       "start_column": 3, 
                       "end_column": 43
                     }
@@ -149,14 +149,14 @@
                       "public": true
                     }, 
                     "name": "Read", 
-                    "signature": "(IOBuffer* buf, int buf_len, const CompletionCallback& callback)", 
+                    "signature": "(IOBuffer* buf, int buf_len, CompletionOnceCallback callback)", 
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 71, 
-                      "end_line": 73, 
+                      "start_line": 72, 
+                      "end_line": 74, 
                       "start_column": 3, 
-                      "end_column": 57
+                      "end_column": 54
                     }
                   }, 
                   {
@@ -168,8 +168,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 74, 
-                      "end_line": 74, 
+                      "start_line": 75, 
+                      "end_line": 75, 
                       "start_column": 3, 
                       "end_column": 31
                     }
@@ -183,8 +183,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 75, 
-                      "end_line": 75, 
+                      "start_line": 76, 
+                      "end_line": 76, 
                       "start_column": 3, 
                       "end_column": 74
                     }
@@ -198,8 +198,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 76, 
-                      "end_line": 76, 
+                      "start_line": 77, 
+                      "end_line": 77, 
                       "start_column": 3, 
                       "end_column": 50
                     }
@@ -213,8 +213,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 77, 
-                      "end_line": 77, 
+                      "start_line": 78, 
+                      "end_line": 78, 
                       "start_column": 3, 
                       "end_column": 46
                     }
@@ -228,8 +228,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 78, 
-                      "end_line": 78, 
+                      "start_line": 79, 
+                      "end_line": 79, 
                       "start_column": 3, 
                       "end_column": 31
                     }
@@ -243,8 +243,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 79, 
-                      "end_line": 79, 
+                      "start_line": 80, 
+                      "end_line": 80, 
                       "start_column": 3, 
                       "end_column": 60
                     }
@@ -258,8 +258,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 80, 
-                      "end_line": 80, 
+                      "start_line": 81, 
+                      "end_line": 81, 
                       "start_column": 3, 
                       "end_column": 43
                     }
@@ -273,8 +273,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 81, 
-                      "end_line": 81, 
+                      "start_line": 82, 
+                      "end_line": 82, 
                       "start_column": 3, 
                       "end_column": 69
                     }
@@ -288,8 +288,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 82, 
-                      "end_line": 82, 
+                      "start_line": 83, 
+                      "end_line": 83, 
                       "start_column": 3, 
                       "end_column": 75
                     }
@@ -303,8 +303,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 83, 
-                      "end_line": 83, 
+                      "start_line": 84, 
+                      "end_line": 84, 
                       "start_column": 3, 
                       "end_column": 63
                     }
@@ -318,8 +318,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 84, 
-                      "end_line": 84, 
+                      "start_line": 85, 
+                      "end_line": 85, 
                       "start_column": 3, 
                       "end_column": 73
                     }
@@ -333,8 +333,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 85, 
-                      "end_line": 85, 
+                      "start_line": 86, 
+                      "end_line": 86, 
                       "start_column": 3, 
                       "end_column": 55
                     }
@@ -348,8 +348,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 86, 
-                      "end_line": 87, 
+                      "start_line": 87, 
+                      "end_line": 88, 
                       "start_column": 3, 
                       "end_column": 75
                     }
@@ -363,8 +363,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 88, 
-                      "end_line": 89, 
+                      "start_line": 89, 
+                      "end_line": 90, 
                       "start_column": 3, 
                       "end_column": 60
                     }
@@ -378,8 +378,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 90, 
-                      "end_line": 91, 
+                      "start_line": 91, 
+                      "end_line": 92, 
                       "start_column": 3, 
                       "end_column": 59
                     }
@@ -393,8 +393,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 92, 
-                      "end_line": 92, 
+                      "start_line": 93, 
+                      "end_line": 93, 
                       "start_column": 3, 
                       "end_column": 76
                     }
@@ -408,8 +408,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 93, 
-                      "end_line": 93, 
+                      "start_line": 94, 
+                      "end_line": 94, 
                       "start_column": 3, 
                       "end_column": 78
                     }
@@ -423,8 +423,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 95, 
-                      "end_line": 95, 
+                      "start_line": 96, 
+                      "end_line": 96, 
                       "start_column": 3, 
                       "end_column": 37
                     }
@@ -438,8 +438,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 98, 
-                      "end_line": 100, 
+                      "start_line": 99, 
+                      "end_line": 101, 
                       "start_column": 3, 
                       "end_column": 67
                     }
@@ -453,8 +453,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 101, 
-                      "end_line": 104, 
+                      "start_line": 102, 
+                      "end_line": 105, 
                       "start_column": 3, 
                       "end_column": 65
                     }
@@ -468,8 +468,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 105, 
-                      "end_line": 108, 
+                      "start_line": 106, 
+                      "end_line": 109, 
                       "start_column": 3, 
                       "end_column": 70
                     }
@@ -483,8 +483,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 109, 
-                      "end_line": 111, 
+                      "start_line": 110, 
+                      "end_line": 112, 
                       "start_column": 3, 
                       "end_column": 66
                     }
@@ -498,8 +498,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 112, 
-                      "end_line": 114, 
+                      "start_line": 113, 
+                      "end_line": 115, 
                       "start_column": 3, 
                       "end_column": 61
                     }
@@ -513,8 +513,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 115, 
-                      "end_line": 118, 
+                      "start_line": 116, 
+                      "end_line": 119, 
                       "start_column": 3, 
                       "end_column": 71
                     }
@@ -528,8 +528,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 119, 
-                      "end_line": 120, 
+                      "start_line": 120, 
+                      "end_line": 121, 
                       "start_column": 3, 
                       "end_column": 66
                     }
@@ -543,8 +543,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 121, 
-                      "end_line": 124, 
+                      "start_line": 122, 
+                      "end_line": 125, 
                       "start_column": 3, 
                       "end_column": 80
                     }
@@ -558,8 +558,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 126, 
-                      "end_line": 126, 
+                      "start_line": 127, 
+                      "end_line": 127, 
                       "start_column": 3, 
                       "end_column": 32
                     }
@@ -573,8 +573,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 127, 
-                      "end_line": 127, 
+                      "start_line": 128, 
+                      "end_line": 128, 
                       "start_column": 3, 
                       "end_column": 70
                     }
@@ -595,8 +595,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 144, 
-                          "end_line": 144, 
+                          "start_line": 145, 
+                          "end_line": 145, 
                           "start_column": 5, 
                           "end_column": 38
                         }
@@ -610,8 +610,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 145, 
-                          "end_line": 145, 
+                          "start_line": 146, 
+                          "end_line": 146, 
                           "start_column": 5, 
                           "end_column": 24
                         }
@@ -625,8 +625,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 146, 
-                          "end_line": 146, 
+                          "start_line": 147, 
+                          "end_line": 147, 
                           "start_column": 5, 
                           "end_column": 33
                         }
@@ -640,8 +640,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 147, 
-                          "end_line": 147, 
+                          "start_line": 148, 
+                          "end_line": 148, 
                           "start_column": 5, 
                           "end_column": 22
                         }
@@ -655,8 +655,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 148, 
-                          "end_line": 148, 
+                          "start_line": 149, 
+                          "end_line": 149, 
                           "start_column": 5, 
                           "end_column": 31
                         }
@@ -670,8 +670,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 149, 
-                          "end_line": 149, 
+                          "start_line": 150, 
+                          "end_line": 150, 
                           "start_column": 5, 
                           "end_column": 36
                         }
@@ -685,8 +685,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 150, 
-                          "end_line": 150, 
+                          "start_line": 151, 
+                          "end_line": 151, 
                           "start_column": 5, 
                           "end_column": 45
                         }
@@ -700,8 +700,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 151, 
-                          "end_line": 151, 
+                          "start_line": 152, 
+                          "end_line": 152, 
                           "start_column": 5, 
                           "end_column": 37
                         }
@@ -715,8 +715,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 152, 
-                          "end_line": 152, 
+                          "start_line": 153, 
+                          "end_line": 153, 
                           "start_column": 5, 
                           "end_column": 46
                         }
@@ -730,8 +730,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 153, 
-                          "end_line": 153, 
+                          "start_line": 154, 
+                          "end_line": 154, 
                           "start_column": 5, 
                           "end_column": 41
                         }
@@ -745,8 +745,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 154, 
-                          "end_line": 154, 
+                          "start_line": 155, 
+                          "end_line": 155, 
                           "start_column": 5, 
                           "end_column": 50
                         }
@@ -760,8 +760,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 155, 
-                          "end_line": 155, 
+                          "start_line": 156, 
+                          "end_line": 156, 
                           "start_column": 5, 
                           "end_column": 41
                         }
@@ -775,8 +775,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 156, 
-                          "end_line": 156, 
+                          "start_line": 157, 
+                          "end_line": 157, 
                           "start_column": 5, 
                           "end_column": 50
                         }
@@ -790,8 +790,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 157, 
-                          "end_line": 157, 
+                          "start_line": 158, 
+                          "end_line": 158, 
                           "start_column": 5, 
                           "end_column": 28
                         }
@@ -805,8 +805,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 158, 
-                          "end_line": 158, 
+                          "start_line": 159, 
+                          "end_line": 159, 
                           "start_column": 5, 
                           "end_column": 37
                         }
@@ -820,8 +820,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 159, 
-                          "end_line": 159, 
+                          "start_line": 160, 
+                          "end_line": 160, 
                           "start_column": 5, 
                           "end_column": 24
                         }
@@ -835,8 +835,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 160, 
-                          "end_line": 160, 
+                          "start_line": 161, 
+                          "end_line": 161, 
                           "start_column": 5, 
                           "end_column": 33
                         }
@@ -850,8 +850,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 161, 
-                          "end_line": 161, 
+                          "start_line": 162, 
+                          "end_line": 162, 
                           "start_column": 5, 
                           "end_column": 23
                         }
@@ -865,8 +865,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 162, 
-                          "end_line": 162, 
+                          "start_line": 163, 
+                          "end_line": 163, 
                           "start_column": 5, 
                           "end_column": 32
                         }
@@ -880,8 +880,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 163, 
-                          "end_line": 163, 
+                          "start_line": 164, 
+                          "end_line": 164, 
                           "start_column": 5, 
                           "end_column": 23
                         }
@@ -895,8 +895,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 164, 
-                          "end_line": 164, 
+                          "start_line": 165, 
+                          "end_line": 165, 
                           "start_column": 5, 
                           "end_column": 32
                         }
@@ -910,8 +910,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 165, 
-                          "end_line": 165, 
+                          "start_line": 166, 
+                          "end_line": 166, 
                           "start_column": 5, 
                           "end_column": 20
                         }
@@ -925,8 +925,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 166, 
-                          "end_line": 166, 
+                          "start_line": 167, 
+                          "end_line": 167, 
                           "start_column": 5, 
                           "end_column": 29
                         }
@@ -940,8 +940,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 167, 
-                          "end_line": 167, 
+                          "start_line": 168, 
+                          "end_line": 168, 
                           "start_column": 5, 
                           "end_column": 38
                         }
@@ -955,8 +955,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 168, 
-                          "end_line": 168, 
+                          "start_line": 169, 
+                          "end_line": 169, 
                           "start_column": 5, 
                           "end_column": 47
                         }
@@ -970,8 +970,8 @@
                         "name_prefix": "", 
                         "type": 14, 
                         "text_range": {
-                          "start_line": 169, 
-                          "end_line": 169, 
+                          "start_line": 170, 
+                          "end_line": 170, 
                           "start_column": 5, 
                           "end_column": 15
                         }
@@ -980,8 +980,8 @@
                     "name_prefix": "", 
                     "type": 4, 
                     "text_range": {
-                      "start_line": 143, 
-                      "end_line": 170, 
+                      "start_line": 144, 
+                      "end_line": 171, 
                       "start_column": 3, 
                       "end_column": 4
                     }
@@ -995,8 +995,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 172, 
-                      "end_line": 172, 
+                      "start_line": 173, 
+                      "end_line": 173, 
                       "start_column": 3, 
                       "end_column": 32
                     }
@@ -1010,8 +1010,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 173, 
-                      "end_line": 173, 
+                      "start_line": 174, 
+                      "end_line": 174, 
                       "start_column": 3, 
                       "end_column": 38
                     }
@@ -1025,8 +1025,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 174, 
-                      "end_line": 174, 
+                      "start_line": 175, 
+                      "end_line": 175, 
                       "start_column": 3, 
                       "end_column": 42
                     }
@@ -1040,8 +1040,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 178, 
-                      "end_line": 178, 
+                      "start_line": 179, 
+                      "end_line": 179, 
                       "start_column": 3, 
                       "end_column": 44
                     }
@@ -1055,8 +1055,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 180, 
-                      "end_line": 180, 
+                      "start_line": 181, 
+                      "end_line": 181, 
                       "start_column": 3, 
                       "end_column": 31
                     }
@@ -1070,8 +1070,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 181, 
-                      "end_line": 181, 
+                      "start_line": 182, 
+                      "end_line": 182, 
                       "start_column": 3, 
                       "end_column": 33
                     }
@@ -1085,8 +1085,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 184, 
-                      "end_line": 184, 
+                      "start_line": 185, 
+                      "end_line": 185, 
                       "start_column": 3, 
                       "end_column": 26
                     }
@@ -1100,8 +1100,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 190, 
-                      "end_line": 190, 
+                      "start_line": 191, 
+                      "end_line": 191, 
                       "start_column": 3, 
                       "end_column": 36
                     }
@@ -1115,8 +1115,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 191, 
-                      "end_line": 191, 
+                      "start_line": 192, 
+                      "end_line": 192, 
                       "start_column": 3, 
                       "end_column": 24
                     }
@@ -1130,8 +1130,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 192, 
-                      "end_line": 192, 
+                      "start_line": 193, 
+                      "end_line": 193, 
                       "start_column": 3, 
                       "end_column": 42
                     }
@@ -1145,8 +1145,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 193, 
-                      "end_line": 193, 
+                      "start_line": 194, 
+                      "end_line": 194, 
                       "start_column": 3, 
                       "end_column": 22
                     }
@@ -1160,8 +1160,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 194, 
-                      "end_line": 194, 
+                      "start_line": 195, 
+                      "end_line": 195, 
                       "start_column": 3, 
                       "end_column": 40
                     }
@@ -1175,8 +1175,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 195, 
-                      "end_line": 195, 
+                      "start_line": 196, 
+                      "end_line": 196, 
                       "start_column": 3, 
                       "end_column": 34
                     }
@@ -1190,8 +1190,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 196, 
-                      "end_line": 196, 
+                      "start_line": 197, 
+                      "end_line": 197, 
                       "start_column": 3, 
                       "end_column": 52
                     }
@@ -1205,8 +1205,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 197, 
-                      "end_line": 197, 
+                      "start_line": 198, 
+                      "end_line": 198, 
                       "start_column": 3, 
                       "end_column": 35
                     }
@@ -1220,8 +1220,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 198, 
-                      "end_line": 198, 
+                      "start_line": 199, 
+                      "end_line": 199, 
                       "start_column": 3, 
                       "end_column": 53
                     }
@@ -1235,8 +1235,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 199, 
-                      "end_line": 199, 
+                      "start_line": 200, 
+                      "end_line": 200, 
                       "start_column": 3, 
                       "end_column": 38
                     }
@@ -1250,8 +1250,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 200, 
-                      "end_line": 200, 
+                      "start_line": 201, 
+                      "end_line": 201, 
                       "start_column": 3, 
                       "end_column": 56
                     }
@@ -1265,8 +1265,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 201, 
-                      "end_line": 201, 
+                      "start_line": 202, 
+                      "end_line": 202, 
                       "start_column": 3, 
                       "end_column": 38
                     }
@@ -1280,8 +1280,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 202, 
-                      "end_line": 202, 
+                      "start_line": 203, 
+                      "end_line": 203, 
                       "start_column": 3, 
                       "end_column": 56
                     }
@@ -1295,8 +1295,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 203, 
-                      "end_line": 203, 
+                      "start_line": 204, 
+                      "end_line": 204, 
                       "start_column": 3, 
                       "end_column": 27
                     }
@@ -1310,8 +1310,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 204, 
-                      "end_line": 204, 
+                      "start_line": 205, 
+                      "end_line": 205, 
                       "start_column": 3, 
                       "end_column": 45
                     }
@@ -1325,8 +1325,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 205, 
-                      "end_line": 205, 
+                      "start_line": 206, 
+                      "end_line": 206, 
                       "start_column": 3, 
                       "end_column": 24
                     }
@@ -1340,8 +1340,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 206, 
-                      "end_line": 206, 
+                      "start_line": 207, 
+                      "end_line": 207, 
                       "start_column": 3, 
                       "end_column": 42
                     }
@@ -1355,8 +1355,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 207, 
-                      "end_line": 207, 
+                      "start_line": 208, 
+                      "end_line": 208, 
                       "start_column": 3, 
                       "end_column": 23
                     }
@@ -1370,8 +1370,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 208, 
-                      "end_line": 208, 
+                      "start_line": 209, 
+                      "end_line": 209, 
                       "start_column": 3, 
                       "end_column": 41
                     }
@@ -1385,8 +1385,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 209, 
-                      "end_line": 209, 
+                      "start_line": 210, 
+                      "end_line": 210, 
                       "start_column": 3, 
                       "end_column": 23
                     }
@@ -1400,8 +1400,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 210, 
-                      "end_line": 210, 
+                      "start_line": 211, 
+                      "end_line": 211, 
                       "start_column": 3, 
                       "end_column": 41
                     }
@@ -1415,8 +1415,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 211, 
-                      "end_line": 211, 
+                      "start_line": 212, 
+                      "end_line": 212, 
                       "start_column": 3, 
                       "end_column": 20
                     }
@@ -1430,8 +1430,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 212, 
-                      "end_line": 212, 
+                      "start_line": 213, 
+                      "end_line": 213, 
                       "start_column": 3, 
                       "end_column": 38
                     }
@@ -1445,8 +1445,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 213, 
-                      "end_line": 213, 
+                      "start_line": 214, 
+                      "end_line": 214, 
                       "start_column": 3, 
                       "end_column": 35
                     }
@@ -1460,8 +1460,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 214, 
-                      "end_line": 214, 
+                      "start_line": 215, 
+                      "end_line": 215, 
                       "start_column": 3, 
                       "end_column": 53
                     }
@@ -1475,8 +1475,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 216, 
-                      "end_line": 216, 
+                      "start_line": 217, 
+                      "end_line": 217, 
                       "start_column": 3, 
                       "end_column": 65
                     }
@@ -1490,8 +1490,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 217, 
-                      "end_line": 217, 
+                      "start_line": 218, 
+                      "end_line": 218, 
                       "start_column": 3, 
                       "end_column": 49
                     }
@@ -1505,8 +1505,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 221, 
-                      "end_line": 221, 
+                      "start_line": 222, 
+                      "end_line": 222, 
                       "start_column": 3, 
                       "end_column": 58
                     }
@@ -1520,8 +1520,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 224, 
-                      "end_line": 224, 
+                      "start_line": 225, 
+                      "end_line": 225, 
                       "start_column": 3, 
                       "end_column": 43
                     }
@@ -1535,8 +1535,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 228, 
-                      "end_line": 228, 
+                      "start_line": 229, 
+                      "end_line": 229, 
                       "start_column": 3, 
                       "end_column": 39
                     }
@@ -1550,8 +1550,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 233, 
-                      "end_line": 233, 
+                      "start_line": 234, 
+                      "end_line": 234, 
                       "start_column": 3, 
                       "end_column": 43
                     }
@@ -1565,8 +1565,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 238, 
-                      "end_line": 238, 
+                      "start_line": 239, 
+                      "end_line": 239, 
                       "start_column": 3, 
                       "end_column": 32
                     }
@@ -1580,8 +1580,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 241, 
-                      "end_line": 241, 
+                      "start_line": 242, 
+                      "end_line": 242, 
                       "start_column": 3, 
                       "end_column": 51
                     }
@@ -1595,8 +1595,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 245, 
-                      "end_line": 245, 
+                      "start_line": 246, 
+                      "end_line": 246, 
                       "start_column": 3, 
                       "end_column": 36
                     }
@@ -1610,8 +1610,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 249, 
-                      "end_line": 249, 
+                      "start_line": 250, 
+                      "end_line": 250, 
                       "start_column": 3, 
                       "end_column": 38
                     }
@@ -1625,8 +1625,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 253, 
-                      "end_line": 253, 
+                      "start_line": 254, 
+                      "end_line": 254, 
                       "start_column": 3, 
                       "end_column": 27
                     }
@@ -1640,8 +1640,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 257, 
-                      "end_line": 257, 
+                      "start_line": 258, 
+                      "end_line": 258, 
                       "start_column": 3, 
                       "end_column": 45
                     }
@@ -1655,8 +1655,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 260, 
-                      "end_line": 260, 
+                      "start_line": 261, 
+                      "end_line": 261, 
                       "start_column": 3, 
                       "end_column": 55
                     }
@@ -1670,8 +1670,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 265, 
-                      "end_line": 265, 
+                      "start_line": 266, 
+                      "end_line": 266, 
                       "start_column": 3, 
                       "end_column": 52
                     }
@@ -1685,8 +1685,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 268, 
-                      "end_line": 268, 
+                      "start_line": 269, 
+                      "end_line": 269, 
                       "start_column": 3, 
                       "end_column": 31
                     }
@@ -1700,8 +1700,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 272, 
-                      "end_line": 272, 
+                      "start_line": 273, 
+                      "end_line": 273, 
                       "start_column": 3, 
                       "end_column": 35
                     }
@@ -1715,8 +1715,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 276, 
-                      "end_line": 276, 
+                      "start_line": 277, 
+                      "end_line": 277, 
                       "start_column": 3, 
                       "end_column": 45
                     }
@@ -1730,8 +1730,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 279, 
-                      "end_line": 279, 
+                      "start_line": 280, 
+                      "end_line": 280, 
                       "start_column": 3, 
                       "end_column": 37
                     }
@@ -1745,8 +1745,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 282, 
-                      "end_line": 282, 
+                      "start_line": 283, 
+                      "end_line": 283, 
                       "start_column": 3, 
                       "end_column": 38
                     }
@@ -1760,8 +1760,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 287, 
-                      "end_line": 287, 
+                      "start_line": 288, 
+                      "end_line": 288, 
                       "start_column": 3, 
                       "end_column": 29
                     }
@@ -1775,8 +1775,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 290, 
-                      "end_line": 290, 
+                      "start_line": 291, 
+                      "end_line": 291, 
                       "start_column": 3, 
                       "end_column": 48
                     }
@@ -1790,8 +1790,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 293, 
-                      "end_line": 293, 
+                      "start_line": 294, 
+                      "end_line": 294, 
                       "start_column": 3, 
                       "end_column": 47
                     }
@@ -1805,8 +1805,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 296, 
-                      "end_line": 296, 
+                      "start_line": 297, 
+                      "end_line": 297, 
                       "start_column": 3, 
                       "end_column": 38
                     }
@@ -1820,8 +1820,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 298, 
-                      "end_line": 298, 
+                      "start_line": 299, 
+                      "end_line": 299, 
                       "start_column": 3, 
                       "end_column": 50
                     }
@@ -1835,8 +1835,8 @@
                     "name_prefix": "", 
                     "type": 8, 
                     "text_range": {
-                      "start_line": 302, 
-                      "end_line": 302, 
+                      "start_line": 303, 
+                      "end_line": 303, 
                       "start_column": 3, 
                       "end_column": 38
                     }
@@ -1850,8 +1850,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 304, 
-                      "end_line": 305, 
+                      "start_line": 305, 
+                      "end_line": 306, 
                       "start_column": 3, 
                       "end_column": 53
                     }
@@ -1865,8 +1865,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 310, 
-                      "end_line": 310, 
+                      "start_line": 311, 
+                      "end_line": 311, 
                       "start_column": 3, 
                       "end_column": 41
                     }
@@ -1880,8 +1880,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 312, 
-                      "end_line": 312, 
+                      "start_line": 313, 
+                      "end_line": 313, 
                       "start_column": 3, 
                       "end_column": 44
                     }
@@ -1895,10 +1895,10 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 313, 
-                      "end_line": 313, 
+                      "start_line": 314, 
+                      "end_line": 314, 
                       "start_column": 3, 
-                      "end_column": 32
+                      "end_column": 36
                     }
                   }, 
                   {
@@ -1910,8 +1910,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 315, 
-                      "end_line": 315, 
+                      "start_line": 316, 
+                      "end_line": 316, 
                       "start_column": 3, 
                       "end_column": 32
                     }
@@ -1925,8 +1925,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 317, 
-                      "end_line": 317, 
+                      "start_line": 318, 
+                      "end_line": 318, 
                       "start_column": 3, 
                       "end_column": 29
                     }
@@ -1940,8 +1940,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 320, 
-                      "end_line": 320, 
+                      "start_line": 321, 
+                      "end_line": 321, 
                       "start_column": 3, 
                       "end_column": 35
                     }
@@ -1955,8 +1955,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 323, 
-                      "end_line": 323, 
+                      "start_line": 324, 
+                      "end_line": 324, 
                       "start_column": 3, 
                       "end_column": 13
                     }
@@ -1970,8 +1970,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 324, 
-                      "end_line": 324, 
+                      "start_line": 325, 
+                      "end_line": 325, 
                       "start_column": 3, 
                       "end_column": 29
                     }
@@ -1985,8 +1985,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 325, 
-                      "end_line": 325, 
+                      "start_line": 326, 
+                      "end_line": 326, 
                       "start_column": 3, 
                       "end_column": 30
                     }
@@ -2000,8 +2000,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 328, 
-                      "end_line": 328, 
+                      "start_line": 329, 
+                      "end_line": 329, 
                       "start_column": 3, 
                       "end_column": 25
                     }
@@ -2015,8 +2015,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 330, 
-                      "end_line": 330, 
+                      "start_line": 331, 
+                      "end_line": 331, 
                       "start_column": 3, 
                       "end_column": 54
                     }
@@ -2030,8 +2030,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 331, 
-                      "end_line": 331, 
+                      "start_line": 332, 
+                      "end_line": 332, 
                       "start_column": 3, 
                       "end_column": 39
                     }
@@ -2045,8 +2045,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 334, 
-                      "end_line": 334, 
+                      "start_line": 335, 
+                      "end_line": 335, 
                       "start_column": 3, 
                       "end_column": 23
                     }
@@ -2060,8 +2060,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 337, 
-                      "end_line": 337, 
+                      "start_line": 338, 
+                      "end_line": 338, 
                       "start_column": 3, 
                       "end_column": 29
                     }
@@ -2075,8 +2075,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 341, 
-                      "end_line": 341, 
+                      "start_line": 342, 
+                      "end_line": 342, 
                       "start_column": 3, 
                       "end_column": 43
                     }
@@ -2090,8 +2090,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 350, 
-                      "end_line": 350, 
+                      "start_line": 351, 
+                      "end_line": 351, 
                       "start_column": 3, 
                       "end_column": 32
                     }
@@ -2105,8 +2105,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 351, 
-                      "end_line": 351, 
+                      "start_line": 352, 
+                      "end_line": 352, 
                       "start_column": 3, 
                       "end_column": 31
                     }
@@ -2116,21 +2116,6 @@
                       "private": true
                     }, 
                     "name": "provided_token_binding_key_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 354, 
-                      "end_line": 354, 
-                      "start_column": 3, 
-                      "end_column": 69
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "referred_token_binding_key_", 
                     "signature": "", 
                     "name_prefix": "", 
                     "type": 9, 
@@ -2145,13 +2130,28 @@
                     "modifiers": {
                       "private": true
                     }, 
+                    "name": "referred_token_binding_key_", 
+                    "signature": "", 
+                    "name_prefix": "", 
+                    "type": 9, 
+                    "text_range": {
+                      "start_line": 356, 
+                      "end_line": 356, 
+                      "start_column": 3, 
+                      "end_column": 69
+                    }
+                  }, 
+                  {
+                    "modifiers": {
+                      "private": true
+                    }, 
                     "name": "token_binding_request_", 
                     "signature": "", 
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 358, 
-                      "end_line": 358, 
+                      "start_line": 359, 
+                      "end_line": 359, 
                       "start_column": 3, 
                       "end_column": 52
                     }
@@ -2165,8 +2165,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 360, 
-                      "end_line": 360, 
+                      "start_line": 361, 
+                      "end_line": 361, 
                       "start_column": 3, 
                       "end_column": 39
                     }
@@ -2181,8 +2181,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 365, 
-                      "end_line": 365, 
+                      "start_line": 366, 
+                      "end_line": 366, 
                       "start_column": 3, 
                       "end_column": 48
                     }
@@ -2196,8 +2196,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 368, 
-                      "end_line": 368, 
+                      "start_line": 369, 
+                      "end_line": 369, 
                       "start_column": 3, 
                       "end_column": 37
                     }
@@ -2211,8 +2211,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 369, 
-                      "end_line": 369, 
+                      "start_line": 370, 
+                      "end_line": 370, 
                       "start_column": 3, 
                       "end_column": 21
                     }
@@ -2226,8 +2226,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 373, 
-                      "end_line": 373, 
+                      "start_line": 374, 
+                      "end_line": 374, 
                       "start_column": 3, 
                       "end_column": 33
                     }
@@ -2241,8 +2241,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 377, 
-                      "end_line": 377, 
+                      "start_line": 378, 
+                      "end_line": 378, 
                       "start_column": 3, 
                       "end_column": 29
                     }
@@ -2256,8 +2256,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 381, 
-                      "end_line": 381, 
+                      "start_line": 382, 
+                      "end_line": 382, 
                       "start_column": 3, 
                       "end_column": 36
                     }
@@ -2271,8 +2271,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 382, 
-                      "end_line": 382, 
+                      "start_line": 383, 
+                      "end_line": 383, 
                       "start_column": 3, 
                       "end_column": 34
                     }
@@ -2286,8 +2286,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 385, 
-                      "end_line": 385, 
+                      "start_line": 386, 
+                      "end_line": 386, 
                       "start_column": 3, 
                       "end_column": 21
                     }
@@ -2301,8 +2301,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 389, 
-                      "end_line": 389, 
+                      "start_line": 390, 
+                      "end_line": 390, 
                       "start_column": 3, 
                       "end_column": 29
                     }
@@ -2316,8 +2316,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 393, 
-                      "end_line": 393, 
+                      "start_line": 394, 
+                      "end_line": 394, 
                       "start_column": 3, 
                       "end_column": 33
                     }
@@ -2331,8 +2331,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 396, 
-                      "end_line": 396, 
+                      "start_line": 397, 
+                      "end_line": 397, 
                       "start_column": 3, 
                       "end_column": 37
                     }
@@ -2346,8 +2346,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 400, 
-                      "end_line": 400, 
+                      "start_line": 401, 
+                      "end_line": 401, 
                       "start_column": 3, 
                       "end_column": 51
                     }
@@ -2361,8 +2361,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 404, 
-                      "end_line": 405, 
+                      "start_line": 405, 
+                      "end_line": 406, 
                       "start_column": 3, 
                       "end_column": 54
                     }
@@ -2376,8 +2376,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 407, 
-                      "end_line": 407, 
+                      "start_line": 408, 
+                      "end_line": 408, 
                       "start_column": 3, 
                       "end_column": 61
                     }
@@ -2391,8 +2391,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 408, 
-                      "end_line": 408, 
+                      "start_line": 409, 
+                      "end_line": 409, 
                       "start_column": 3, 
                       "end_column": 59
                     }
@@ -2406,8 +2406,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 409, 
-                      "end_line": 409, 
+                      "start_line": 410, 
+                      "end_line": 410, 
                       "start_column": 3, 
                       "end_column": 52
                     }
@@ -2421,8 +2421,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 410, 
-                      "end_line": 410, 
+                      "start_line": 411, 
+                      "end_line": 411, 
                       "start_column": 3, 
                       "end_column": 54
                     }
@@ -2436,8 +2436,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 412, 
-                      "end_line": 412, 
+                      "start_line": 413, 
+                      "end_line": 413, 
                       "start_column": 3, 
                       "end_column": 43
                     }
@@ -2451,8 +2451,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 413, 
-                      "end_line": 413, 
+                      "start_line": 414, 
+                      "end_line": 414, 
                       "start_column": 3, 
                       "end_column": 31
                     }
@@ -2466,8 +2466,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 415, 
-                      "end_line": 415, 
+                      "start_line": 416, 
+                      "end_line": 416, 
                       "start_column": 3, 
                       "end_column": 38
                     }
@@ -2481,8 +2481,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 424, 
-                      "end_line": 424, 
+                      "start_line": 425, 
+                      "end_line": 425, 
                       "start_column": 3, 
                       "end_column": 26
                     }
@@ -2496,8 +2496,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 427, 
-                      "end_line": 427, 
+                      "start_line": 428, 
+                      "end_line": 428, 
                       "start_column": 3, 
                       "end_column": 24
                     }
@@ -2511,8 +2511,8 @@
                     "name_prefix": "", 
                     "type": 9, 
                     "text_range": {
-                      "start_line": 431, 
-                      "end_line": 431, 
+                      "start_line": 432, 
+                      "end_line": 432, 
                       "start_column": 3, 
                       "end_column": 39
                     }
@@ -2521,8 +2521,8 @@
                 "name_prefix": "", 
                 "type": 1, 
                 "text_range": {
-                  "start_line": 50, 
-                  "end_line": 434, 
+                  "start_line": 51, 
+                  "end_line": 435, 
                   "start_column": 1, 
                   "end_column": 2
                 }
@@ -2531,8 +2531,8 @@
             "type": 11, 
             "name": "net", 
             "text_range": {
-              "start_line": 39, 
-              "end_line": 436, 
+              "start_line": 40, 
+              "end_line": 437, 
               "start_column": 1, 
               "end_column": 2
             }, 

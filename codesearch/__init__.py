@@ -73,5 +73,3 @@ from .testing_support import \
     DisableNetwork, \
     EnableNetwork, \
     InstallTestRequestHandler
-
-__all__ = []

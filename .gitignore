@@ -2,3 +2,4 @@
 MANIFEST
 dist/
 codesearch/testdata/responses/callers.json
+.mypy_cache/

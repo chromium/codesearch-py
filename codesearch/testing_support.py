@@ -23,6 +23,11 @@ except ImportError:
   from urllib2 import urlopen, Request, HTTPSHandler, install_opener, build_opener, addinfourl, URLError
   from urlparse import urlparse, parse_qsl, parse_qs, urlunparse
 
+try:
+  from typing import Dict
+except ImportError:
+  pass
+
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 TEST_DATA_DIR = os.path.join(SCRIPT_DIR, 'testdata')
 RESPONSE_DATA_DIR = os.path.join(TEST_DATA_DIR, 'responses')
@@ -86,7 +91,7 @@ class RequestInfo(object):
 last_request = None
 
 # A map from the request digest string to RequestInfo.
-requests_seen = {}
+requests_seen = {}  # type: Dict[str, RequestInfo]
 
 
 def TestDataDir():

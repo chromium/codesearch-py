@@ -1,8 +1,31 @@
 {
-  "elapsed_ms": 86, 
+  "elapsed_ms": 79, 
   "xref_search_response": [
     {
       "status": 0, 
+      "estimated_total_type_count": [
+        {
+          "count": 2, 
+          "type": "DEFINITION", 
+          "type_id": 1
+        }, 
+        {
+          "count": 1, 
+          "type": "DECLARATION", 
+          "type_id": 2
+        }, 
+        {
+          "count": 456, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }, 
+        {
+          "count": 1, 
+          "type": "EXTENDS", 
+          "type_id": 6
+        }
+      ], 
+      "kythe_next_page_token": "", 
       "search_result": [
         {
           "match": [
@@ -2251,6 +2274,35 @@
         {
           "match": [
             {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/data_use_measurement/page_load_capping/page_load_capping_browsertest.cc#%402242%3A2252", 
+              "line_number": 50, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      scoped_refptr<base::FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/data_use_measurement/page_load_capping/page_load_capping_browsertest.cc#%402835%3A2845", 
+              "line_number": 64, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      scoped_refptr<base::FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/data_use_measurement/page_load_capping/page_load_capping_browsertest.cc#%403154%3A3164", 
+              "line_number": 72, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/data_use_measurement/page_load_capping/page_load_capping_browsertest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
               "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/feature_engagement/bookmark/bookmark_tracker_unittest.cc#%404670%3A4680", 
               "line_number": 126, 
               "type_id": 3, 
@@ -2435,8 +2487,8 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/previews/previews_infobar_delegate_unittest.cc#%409704%3A9714", 
-              "line_number": 239, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/previews/previews_infobar_delegate_unittest.cc#%409758%3A9768", 
+              "line_number": 240, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    base::FieldTrial* field_trial ="
@@ -2480,8 +2532,8 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/autofill/core/browser/form_structure_unittest.cc#%405579%3A5589", 
-              "line_number": 139, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/autofill/core/browser/form_structure_unittest.cc#%405641%3A5651", 
+              "line_number": 140, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  scoped_refptr<base::FieldTrial> field_trial_;"
@@ -2759,8 +2811,8 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/password_manager/core/browser/password_generation_manager_unittest.cc#%4012550%3A12560", 
-              "line_number": 296, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/components/password_manager/core/browser/password_generation_manager_unittest.cc#%4018812%3A18822", 
+              "line_number": 452, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "    scoped_refptr<base::FieldTrial> field_trial;"
@@ -3738,8 +3790,8 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/transport_security_state_unittest.cc#%40107840%3A107850", 
-              "line_number": 2490, 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/transport_security_state_unittest.cc#%4091759%3A91769", 
+              "line_number": 2122, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  scoped_refptr<base::FieldTrial> trial ="
@@ -3832,14 +3884,14 @@
         {
           "match": [
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/resource_scheduler_unittest.cc#%402466%3A2476", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/resource_scheduler_unittest.cc#%402474%3A2484", 
               "line_number": 72, 
               "type_id": 3, 
               "type": "REFERENCE", 
               "line_text": "  scoped_refptr<base::FieldTrial> trial ="
             }, 
             {
-              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/resource_scheduler_unittest.cc#%4069508%3A69518", 
+              "signature": "kythe://chromium?lang=c%2B%2B?path=src/services/network/resource_scheduler_unittest.cc#%4069516%3A69526", 
               "line_number": 1774, 
               "type_id": 3, 
               "type": "REFERENCE", 
@@ -3850,36 +3902,6 @@
             "name": "src/services/network/resource_scheduler_unittest.cc", 
             "package_name": "chromium"
           }
-        }
-      ], 
-      "estimated_total_type_count": [
-        {
-          "count": 2, 
-          "type": "DEFINITION", 
-          "type_id": 1
-        }, 
-        {
-          "count": 1, 
-          "type": "DECLARATION", 
-          "type_id": 2
-        }, 
-        {
-          "count": 455, 
-          "type": "REFERENCE", 
-          "type_id": 3
-        }, 
-        {
-          "count": 1, 
-          "type": "EXTENDS", 
-          "type_id": 6
-        }
-      ], 
-      "kythe_next_page_token": "", 
-      "eliminated_type_count": [
-        {
-          "count": 2, 
-          "type": "REFERENCE", 
-          "type_id": 3
         }
       ], 
       "from_kythe": true

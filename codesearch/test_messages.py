@@ -8,20 +8,46 @@ from __future__ import absolute_import
 
 import unittest
 
-from .messages import Message, message, XrefSignature, InternalLink, TextRange
+from .messages import Message, XrefSignature, InternalLink, TextRange
+
+try:
+  from typing import List
+except ImportError:
+  pass
 
 
-@message
 class Foo(Message):
-  DESCRIPTOR = {'x': int}
+  DESCRIPTOR = {
+      'x': int,
+  }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.x = d.get('x', int())  # type: int
 
 
 class Bar(Message):
-  DESCRIPTOR = {'x': int, 'y': Message.PARENT_TYPE}
+  DESCRIPTOR = {
+      'x': int,
+      'y': [Message.PARENT_TYPE],
+  }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.x = d.get('x', int())  # type: int
+    self.y = d.get('y', [])  # type: List[Bar]
 
 
 class Baz(Message):
-  DESCRIPTOR = {'x': int, 'y': [Message.PARENT_TYPE]}
+  DESCRIPTOR = {
+      'x': int,
+      'y': [Message.PARENT_TYPE],
+  }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.x = d.get('x', int())  # type: int
+    self.y = d.get('y', [])  # type: List[Baz]
 
 
 class Qux(Message):
@@ -32,11 +58,23 @@ class Qux(Message):
 
 
 class Quux(Message):
-  DESCRIPTOR = {'x': Qux}
+  DESCRIPTOR = {
+      'x': Qux,
+  }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.x = d.get('x', 0)  # type: int
 
 
 class S(Message):
-  DESCRIPTOR = {'s': str}
+  DESCRIPTOR = {
+      's': str,
+  }
+
+  def __init__(self, **kwargs):
+    d = kwargs
+    self.s = d.get('s', str())  # type: str
 
 
 class TestProto(unittest.TestCase):
@@ -57,11 +95,11 @@ class TestProto(unittest.TestCase):
     self.assertEqual(v.x, 3)
 
   def test_from_json_string_3(self):
-    v = Bar.FromJsonString('{"x": 3, "y": {"x": 4}}')
+    v = Bar.FromJsonString('{"x": 3, "y": [{"x": 4}]}')
     self.assertTrue(isinstance(v, Bar))
-    self.assertTrue(isinstance(v.y, Bar))
+    self.assertTrue(isinstance(v.y[0], Bar))
     self.assertEqual(v.x, 3)
-    self.assertEqual(v.y.x, 4)
+    self.assertEqual(v.y[0].x, 4)
 
   def test_from_json_string_4(self):
     v = Foo.FromJsonString('{"y": 3}')
@@ -70,7 +108,7 @@ class TestProto(unittest.TestCase):
   def test_from_json_string_5(self):
     v = Foo.FromJsonString('{"y": 3}')
     self.assertTrue(isinstance(v, Foo))
-    self.assertEqual(v.y, 3)
+    self.assertFalse(hasattr(v, 'y'))
 
   def test_from_json_string_6(self):
     v = Quux.FromJsonString('{"x": 3}')
@@ -103,18 +141,12 @@ class TestConstructor(unittest.TestCase):
 
   def test_empty_class(self):
     f = Foo()
-    self.assertFalse(hasattr(f, 'x'))
+    self.assertTrue(hasattr(f, 'x'))
 
   def test_class_with_known_keyword(self):
     f = Foo(x=10)
     self.assertTrue(hasattr(f, 'x'))
     self.assertEqual(10, f.x)
-
-  def test_class_with_unknown_keyword(self):
-    f = Foo(x=10, y=9)
-    self.assertTrue(hasattr(f, 'x'))
-    self.assertTrue(hasattr(f, 'y'))
-    self.assertEqual(9, f.y)
 
 
 class TestXrefSignature(unittest.TestCase):
