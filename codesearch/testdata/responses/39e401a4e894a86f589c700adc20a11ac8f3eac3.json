@@ -1,0 +1,449 @@
+{
+  "search_response": [
+    {
+      "status": 0, 
+      "hit_max_results": true, 
+      "estimated_total_number_of_results": 3460, 
+      "stats": {
+        "retries": 0, 
+        "filter_ratio": 0, 
+        "first_phase_latency_micros": "71966"
+      }, 
+      "search_result": [
+        {
+          "docid": "fYOPj_1RjeM", 
+          "best_matching_line_number": 40, 
+          "language": "c++", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "d75dcb3c3cc4eff1e42d84f79de43ea8f35dff88", 
+              "name": "src/v8/samples/hello-world.cc", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 0, 
+          "match": [
+            {
+              "line_number": 40, 
+              "score": 86, 
+              "match_offset": 57, 
+              "match_length": 5, 
+              "line_text": "          v8::String::NewFromUtf8(isolate, \"'Hello' + ', World!'\",\n"
+            }, 
+            {
+              "line_number": 34, 
+              "score": 29, 
+              "match_offset": 61, 
+              "match_length": 5, 
+              "line_text": "    // Enter the context for compiling and running the hello world script.\n"
+            }
+          ]
+        }, 
+        {
+          "docid": "pqDb6Zlk-0Q", 
+          "best_matching_line_number": 5, 
+          "language": "javascript", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "6f09100043cce0c1cd4ade3c4f455185d7893769", 
+              "name": "src/gin/shell/hello_world.js", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 0, 
+          "match": [
+            {
+              "line_number": 5, 
+              "score": 86, 
+              "match_offset": 11, 
+              "match_length": 5, 
+              "line_text": "log(\"Hello World\");\n"
+            }
+          ]
+        }, 
+        {
+          "docid": "wRyuUxg5Q4A", 
+          "best_matching_line_number": 1, 
+          "language": "", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "6be02374db118b9fb99cd98c6b403e5a558d0d57", 
+              "name": "src/v8/test/fuzzer/parser/hello-world", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 0, 
+          "match": [
+            {
+              "line_number": 1, 
+              "score": 29, 
+              "match_offset": 19, 
+              "match_length": 5, 
+              "line_text": "console.log('hello world');\n"
+            }
+          ]
+        }, 
+        {
+          "docid": "OK7nJctWRUA", 
+          "best_matching_line_number": 13, 
+          "language": "c", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true, 
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "44b363dfcdaf8fbb97dd31c12d19272a0bbad2a0", 
+              "name": "src/native_client/tests/hello_world/hello_world.c", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 0, 
+          "match": [
+            {
+              "line_number": 13, 
+              "score": 151, 
+              "match_offset": 11, 
+              "match_length": 5, 
+              "line_text": "void hello_world(void) {\n"
+            }, 
+            {
+              "line_number": 14, 
+              "score": 109, 
+              "match_offset": 17, 
+              "match_length": 5, 
+              "line_text": "  printf(\"Hello, World!\\n\");\n"
+            }, 
+            {
+              "line_number": 18, 
+              "score": 30, 
+              "match_offset": 8, 
+              "match_length": 5, 
+              "line_text": "  hello_world();\n"
+            }
+          ]
+        }, 
+        {
+          "docid": "BkR89JvXSj8", 
+          "best_matching_line_number": 9, 
+          "language": "c", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "0a4c806019e86416cad8dda7ee87a6bcad66f888", 
+              "name": "src/tools/gyp/test/hello/hello.c", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 0, 
+          "match": [
+            {
+              "line_number": 9, 
+              "score": 86, 
+              "match_offset": 10, 
+              "match_length": 5, 
+              "line_text": "  printf(\"Hello, world!\\n\");\n"
+            }
+          ]
+        }, 
+        {
+          "docid": "FxHPIDsWszA", 
+          "best_matching_line_number": 8, 
+          "language": "c++", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "84ffc3fc38738e37f2a68751a1046185eba7405f", 
+              "name": "src/tools/gn/tutorial/hello_world.cc", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 0, 
+          "match": [
+            {
+              "line_number": 8, 
+              "score": 86, 
+              "match_offset": 10, 
+              "match_length": 5, 
+              "line_text": "  printf(\"Hello, world.\\n\");\n"
+            }
+          ]
+        }, 
+        {
+          "docid": "dE3QfWEsHU8", 
+          "best_matching_line_number": 19, 
+          "language": "proto", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true, 
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "b3e7d887158add24ac32c1484038fefa4de5e0fb", 
+              "name": "infra/go/src/go.chromium.org/luci/grpc/prpc/e2etest/helloworld_test.proto", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 4, 
+          "match": [
+            {
+              "line_number": 19, 
+              "score": 610, 
+              "match_offset": 8, 
+              "match_length": 5, 
+              "line_text": "service Hello {\n"
+            }, 
+            {
+              "line_number": 20, 
+              "score": 446, 
+              "match_offset": 12, 
+              "match_length": 5, 
+              "line_text": "  rpc Greet(HelloRequest) returns (HelloReply);\n"
+            }, 
+            {
+              "line_number": 15, 
+              "score": 200, 
+              "match_offset": 8, 
+              "match_length": 5, 
+              "line_text": "message HelloReply {\n"
+            }, 
+            {
+              "line_number": 10, 
+              "score": 194, 
+              "match_offset": 8, 
+              "match_length": 5, 
+              "line_text": "message HelloRequest {\n"
+            }
+          ]
+        }, 
+        {
+          "docid": "blR0XixLEAQ", 
+          "best_matching_line_number": 29, 
+          "language": "markdown", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "e385808c66b0feef2bed5f823cd900d088f6bf42", 
+              "name": "infra/doc/users/services/hello_world.md", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": true, 
+          "num_matches": 10, 
+          "match": [
+            {
+              "line_number": 29, 
+              "score": 86, 
+              "match_offset": 6, 
+              "match_length": 5, 
+              "line_text": "Hello World service is safe to use for internal projects.\n"
+            }, 
+            {
+              "line_number": 1, 
+              "score": 86, 
+              "match_offset": 2, 
+              "match_length": 5, 
+              "line_text": "# Hello World service\n"
+            }, 
+            {
+              "line_number": 29, 
+              "score": 86, 
+              "match_offset": 0, 
+              "match_length": 5, 
+              "line_text": "Hello World service is safe to use for internal projects.\n"
+            }, 
+            {
+              "line_number": 14, 
+              "score": 43, 
+              "match_offset": 29, 
+              "match_length": 5, 
+              "line_text": "*   Crbug label: [Infra-HelloWorld](https://code.google.com/p/chromium/issues/list?q=Infra%3DHelloWorld)\n"
+            }, 
+            {
+              "line_number": 21, 
+              "score": 43, 
+              "match_offset": 1, 
+              "match_length": 5, 
+              "line_text": "`HelloWorldCfg` message in\n"
+            }, 
+            {
+              "line_number": 14, 
+              "score": 43, 
+              "match_offset": 24, 
+              "match_length": 5, 
+              "line_text": "*   Crbug label: [Infra-HelloWorld](https://code.google.com/p/chromium/issues/list?q=Infra%3DHelloWorld)\n"
+            }, 
+            {
+              "line_number": 11, 
+              "score": -14, 
+              "match_offset": 22, 
+              "match_length": 5, 
+              "line_text": "*   [API](http://helloworld.appspot.com/_ah/api/explorer)\n"
+            }, 
+            {
+              "line_number": 6, 
+              "score": -14, 
+              "match_offset": 24, 
+              "match_length": 5, 
+              "line_text": "    *   Prod instance: [helloworld.appspot.com](http://helloworld.appspot.com)\n"
+            }
+          ]
+        }, 
+        {
+          "docid": "CDw9foFHOlc", 
+          "best_matching_line_number": 290, 
+          "language": "gn", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "db688ae72c3b5340d2e334ad5e7a82fde134b8e1", 
+              "name": "src/BUILD.gn", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 0, 
+          "match": [
+            {
+              "line_number": 290, 
+              "score": -14, 
+              "match_offset": 38, 
+              "match_length": 5, 
+              "line_text": "      \"//build/android/gyp/test:hello_world\",\n"
+            }, 
+            {
+              "line_number": 291, 
+              "score": -14, 
+              "match_offset": 38, 
+              "match_length": 5, 
+              "line_text": "      \"//build/android/gyp/test:hello_world\",\n"
+            }
+          ]
+        }, 
+        {
+          "docid": "LgEmJqZG4gY", 
+          "best_matching_line_number": 16, 
+          "language": "c++", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true, 
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "28715fe89b940be3ab638eee67871e5d40c3c080", 
+              "name": "src/third_party/skia/example/HelloWorld.h", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 0, 
+          "match": [
+            {
+              "line_number": 16, 
+              "score": 200, 
+              "match_offset": 11, 
+              "match_length": 5, 
+              "line_text": "class HelloWorld : public sk_app::Application, sk_app::Window::Layer {\n"
+            }, 
+            {
+              "line_number": 18, 
+              "score": 189, 
+              "match_offset": 9, 
+              "match_length": 5, 
+              "line_text": "    HelloWorld(int argc, char** argv, void* platformData);\n"
+            }, 
+            {
+              "line_number": 19, 
+              "score": 187, 
+              "match_offset": 10, 
+              "match_length": 5, 
+              "line_text": "    ~HelloWorld() override;\n"
+            }, 
+            {
+              "line_number": 9, 
+              "score": 127, 
+              "match_offset": 13, 
+              "match_length": 5, 
+              "line_text": "#define HelloWorld_DEFINED\n"
+            }, 
+            {
+              "line_number": 8, 
+              "score": 1, 
+              "match_offset": 13, 
+              "match_length": 5, 
+              "line_text": "#ifndef HelloWorld_DEFINED\n"
+            }
+          ]
+        }
+      ], 
+      "results_offset": 0, 
+      "maybe_skipped_documents": false, 
+      "hit_max_to_score": false
+    }
+  ], 
+  "elapsed_ms": 107
+}

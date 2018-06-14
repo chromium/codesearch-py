@@ -56,7 +56,8 @@ SendRequestToServer takes a CompoundRequest object ...
 ...     search_request=[
 ...     codesearch.SearchRequest(query='hello world',
 ...                              return_line_matches=True,
-...                              lines_context=0)
+...                              lines_context=0,
+...                              max_num_results=10)
 ...     ]))
 
 .. and returns a CompoundResponse
@@ -101,7 +102,7 @@ fields are explained in message.py.
 ...         lines_left -= 1
 ...         if lines_left == 0: break
 ...     if lines_left == 0: break
-src/v8/samples/hello-world.cc:39: v8::String::NewFromUtf8(isolate, "'Hello' + ', World!'",
+src/v8/samples/hello-world.cc:40: v8::String::NewFromUtf8(isolate, "'Hello' + ', World!'",
 src/v8/samples/hello-world.cc:34: // Enter the context for compiling and running the hello world script.
 src/gin/shell/hello_world.js:5: log("Hello World");
 src/v8/test/fuzzer/parser/hello-world:1: console.log('hello world');

@@ -1,0 +1,297 @@
+{
+  "search_response": [
+    {
+      "status": 0, 
+      "hit_max_results": false, 
+      "estimated_total_number_of_results": 2, 
+      "stats": {
+        "retries": 0, 
+        "filter_ratio": 0, 
+        "first_phase_latency_micros": "44447"
+      }, 
+      "search_result": [
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "class NET_EXPORT_PRIVATE URLRequestHttpJob : public URLRequestJob {\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 26, 
+                      "end_column": 43
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 41, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }
+          ], 
+          "docid": "tA3Iii9cIUY", 
+          "best_matching_line_number": 41, 
+          "language": "c++", 
+          "is_augmented": false, 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "7fb07ff59db42b099214676ab8ed811c0bebbb97", 
+              "name": "src/net/url_request/url_request_http_job.h", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 41, 
+              "score": 1252, 
+              "match_offset": 25, 
+              "match_length": 17, 
+              "line_text": "class NET_EXPORT_PRIVATE URLRequestHttpJob : public URLRequestJob {\n"
+            }
+          ]
+        }, 
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "class TestURLRequestHttpJob : public URLRequestHttpJob {\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 11, 
+                      "end_column": 28
+                    }, 
+                    "type": 41
+                  }, 
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 38, 
+                      "end_column": 55
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 91, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }, 
+            {
+              "text": {
+                "text": "class URLRequestHttpJobSetUpSourceTest : public TestWithScopedTaskEnvironment {\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 7, 
+                      "end_column": 24
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 123, 
+              "match_reason": {
+                "scoped_symbol": true
+              }
+            }, 
+            {
+              "text": {
+                "text": "class URLRequestHttpJobWithProxy : public WithScopedTaskEnvironment {\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 7, 
+                      "end_column": 24
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 190, 
+              "match_reason": {
+                "scoped_symbol": true
+              }
+            }, 
+            {
+              "text": {
+                "text": "class URLRequestHttpJobTest : public TestWithScopedTaskEnvironment {\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 7, 
+                      "end_column": 24
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 350, 
+              "match_reason": {
+                "scoped_symbol": true
+              }
+            }, 
+            {
+              "text": {
+                "text": "class URLRequestHttpJobWithMockSocketsTest\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 7, 
+                      "end_column": 24
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 380, 
+              "match_reason": {
+                "scoped_symbol": true
+              }
+            }, 
+            {
+              "text": {
+                "text": "class URLRequestHttpJobWithBrotliSupportTest\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 7, 
+                      "end_column": 24
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 1333, 
+              "match_reason": {
+                "scoped_symbol": true
+              }
+            }, 
+            {
+              "text": {
+                "text": "class URLRequestHttpJobWebSocketTest : public TestWithScopedTaskEnvironment {\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 7, 
+                      "end_column": 24
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 1461, 
+              "match_reason": {
+                "scoped_symbol": true
+              }
+            }
+          ], 
+          "docid": "eKSepoZdL7E", 
+          "best_matching_line_number": 91, 
+          "language": "c++", 
+          "is_augmented": false, 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "changelist": "8996d3dc4ef6354b55fc6700cc9b4b100e6b10fa", 
+              "name": "src/net/url_request/url_request_http_job_unittest.cc", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 7, 
+          "match": [
+            {
+              "line_number": 91, 
+              "score": 552, 
+              "match_offset": 10, 
+              "match_length": 17, 
+              "line_text": "class TestURLRequestHttpJob : public URLRequestHttpJob {\n"
+            }, 
+            {
+              "line_number": 123, 
+              "score": 513, 
+              "match_offset": 6, 
+              "match_length": 17, 
+              "line_text": "class URLRequestHttpJobSetUpSourceTest : public TestWithScopedTaskEnvironment {\n"
+            }, 
+            {
+              "line_number": 190, 
+              "score": 531, 
+              "match_offset": 6, 
+              "match_length": 17, 
+              "line_text": "class URLRequestHttpJobWithProxy : public WithScopedTaskEnvironment {\n"
+            }, 
+            {
+              "line_number": 350, 
+              "score": 552, 
+              "match_offset": 6, 
+              "match_length": 17, 
+              "line_text": "class URLRequestHttpJobTest : public TestWithScopedTaskEnvironment {\n"
+            }, 
+            {
+              "line_number": 380, 
+              "score": 505, 
+              "match_offset": 6, 
+              "match_length": 17, 
+              "line_text": "class URLRequestHttpJobWithMockSocketsTest\n"
+            }, 
+            {
+              "line_number": 1333, 
+              "score": 502, 
+              "match_offset": 6, 
+              "match_length": 17, 
+              "line_text": "class URLRequestHttpJobWithBrotliSupportTest\n"
+            }, 
+            {
+              "line_number": 1461, 
+              "score": 518, 
+              "match_offset": 6, 
+              "match_length": 17, 
+              "line_text": "class URLRequestHttpJobWebSocketTest : public TestWithScopedTaskEnvironment {\n"
+            }
+          ]
+        }
+      ], 
+      "results_offset": 0, 
+      "maybe_skipped_documents": false, 
+      "hit_max_to_score": false
+    }
+  ], 
+  "elapsed_ms": 76
+}

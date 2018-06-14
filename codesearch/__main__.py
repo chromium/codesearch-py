@@ -262,7 +262,7 @@ try:
   setup_logging(codesearch_instance, arguments)
   print_result(arguments.func(codesearch_instance, arguments), arguments)
 except Exception as e:
-  print e
+  print(e)
 finally:
   if codesearch_instance is not None:
     codesearch_instance.TeardownCache()
