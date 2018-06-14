@@ -14,17 +14,9 @@ import sys
 
 from email.message import Message
 
+# Type annotations are only used during static analysis phase.
 try:
-  from urllib.request import urlopen, Request, HTTPSHandler, install_opener, build_opener
-  from urllib.response import addinfourl
-  from urllib.error import URLError
-  from urllib.parse import urlparse, parse_qsl, urlunparse
-except ImportError:
-  from urllib2 import urlopen, Request, HTTPSHandler, install_opener, build_opener, addinfourl, URLError
-  from urlparse import urlparse, parse_qsl, parse_qs, urlunparse
-
-try:
-  from typing import Dict
+  from typing import Dict, BinaryIO
 except ImportError:
   pass
 
@@ -34,7 +26,10 @@ RESPONSE_DATA_DIR = os.path.join(TEST_DATA_DIR, 'responses')
 
 disable_network = False
 
-if sys.version_info[0] < 3:
+if sys.version_info < (3,0):
+  # Python 2
+  from urllib2 import urlopen, Request, HTTPSHandler, install_opener, build_opener, addinfourl, URLError
+  from urlparse import urlparse, parse_qsl, parse_qs, urlunparse
 
   def GetRequestData(request):
     return bytes(request.get_data()) if request.has_data() else bytes()
@@ -50,6 +45,11 @@ if sys.version_info[0] < 3:
     return (fname, line, fn)
 
 else:
+  # Python 3
+  from urllib.request import urlopen, Request, HTTPSHandler, install_opener, build_opener
+  from urllib.response import addinfourl
+  from urllib.error import URLError
+  from urllib.parse import urlparse, parse_qsl, urlunparse
 
   def GetRequestData(request):
     return request.data if request.data is not None else bytes()
@@ -284,7 +284,7 @@ if __name__ == '__main__':
       result = response.read()
       data = json.loads(result, encoding='utf-8')
 
-      with open(os.path.join(RESPONSE_DATA_DIR, filename), 'wb') as f:
+      with open(os.path.join(RESPONSE_DATA_DIR, filename), 'w') as f:
         json.dump(data, f, indent=2, separators=(', ', ': '), encoding='utf-8')
 
       os.unlink(os.path.join(RESPONSE_DATA_DIR, name))

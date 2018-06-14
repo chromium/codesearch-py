@@ -11,6 +11,7 @@ from __future__ import absolute_import
 
 import logging
 import os
+import sys
 
 from .file_cache import FileCache
 from .messages import \
@@ -43,10 +44,10 @@ from .paths import GetSourceRoot
 from .compat import StringFromBytes
 from .language_utils import SymbolSuffixMatcher, IsIdentifier
 
-try:
+if sys.version_info >= (3,0):
   from urllib.request import urlopen, Request
   from urllib.parse import urlencode, urlparse, unquote
-except ImportError:
+else:
   from urllib2 import urlopen, Request
   from urllib import urlencode
   from urlparse import urlparse, unquote

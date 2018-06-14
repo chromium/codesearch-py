@@ -5,8 +5,13 @@ matrix:
     - python: '2.7'
       env: TEST_SUITE=python2
     - python: '3.6'
-      env: TEST_SUITE=python3
+      env: TEST_SUITE=python3 TYPE_CHECK=1
     - python: "nightly"
-      env: TEST_SUITE=python3
+      env: TEST_SUITE=python3 TYPE_CHECK=1
 
-script: ./run_tests.sh
+install:
+  - if [[ -n "$TYPE_CHECK" ]]; then pip3 install mypy ; fi
+
+script:
+  - ./run_tests.sh
+
