@@ -12,6 +12,7 @@ matrix:
       env: TEST_SUITE=python3
 
 install:
+  - pip install --user types
   - pip3 install --user mypy
 
 script:
