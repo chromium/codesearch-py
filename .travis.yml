@@ -12,7 +12,6 @@ matrix:
       env: TEST_SUITE=python3
 
 install:
-  - pip install types
   - pip3 install mypy
 
 script:
