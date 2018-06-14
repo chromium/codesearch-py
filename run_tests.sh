@@ -31,3 +31,8 @@ if [ ${TEST_SUITE:-python3} == python3 ]; then
   python3 -m doctest README.md
 fi
 
+if [[ -n "$TYPE_CHECK" ]]; then
+  echo Static analysis via mypy:
+  mypy codesearch
+fi
+
