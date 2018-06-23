@@ -321,7 +321,14 @@ class TextRange(Message):
     return True
 
   def IsValid(self):
-    return self.start_line != 0 or self.start_column != 0 or self.end_line != 0 or self.end_column != 0
+    return \
+        self.start_line != 0 or \
+        self.start_column != 0 or \
+        self.end_line != 0 or \
+        self.end_column != 0
+
+  def Empty(self):
+    return not self.IsValid()
 
   def __eq__(self, other):
     if not isinstance(other, TextRange):
@@ -715,6 +722,10 @@ class AnnotatedText(Message):
     self.text = d.get('text', str())  # type: str
     self.range = d.get('range', [])  # type: [FormatRange]
 
+  def Empty(self):
+    # type: () -> bool
+    return self.text == ""
+
 
 class CodeBlockType(Message):
   DESCRIPTOR = int
@@ -1040,6 +1051,10 @@ class Snippet(Message):
                               MatchReason())  # type: MatchReason
     self.scope = d.get('scope', str())  # type: str
     self.text = d.get('text', AnnotatedText())  # type: AnnotatedText
+
+  def Empty(self):
+    # type: () -> bool
+    return self.first_line_number == 0 or self.text.Empty()
 
 
 class Node(Message):
