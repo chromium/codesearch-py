@@ -26,7 +26,7 @@ RESPONSE_DATA_DIR = os.path.join(TEST_DATA_DIR, 'responses')
 
 disable_network = False
 
-if sys.version_info < (3,0):
+if sys.version_info < (3, 0):
   # Python 2
   from urllib2 import urlopen, Request, HTTPSHandler, install_opener, build_opener, addinfourl, URLError
   from urlparse import urlparse, parse_qsl, parse_qs, urlunparse

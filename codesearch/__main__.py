@@ -10,6 +10,7 @@ https://cs.chromium.org.
 """
 
 from __future__ import absolute_import
+from __future__ import print_function
 
 import os
 import argparse
@@ -17,10 +18,18 @@ import sys
 import json
 import logging
 
-from codesearch import CodeSearch, CompoundRequest, \
-        CodeSearchProtoJsonSymbolizedEncoder, CodeSearchProtoJsonEncoder, \
-        XrefSearchRequest, SearchRequest, FileInfoRequest, DirInfoRequest, \
-        CallGraphRequest, EdgeEnumKind
+from codesearch import  \
+        CallGraphRequest, \
+        CodeSearch, \
+        CodeSearchProtoJsonEncoder, \
+        CodeSearchProtoJsonSymbolizedEncoder, \
+        CompoundRequest, \
+        DirInfoRequest, \
+        EdgeEnumKind, \
+        FileInfoRequest, \
+        Message, \
+        SearchRequest, \
+        XrefSearchRequest
 
 
 def print_result(results, args):
@@ -95,13 +104,19 @@ subgroup.add_argument(
 common_args = argparse.ArgumentParser(
     description='Common options', add_help=False)
 common_args.add_argument(
-    '--pretty',
+    '--nopretty',
     help='Whether to pretty print the resulting JSON',
     default=True,
-    action='store_true')
+    dest='pretty',
+    action='store_false')
 common_args.add_argument(
     '--loglevel', '-l', help='Log level', choices=['info', 'debug'])
 common_args.add_argument('--cache', '-C', help='Cache directory')
+common_args.add_argument(
+    '--root',
+    '-r',
+    action='store_true',
+    help='Assume repository paths are relative to root')
 
 # sig
 signature_command = subcommands.add_parser(
@@ -257,10 +272,12 @@ codesearch_instance = None
 
 try:
   codesearch_instance = CodeSearch(
+      source_root='/' if arguments.root else None,
       a_path_inside_source_dir=os.getcwd(),
       cache_dir=arguments.cache if arguments.cache else None)
   setup_logging(codesearch_instance, arguments)
-  print_result(arguments.func(codesearch_instance, arguments), arguments)
+  result = arguments.func(codesearch_instance, arguments)
+  print_result(result, arguments)
 except Exception as e:
   print(e)
 finally:

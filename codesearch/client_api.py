@@ -44,7 +44,7 @@ from .paths import GetSourceRoot
 from .compat import StringFromBytes
 from .language_utils import SymbolSuffixMatcher, IsIdentifier
 
-if sys.version_info >= (3,0):
+if sys.version_info >= (3, 0):
   from urllib.request import urlopen, Request
   from urllib.parse import urlencode, urlparse, unquote
 else:
@@ -600,8 +600,8 @@ class CodeSearch(object):
       a_path_inside_source_dir=None,  # type: Optional[str]
       package_name='chromium',  # type: str
       codesearch_host='https://cs.chromium.org',  # type: str
-      request_timeout_in_seconds=3,  # type: int
-      user_agent_string='Python-CodeSearch-Client'  # type: str
+      request_timeout_in_seconds=10,  # type: int
+      user_agent_string='Python-CodeSearch-Client (https://github.com/chromium/codesearch-py)'  # type: str
   ):
     # type: (...) -> None
     """Initialize a CodeSearch object.
@@ -611,6 +611,7 @@ class CodeSearch(object):
     backened depend on it.
 
     Arguments:
+
         should_cache -- Should be set to True in order to use a disk cache. See
             documentation for cache_dir for how the cache is organized.
 
@@ -791,7 +792,6 @@ class CodeSearch(object):
     # type: (str, int) -> CompoundResponse
     """Retrieves a list of call graph nodes corresponding to all call sites of
     |signature|.
-
     """
     return self.SendRequestToServer(
         CompoundRequest(call_graph_request=[

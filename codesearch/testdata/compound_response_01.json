@@ -1,0 +1,358 @@
+{
+  "call_graph_response": [
+    {
+      "return_code": 1,
+      "node": {
+        "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler.h#JeFRw996xZZVV9czj%2FFb1cDpm3lK9KygMuH3I5j8Gvs%3D",
+        "node_kind": "FUNCTION",
+        "children": [
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_controller.cc#KT6dW2Oyiv3OtfDK3Auh0pjK2V2ZCCzASfU34HIjU1A%3D",
+            "file_path": "src/net/http/http_auth_controller.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "MaybeGenerateAuthToken",
+            "snippet": {
+              "text": {
+                "text": "  int rv = handler_->GenerateAuthToken("
+              },
+              "first_line_number": 159
+            },
+            "call_site_range": {
+              "start_line": 159,
+              "start_column": 12,
+              "end_line": 163,
+              "end_column": 19
+            },
+            "call_scope_range": {
+              "start_line": 145,
+              "start_column": 25,
+              "end_line": 145,
+              "end_column": 46
+            },
+            "params": [
+              "request",
+              "callback",
+              "net_log"
+            ],
+            "snippet_file_path": "src/net/http/http_auth_controller.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_basic_unittest.cc#rGyD7PGS8PcACbNF5dm7cMXAM6Dsg2C7f2H2w45x0Xo%3D",
+            "file_path": "src/net/http/http_auth_handler_basic_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "TestBody",
+            "snippet": {
+              "text": {
+                "text": "    int rv = basic->GenerateAuthToken(&credentials, &request_info,"
+              },
+              "first_line_number": 54
+            },
+            "call_site_range": {
+              "start_line": 54,
+              "start_column": 14,
+              "end_line": 55,
+              "end_column": 71
+            },
+            "call_scope_range": {
+              "start_line": 26,
+              "start_column": 1,
+              "end_line": 26,
+              "end_column": 0
+            },
+            "snippet_file_path": "src/net/http/http_auth_handler_basic_unittest.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_digest_unittest.cc#NWXPUm5fOZr6UiWzw8QJpbFF8qT%2Bbs0%2FWxz%2Bz6rxCAE%3D",
+            "file_path": "src/net/http/http_auth_handler_digest_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "RespondToChallenge",
+            "snippet": {
+              "text": {
+                "text": "  int rv_generate = handler->GenerateAuthToken("
+              },
+              "first_line_number": 80
+            },
+            "call_site_range": {
+              "start_line": 80,
+              "start_column": 21,
+              "end_line": 81,
+              "end_column": 62
+            },
+            "call_scope_range": {
+              "start_line": 38,
+              "start_column": 6,
+              "end_line": 38,
+              "end_column": 23
+            },
+            "params": [
+              "target",
+              "proxy_name",
+              "request_url",
+              "challenge",
+              "token"
+            ],
+            "snippet_file_path": "src/net/http/http_auth_handler_digest_unittest.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_negotiate_unittest.cc#K4ikCIS9mEQ2mHfCRGMW5LQewkaTRwkdAaRECIIEiX8%3D",
+            "file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "TestBody",
+            "snippet": {
+              "text": {
+                "text": "  EXPECT_EQ(OK, callback.GetResult(auth_handler->GenerateAuthToken("
+              },
+              "first_line_number": 257
+            },
+            "call_site_range": {
+              "start_line": 257,
+              "start_column": 3,
+              "end_line": 257,
+              "end_column": 2
+            },
+            "call_scope_range": {
+              "start_line": 247,
+              "start_column": 1,
+              "end_line": 247,
+              "end_column": 0
+            },
+            "snippet_file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_negotiate_unittest.cc#VfqfOw7DzVIjSOvfAoZkrsRnILsU2svoU3J3QXGEKdE%3D",
+            "file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "TestBody",
+            "snippet": {
+              "text": {
+                "text": "  EXPECT_EQ(OK, callback.GetResult(auth_handler->GenerateAuthToken("
+              },
+              "first_line_number": 275
+            },
+            "call_site_range": {
+              "start_line": 275,
+              "start_column": 3,
+              "end_line": 275,
+              "end_column": 2
+            },
+            "call_scope_range": {
+              "start_line": 266,
+              "start_column": 1,
+              "end_line": 266,
+              "end_column": 0
+            },
+            "snippet_file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_negotiate_unittest.cc#MazmFIKzSqLuiLofsfY1tlOdgXUaTXxd8SccEVJ9HWw%3D",
+            "file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "TestBody",
+            "snippet": {
+              "text": {
+                "text": "  EXPECT_EQ(OK, callback.GetResult(auth_handler->GenerateAuthToken("
+              },
+              "first_line_number": 293
+            },
+            "call_site_range": {
+              "start_line": 293,
+              "start_column": 3,
+              "end_line": 293,
+              "end_column": 2
+            },
+            "call_scope_range": {
+              "start_line": 284,
+              "start_column": 1,
+              "end_line": 284,
+              "end_column": 0
+            },
+            "snippet_file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_negotiate_unittest.cc#g7ofIg8EBdx3S%2Bg8ITGeYjzFy5DEXZ4SDF5UPD7BpcI%3D",
+            "file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "TestBody",
+            "snippet": {
+              "text": {
+                "text": "  EXPECT_EQ(OK, callback.GetResult(auth_handler->GenerateAuthToken("
+              },
+              "first_line_number": 311
+            },
+            "call_site_range": {
+              "start_line": 311,
+              "start_column": 3,
+              "end_line": 311,
+              "end_column": 2
+            },
+            "call_scope_range": {
+              "start_line": 302,
+              "start_column": 1,
+              "end_line": 302,
+              "end_column": 0
+            },
+            "snippet_file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_negotiate_unittest.cc#7FHB99jS0bE%2BoVdt265ONAIqYAdc4DR5kppiAcF0YSE%3D",
+            "file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "TestBody",
+            "snippet": {
+              "text": {
+                "text": "  EXPECT_EQ(ERR_IO_PENDING, auth_handler->GenerateAuthToken("
+              },
+              "first_line_number": 329
+            },
+            "call_site_range": {
+              "start_line": 329,
+              "start_column": 3,
+              "end_line": 329,
+              "end_column": 2
+            },
+            "call_scope_range": {
+              "start_line": 320,
+              "start_column": 1,
+              "end_line": 320,
+              "end_column": 0
+            },
+            "snippet_file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_negotiate_unittest.cc#Rrtf%2FzL8yfwFbA8Xf%2B5Q6%2FnOxpoky4ikgHiK7MnTTVE%3D",
+            "file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "TestBody",
+            "snippet": {
+              "text": {
+                "text": "  EXPECT_EQ(ERR_IO_PENDING, auth_handler->GenerateAuthToken("
+              },
+              "first_line_number": 352
+            },
+            "call_site_range": {
+              "start_line": 352,
+              "start_column": 3,
+              "end_line": 352,
+              "end_column": 2
+            },
+            "call_scope_range": {
+              "start_line": 343,
+              "start_column": 1,
+              "end_line": 343,
+              "end_column": 0
+            },
+            "snippet_file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_negotiate_unittest.cc#d7IMoCLUefiYaXMDOaxLMz2FMx7QtVnkwNSfvTNNtxc%3D",
+            "file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "TestBody",
+            "snippet": {
+              "text": {
+                "text": "  EXPECT_EQ(ERR_IO_PENDING, auth_handler->GenerateAuthToken("
+              },
+              "first_line_number": 368
+            },
+            "call_site_range": {
+              "start_line": 368,
+              "start_column": 3,
+              "end_line": 368,
+              "end_column": 2
+            },
+            "call_scope_range": {
+              "start_line": 359,
+              "start_column": 1,
+              "end_line": 359,
+              "end_column": 0
+            },
+            "snippet_file_path": "src/net/http/http_auth_handler_negotiate_unittest.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_ntlm_portable_unittest.cc#MLDmQc3F5wGTwKNVa06Shcenysy7X%2FMfsWLA3KgPVt4%3D",
+            "file_path": "src/net/http/http_auth_handler_ntlm_portable_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "GenerateAuthToken",
+            "snippet": {
+              "text": {
+                "text": "    return callback.GetResult(GetAuthHandler()->GenerateAuthToken("
+              },
+              "first_line_number": 82
+            },
+            "call_site_range": {
+              "start_line": 82,
+              "start_column": 31,
+              "end_line": 83,
+              "end_column": 62
+            },
+            "call_scope_range": {
+              "start_line": 79,
+              "start_column": 7,
+              "end_line": 79,
+              "end_column": 23
+            },
+            "params": [
+              "token"
+            ],
+            "snippet_file_path": "src/net/http/http_auth_handler_ntlm_portable_unittest.cc",
+            "snippet_package_name": "chromium"
+          },
+          {
+            "signature": "kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth_handler_unittest.cc#GA%2Bgg3Wjb9br4%2BfIxRALnWq0B%2BIzV4PD4r7%2FPajlk9Y%3D",
+            "file_path": "src/net/http/http_auth_handler_unittest.cc",
+            "package_name": "chromium",
+            "node_kind": "FUNCTION",
+            "identifier": "TestBody",
+            "snippet": {
+              "text": {
+                "text": "        mock_handler.GenerateAuthToken(&credentials, &request,"
+              },
+              "first_line_number": 56
+            },
+            "call_site_range": {
+              "start_line": 56,
+              "start_column": 9,
+              "end_line": 57,
+              "end_column": 77
+            },
+            "call_scope_range": {
+              "start_line": 25,
+              "start_column": 1,
+              "end_line": 25,
+              "end_column": 0
+            },
+            "snippet_file_path": "src/net/http/http_auth_handler_unittest.cc",
+            "snippet_package_name": "chromium"
+          }
+        ]
+      },
+      "estimated_total_number_results": 12,
+      "results_offset": 0,
+      "is_call_graph": true,
+      "kythe_next_page_token": "",
+      "is_from_kythe": true
+    }
+  ],
+  "elapsed_ms": 28
+}

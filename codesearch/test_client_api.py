@@ -47,8 +47,8 @@ class TestCodeSearch(unittest.TestCase):
 
     request = LastRequest()
     self.assertIsNotNone(request)
-    self.assertEqual('Python-CodeSearch-Client',
-                     request.get_header('User-agent'))
+    self.assertTrue(
+        request.get_header('User-agent').startswith('Python-CodeSearch-Client'))
 
     codesearch = CodeSearch(source_root=SOURCE_ROOT, user_agent_string='Foo')
     codesearch.GetAnnotationsForFile(TARGET_FILE)

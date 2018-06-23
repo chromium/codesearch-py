@@ -32,9 +32,21 @@ class CodeSearchProtoJsonSymbolizedEncoder(json.JSONEncoder):
       rv = {}
       desc = o.__class__.DESCRIPTOR
       for k, v in o.__dict__.items():
-        if k in desc and not isinstance(desc[k], list) and issubclass(
-            desc[k], Message) and desc[k].IsEnum():
-          rv[k] = desc[k].ToSymbol(v)
+        if k in desc:
+          if not isinstance(desc[k], list) and \
+              issubclass(desc[k], Message) and \
+              desc[k].IsEnum():
+            rv[k] = desc[k].ToSymbol(v)
+          elif desc[k] == str and IsString(v) and not v:
+            pass
+          elif isinstance(desc[k], list) and \
+              isinstance(v, list) and \
+              len(v) == 0:
+            pass
+          elif v is None:
+            pass
+          else:
+            rv[k] = v
         else:
           rv[k] = v
       return rv
@@ -121,46 +133,44 @@ class Message(object):
     if isinstance(target_type, list):
       assert isinstance(source, list)
       assert len(target_type) == 1
-      target_type = target_type[0]
 
-      return [Message.Coerce(x, target_type, parent_class) for x in source]
+      return [Message.Coerce(x, target_type[0], parent_class) for x in source]
 
     if target_type == Message.PARENT_TYPE:
-
       assert parent_class is not None
-
       return Message.Coerce(source, parent_class, parent_class)
 
     if issubclass(target_type, Message):
-      if isinstance(source, target_type):
+      if source.__class__ == target_type:
         return source
 
-      typespec = target_type.DESCRIPTOR
-      if isinstance(typespec, dict):
+      descriptor = target_type.DESCRIPTOR
+
+      if isinstance(descriptor, dict):
         assert isinstance(
             source, dict), 'Source is not a dictionary: %s; Mapping to %s' % (
                 source, target_type)
         dest = {}
         for k, v in source.items():
-          if k in typespec:
-            dest[k] = Message.Coerce(v, typespec[k], target_type)
+          if k in descriptor:
+            dest[k] = Message.Coerce(v, descriptor[k], target_type)
           else:
             dest[k] = v
         return target_type(**dest)
-      if typespec is None:
+
+      if descriptor is None:
         assert isinstance(source, dict)
         m = Message()
         m.__dict__ = source.copy()
         return m
-      if sys.version_info[0] == 2:
-        if typespec != str and isinstance(source, basestring) and hasattr(
-            target_type, source):
-          return typespec(getattr(target_type, source))
-      else:
-        if typespec != str and isinstance(source, str) and hasattr(
-            target_type, source):
-          return typespec(getattr(target_type, source))
-      return typespec(source)
+
+      if descriptor != str and IsString(source):
+        if hasattr(target_type, source):
+          return descriptor(getattr(target_type, source))
+        raise ValueError(
+            "unrecognized symbolic enum value \"{}\" for {}".format(
+                source, str(target_type)))
+      return descriptor(source)
     if target_type == str and IsString(source):
       return ToStringSafe(source)
     return target_type(source)
@@ -311,7 +321,14 @@ class TextRange(Message):
     return True
 
   def IsValid(self):
-    return self.start_line != 0 or self.start_column != 0 or self.end_line != 0 or self.end_column != 0
+    return \
+        self.start_line != 0 or \
+        self.start_column != 0 or \
+        self.end_line != 0 or \
+        self.end_column != 0
+
+  def Empty(self):
+    return not self.IsValid()
 
   def __eq__(self, other):
     if not isinstance(other, TextRange):
@@ -705,6 +722,10 @@ class AnnotatedText(Message):
     self.text = d.get('text', str())  # type: str
     self.range = d.get('range', [])  # type: [FormatRange]
 
+  def Empty(self):
+    # type: () -> bool
+    return self.text == ""
+
 
 class CodeBlockType(Message):
   DESCRIPTOR = int
@@ -1031,6 +1052,10 @@ class Snippet(Message):
     self.scope = d.get('scope', str())  # type: str
     self.text = d.get('text', AnnotatedText())  # type: AnnotatedText
 
+  def Empty(self):
+    # type: () -> bool
+    return self.first_line_number == 0 or self.text.Empty()
+
 
 class Node(Message):
   DESCRIPTOR = {
@@ -1080,7 +1105,7 @@ class Node(Message):
     self.node_kind = d.get('node_kind', int)  # type: int
     self.override = d.get('override', bool())  # type: bool
     self.package_name = d.get('package_name', str())  # type: str
-    self.params = d.get('params', [str])  # type: [str]
+    self.params = d.get('params', [])  # type: [str]
     self.signature = d.get('signature', str())  # type: str
     self.snippet = d.get('snippet', Snippet())  # type: Snippet
     self.snippet_file_path = d.get('snippet_file_path', str())  # type: str
@@ -1124,7 +1149,7 @@ class CallGraphRequest(Message):
   def __init__(self, **kwargs):
     d = kwargs
     self.file_spec = d.get('file_spec', FileSpec())  # type: FileSpec
-    self.max_num_results = d.get('max_num_results', int())  # type: int
+    self.max_num_results = d.get('max_num_results', 100)  # type: int
     self.signature = d.get('signature', str())  # type: str
 
 
@@ -1338,8 +1363,6 @@ class XrefSearchResponse(Message):
     self.from_kythe = d.get('from_kythe', bool())  # type: bool
     self.kythe_next_page_token = d.get('kythe_next_page_token',
                                        str())  # type: str
-    self.grok_total_number_of_results = d.get('grok_total_number_of_results',
-                                              int())  # type: int
     self.search_result = d.get('search_result',
                                [])  # type: List[XrefSearchResult]
     self.status = d.get('status', int())  # type: int
@@ -1357,7 +1380,7 @@ class XrefSearchRequest(Message):
   def __init__(self, **kwargs):
     d = kwargs
     self.file_spec = d.get('file_spec', FileSpec())  # type: FileSpec
-    self.max_num_results = d.get('max_num_results', int())  # type: int
+    self.max_num_results = d.get('max_num_results', 100)  # type: int
     self.query = d.get('query', str())  # type: str
 
 
@@ -1541,6 +1564,7 @@ class SearchResult(Message):
       'children': [str],
       'docid': str,
       'duplicate': [FileResult],
+      'full_history_search': bool,
       'has_unshown_matches': bool,
       'hit_max_matches': bool,
       'is_augmented': bool,
@@ -1581,6 +1605,7 @@ class SearchResponse(Message):
       'hit_max_results': bool,
       'hit_max_to_score': bool,
       'maybe_skipped_documents': bool,
+      'next_page_token': str,
       'results_offset': int,
       'search_result': [SearchResult],
       'status': int,
@@ -1606,22 +1631,28 @@ class SearchResponse(Message):
 class SearchRequest(Message):
   DESCRIPTOR = {
       'exhaustive': bool,
+      'file_sizes': bool,
+      'full_history_search': bool,
       'lines_context': int,
       'max_num_results': int,
+      'page_token': str,
       'query': str,
+      'results_offset': int,
       'return_all_duplicates': bool,
       'return_all_snippets': bool,
+      'return_local_augmented_results': bool,
       'return_decorated_snippets': bool,
       'return_directories': bool,
       'return_line_matches': bool,
       'return_snippets': bool,
+      'sort_results': bool,
   }
 
   def __init__(self, **kwargs):
     d = kwargs
     self.exhaustive = d.get('exhaustive', bool())  # type: bool
     self.lines_context = d.get('lines_context', int())  # type: int
-    self.max_num_results = d.get('max_num_results', int())  # type: int
+    self.max_num_results = d.get('max_num_results', 100)  # type: int
     self.query = d.get('query', str())  # type: str
     self.return_all_duplicates = d.get('return_all_duplicates',
                                        bool())  # type: bool
@@ -1648,6 +1679,7 @@ class CompoundResponse(Message):
       'search_response': [SearchResponse],
       'status_response': [StatusResponse],
       'xref_search_response': [XrefSearchResponse],
+      'elapsed_ms': int,  # Time taken to process request.
   }
 
   def __init__(self, **kwargs):
@@ -1667,6 +1699,7 @@ class CompoundResponse(Message):
     self.xref_search_response = d.get(
         'xref_search_response',
         None)  # type: Optional[List[XrefSearchResponse]]
+    self.elapsed_ms = d.get('elapsed_ms', 0)
 
 
 class CompoundRequest(Message):
