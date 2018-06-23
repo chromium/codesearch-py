@@ -12,7 +12,6 @@ https://cs.chromium.org.
 from __future__ import absolute_import
 from __future__ import print_function
 
-
 import os
 import argparse
 import sys
@@ -113,7 +112,11 @@ common_args.add_argument(
 common_args.add_argument(
     '--loglevel', '-l', help='Log level', choices=['info', 'debug'])
 common_args.add_argument('--cache', '-C', help='Cache directory')
-common_args.add_argument('--root', '-r', action='store_true', help='Assume repository paths are relative to root')
+common_args.add_argument(
+    '--root',
+    '-r',
+    action='store_true',
+    help='Assume repository paths are relative to root')
 
 # sig
 signature_command = subcommands.add_parser(

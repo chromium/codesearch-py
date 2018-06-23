@@ -44,7 +44,7 @@ from .paths import GetSourceRoot
 from .compat import StringFromBytes
 from .language_utils import SymbolSuffixMatcher, IsIdentifier
 
-if sys.version_info >= (3,0):
+if sys.version_info >= (3, 0):
   from urllib.request import urlopen, Request
   from urllib.parse import urlencode, urlparse, unquote
 else:
