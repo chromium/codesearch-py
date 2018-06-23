@@ -19,10 +19,18 @@ import sys
 import json
 import logging
 
-from codesearch import CodeSearch, CompoundRequest, \
-        CodeSearchProtoJsonSymbolizedEncoder, CodeSearchProtoJsonEncoder, \
-        XrefSearchRequest, SearchRequest, FileInfoRequest, DirInfoRequest, \
-        CallGraphRequest, EdgeEnumKind
+from codesearch import  \
+        CallGraphRequest, \
+        CodeSearch, \
+        CodeSearchProtoJsonEncoder, \
+        CodeSearchProtoJsonSymbolizedEncoder, \
+        CompoundRequest, \
+        DirInfoRequest, \
+        EdgeEnumKind, \
+        FileInfoRequest, \
+        Message, \
+        SearchRequest, \
+        XrefSearchRequest
 
 
 def print_result(results, args):
