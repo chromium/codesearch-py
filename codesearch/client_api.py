@@ -601,7 +601,7 @@ class CodeSearch(object):
       package_name='chromium',  # type: str
       codesearch_host='https://cs.chromium.org',  # type: str
       request_timeout_in_seconds=10,  # type: int
-      user_agent_string='Python-CodeSearch-Client'  # type: str
+      user_agent_string='Python-CodeSearch-Client (https://github.com/chromium/codesearch-py)'  # type: str
   ):
     # type: (...) -> None
     """Initialize a CodeSearch object.
