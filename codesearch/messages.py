@@ -1105,7 +1105,7 @@ class Node(Message):
     self.node_kind = d.get('node_kind', int)  # type: int
     self.override = d.get('override', bool())  # type: bool
     self.package_name = d.get('package_name', str())  # type: str
-    self.params = d.get('params', [str])  # type: [str]
+    self.params = d.get('params', [])  # type: [str]
     self.signature = d.get('signature', str())  # type: str
     self.snippet = d.get('snippet', Snippet())  # type: Snippet
     self.snippet_file_path = d.get('snippet_file_path', str())  # type: str
