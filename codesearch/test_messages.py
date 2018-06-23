@@ -7,8 +7,15 @@
 from __future__ import absolute_import
 
 import unittest
+import os
 
-from .messages import Message, XrefSignature, InternalLink, TextRange
+from .messages import  \
+    CallGraphResponse, \
+    CompoundResponse, \
+    InternalLink, \
+    Message, \
+    TextRange, \
+    XrefSignature
 
 try:
   from typing import List
@@ -257,6 +264,38 @@ class TestTextRange(unittest.TestCase):
       r2 = _QuadToRange(t["r2"])
       self.assertEqual(t["result"], r1.Overlaps(r2))
       self.assertEqual(t["result"], r2.Overlaps(r1))
+
+
+class TestMessage(unittest.TestCase):
+
+  def test_coerce_known_enum(self):
+    v = Message.Coerce("FOO", Qux)
+    self.assertTrue(isinstance(v, int))
+    self.assertEqual(Qux.FOO, v)
+
+  def test_coerce_uknown_enum(self):
+    with self.assertRaises(ValueError) as e:
+      v = Message.Coerce("incorrect value", Qux)
+    self.assertIn("unrecognized symbolic enum value", str(e.exception))
+
+
+class TestSerialization(unittest.TestCase):
+
+  def test_compoun_message_from_json(self):
+    with open(
+        os.path.join('codesearch', 'testdata', 'compound_response_01.json'),
+        'r') as f:
+      j = f.read()
+    v = CompoundResponse.FromJsonString(j)
+    self.assertIsNone(v.annotation_response)
+    self.assertIsNone(v.dir_info_response)
+    self.assertIsNone(v.file_info_response)
+    self.assertIsNotNone(v.call_graph_response)
+    self.assertIsInstance(v.call_graph_response, list)
+    self.assertEqual(1, len(v.call_graph_response))
+    self.assertIsInstance(v.call_graph_response[0], CallGraphResponse)
+    self.assertEqual(3, len(v.call_graph_response[0].node.children[0].params))
+    self.assertEqual(0, len(v.call_graph_response[0].node.children[1].params))
 
 
 if __name__ == '__main__':
