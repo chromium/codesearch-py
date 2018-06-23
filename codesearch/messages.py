@@ -1149,7 +1149,7 @@ class CallGraphRequest(Message):
   def __init__(self, **kwargs):
     d = kwargs
     self.file_spec = d.get('file_spec', FileSpec())  # type: FileSpec
-    self.max_num_results = d.get('max_num_results', 100))  # type: int
+    self.max_num_results = d.get('max_num_results', 100)  # type: int
     self.signature = d.get('signature', str())  # type: str
 
 
