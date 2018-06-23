@@ -1149,7 +1149,7 @@ class CallGraphRequest(Message):
   def __init__(self, **kwargs):
     d = kwargs
     self.file_spec = d.get('file_spec', FileSpec())  # type: FileSpec
-    self.max_num_results = d.get('max_num_results', int())  # type: int
+    self.max_num_results = d.get('max_num_results', 100))  # type: int
     self.signature = d.get('signature', str())  # type: str
 
 
@@ -1363,8 +1363,6 @@ class XrefSearchResponse(Message):
     self.from_kythe = d.get('from_kythe', bool())  # type: bool
     self.kythe_next_page_token = d.get('kythe_next_page_token',
                                        str())  # type: str
-    self.grok_total_number_of_results = d.get('grok_total_number_of_results',
-                                              int())  # type: int
     self.search_result = d.get('search_result',
                                [])  # type: List[XrefSearchResult]
     self.status = d.get('status', int())  # type: int
@@ -1382,7 +1380,7 @@ class XrefSearchRequest(Message):
   def __init__(self, **kwargs):
     d = kwargs
     self.file_spec = d.get('file_spec', FileSpec())  # type: FileSpec
-    self.max_num_results = d.get('max_num_results', int())  # type: int
+    self.max_num_results = d.get('max_num_results', 100)  # type: int
     self.query = d.get('query', str())  # type: str
 
 
@@ -1654,7 +1652,7 @@ class SearchRequest(Message):
     d = kwargs
     self.exhaustive = d.get('exhaustive', bool())  # type: bool
     self.lines_context = d.get('lines_context', int())  # type: int
-    self.max_num_results = d.get('max_num_results', int())  # type: int
+    self.max_num_results = d.get('max_num_results', 100)  # type: int
     self.query = d.get('query', str())  # type: str
     self.return_all_duplicates = d.get('return_all_duplicates',
                                        bool())  # type: bool
@@ -1681,6 +1679,7 @@ class CompoundResponse(Message):
       'search_response': [SearchResponse],
       'status_response': [StatusResponse],
       'xref_search_response': [XrefSearchResponse],
+      'elapsed_ms': int,  # Time taken to process request.
   }
 
   def __init__(self, **kwargs):
@@ -1700,6 +1699,7 @@ class CompoundResponse(Message):
     self.xref_search_response = d.get(
         'xref_search_response',
         None)  # type: Optional[List[XrefSearchResponse]]
+    self.elapsed_ms = d.get('elapsed_ms', 0)
 
 
 class CompoundRequest(Message):
