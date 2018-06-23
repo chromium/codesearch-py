@@ -133,46 +133,44 @@ class Message(object):
     if isinstance(target_type, list):
       assert isinstance(source, list)
       assert len(target_type) == 1
-      target_type = target_type[0]
 
-      return [Message.Coerce(x, target_type, parent_class) for x in source]
+      return [Message.Coerce(x, target_type[0], parent_class) for x in source]
 
     if target_type == Message.PARENT_TYPE:
-
       assert parent_class is not None
-
       return Message.Coerce(source, parent_class, parent_class)
 
     if issubclass(target_type, Message):
-      if isinstance(source, target_type):
+      if source.__class__ == target_type:
         return source
 
-      typespec = target_type.DESCRIPTOR
-      if isinstance(typespec, dict):
+      descriptor = target_type.DESCRIPTOR
+
+      if isinstance(descriptor, dict):
         assert isinstance(
             source, dict), 'Source is not a dictionary: %s; Mapping to %s' % (
                 source, target_type)
         dest = {}
         for k, v in source.items():
-          if k in typespec:
-            dest[k] = Message.Coerce(v, typespec[k], target_type)
+          if k in descriptor:
+            dest[k] = Message.Coerce(v, descriptor[k], target_type)
           else:
             dest[k] = v
         return target_type(**dest)
-      if typespec is None:
+
+      if descriptor is None:
         assert isinstance(source, dict)
         m = Message()
         m.__dict__ = source.copy()
         return m
-      if sys.version_info[0] == 2:
-        if typespec != str and isinstance(source, basestring) and hasattr(
-            target_type, source):
-          return typespec(getattr(target_type, source))
-      else:
-        if typespec != str and isinstance(source, str) and hasattr(
-            target_type, source):
-          return typespec(getattr(target_type, source))
-      return typespec(source)
+
+      if descriptor != str and IsString(source):
+        if hasattr(target_type, source):
+          return descriptor(getattr(target_type, source))
+        raise ValueError(
+            "unrecognized symbolic enum value \"{}\" for {}".format(
+                source, str(target_type)))
+      return descriptor(source)
     if target_type == str and IsString(source):
       return ToStringSafe(source)
     return target_type(source)
