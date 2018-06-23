@@ -1566,6 +1566,7 @@ class SearchResult(Message):
       'children': [str],
       'docid': str,
       'duplicate': [FileResult],
+      'full_history_search': bool,
       'has_unshown_matches': bool,
       'hit_max_matches': bool,
       'is_augmented': bool,
@@ -1606,6 +1607,7 @@ class SearchResponse(Message):
       'hit_max_results': bool,
       'hit_max_to_score': bool,
       'maybe_skipped_documents': bool,
+      'next_page_token': str,
       'results_offset': int,
       'search_result': [SearchResult],
       'status': int,
@@ -1631,15 +1633,21 @@ class SearchResponse(Message):
 class SearchRequest(Message):
   DESCRIPTOR = {
       'exhaustive': bool,
+      'file_sizes': bool,
+      'full_history_search': bool,
       'lines_context': int,
       'max_num_results': int,
+      'page_token': str,
       'query': str,
+      'results_offset': int,
       'return_all_duplicates': bool,
       'return_all_snippets': bool,
+      'return_local_augmented_results': bool,
       'return_decorated_snippets': bool,
       'return_directories': bool,
       'return_line_matches': bool,
       'return_snippets': bool,
+      'sort_results': bool,
   }
 
   def __init__(self, **kwargs):
