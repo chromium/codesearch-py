@@ -32,9 +32,21 @@ class CodeSearchProtoJsonSymbolizedEncoder(json.JSONEncoder):
       rv = {}
       desc = o.__class__.DESCRIPTOR
       for k, v in o.__dict__.items():
-        if k in desc and not isinstance(desc[k], list) and issubclass(
-            desc[k], Message) and desc[k].IsEnum():
-          rv[k] = desc[k].ToSymbol(v)
+        if k in desc:
+          if not isinstance(desc[k], list) and \
+              issubclass(desc[k], Message) and \
+              desc[k].IsEnum():
+            rv[k] = desc[k].ToSymbol(v)
+          elif desc[k] == str and IsString(v) and not v:
+            pass
+          elif isinstance(desc[k], list) and \
+              isinstance(v, list) and \
+              len(v) == 0:
+            pass
+          elif v is None:
+            pass
+          else:
+            rv[k] = v
         else:
           rv[k] = v
       return rv
