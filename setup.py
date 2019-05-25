@@ -8,12 +8,11 @@
 
 from distutils.core import setup
 
-setup(
-    name='codesearch',
-    version='0.1',
-    description='Chromium Codesearch Library',
-    author='Asanka Herath',
-    author_email='asanka@chromium.org',
-    url='https://github.com/chromium/codesearch',
-    packages=['codesearch'],
-    scripts=['ccs'])
+setup(name='codesearch',
+      version='0.1',
+      description='Chromium Codesearch Library',
+      author='Asanka Herath',
+      author_email='asanka@chromium.org',
+      url='https://github.com/chromium/codesearch',
+      packages=['codesearch'],
+      scripts=['ccs'])

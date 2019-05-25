@@ -10,7 +10,7 @@ TOKEN_BOUNDARIES = r'[-!"#%&\'()*+,./:;<=>?\[\\\]^{|}~ ]'
 
 
 def CppIdentifierTokens(s):
-  """Returns an array of C++ identifier tokens in |s|.
+    """Returns an array of C++ identifier tokens in |s|.
 
     >>> CppIdentifierTokens('abc')
     ['abc']
@@ -27,11 +27,12 @@ def CppIdentifierTokens(s):
     >>> CppIdentifierTokens('a&(b*c)[d^e/f]g{}h|i')
     ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
     """
-  return [token for token in re.split(TOKEN_BOUNDARIES, s) if token]
+    return [token for token in re.split(TOKEN_BOUNDARIES, s) if token]
 
 
 def MatchSymbolSuffix(haystack_string, needle_string):
-  """Returns true if the symbols in |haystack_string| ends with the symbols in |needle_string|.
+    """Returns true if the symbols in |haystack_string| ends with the symbols in
+|needle_string|.
 
     >>> MatchSymbolSuffix("abc::def", "def")
     True
@@ -51,13 +52,13 @@ def MatchSymbolSuffix(haystack_string, needle_string):
     >>> MatchSymbolSuffix("foo|bar  baz", "bar baz")
     True
     """
-  haystack = CppIdentifierTokens(haystack_string)
-  needle = CppIdentifierTokens(needle_string)
-  return haystack[-len(needle):] == needle
+    haystack = CppIdentifierTokens(haystack_string)
+    needle = CppIdentifierTokens(needle_string)
+    return haystack[-len(needle):] == needle
 
 
 class SymbolSuffixMatcher(object):
-  """Like MatchSymbolSuffix, but caches preprocessed |needle|.
+    """Like MatchSymbolSuffix, but caches preprocessed |needle|.
 
     >>> SymbolSuffixMatcher("def").Match("abc::def")
     True
@@ -70,20 +71,20 @@ class SymbolSuffixMatcher(object):
 
     >>> SymbolSuffixMatcher("abc::def").Match("a:abc def")
     True
-    
+
     >>> SymbolSuffixMatcher("abc::def").Match("aabc def")
     False
     """
 
-  def __init__(self, needle):
-    self.needle = CppIdentifierTokens(needle)
+    def __init__(self, needle):
+        self.needle = CppIdentifierTokens(needle)
 
-  def Match(self, haystack):
-    return CppIdentifierTokens(haystack)[-len(self.needle):] == self.needle
+    def Match(self, haystack):
+        return CppIdentifierTokens(haystack)[-len(self.needle):] == self.needle
 
 
 def IsIdentifier(s):
-  """Returns True if |s| is a valid C++ identifier.
+    """Returns True if |s| is a valid C++ identifier.
 
     >>> IsIdentifier('abc')
     True
@@ -94,10 +95,10 @@ def IsIdentifier(s):
     >>> IsIdentifier('abc:')
     False
     """
-  return CppIdentifierTokens(s)[0] == s
+    return CppIdentifierTokens(s)[0] == s
 
 
 # For running doctests.
 if __name__ == "__main__":
-  import doctest
-  doctest.testmod()
+    import doctest
+    doctest.testmod()
