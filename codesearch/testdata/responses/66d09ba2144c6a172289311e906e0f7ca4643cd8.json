@@ -7,7 +7,7 @@
       "stats": {
         "retries": 0, 
         "filter_ratio": 0, 
-        "first_phase_latency_micros": "69988"
+        "first_phase_latency_micros": "20298"
       }, 
       "search_result": [
         {
@@ -27,7 +27,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 89, 
+              "first_line_number": 93, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -35,7 +35,7 @@
             }
           ], 
           "docid": "E-D1G49vcaA", 
-          "best_matching_line_number": 89, 
+          "best_matching_line_number": 93, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -45,7 +45,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "ac4ea1c044e4b1c4106d1716b44a10489df7e9a7", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/base/metrics/field_trial.h", 
               "package_name": "chromium", 
               "revision": "0"
@@ -55,8 +55,8 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 89, 
-              "score": 609, 
+              "line_number": 93, 
+              "score": 1252, 
               "match_offset": 18, 
               "match_length": 10, 
               "line_text": "class BASE_EXPORT FieldTrial : public RefCounted<FieldTrial> {\n"
@@ -65,9 +65,12 @@
         }
       ], 
       "results_offset": 0, 
+      "called_local_augmentation": false, 
       "maybe_skipped_documents": false, 
-      "hit_max_to_score": false
+      "percent_shards_skipped": 0, 
+      "hit_max_to_score": false, 
+      "status_message": ""
     }
   ], 
-  "elapsed_ms": 101
+  "elapsed_ms": 36
 }

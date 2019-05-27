@@ -1,0 +1,106 @@
+{
+  "elapsed_ms": 21, 
+  "xref_search_response": [
+    {
+      "status": 0, 
+      "search_result": [
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.cc#%40871%3A890%25android%40HTJoXbZmPJxgoReecUX54IMlurzQoY7IexpCRUEfvos%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.cc", 
+              "line_number": 29, 
+              "type_id": 1, 
+              "type": "DEFINITION", 
+              "line_text": "void HttpAuth::ChooseBestChallenge("
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_auth.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%405825%3A5844%25android%400qLh7YY5gduVXp28F1eroSuay3oNlj0AhilgOEVS5W4%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+              "line_number": 166, 
+              "type_id": 2, 
+              "type": "DECLARATION", 
+              "line_text": "  static void ChooseBestChallenge("
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_auth.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_controller.cc#%4012115%3A12134%25android", 
+              "line_number": 336, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      HttpAuth::ChooseBestChallenge("
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_auth_controller.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_unittest.cc#%405286%3A5305%25android", 
+              "line_number": 143, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    HttpAuth::ChooseBestChallenge(http_auth_handler_factory.get(), *headers,"
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/http_auth_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }
+      ], 
+      "estimated_total_type_count": [
+        {
+          "count": 8, 
+          "type": "DEFINITION", 
+          "type_id": 1
+        }, 
+        {
+          "count": 4, 
+          "type": "DECLARATION", 
+          "type_id": 2
+        }, 
+        {
+          "count": 8, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }
+      ], 
+      "kythe_next_page_token": "", 
+      "eliminated_type_count": [
+        {
+          "count": 7, 
+          "type": "DEFINITION", 
+          "type_id": 1
+        }, 
+        {
+          "count": 3, 
+          "type": "DECLARATION", 
+          "type_id": 2
+        }, 
+        {
+          "count": 6, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }
+      ], 
+      "from_kythe": true
+    }
+  ]
+}

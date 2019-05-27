@@ -52,11 +52,12 @@ class TestCsFile(unittest.TestCase):
 
     def test_display_name(self):
         cs = CodeSearch(source_root='/src/chrome/')
-        cs_file = cs.GetFileInfo('/src/chrome/src/net/http/http_auth.h')
+        cs_file = cs.GetFileInfo('/src/chrome/src/net/http/http_auth_cache.h')
         self.assertEqual(
             cs_file.GetAnchorText(
-                'kythe://chromium?lang=c%2B%2B?path=src/net/http/http_auth.h'
-                '#HttpAuth%3Anet%23c%23hUTvau_Z32C'), 'HttpAuth')
+                'kythe://chromium.googlesource.com/chromium/src?'
+                'lang=c%2B%2B?path=src/net/http/http_auth_cache.h#'
+                'HttpAuthCache%3Anet%23c%23oTGenJ8beNU'), 'HttpAuthCache')
 
     def test_get_codeblock(self):
         cs = CodeSearch(source_root='/src/chrome/')

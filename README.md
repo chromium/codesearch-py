@@ -109,9 +109,9 @@ src/v8/test/fuzzer/parser/hello-world:1: console.log('hello world');
 src/native_client/tests/hello_world/hello_world.c:13: void hello_world(void) {
 src/native_client/tests/hello_world/hello_world.c:14: printf("Hello, World!\n");
 src/native_client/tests/hello_world/hello_world.c:18: hello_world();
-src/tools/gyp/test/hello/hello.c:9: printf("Hello, world!\n");
 src/tools/gn/tutorial/hello_world.cc:8: printf("Hello, world.\n");
 infra/go/src/go.chromium.org/luci/grpc/prpc/e2etest/helloworld_test.proto:19: service Hello {
+infra/go/src/go.chromium.org/luci/grpc/prpc/e2etest/helloworld_test.proto:15: message HelloReply {
 
 Note that in the example above:
 *  search_result.match was available because |return_line_matches| was set to

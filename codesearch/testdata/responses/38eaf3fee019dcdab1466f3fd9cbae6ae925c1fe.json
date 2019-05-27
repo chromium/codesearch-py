@@ -1,0 +1,263 @@
+{
+  "elapsed_ms": 26, 
+  "call_graph_response": [
+    {
+      "node": {
+        "node_kind": "FUNCTION", 
+        "children": [
+          {
+            "call_scope_range": {
+              "start_line": 266, 
+              "end_line": 266, 
+              "start_column": 25, 
+              "end_column": 43
+            }, 
+            "package_name": "chromium", 
+            "snippet_package_name": "chromium", 
+            "call_site_range": {
+              "start_line": 336, 
+              "end_line": 338, 
+              "start_column": 7, 
+              "end_column": 65
+            }, 
+            "snippet": {
+              "text": {
+                "text": "      HttpAuth::ChooseBestChallenge("
+              }, 
+              "first_line_number": 336
+            }, 
+            "snippet_file_path": "src/net/http/http_auth_controller.cc", 
+            "node_kind": "FUNCTION", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_controller.cc#GiOws0M49HobyA5NZppLUVah_H4QFMwPMxxpZvnmLgM", 
+            "params": [
+              "headers", 
+              "ssl_info", 
+              "do_not_send_server_auth", 
+              "establishing_tunnel", 
+              "caller_net_log"
+            ], 
+            "identifier": "HandleAuthChallenge", 
+            "file_path": "src/net/http/http_auth_controller.cc"
+          }, 
+          {
+            "call_scope_range": {
+              "start_line": 266, 
+              "end_line": 266, 
+              "start_column": 25, 
+              "end_column": 43
+            }, 
+            "package_name": "chromium", 
+            "snippet_package_name": "chromium", 
+            "call_site_range": {
+              "start_line": 336, 
+              "end_line": 338, 
+              "start_column": 7, 
+              "end_column": 65
+            }, 
+            "snippet": {
+              "text": {
+                "text": "      HttpAuth::ChooseBestChallenge("
+              }, 
+              "first_line_number": 336
+            }, 
+            "snippet_file_path": "src/net/http/http_auth_controller.cc", 
+            "node_kind": "FUNCTION", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_controller.cc#GiOws0M49HobyA5NZppLUVah_H4QFMwPMxxpZvnmLgM", 
+            "params": [
+              "headers", 
+              "ssl_info", 
+              "do_not_send_server_auth", 
+              "establishing_tunnel", 
+              "caller_net_log"
+            ], 
+            "identifier": "HandleAuthChallenge", 
+            "file_path": "src/net/http/http_auth_controller.cc"
+          }, 
+          {
+            "call_scope_range": {
+              "start_line": 266, 
+              "end_line": 266, 
+              "start_column": 25, 
+              "end_column": 43
+            }, 
+            "package_name": "chromium", 
+            "snippet_package_name": "chromium", 
+            "call_site_range": {
+              "start_line": 336, 
+              "end_line": 338, 
+              "start_column": 7, 
+              "end_column": 65
+            }, 
+            "snippet": {
+              "text": {
+                "text": "      HttpAuth::ChooseBestChallenge("
+              }, 
+              "first_line_number": 336
+            }, 
+            "snippet_file_path": "src/net/http/http_auth_controller.cc", 
+            "node_kind": "FUNCTION", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_controller.cc#GiOws0M49HobyA5NZppLUVah_H4QFMwPMxxpZvnmLgM", 
+            "params": [
+              "headers", 
+              "ssl_info", 
+              "do_not_send_server_auth", 
+              "establishing_tunnel", 
+              "caller_net_log"
+            ], 
+            "identifier": "HandleAuthChallenge", 
+            "file_path": "src/net/http/http_auth_controller.cc"
+          }, 
+          {
+            "call_scope_range": {
+              "start_line": 266, 
+              "end_line": 266, 
+              "start_column": 25, 
+              "end_column": 43
+            }, 
+            "package_name": "chromium", 
+            "snippet_package_name": "chromium", 
+            "call_site_range": {
+              "start_line": 336, 
+              "end_line": 338, 
+              "start_column": 7, 
+              "end_column": 65
+            }, 
+            "snippet": {
+              "text": {
+                "text": "      HttpAuth::ChooseBestChallenge("
+              }, 
+              "first_line_number": 336
+            }, 
+            "snippet_file_path": "src/net/http/http_auth_controller.cc", 
+            "node_kind": "FUNCTION", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_controller.cc#GiOws0M49HobyA5NZppLUVah_H4QFMwPMxxpZvnmLgM", 
+            "params": [
+              "headers", 
+              "ssl_info", 
+              "do_not_send_server_auth", 
+              "establishing_tunnel", 
+              "caller_net_log"
+            ], 
+            "identifier": "HandleAuthChallenge", 
+            "file_path": "src/net/http/http_auth_controller.cc"
+          }, 
+          {
+            "call_scope_range": {
+              "start_line": 72, 
+              "end_line": 72, 
+              "start_column": 1, 
+              "end_column": 0
+            }, 
+            "package_name": "chromium", 
+            "snippet_package_name": "chromium", 
+            "call_site_range": {
+              "start_line": 143, 
+              "end_line": 146, 
+              "start_column": 5, 
+              "end_column": 64
+            }, 
+            "snippet": {
+              "text": {
+                "text": "    HttpAuth::ChooseBestChallenge(http_auth_handler_factory.get(), *headers,"
+              }, 
+              "first_line_number": 143
+            }, 
+            "snippet_file_path": "src/net/http/http_auth_unittest.cc", 
+            "node_kind": "FUNCTION", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_unittest.cc#5HJnaJPgbWYv6da4pbkym7ITCO62MXrPrrhR5qfOG-k", 
+            "identifier": "TestBody", 
+            "file_path": "src/net/http/http_auth_unittest.cc"
+          }, 
+          {
+            "call_scope_range": {
+              "start_line": 72, 
+              "end_line": 72, 
+              "start_column": 1, 
+              "end_column": 0
+            }, 
+            "package_name": "chromium", 
+            "snippet_package_name": "chromium", 
+            "call_site_range": {
+              "start_line": 143, 
+              "end_line": 146, 
+              "start_column": 5, 
+              "end_column": 64
+            }, 
+            "snippet": {
+              "text": {
+                "text": "    HttpAuth::ChooseBestChallenge(http_auth_handler_factory.get(), *headers,"
+              }, 
+              "first_line_number": 143
+            }, 
+            "snippet_file_path": "src/net/http/http_auth_unittest.cc", 
+            "node_kind": "FUNCTION", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_unittest.cc#5HJnaJPgbWYv6da4pbkym7ITCO62MXrPrrhR5qfOG-k", 
+            "identifier": "TestBody", 
+            "file_path": "src/net/http/http_auth_unittest.cc"
+          }, 
+          {
+            "call_scope_range": {
+              "start_line": 72, 
+              "end_line": 72, 
+              "start_column": 1, 
+              "end_column": 0
+            }, 
+            "package_name": "chromium", 
+            "snippet_package_name": "chromium", 
+            "call_site_range": {
+              "start_line": 143, 
+              "end_line": 146, 
+              "start_column": 5, 
+              "end_column": 64
+            }, 
+            "snippet": {
+              "text": {
+                "text": "    HttpAuth::ChooseBestChallenge(http_auth_handler_factory.get(), *headers,"
+              }, 
+              "first_line_number": 143
+            }, 
+            "snippet_file_path": "src/net/http/http_auth_unittest.cc", 
+            "node_kind": "FUNCTION", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_unittest.cc#5HJnaJPgbWYv6da4pbkym7ITCO62MXrPrrhR5qfOG-k", 
+            "identifier": "TestBody", 
+            "file_path": "src/net/http/http_auth_unittest.cc"
+          }, 
+          {
+            "call_scope_range": {
+              "start_line": 72, 
+              "end_line": 72, 
+              "start_column": 1, 
+              "end_column": 0
+            }, 
+            "package_name": "chromium", 
+            "snippet_package_name": "chromium", 
+            "call_site_range": {
+              "start_line": 143, 
+              "end_line": 146, 
+              "start_column": 5, 
+              "end_column": 64
+            }, 
+            "snippet": {
+              "text": {
+                "text": "    HttpAuth::ChooseBestChallenge(http_auth_handler_factory.get(), *headers,"
+              }, 
+              "first_line_number": 143
+            }, 
+            "snippet_file_path": "src/net/http/http_auth_unittest.cc", 
+            "node_kind": "FUNCTION", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_unittest.cc#5HJnaJPgbWYv6da4pbkym7ITCO62MXrPrrhR5qfOG-k", 
+            "identifier": "TestBody", 
+            "file_path": "src/net/http/http_auth_unittest.cc"
+          }
+        ], 
+        "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#0qLh7YY5gduVXp28F1eroSuay3oNlj0AhilgOEVS5W4"
+      }, 
+      "is_from_kythe": true, 
+      "return_code": 1, 
+      "results_offset": 0, 
+      "estimated_total_number_results": 2, 
+      "is_call_graph": true, 
+      "kythe_next_page_token": ""
+    }
+  ]
+}

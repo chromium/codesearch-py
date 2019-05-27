@@ -5,1397 +5,884 @@
       "file_info": {
         "gob_info": {
           "repo": "chromium/chromium/src", 
-          "commit": "14d133d46eaaeea62d68c1cc215dd529145de72b", 
+          "commit": "bf6aa1f36a7a6ddf045204e92c329dec39983369", 
           "path": "net/url_request/url_request_job.h"
         }, 
         "name": "src/net/url_request/url_request_job.h", 
         "language": "c++", 
-        "changelist_num": "14d133d46eaaeea62d68c1cc215dd529145de72b", 
+        "changelist_num": "bf6aa1f36a7a6ddf045204e92c329dec39983369", 
         "package_name": "chromium", 
-        "lines": "462", 
+        "lines": "468", 
         "content": {
-          "text": "// Copyright (c) 2012 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_URL_REQUEST_URL_REQUEST_JOB_H_\n#define NET_URL_REQUEST_URL_REQUEST_JOB_H_\n\n#include <stdint.h>\n\n#include <memory>\n#include <string>\n#include <vector>\n\n#include \"base/macros.h\"\n#include \"base/memory/weak_ptr.h\"\n#include \"base/optional.h\"\n#include \"base/power_monitor/power_observer.h\"\n#include \"net/base/host_port_pair.h\"\n#include \"net/base/load_states.h\"\n#include \"net/base/net_error_details.h\"\n#include \"net/base/net_export.h\"\n#include \"net/base/request_priority.h\"\n#include \"net/cookies/canonical_cookie.h\"\n#include \"net/filter/source_stream.h\"\n#include \"net/http/http_raw_request_headers.h\"\n#include \"net/http/http_response_headers.h\"\n#include \"net/socket/connection_attempts.h\"\n#include \"net/url_request/redirect_info.h\"\n#include \"net/url_request/url_request.h\"\n#include \"url/gurl.h\"\n\nnamespace net {\n\nclass AuthChallengeInfo;\nclass AuthCredentials;\nclass CookieOptions;\nclass HttpRequestHeaders;\nclass HttpResponseInfo;\nclass IOBuffer;\nstruct LoadTimingInfo;\nclass NetworkDelegate;\nclass ProxyServer;\nclass SSLCertRequestInfo;\nclass SSLInfo;\nclass SSLPrivateKey;\nclass UploadDataStream;\nclass URLRequestStatus;\nclass X509Certificate;\n\nclass NET_EXPORT URLRequestJob : public base::PowerObserver {\n public:\n  explicit URLRequestJob(URLRequest* request,\n                         NetworkDelegate* network_delegate);\n  ~URLRequestJob() override;\n\n  // Returns the request that owns this job.\n  URLRequest* request() const {\n    return request_;\n  }\n\n  // Sets the upload data, most requests have no upload data, so this is a NOP.\n  // Job types supporting upload data will override this.\n  virtual void SetUpload(UploadDataStream* upload_data_stream);\n\n  // Sets extra request headers for Job types that support request\n  // headers. Called once before Start() is called.\n  virtual void SetExtraRequestHeaders(const HttpRequestHeaders& headers);\n\n  // Sets the priority of the job. Called once before Start() is\n  // called, but also when the priority of the parent request changes.\n  virtual void SetPriority(RequestPriority priority);\n\n  // If any error occurs while starting the Job, NotifyStartError should be\n  // called.\n  // This helps ensure that all errors follow more similar notification code\n  // paths, which should simplify testing.\n  virtual void Start() = 0;\n\n  // This function MUST somehow call NotifyDone/NotifyCanceled or some requests\n  // will get leaked. Certain callers use that message to know when they can\n  // delete their URLRequest object, even when doing a cancel. The default\n  // Kill implementation calls NotifyCanceled, so it is recommended that\n  // subclasses call URLRequestJob::Kill() after doing any additional work.\n  //\n  // The job should endeavor to stop working as soon as is convenient, but must\n  // not send and complete notifications from inside this function. Instead,\n  // complete notifications (including \"canceled\") should be sent from a\n  // callback run from the message loop.\n  //\n  // The job is not obliged to immediately stop sending data in response to\n  // this call, nor is it obliged to fail with \"canceled\" unless not all data\n  // was sent as a result. A typical case would be where the job is almost\n  // complete and can succeed before the canceled notification can be\n  // dispatched (from the message loop).\n  //\n  // The job should be prepared to receive multiple calls to kill it, but only\n  // one notification must be issued.\n  virtual void Kill();\n\n  // Called to read post-filtered data from this Job, returning the number of\n  // bytes read, 0 when there is no more data, or net error if there was an\n  // error. This is just the backend for URLRequest::Read, see that function for\n  // more info.\n  int Read(IOBuffer* buf, int buf_size);\n\n  // Stops further caching of this request, if any. For more info, see\n  // URLRequest::StopCaching().\n  virtual void StopCaching();\n\n  virtual bool GetFullRequestHeaders(HttpRequestHeaders* headers) const;\n\n  // Get the number of bytes received from network. The values returned by this\n  // will never decrease over the lifetime of the URLRequestJob.\n  virtual int64_t GetTotalReceivedBytes() const;\n\n  // Get the number of bytes sent over the network. The values returned by this\n  // will never decrease over the lifetime of the URLRequestJob.\n  virtual int64_t GetTotalSentBytes() const;\n\n  // Called to fetch the current load state for the job.\n  virtual LoadState GetLoadState() const;\n\n  // Called to fetch the charset for this request.  Only makes sense for some\n  // types of requests. Returns true on success.  Calling this on a type that\n  // doesn't have a charset will return false.\n  virtual bool GetCharset(std::string* charset);\n\n  // Called to get response info.\n  virtual void GetResponseInfo(HttpResponseInfo* info);\n\n  // This returns the times when events actually occurred, rather than the time\n  // each event blocked the request.  See FixupLoadTimingInfo in url_request.h\n  // for more information on the difference.\n  virtual void GetLoadTimingInfo(LoadTimingInfo* load_timing_info) const;\n\n  // Gets the remote endpoint that the network stack is currently fetching the\n  // URL from. Returns true and fills in |endpoint| if it is available; returns\n  // false and leaves |endpoint| unchanged if it is unavailable.\n  virtual bool GetRemoteEndpoint(IPEndPoint* endpoint) const;\n\n  // Populates the network error details of the most recent origin that the\n  // network stack makes the request to.\n  virtual void PopulateNetErrorDetails(NetErrorDetails* details) const;\n\n  // Called to determine if this response is a redirect.  Only makes sense\n  // for some types of requests.  This method returns true if the response\n  // is a redirect, and fills in the location param with the URL of the\n  // redirect.  The HTTP status code (e.g., 302) is filled into\n  // |*http_status_code| to signify the type of redirect.\n  //\n  // The caller is responsible for following the redirect by setting up an\n  // appropriate replacement Job. Note that the redirected location may be\n  // invalid, the caller should be sure it can handle this.\n  //\n  // The default implementation inspects the response_info_.\n  virtual bool IsRedirectResponse(GURL* location, int* http_status_code);\n\n  // Called to determine if it is okay to copy the reference fragment from the\n  // original URL (if existent) to the redirection target when the redirection\n  // target has no reference fragment.\n  //\n  // The default implementation returns true.\n  virtual bool CopyFragmentOnRedirect(const GURL& location) const;\n\n  // Called to determine if it is okay to redirect this job to the specified\n  // location.  This may be used to implement protocol-specific restrictions.\n  // If this function returns false, then the URLRequest will fail\n  // reporting ERR_UNSAFE_REDIRECT.\n  virtual bool IsSafeRedirect(const GURL& location);\n\n  // Called to determine if this response is asking for authentication.  Only\n  // makes sense for some types of requests.  The caller is responsible for\n  // obtaining the credentials passing them to SetAuth.\n  virtual bool NeedsAuth();\n\n  // Fills the authentication info with the server's response.\n  virtual void GetAuthChallengeInfo(\n      scoped_refptr<AuthChallengeInfo>* auth_info);\n\n  // Resend the request with authentication credentials.\n  virtual void SetAuth(const AuthCredentials& credentials);\n\n  // Display the error page without asking for credentials again.\n  virtual void CancelAuth();\n\n  virtual void ContinueWithCertificate(\n      scoped_refptr<X509Certificate> client_cert,\n      scoped_refptr<SSLPrivateKey> client_private_key);\n\n  // Continue processing the request ignoring the last error.\n  virtual void ContinueDespiteLastError();\n\n  void FollowDeferredRedirect(\n      const base::Optional<net::HttpRequestHeaders>& modified_request_headers);\n\n  // Returns true if the Job is done producing response data and has called\n  // NotifyDone on the request.\n  bool is_done() const { return done_; }\n\n  // Get/Set expected content size\n  int64_t expected_content_size() const { return expected_content_size_; }\n  void set_expected_content_size(const int64_t& size) {\n    expected_content_size_ = size;\n  }\n\n  // Whether we have processed the response for that request yet.\n  bool has_response_started() const { return has_handled_response_; }\n\n  // The number of bytes read before passing to the filter. This value reflects\n  // bytes read even when there is no filter.\n  // TODO(caseq): this is only virtual because of StreamURLRequestJob.\n  // Consider removing virtual when StreamURLRequestJob is gone.\n  virtual int64_t prefilter_bytes_read() const;\n\n  // These methods are not applicable to all connections.\n  virtual bool GetMimeType(std::string* mime_type) const;\n  virtual int GetResponseCode() const;\n\n  // Returns the socket address for the connection.\n  // See url_request.h for details.\n  virtual HostPortPair GetSocketAddress() const;\n\n  // base::PowerObserver methods:\n  // We invoke URLRequestJob::Kill on suspend (crbug.com/4606).\n  void OnSuspend() override;\n\n  // Called after a NetworkDelegate has been informed that the URLRequest\n  // will be destroyed. This is used to track that no pending callbacks\n  // exist at destruction time of the URLRequestJob, unless they have been\n  // canceled by an explicit NetworkDelegate::NotifyURLRequestDestroyed() call.\n  virtual void NotifyURLRequestDestroyed();\n\n  // Populates |out| with the connection attempts made at the socket layer in\n  // the course of executing the URLRequestJob. Should be called after the job\n  // has failed or the response headers have been received.\n  virtual void GetConnectionAttempts(ConnectionAttempts* out) const;\n\n  // Sets a callback that will be invoked each time the request is about to\n  // be actually sent and will receive actual request headers that are about\n  // to hit the wire, including SPDY/QUIC internal headers and any additional\n  // request headers set via BeforeSendHeaders hooks.\n  virtual void SetRequestHeadersCallback(RequestHeadersCallback callback) {}\n\n  // Sets a callback that will be invoked each time the response is received\n  // from the remote party with the actual response headers recieved.\n  virtual void SetResponseHeadersCallback(ResponseHeadersCallback callback) {}\n\n  // Given |policy|, |referrer|, and |destination|, returns the\n  // referrer URL mandated by |request|'s referrer policy.\n  static GURL ComputeReferrerForPolicy(URLRequest::ReferrerPolicy policy,\n                                       const GURL& original_referrer,\n                                       const GURL& destination);\n\n protected:\n  // Notifies the job that a certificate is requested.\n  void NotifyCertificateRequested(SSLCertRequestInfo* cert_request_info);\n\n  // Notifies the job about an SSL certificate error.\n  void NotifySSLCertificateError(const SSLInfo& ssl_info, bool fatal);\n\n  // Delegates to URLRequest::Delegate.\n  bool CanGetCookies(const CookieList& cookie_list) const;\n\n  // Delegates to URLRequest::Delegate.\n  bool CanSetCookie(const net::CanonicalCookie& cookie,\n                    CookieOptions* options) const;\n\n  // Delegates to URLRequest::Delegate.\n  bool CanEnablePrivacyMode() const;\n\n  // Notifies the job that headers have been received.\n  void NotifyHeadersComplete();\n\n  // Notifies the request that a start error has occurred.\n  void NotifyStartError(const URLRequestStatus& status);\n\n  // Used as an asynchronous callback for Kill to notify the URLRequest\n  // that we were canceled.\n  void NotifyCanceled();\n\n  // Notifies the job the request should be restarted.\n  // Should only be called if the job has not started a response.\n  void NotifyRestartRequired();\n\n  // See corresponding functions in url_request.h.\n  void OnCallToDelegate(NetLogEventType type);\n  void OnCallToDelegateComplete();\n\n  // Called to read raw (pre-filtered) data from this Job. Reads at most\n  // |buf_size| bytes into |buf|.\n  // Possible return values:\n  //   >= 0: Read completed synchronously. Return value is the number of bytes\n  //         read. 0 means eof.\n  //   ERR_IO_PENDING: Read pending asynchronously.\n  //                   When the read completes, |ReadRawDataComplete| should be\n  //                   called.\n  //   Any other negative number: Read failed synchronously. Return value is a\n  //                   network error code.\n  // This method might hold onto a reference to |buf| (by incrementing the\n  // refcount) until the method completes or is cancelled.\n  virtual int ReadRawData(IOBuffer* buf, int buf_size);\n\n  // Called to tell the job that a filter has successfully reached the end of\n  // the stream.\n  virtual void DoneReading();\n\n  // Called to tell the job that the body won't be read because it's a redirect.\n  // This is needed so that redirect headers can be cached even though their\n  // bodies are never read.\n  virtual void DoneReadingRedirectResponse();\n\n  // Called to set up a SourceStream chain for this request.\n  // Subclasses should return the appropriate last SourceStream of the chain,\n  // or nullptr on error.\n  virtual std::unique_ptr<SourceStream> SetUpSourceStream();\n\n  // Provides derived classes with access to the request's network delegate.\n  NetworkDelegate* network_delegate() { return network_delegate_; }\n\n  // The status of the job.\n  const URLRequestStatus GetStatus();\n\n  // Set the proxy server that was used, if any.\n  void SetProxyServer(const ProxyServer& proxy_server);\n\n  // The number of bytes read after passing through the filter. This value\n  // reflects bytes read even when there is no filter.\n  int64_t postfilter_bytes_read() const { return postfilter_bytes_read_; }\n\n  // Turns an integer result code into an Error and a count of bytes read.\n  // The semantics are:\n  //   |result| >= 0: |*error| == OK, |*count| == |result|\n  //   |result| < 0: |*error| = |result|, |*count| == 0\n  static void ConvertResultToError(int result, Error* error, int* count);\n\n  // Completion callback for raw reads. See |ReadRawData| for details.\n  // |bytes_read| is either >= 0 to indicate a successful read and count of\n  // bytes read, or < 0 to indicate an error.\n  // On return, |this| may be deleted.\n  void ReadRawDataComplete(int bytes_read);\n\n  // The request that initiated this job. This value will never be nullptr.\n  URLRequest* const request_;\n\n private:\n  class URLRequestJobSourceStream;\n\n  // Helper method used to perform tasks after reading from |source_stream_| is\n  // completed. |synchronous| true if the read completed synchronously.\n  // See the documentation for |Read| above for the contract of this method.\n  void SourceStreamReadComplete(bool synchronous, int result);\n\n  // Invokes ReadRawData and records bytes read if the read completes\n  // synchronously.\n  int ReadRawDataHelper(IOBuffer* buf,\n                        int buf_size,\n                        const CompletionCallback& callback);\n\n  // Returns OK if |new_url| is a valid redirect target and an error code\n  // otherwise.\n  int CanFollowRedirect(const GURL& new_url);\n\n  // Called in response to a redirect that was not canceled to follow the\n  // redirect. The current job will be replaced with a new job loading the\n  // given redirect destination.\n  void FollowRedirect(\n      const RedirectInfo& redirect_info,\n      const base::Optional<net::HttpRequestHeaders>& modified_request_headers);\n\n  // Called after every raw read. If |bytes_read| is > 0, this indicates\n  // a successful read of |bytes_read| unfiltered bytes. If |bytes_read|\n  // is 0, this indicates that there is no additional data to read.\n  // If |bytes_read| is negative, no bytes were read.\n  void GatherRawReadStats(int bytes_read);\n\n  // Updates the profiling info and notifies observers that an additional\n  // |bytes_read| unfiltered bytes have been read for this job.\n  void RecordBytesRead(int bytes_read);\n\n  // OnDone marks that request is done. It is really a glorified\n  // set_status, but also does internal state checking and job tracking. It\n  // should be called once per request, when the job is finished doing all IO.\n  //\n  // If |notify_done| is true, will notify the URLRequest if there was an error\n  // asynchronously.  Otherwise, the caller will need to do this itself,\n  // possibly through a synchronous return value.\n  // TODO(mmenke):  Remove |notify_done|, and make caller handle notification.\n  void OnDone(const URLRequestStatus& status, bool notify_done);\n\n  // Takes care of the notification initiated by OnDone() to avoid re-entering\n  // the URLRequest::Delegate.\n  void NotifyDone();\n\n  // Subclasses may implement this method to record packet arrival times.\n  // The default implementation does nothing.  Only invoked when bytes have been\n  // read since the last invocation.\n  virtual void UpdatePacketReadTimes();\n\n\n  // Notify the network delegate that more bytes have been received or sent over\n  // the network, if bytes have been received or sent since the previous\n  // notification.\n  void MaybeNotifyNetworkBytes();\n\n  // Indicates that the job is done producing data, either it has completed\n  // all the data or an error has been encountered. Set exclusively by\n  // NotifyDone so that it is kept in sync with the request.\n  bool done_;\n\n  // Number of raw network bytes read from job subclass.\n  int64_t prefilter_bytes_read_;\n\n  // Number of bytes after applying |source_stream_| filters.\n  int64_t postfilter_bytes_read_;\n\n  // The first SourceStream of the SourceStream chain used.\n  std::unique_ptr<SourceStream> source_stream_;\n\n  // Keep a reference to the buffer passed in via URLRequestJob::Read() so it\n  // doesn't get destroyed when the read has not completed.\n  scoped_refptr<IOBuffer> pending_read_buffer_;\n\n  // We keep a pointer to the read buffer while asynchronous reads are\n  // in progress, so we are able to pass those bytes to job observers.\n  scoped_refptr<IOBuffer> raw_read_buffer_;\n\n  // Used by HandleResponseIfNecessary to track whether we've sent the\n  // OnResponseStarted callback and potentially redirect callbacks as well.\n  bool has_handled_response_;\n\n  // Expected content size\n  int64_t expected_content_size_;\n\n  // Set when a redirect is deferred. Redirects are deferred after validity\n  // checks are performed, so this field must not be modified.\n  base::Optional<RedirectInfo> deferred_redirect_info_;\n\n  // The network delegate to use with this request, if any.\n  NetworkDelegate* network_delegate_;\n\n  // The value from GetTotalReceivedBytes() the last time\n  // MaybeNotifyNetworkBytes() was called. Used to calculate how bytes have been\n  // newly received since the last notification.\n  int64_t last_notified_total_received_bytes_;\n\n  // The value from GetTotalSentBytes() the last time MaybeNotifyNetworkBytes()\n  // was called. Used to calculate how bytes have been newly sent since the last\n  // notification.\n  int64_t last_notified_total_sent_bytes_;\n\n  // Non-null if ReadRawData() returned ERR_IO_PENDING, and the read has not\n  // completed.\n  CompletionCallback read_raw_callback_;\n\n  base::WeakPtrFactory<URLRequestJob> weak_factory_;\n\n  DISALLOW_COPY_AND_ASSIGN(URLRequestJob);\n};\n\n}  // namespace net\n\n#endif  // NET_URL_REQUEST_URL_REQUEST_JOB_H_\n"
+          "text": "// Copyright (c) 2012 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_URL_REQUEST_URL_REQUEST_JOB_H_\n#define NET_URL_REQUEST_URL_REQUEST_JOB_H_\n\n#include <stdint.h>\n\n#include <memory>\n#include <string>\n#include <vector>\n\n#include \"base/macros.h\"\n#include \"base/memory/weak_ptr.h\"\n#include \"base/optional.h\"\n#include \"net/base/completion_once_callback.h\"\n#include \"net/base/ip_endpoint.h\"\n#include \"net/base/load_states.h\"\n#include \"net/base/net_error_details.h\"\n#include \"net/base/net_export.h\"\n#include \"net/base/privacy_mode.h\"\n#include \"net/base/request_priority.h\"\n#include \"net/cookies/canonical_cookie.h\"\n#include \"net/filter/source_stream.h\"\n#include \"net/http/http_raw_request_headers.h\"\n#include \"net/http/http_response_headers.h\"\n#include \"net/socket/connection_attempts.h\"\n#include \"net/url_request/redirect_info.h\"\n#include \"net/url_request/url_request.h\"\n#include \"url/gurl.h\"\n\nnamespace net {\n\nclass AuthChallengeInfo;\nclass AuthCredentials;\nclass CookieOptions;\nclass HttpRequestHeaders;\nclass HttpResponseInfo;\nclass IOBuffer;\nstruct LoadTimingInfo;\nclass NetworkDelegate;\nclass ProxyServer;\nclass SSLCertRequestInfo;\nclass SSLInfo;\nclass SSLPrivateKey;\nclass UploadDataStream;\nclass URLRequestStatus;\nclass X509Certificate;\n\nclass NET_EXPORT URLRequestJob {\n public:\n  explicit URLRequestJob(URLRequest* request,\n                         NetworkDelegate* network_delegate);\n  virtual ~URLRequestJob();\n\n  // Returns the request that owns this job.\n  URLRequest* request() const {\n    return request_;\n  }\n\n  // Sets the upload data, most requests have no upload data, so this is a NOP.\n  // Job types supporting upload data will override this.\n  virtual void SetUpload(UploadDataStream* upload_data_stream);\n\n  // Sets extra request headers for Job types that support request\n  // headers. Called once before Start() is called.\n  virtual void SetExtraRequestHeaders(const HttpRequestHeaders& headers);\n\n  // Sets the priority of the job. Called once before Start() is\n  // called, but also when the priority of the parent request changes.\n  virtual void SetPriority(RequestPriority priority);\n\n  // If any error occurs while starting the Job, NotifyStartError should be\n  // called.\n  // This helps ensure that all errors follow more similar notification code\n  // paths, which should simplify testing.\n  virtual void Start() = 0;\n\n  // This function MUST somehow call NotifyDone/NotifyCanceled or some requests\n  // will get leaked. Certain callers use that message to know when they can\n  // delete their URLRequest object, even when doing a cancel. The default\n  // Kill implementation calls NotifyCanceled, so it is recommended that\n  // subclasses call URLRequestJob::Kill() after doing any additional work.\n  //\n  // The job should endeavor to stop working as soon as is convenient, but must\n  // not send and complete notifications from inside this function. Instead,\n  // complete notifications (including \"canceled\") should be sent from a\n  // callback run from the message loop.\n  //\n  // The job is not obliged to immediately stop sending data in response to\n  // this call, nor is it obliged to fail with \"canceled\" unless not all data\n  // was sent as a result. A typical case would be where the job is almost\n  // complete and can succeed before the canceled notification can be\n  // dispatched (from the message loop).\n  //\n  // The job should be prepared to receive multiple calls to kill it, but only\n  // one notification must be issued.\n  virtual void Kill();\n\n  // Called to read post-filtered data from this Job, returning the number of\n  // bytes read, 0 when there is no more data, or net error if there was an\n  // error. This is just the backend for URLRequest::Read, see that function for\n  // more info.\n  int Read(IOBuffer* buf, int buf_size);\n\n  // Stops further caching of this request, if any. For more info, see\n  // URLRequest::StopCaching().\n  virtual void StopCaching();\n\n  virtual bool GetFullRequestHeaders(HttpRequestHeaders* headers) const;\n\n  // Get the number of bytes received from network. The values returned by this\n  // will never decrease over the lifetime of the URLRequestJob.\n  virtual int64_t GetTotalReceivedBytes() const;\n\n  // Get the number of bytes sent over the network. The values returned by this\n  // will never decrease over the lifetime of the URLRequestJob.\n  virtual int64_t GetTotalSentBytes() const;\n\n  // Called to fetch the current load state for the job.\n  virtual LoadState GetLoadState() const;\n\n  // Called to fetch the charset for this request.  Only makes sense for some\n  // types of requests. Returns true on success.  Calling this on a type that\n  // doesn't have a charset will return false.\n  virtual bool GetCharset(std::string* charset);\n\n  // Called to get response info.\n  virtual void GetResponseInfo(HttpResponseInfo* info);\n\n  // This returns the times when events actually occurred, rather than the time\n  // each event blocked the request.  See FixupLoadTimingInfo in url_request.h\n  // for more information on the difference.\n  virtual void GetLoadTimingInfo(LoadTimingInfo* load_timing_info) const;\n\n  // Gets the remote endpoint that the network stack is currently fetching the\n  // URL from. Returns true and fills in |endpoint| if it is available; returns\n  // false and leaves |endpoint| unchanged if it is unavailable.\n  virtual bool GetTransactionRemoteEndpoint(IPEndPoint* endpoint) const;\n\n  // Populates the network error details of the most recent origin that the\n  // network stack makes the request to.\n  virtual void PopulateNetErrorDetails(NetErrorDetails* details) const;\n\n  // Called to determine if this response is a redirect.  Only makes sense\n  // for some types of requests.  This method returns true if the response\n  // is a redirect, and fills in the location param with the URL of the\n  // redirect.  The HTTP status code (e.g., 302) is filled into\n  // |*http_status_code| to signify the type of redirect.\n  // |*insecure_scheme_was_upgraded| is set to true if the scheme of this\n  // request was upgraded to HTTPS due to an 'upgrade-insecure-requests'\n  // policy.\n  //\n  // The caller is responsible for following the redirect by setting up an\n  // appropriate replacement Job. Note that the redirected location may be\n  // invalid, the caller should be sure it can handle this.\n  //\n  // The default implementation inspects the response_info_.\n  virtual bool IsRedirectResponse(GURL* location,\n                                  int* http_status_code,\n                                  bool* insecure_scheme_was_upgraded);\n\n  // Called to determine if it is okay to copy the reference fragment from the\n  // original URL (if existent) to the redirection target when the redirection\n  // target has no reference fragment.\n  //\n  // The default implementation returns true.\n  virtual bool CopyFragmentOnRedirect(const GURL& location) const;\n\n  // Called to determine if it is okay to redirect this job to the specified\n  // location.  This may be used to implement protocol-specific restrictions.\n  // If this function returns false, then the URLRequest will fail\n  // reporting ERR_UNSAFE_REDIRECT.\n  virtual bool IsSafeRedirect(const GURL& location);\n\n  // Called to determine if this response is asking for authentication.  Only\n  // makes sense for some types of requests.  The caller is responsible for\n  // obtaining the credentials passing them to SetAuth.\n  virtual bool NeedsAuth();\n\n  // Returns a copy of the authentication challenge that came with the server's\n  // response.\n  virtual std::unique_ptr<AuthChallengeInfo> GetAuthChallengeInfo();\n\n  // Resend the request with authentication credentials.\n  virtual void SetAuth(const AuthCredentials& credentials);\n\n  // Display the error page without asking for credentials again.\n  virtual void CancelAuth();\n\n  virtual void ContinueWithCertificate(\n      scoped_refptr<X509Certificate> client_cert,\n      scoped_refptr<SSLPrivateKey> client_private_key);\n\n  // Continue processing the request ignoring the last error.\n  virtual void ContinueDespiteLastError();\n\n  void FollowDeferredRedirect(\n      const base::Optional<std::vector<std::string>>& removed_headers,\n      const base::Optional<net::HttpRequestHeaders>& modified_headers);\n\n  // Returns true if the Job is done producing response data and has called\n  // NotifyDone on the request.\n  bool is_done() const { return done_; }\n\n  // Get/Set expected content size\n  int64_t expected_content_size() const { return expected_content_size_; }\n  void set_expected_content_size(const int64_t& size) {\n    expected_content_size_ = size;\n  }\n\n  // Whether we have processed the response for that request yet.\n  bool has_response_started() const { return has_handled_response_; }\n\n  // The number of bytes read before passing to the filter. This value reflects\n  // bytes read even when there is no filter.\n  // TODO(caseq): this is only virtual because of StreamURLRequestJob.\n  // Consider removing virtual when StreamURLRequestJob is gone.\n  virtual int64_t prefilter_bytes_read() const;\n\n  // These methods are not applicable to all connections.\n  virtual bool GetMimeType(std::string* mime_type) const;\n  virtual int GetResponseCode() const;\n\n  // Returns the socket address for the connection.\n  // See url_request.h for details.\n  virtual IPEndPoint GetResponseRemoteEndpoint() const;\n\n  // Called after a NetworkDelegate has been informed that the URLRequest\n  // will be destroyed. This is used to track that no pending callbacks\n  // exist at destruction time of the URLRequestJob, unless they have been\n  // canceled by an explicit NetworkDelegate::NotifyURLRequestDestroyed() call.\n  virtual void NotifyURLRequestDestroyed();\n\n  // Populates |out| with the connection attempts made at the socket layer in\n  // the course of executing the URLRequestJob. Should be called after the job\n  // has failed or the response headers have been received.\n  virtual void GetConnectionAttempts(ConnectionAttempts* out) const;\n\n  // Sets a callback that will be invoked each time the request is about to\n  // be actually sent and will receive actual request headers that are about\n  // to hit the wire, including SPDY/QUIC internal headers and any additional\n  // request headers set via BeforeSendHeaders hooks.\n  virtual void SetRequestHeadersCallback(RequestHeadersCallback callback) {}\n\n  // Sets a callback that will be invoked each time the response is received\n  // from the remote party with the actual response headers recieved.\n  virtual void SetResponseHeadersCallback(ResponseHeadersCallback callback) {}\n\n  // Given |policy|, |referrer|, and |destination|, returns the\n  // referrer URL mandated by |request|'s referrer policy.\n  static GURL ComputeReferrerForPolicy(URLRequest::ReferrerPolicy policy,\n                                       const GURL& original_referrer,\n                                       const GURL& destination);\n\n protected:\n  // Notifies the job that a certificate is requested.\n  void NotifyCertificateRequested(SSLCertRequestInfo* cert_request_info);\n\n  // Notifies the job about an SSL certificate error.\n  void NotifySSLCertificateError(int net_error,\n                                 const SSLInfo& ssl_info,\n                                 bool fatal);\n\n  // Delegates to URLRequest.\n  bool CanGetCookies(const CookieList& cookie_list) const;\n\n  // Delegates to URLRequest.\n  bool CanSetCookie(const net::CanonicalCookie& cookie,\n                    CookieOptions* options) const;\n\n  // Delegates to URLRequest.\n  PrivacyMode privacy_mode() const;\n\n  // Notifies the job that headers have been received.\n  void NotifyHeadersComplete();\n\n  // Notifies the request that a start error has occurred.\n  void NotifyStartError(const URLRequestStatus& status);\n\n  // Used as an asynchronous callback for Kill to notify the URLRequest\n  // that we were canceled.\n  void NotifyCanceled();\n\n  // Notifies the job the request should be restarted.\n  // Should only be called if the job has not started a response.\n  void NotifyRestartRequired();\n\n  // See corresponding functions in url_request.h.\n  void OnCallToDelegate(NetLogEventType type);\n  void OnCallToDelegateComplete();\n\n  // Called to read raw (pre-filtered) data from this Job. Reads at most\n  // |buf_size| bytes into |buf|.\n  // Possible return values:\n  //   >= 0: Read completed synchronously. Return value is the number of bytes\n  //         read. 0 means eof.\n  //   ERR_IO_PENDING: Read pending asynchronously.\n  //                   When the read completes, |ReadRawDataComplete| should be\n  //                   called.\n  //   Any other negative number: Read failed synchronously. Return value is a\n  //                   network error code.\n  // This method might hold onto a reference to |buf| (by incrementing the\n  // refcount) until the method completes or is cancelled.\n  virtual int ReadRawData(IOBuffer* buf, int buf_size);\n\n  // Called to tell the job that a filter has successfully reached the end of\n  // the stream.\n  virtual void DoneReading();\n\n  // Called to tell the job that the body won't be read because it's a redirect.\n  // This is needed so that redirect headers can be cached even though their\n  // bodies are never read.\n  virtual void DoneReadingRedirectResponse();\n\n  // Called to set up a SourceStream chain for this request.\n  // Subclasses should return the appropriate last SourceStream of the chain,\n  // or nullptr on error.\n  virtual std::unique_ptr<SourceStream> SetUpSourceStream();\n\n  // Provides derived classes with access to the request's network delegate.\n  NetworkDelegate* network_delegate() { return network_delegate_; }\n\n  // The status of the job.\n  const URLRequestStatus GetStatus();\n\n  // Set the proxy server that was used, if any.\n  void SetProxyServer(const ProxyServer& proxy_server);\n\n  // The number of bytes read after passing through the filter. This value\n  // reflects bytes read even when there is no filter.\n  int64_t postfilter_bytes_read() const { return postfilter_bytes_read_; }\n\n  // Turns an integer result code into an Error and a count of bytes read.\n  // The semantics are:\n  //   |result| >= 0: |*error| == OK, |*count| == |result|\n  //   |result| < 0: |*error| = |result|, |*count| == 0\n  static void ConvertResultToError(int result, Error* error, int* count);\n\n  // Completion callback for raw reads. See |ReadRawData| for details.\n  // |bytes_read| is either >= 0 to indicate a successful read and count of\n  // bytes read, or < 0 to indicate an error.\n  // On return, |this| may be deleted.\n  void ReadRawDataComplete(int bytes_read);\n\n  // The request that initiated this job. This value will never be nullptr.\n  URLRequest* const request_;\n\n private:\n  class URLRequestJobSourceStream;\n\n  // Helper method used to perform tasks after reading from |source_stream_| is\n  // completed. |synchronous| true if the read completed synchronously.\n  // See the documentation for |Read| above for the contract of this method.\n  void SourceStreamReadComplete(bool synchronous, int result);\n\n  // Invokes ReadRawData and records bytes read if the read completes\n  // synchronously.\n  int ReadRawDataHelper(IOBuffer* buf,\n                        int buf_size,\n                        CompletionOnceCallback callback);\n\n  // Returns OK if |new_url| is a valid redirect target and an error code\n  // otherwise.\n  int CanFollowRedirect(const GURL& new_url);\n\n  // Called in response to a redirect that was not canceled to follow the\n  // redirect. The current job will be replaced with a new job loading the\n  // given redirect destination.\n  void FollowRedirect(\n      const RedirectInfo& redirect_info,\n      const base::Optional<std::vector<std::string>>& removed_headers,\n      const base::Optional<net::HttpRequestHeaders>& modified_headers);\n\n  // Called after every raw read. If |bytes_read| is > 0, this indicates\n  // a successful read of |bytes_read| unfiltered bytes. If |bytes_read|\n  // is 0, this indicates that there is no additional data to read.\n  // If |bytes_read| is negative, no bytes were read.\n  void GatherRawReadStats(int bytes_read);\n\n  // Updates the profiling info and notifies observers that an additional\n  // |bytes_read| unfiltered bytes have been read for this job.\n  void RecordBytesRead(int bytes_read);\n\n  // OnDone marks that request is done. It is really a glorified\n  // set_status, but also does internal state checking and job tracking. It\n  // should be called once per request, when the job is finished doing all IO.\n  //\n  // If |notify_done| is true, will notify the URLRequest if there was an error\n  // asynchronously.  Otherwise, the caller will need to do this itself,\n  // possibly through a synchronous return value.\n  // TODO(mmenke):  Remove |notify_done|, and make caller handle notification.\n  void OnDone(const URLRequestStatus& status, bool notify_done);\n\n  // Takes care of the notification initiated by OnDone() to avoid re-entering\n  // the URLRequest::Delegate.\n  void NotifyDone();\n\n  // Subclasses may implement this method to record packet arrival times.\n  // The default implementation does nothing.  Only invoked when bytes have been\n  // read since the last invocation.\n  virtual void UpdatePacketReadTimes();\n\n\n  // Notify the network delegate that more bytes have been received or sent over\n  // the network, if bytes have been received or sent since the previous\n  // notification.\n  void MaybeNotifyNetworkBytes();\n\n  // Indicates that the job is done producing data, either it has completed\n  // all the data or an error has been encountered. Set exclusively by\n  // NotifyDone so that it is kept in sync with the request.\n  bool done_;\n\n  // Number of raw network bytes read from job subclass.\n  int64_t prefilter_bytes_read_;\n\n  // Number of bytes after applying |source_stream_| filters.\n  int64_t postfilter_bytes_read_;\n\n  // The first SourceStream of the SourceStream chain used.\n  std::unique_ptr<SourceStream> source_stream_;\n\n  // Keep a reference to the buffer passed in via URLRequestJob::Read() so it\n  // doesn't get destroyed when the read has not completed.\n  scoped_refptr<IOBuffer> pending_read_buffer_;\n\n  // We keep a pointer to the read buffer while asynchronous reads are\n  // in progress, so we are able to pass those bytes to job observers.\n  scoped_refptr<IOBuffer> raw_read_buffer_;\n\n  // Used by HandleResponseIfNecessary to track whether we've sent the\n  // OnResponseStarted callback and potentially redirect callbacks as well.\n  bool has_handled_response_;\n\n  // Expected content size\n  int64_t expected_content_size_;\n\n  // Set when a redirect is deferred. Redirects are deferred after validity\n  // checks are performed, so this field must not be modified.\n  base::Optional<RedirectInfo> deferred_redirect_info_;\n\n  // The network delegate to use with this request, if any.\n  NetworkDelegate* network_delegate_;\n\n  // The value from GetTotalReceivedBytes() the last time\n  // MaybeNotifyNetworkBytes() was called. Used to calculate how bytes have been\n  // newly received since the last notification.\n  int64_t last_notified_total_received_bytes_;\n\n  // The value from GetTotalSentBytes() the last time MaybeNotifyNetworkBytes()\n  // was called. Used to calculate how bytes have been newly sent since the last\n  // notification.\n  int64_t last_notified_total_sent_bytes_;\n\n  // Non-null if ReadRawData() returned ERR_IO_PENDING, and the read has not\n  // completed.\n  CompletionOnceCallback read_raw_callback_;\n\n  base::WeakPtrFactory<URLRequestJob> weak_factory_;\n\n  DISALLOW_COPY_AND_ASSIGN(URLRequestJob);\n};\n\n}  // namespace net\n\n#endif  // NET_URL_REQUEST_URL_REQUEST_JOB_H_\n"
         }, 
         "generated": false, 
         "mime_type": "text/plain", 
-        "size": "19357", 
+        "size": "19702", 
         "type": 1, 
-        "md5": "cc2d99ee69a96133ad346b03c9623b3c", 
+        "md5": "d0338d70ef1228e05ab867922af3a177", 
         "codeblock": [
           {
-            "type": 40, 
-            "name": "NET_URL_REQUEST_URL_REQUEST_JOB_H_", 
+            "modifiers": {}, 
+            "type": 11, 
+            "name": "net", 
             "text_range": {
-              "start_line": 6, 
-              "end_line": 7, 
+              "start_line": 33, 
+              "end_line": 466, 
               "start_column": 1, 
-              "end_column": 1
+              "end_column": 2
             }, 
-            "signature": ""
-          }, 
-          {
             "child": [
               {
-                "name": "URLRequestJob", 
-                "signature": "", 
+                "modifiers": {}, 
+                "type": 1, 
+                "name": "NET_EXPORT URLRequestJob", 
+                "text_range": {
+                  "start_line": 51, 
+                  "end_line": 464, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }, 
                 "child": [
                   {
-                    "modifiers": {
-                      "public": true
-                    }, 
+                    "modifiers": {}, 
+                    "type": 8, 
                     "name": "URLRequestJob", 
-                    "signature": "(URLRequest* request, NetworkDelegate* network_delegate)", 
-                    "name_prefix": "", 
-                    "type": 8, 
                     "text_range": {
-                      "start_line": 52, 
-                      "end_line": 53, 
-                      "start_column": 3, 
-                      "end_column": 61
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "~URLRequestJob", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 54, 
+                      "start_line": 53, 
                       "end_line": 54, 
-                      "start_column": 3, 
-                      "end_column": 29
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "request", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 57, 
-                      "end_line": 59, 
-                      "start_column": 3, 
-                      "end_column": 4
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "SetUpload", 
-                    "signature": "(UploadDataStream* upload_data_stream)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 63, 
-                      "end_line": 63, 
-                      "start_column": 3, 
-                      "end_column": 64
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "SetExtraRequestHeaders", 
-                    "signature": "(const HttpRequestHeaders& headers)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 67, 
-                      "end_line": 67, 
-                      "start_column": 3, 
-                      "end_column": 74
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "SetPriority", 
-                    "signature": "(RequestPriority priority)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 71, 
-                      "end_line": 71, 
-                      "start_column": 3, 
-                      "end_column": 54
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "Start", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 77, 
-                      "end_line": 77, 
-                      "start_column": 3, 
-                      "end_column": 28
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "Kill", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 98, 
-                      "end_line": 98, 
-                      "start_column": 3, 
-                      "end_column": 23
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "Read", 
-                    "signature": "(IOBuffer* buf, int buf_size)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 104, 
-                      "end_line": 104, 
-                      "start_column": 3, 
-                      "end_column": 41
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "StopCaching", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 108, 
-                      "end_line": 108, 
-                      "start_column": 3, 
-                      "end_column": 30
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetFullRequestHeaders", 
-                    "signature": "(HttpRequestHeaders* headers)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 110, 
-                      "end_line": 110, 
-                      "start_column": 3, 
-                      "end_column": 73
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetTotalReceivedBytes", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 114, 
-                      "end_line": 114, 
-                      "start_column": 3, 
-                      "end_column": 49
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetTotalSentBytes", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 118, 
-                      "end_line": 118, 
-                      "start_column": 3, 
-                      "end_column": 45
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetLoadState", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 121, 
-                      "end_line": 121, 
-                      "start_column": 3, 
-                      "end_column": 42
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetCharset", 
-                    "signature": "(std::string* charset)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 126, 
-                      "end_line": 126, 
-                      "start_column": 3, 
-                      "end_column": 49
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetResponseInfo", 
-                    "signature": "(HttpResponseInfo* info)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 129, 
-                      "end_line": 129, 
-                      "start_column": 3, 
-                      "end_column": 56
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetLoadTimingInfo", 
-                    "signature": "(LoadTimingInfo* load_timing_info)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 134, 
-                      "end_line": 134, 
-                      "start_column": 3, 
-                      "end_column": 74
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetRemoteEndpoint", 
-                    "signature": "(IPEndPoint* endpoint)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 139, 
-                      "end_line": 139, 
-                      "start_column": 3, 
-                      "end_column": 62
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "PopulateNetErrorDetails", 
-                    "signature": "(NetErrorDetails* details)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 143, 
-                      "end_line": 143, 
-                      "start_column": 3, 
-                      "end_column": 72
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "IsRedirectResponse", 
-                    "signature": "(GURL* location, int* http_status_code)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 156, 
-                      "end_line": 156, 
-                      "start_column": 3, 
-                      "end_column": 74
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "CopyFragmentOnRedirect", 
-                    "signature": "(const GURL& location)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 163, 
-                      "end_line": 163, 
-                      "start_column": 3, 
-                      "end_column": 67
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "IsSafeRedirect", 
-                    "signature": "(const GURL& location)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 169, 
-                      "end_line": 169, 
-                      "start_column": 3, 
-                      "end_column": 53
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "NeedsAuth", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 174, 
-                      "end_line": 174, 
-                      "start_column": 3, 
-                      "end_column": 28
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetAuthChallengeInfo", 
-                    "signature": "(scoped_refptr<AuthChallengeInfo>* auth_info)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 177, 
-                      "end_line": 178, 
-                      "start_column": 3, 
-                      "end_column": 52
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "SetAuth", 
-                    "signature": "(const AuthCredentials& credentials)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 181, 
-                      "end_line": 181, 
                       "start_column": 3, 
                       "end_column": 60
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "CancelAuth", 
-                    "signature": "()", 
-                    "name_prefix": "", 
+                    "modifiers": {}, 
                     "type": 8, 
+                    "name": "request", 
                     "text_range": {
-                      "start_line": 184, 
-                      "end_line": 184, 
-                      "start_column": 3, 
-                      "end_column": 29
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "ContinueWithCertificate", 
-                    "signature": "(scoped_refptr<X509Certificate> client_cert, scoped_refptr<SSLPrivateKey> client_private_key)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 186, 
-                      "end_line": 188, 
-                      "start_column": 3, 
-                      "end_column": 56
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "ContinueDespiteLastError", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 191, 
-                      "end_line": 191, 
-                      "start_column": 3, 
-                      "end_column": 43
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "FollowDeferredRedirect", 
-                    "signature": "(const base::Optional<net::HttpRequestHeaders>& modified_request_headers)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 193, 
-                      "end_line": 194, 
-                      "start_column": 3, 
-                      "end_column": 80
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "is_done", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 198, 
-                      "end_line": 198, 
-                      "start_column": 3, 
-                      "end_column": 41
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "expected_content_size", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 201, 
-                      "end_line": 201, 
-                      "start_column": 3, 
-                      "end_column": 75
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "set_expected_content_size", 
-                    "signature": "(const int64_t& size)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 202, 
-                      "end_line": 204, 
+                      "start_line": 58, 
+                      "end_line": 60, 
                       "start_column": 3, 
                       "end_column": 4
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "has_response_started", 
-                    "signature": "()", 
-                    "name_prefix": "", 
+                    "modifiers": {}, 
                     "type": 8, 
+                    "name": "SetUpload", 
                     "text_range": {
-                      "start_line": 207, 
-                      "end_line": 207, 
-                      "start_column": 3, 
-                      "end_column": 70
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "prefilter_bytes_read", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 213, 
-                      "end_line": 213, 
-                      "start_column": 3, 
-                      "end_column": 48
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetMimeType", 
-                    "signature": "(std::string* mime_type)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 216, 
-                      "end_line": 216, 
-                      "start_column": 3, 
-                      "end_column": 58
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetResponseCode", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 217, 
-                      "end_line": 217, 
-                      "start_column": 3, 
-                      "end_column": 39
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetSocketAddress", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 221, 
-                      "end_line": 221, 
-                      "start_column": 3, 
-                      "end_column": 49
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "OnSuspend", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 225, 
-                      "end_line": 225, 
-                      "start_column": 3, 
-                      "end_column": 29
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "NotifyURLRequestDestroyed", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 231, 
-                      "end_line": 231, 
-                      "start_column": 3, 
-                      "end_column": 44
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "GetConnectionAttempts", 
-                    "signature": "(ConnectionAttempts* out)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 236, 
-                      "end_line": 236, 
-                      "start_column": 3, 
-                      "end_column": 69
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "SetRequestHeadersCallback", 
-                    "signature": "(RequestHeadersCallback callback)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 242, 
-                      "end_line": 242, 
-                      "start_column": 3, 
-                      "end_column": 77
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "SetResponseHeadersCallback", 
-                    "signature": "(ResponseHeadersCallback callback)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 246, 
-                      "end_line": 246, 
-                      "start_column": 3, 
-                      "end_column": 79
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "static": true, 
-                      "public": true
-                    }, 
-                    "name": "ComputeReferrerForPolicy", 
-                    "signature": "(URLRequest::ReferrerPolicy policy, const GURL& original_referrer, const GURL& destination)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 250, 
-                      "end_line": 252, 
-                      "start_column": 3, 
-                      "end_column": 65
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "NotifyCertificateRequested", 
-                    "signature": "(SSLCertRequestInfo* cert_request_info)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 256, 
-                      "end_line": 256, 
-                      "start_column": 3, 
-                      "end_column": 74
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "NotifySSLCertificateError", 
-                    "signature": "(const SSLInfo& ssl_info, bool fatal)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 259, 
-                      "end_line": 259, 
-                      "start_column": 3, 
-                      "end_column": 71
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "CanGetCookies", 
-                    "signature": "(const CookieList& cookie_list)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 262, 
-                      "end_line": 262, 
-                      "start_column": 3, 
-                      "end_column": 59
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "CanSetCookie", 
-                    "signature": "(const net::CanonicalCookie& cookie, CookieOptions* options)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 265, 
-                      "end_line": 266, 
-                      "start_column": 3, 
-                      "end_column": 51
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "CanEnablePrivacyMode", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 269, 
-                      "end_line": 269, 
-                      "start_column": 3, 
-                      "end_column": 37
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "NotifyHeadersComplete", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 272, 
-                      "end_line": 272, 
-                      "start_column": 3, 
-                      "end_column": 32
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "NotifyStartError", 
-                    "signature": "(const URLRequestStatus& status)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 275, 
-                      "end_line": 275, 
-                      "start_column": 3, 
-                      "end_column": 57
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "NotifyCanceled", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 279, 
-                      "end_line": 279, 
-                      "start_column": 3, 
-                      "end_column": 25
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "NotifyRestartRequired", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 283, 
-                      "end_line": 283, 
-                      "start_column": 3, 
-                      "end_column": 32
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "OnCallToDelegate", 
-                    "signature": "(NetLogEventType type)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 286, 
-                      "end_line": 286, 
-                      "start_column": 3, 
-                      "end_column": 47
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "OnCallToDelegateComplete", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 287, 
-                      "end_line": 287, 
-                      "start_column": 3, 
-                      "end_column": 35
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "ReadRawData", 
-                    "signature": "(IOBuffer* buf, int buf_size)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 301, 
-                      "end_line": 301, 
-                      "start_column": 3, 
-                      "end_column": 56
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "DoneReading", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 305, 
-                      "end_line": 305, 
-                      "start_column": 3, 
-                      "end_column": 30
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "DoneReadingRedirectResponse", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 310, 
-                      "end_line": 310, 
-                      "start_column": 3, 
-                      "end_column": 46
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "SetUpSourceStream", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 315, 
-                      "end_line": 315, 
-                      "start_column": 3, 
-                      "end_column": 61
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "network_delegate", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 318, 
-                      "end_line": 318, 
-                      "start_column": 3, 
-                      "end_column": 68
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "GetStatus", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 321, 
-                      "end_line": 321, 
-                      "start_column": 3, 
-                      "end_column": 38
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "SetProxyServer", 
-                    "signature": "(const ProxyServer& proxy_server)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 324, 
-                      "end_line": 324, 
-                      "start_column": 3, 
-                      "end_column": 56
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "postfilter_bytes_read", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 328, 
-                      "end_line": 328, 
-                      "start_column": 3, 
-                      "end_column": 75
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true, 
-                      "static": true
-                    }, 
-                    "name": "ConvertResultToError", 
-                    "signature": "(int result, Error* error, int* count)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 334, 
-                      "end_line": 334, 
-                      "start_column": 3, 
-                      "end_column": 74
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "ReadRawDataComplete", 
-                    "signature": "(int bytes_read)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 340, 
-                      "end_line": 340, 
-                      "start_column": 3, 
-                      "end_column": 44
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "protected": true
-                    }, 
-                    "name": "request_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 343, 
-                      "end_line": 343, 
-                      "start_column": 3, 
-                      "end_column": 30
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "SourceStreamReadComplete", 
-                    "signature": "(bool synchronous, int result)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 351, 
-                      "end_line": 351, 
+                      "start_line": 64, 
+                      "end_line": 64, 
                       "start_column": 3, 
                       "end_column": 63
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "ReadRawDataHelper", 
-                    "signature": "(IOBuffer* buf, int buf_size, const CompletionCallback& callback)", 
-                    "name_prefix": "", 
+                    "modifiers": {}, 
                     "type": 8, 
+                    "name": "SetExtraRequestHeaders", 
                     "text_range": {
-                      "start_line": 355, 
-                      "end_line": 357, 
+                      "start_line": 68, 
+                      "end_line": 68, 
                       "start_column": 3, 
-                      "end_column": 61
+                      "end_column": 73
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "CanFollowRedirect", 
-                    "signature": "(const GURL& new_url)", 
-                    "name_prefix": "", 
+                    "modifiers": {}, 
                     "type": 8, 
+                    "name": "SetPriority", 
                     "text_range": {
-                      "start_line": 361, 
-                      "end_line": 361, 
+                      "start_line": 72, 
+                      "end_line": 72, 
                       "start_column": 3, 
-                      "end_column": 46
+                      "end_column": 53
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "FollowRedirect", 
-                    "signature": "(const RedirectInfo& redirect_info, const base::Optional<net::HttpRequestHeaders>& modified_request_headers)", 
-                    "name_prefix": "", 
+                    "modifiers": {}, 
                     "type": 8, 
+                    "name": "Start", 
                     "text_range": {
-                      "start_line": 366, 
-                      "end_line": 368, 
+                      "start_line": 78, 
+                      "end_line": 78, 
                       "start_column": 3, 
-                      "end_column": 80
+                      "end_column": 27
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "GatherRawReadStats", 
-                    "signature": "(int bytes_read)", 
-                    "name_prefix": "", 
+                    "modifiers": {}, 
                     "type": 8, 
+                    "name": "Kill", 
                     "text_range": {
-                      "start_line": 374, 
-                      "end_line": 374, 
+                      "start_line": 99, 
+                      "end_line": 99, 
                       "start_column": 3, 
-                      "end_column": 43
+                      "end_column": 22
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "RecordBytesRead", 
-                    "signature": "(int bytes_read)", 
-                    "name_prefix": "", 
+                    "modifiers": {}, 
                     "type": 8, 
+                    "name": "Read", 
                     "text_range": {
-                      "start_line": 378, 
-                      "end_line": 378, 
+                      "start_line": 105, 
+                      "end_line": 105, 
                       "start_column": 3, 
                       "end_column": 40
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "OnDone", 
-                    "signature": "(const URLRequestStatus& status, bool notify_done)", 
-                    "name_prefix": "", 
+                    "modifiers": {}, 
                     "type": 8, 
+                    "name": "StopCaching", 
                     "text_range": {
-                      "start_line": 388, 
-                      "end_line": 388, 
+                      "start_line": 109, 
+                      "end_line": 109, 
                       "start_column": 3, 
-                      "end_column": 65
+                      "end_column": 29
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "NotifyDone", 
-                    "signature": "()", 
-                    "name_prefix": "", 
+                    "modifiers": {}, 
                     "type": 8, 
+                    "name": "GetTotalReceivedBytes", 
                     "text_range": {
-                      "start_line": 392, 
-                      "end_line": 392, 
-                      "start_column": 3, 
-                      "end_column": 21
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "UpdatePacketReadTimes", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 397, 
-                      "end_line": 397, 
-                      "start_column": 3, 
-                      "end_column": 40
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "MaybeNotifyNetworkBytes", 
-                    "signature": "()", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 403, 
-                      "end_line": 403, 
-                      "start_column": 3, 
-                      "end_column": 34
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "done_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 408, 
-                      "end_line": 408, 
-                      "start_column": 3, 
-                      "end_column": 14
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "prefilter_bytes_read_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 411, 
-                      "end_line": 411, 
-                      "start_column": 3, 
-                      "end_column": 33
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "postfilter_bytes_read_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 414, 
-                      "end_line": 414, 
-                      "start_column": 3, 
-                      "end_column": 34
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "source_stream_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 417, 
-                      "end_line": 417, 
+                      "start_line": 115, 
+                      "end_line": 115, 
                       "start_column": 3, 
                       "end_column": 48
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "pending_read_buffer_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "GetTotalSentBytes", 
                     "text_range": {
-                      "start_line": 421, 
-                      "end_line": 421, 
-                      "start_column": 3, 
-                      "end_column": 48
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "raw_read_buffer_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 425, 
-                      "end_line": 425, 
+                      "start_line": 119, 
+                      "end_line": 119, 
                       "start_column": 3, 
                       "end_column": 44
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "has_handled_response_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "GetLoadState", 
                     "text_range": {
-                      "start_line": 429, 
-                      "end_line": 429, 
-                      "start_column": 3, 
-                      "end_column": 30
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "expected_content_size_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 432, 
-                      "end_line": 432, 
-                      "start_column": 3, 
-                      "end_column": 34
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "deferred_redirect_info_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 436, 
-                      "end_line": 436, 
-                      "start_column": 3, 
-                      "end_column": 56
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "network_delegate_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 439, 
-                      "end_line": 439, 
-                      "start_column": 3, 
-                      "end_column": 38
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "last_notified_total_received_bytes_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 444, 
-                      "end_line": 444, 
-                      "start_column": 3, 
-                      "end_column": 47
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "last_notified_total_sent_bytes_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 449, 
-                      "end_line": 449, 
-                      "start_column": 3, 
-                      "end_column": 43
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "read_raw_callback_", 
-                    "signature": "", 
-                    "name_prefix": "", 
-                    "type": 9, 
-                    "text_range": {
-                      "start_line": 453, 
-                      "end_line": 453, 
+                      "start_line": 122, 
+                      "end_line": 122, 
                       "start_column": 3, 
                       "end_column": 41
                     }
                   }, 
                   {
-                    "modifiers": {
-                      "private": true
-                    }, 
-                    "name": "weak_factory_", 
-                    "signature": "", 
-                    "name_prefix": "", 
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "IsRedirectResponse", 
+                    "text_range": {
+                      "start_line": 160, 
+                      "end_line": 162, 
+                      "start_column": 3, 
+                      "end_column": 70
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "CopyFragmentOnRedirect", 
+                    "text_range": {
+                      "start_line": 169, 
+                      "end_line": 169, 
+                      "start_column": 3, 
+                      "end_column": 66
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "IsSafeRedirect", 
+                    "text_range": {
+                      "start_line": 175, 
+                      "end_line": 175, 
+                      "start_column": 3, 
+                      "end_column": 52
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "NeedsAuth", 
+                    "text_range": {
+                      "start_line": 180, 
+                      "end_line": 180, 
+                      "start_column": 3, 
+                      "end_column": 27
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "GetAuthChallengeInfo", 
+                    "text_range": {
+                      "start_line": 184, 
+                      "end_line": 184, 
+                      "start_column": 3, 
+                      "end_column": 68
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SetAuth", 
+                    "text_range": {
+                      "start_line": 187, 
+                      "end_line": 187, 
+                      "start_column": 3, 
+                      "end_column": 59
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "CancelAuth", 
+                    "text_range": {
+                      "start_line": 190, 
+                      "end_line": 190, 
+                      "start_column": 3, 
+                      "end_column": 28
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "ContinueWithCertificate", 
+                    "text_range": {
+                      "start_line": 192, 
+                      "end_line": 194, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "ContinueDespiteLastError", 
+                    "text_range": {
+                      "start_line": 197, 
+                      "end_line": 197, 
+                      "start_column": 3, 
+                      "end_column": 42
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "FollowDeferredRedirect", 
+                    "text_range": {
+                      "start_line": 199, 
+                      "end_line": 201, 
+                      "start_column": 3, 
+                      "end_column": 71
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "is_done", 
+                    "text_range": {
+                      "start_line": 205, 
+                      "end_line": 205, 
+                      "start_column": 3, 
+                      "end_column": 41
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "int64_t", 
+                    "text_range": {
+                      "start_line": 208, 
+                      "end_line": 208, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "set_expected_content_size", 
+                    "text_range": {
+                      "start_line": 209, 
+                      "end_line": 211, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "has_response_started", 
+                    "text_range": {
+                      "start_line": 214, 
+                      "end_line": 214, 
+                      "start_column": 3, 
+                      "end_column": 70
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "prefilter_bytes_read", 
+                    "text_range": {
+                      "start_line": 220, 
+                      "end_line": 220, 
+                      "start_column": 3, 
+                      "end_column": 47
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "GetResponseCode", 
+                    "text_range": {
+                      "start_line": 224, 
+                      "end_line": 224, 
+                      "start_column": 3, 
+                      "end_column": 38
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "GetResponseRemoteEndpoint", 
+                    "text_range": {
+                      "start_line": 228, 
+                      "end_line": 228, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "NotifyURLRequestDestroyed", 
+                    "text_range": {
+                      "start_line": 234, 
+                      "end_line": 234, 
+                      "start_column": 3, 
+                      "end_column": 43
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SetRequestHeadersCallback", 
+                    "text_range": {
+                      "start_line": 245, 
+                      "end_line": 245, 
+                      "start_column": 3, 
+                      "end_column": 77
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SetResponseHeadersCallback", 
+                    "text_range": {
+                      "start_line": 249, 
+                      "end_line": 249, 
+                      "start_column": 3, 
+                      "end_column": 79
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "ComputeReferrerForPolicy", 
+                    "text_range": {
+                      "start_line": 253, 
+                      "end_line": 255, 
+                      "start_column": 3, 
+                      "end_column": 64
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "NotifySSLCertificateError", 
+                    "text_range": {
+                      "start_line": 262, 
+                      "end_line": 264, 
+                      "start_column": 3, 
+                      "end_column": 45
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "CanGetCookies", 
+                    "text_range": {
+                      "start_line": 267, 
+                      "end_line": 267, 
+                      "start_column": 3, 
+                      "end_column": 58
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "CanSetCookie", 
+                    "text_range": {
+                      "start_line": 270, 
+                      "end_line": 271, 
+                      "start_column": 3, 
+                      "end_column": 50
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "PrivacyMode", 
+                    "text_range": {
+                      "start_line": 274, 
+                      "end_line": 274, 
+                      "start_column": 3, 
+                      "end_column": 35
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "NotifyHeadersComplete", 
+                    "text_range": {
+                      "start_line": 277, 
+                      "end_line": 277, 
+                      "start_column": 3, 
+                      "end_column": 31
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "NotifyStartError", 
+                    "text_range": {
+                      "start_line": 280, 
+                      "end_line": 280, 
+                      "start_column": 3, 
+                      "end_column": 56
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "NotifyCanceled", 
+                    "text_range": {
+                      "start_line": 284, 
+                      "end_line": 284, 
+                      "start_column": 3, 
+                      "end_column": 24
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "NotifyRestartRequired", 
+                    "text_range": {
+                      "start_line": 288, 
+                      "end_line": 288, 
+                      "start_column": 3, 
+                      "end_column": 31
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "OnCallToDelegate", 
+                    "text_range": {
+                      "start_line": 291, 
+                      "end_line": 291, 
+                      "start_column": 3, 
+                      "end_column": 46
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "OnCallToDelegateComplete", 
+                    "text_range": {
+                      "start_line": 292, 
+                      "end_line": 292, 
+                      "start_column": 3, 
+                      "end_column": 34
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "ReadRawData", 
+                    "text_range": {
+                      "start_line": 306, 
+                      "end_line": 306, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "DoneReading", 
+                    "text_range": {
+                      "start_line": 310, 
+                      "end_line": 310, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "DoneReadingRedirectResponse", 
+                    "text_range": {
+                      "start_line": 315, 
+                      "end_line": 315, 
+                      "start_column": 3, 
+                      "end_column": 45
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SetUpSourceStream", 
+                    "text_range": {
+                      "start_line": 320, 
+                      "end_line": 320, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "GetStatus", 
+                    "text_range": {
+                      "start_line": 326, 
+                      "end_line": 326, 
+                      "start_column": 3, 
+                      "end_column": 37
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SetProxyServer", 
+                    "text_range": {
+                      "start_line": 329, 
+                      "end_line": 329, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "int64_t", 
+                    "text_range": {
+                      "start_line": 333, 
+                      "end_line": 333, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "ConvertResultToError", 
+                    "text_range": {
+                      "start_line": 339, 
+                      "end_line": 339, 
+                      "start_column": 3, 
+                      "end_column": 73
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "ReadRawDataComplete", 
+                    "text_range": {
+                      "start_line": 345, 
+                      "end_line": 345, 
+                      "start_column": 3, 
+                      "end_column": 43
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
                     "type": 9, 
+                    "name": "request_", 
+                    "text_range": {
+                      "start_line": 348, 
+                      "end_line": 348, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SourceStreamReadComplete", 
+                    "text_range": {
+                      "start_line": 356, 
+                      "end_line": 356, 
+                      "start_column": 3, 
+                      "end_column": 62
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "ReadRawDataHelper", 
+                    "text_range": {
+                      "start_line": 360, 
+                      "end_line": 362, 
+                      "start_column": 3, 
+                      "end_column": 57
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "CanFollowRedirect", 
+                    "text_range": {
+                      "start_line": 366, 
+                      "end_line": 366, 
+                      "start_column": 3, 
+                      "end_column": 45
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "FollowRedirect", 
+                    "text_range": {
+                      "start_line": 371, 
+                      "end_line": 374, 
+                      "start_column": 3, 
+                      "end_column": 71
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "GatherRawReadStats", 
+                    "text_range": {
+                      "start_line": 380, 
+                      "end_line": 380, 
+                      "start_column": 3, 
+                      "end_column": 42
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "RecordBytesRead", 
+                    "text_range": {
+                      "start_line": 384, 
+                      "end_line": 384, 
+                      "start_column": 3, 
+                      "end_column": 39
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "OnDone", 
+                    "text_range": {
+                      "start_line": 394, 
+                      "end_line": 394, 
+                      "start_column": 3, 
+                      "end_column": 64
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "NotifyDone", 
+                    "text_range": {
+                      "start_line": 398, 
+                      "end_line": 398, 
+                      "start_column": 3, 
+                      "end_column": 20
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "UpdatePacketReadTimes", 
+                    "text_range": {
+                      "start_line": 403, 
+                      "end_line": 403, 
+                      "start_column": 3, 
+                      "end_column": 39
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "MaybeNotifyNetworkBytes", 
+                    "text_range": {
+                      "start_line": 409, 
+                      "end_line": 409, 
+                      "start_column": 3, 
+                      "end_column": 33
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "done_", 
+                    "text_range": {
+                      "start_line": 414, 
+                      "end_line": 414, 
+                      "start_column": 3, 
+                      "end_column": 13
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "int64_t", 
+                    "text_range": {
+                      "start_line": 417, 
+                      "end_line": 417, 
+                      "start_column": 3, 
+                      "end_column": 32
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "int64_t", 
+                    "text_range": {
+                      "start_line": 420, 
+                      "end_line": 420, 
+                      "start_column": 3, 
+                      "end_column": 33
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "std", 
+                    "text_range": {
+                      "start_line": 423, 
+                      "end_line": 423, 
+                      "start_column": 3, 
+                      "end_column": 47
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "scoped_refptr", 
+                    "text_range": {
+                      "start_line": 427, 
+                      "end_line": 427, 
+                      "start_column": 3, 
+                      "end_column": 47
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "scoped_refptr", 
+                    "text_range": {
+                      "start_line": 431, 
+                      "end_line": 431, 
+                      "start_column": 3, 
+                      "end_column": 43
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "has_handled_response_", 
+                    "text_range": {
+                      "start_line": 435, 
+                      "end_line": 435, 
+                      "start_column": 3, 
+                      "end_column": 29
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "int64_t", 
+                    "text_range": {
+                      "start_line": 438, 
+                      "end_line": 438, 
+                      "start_column": 3, 
+                      "end_column": 33
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "base", 
+                    "text_range": {
+                      "start_line": 442, 
+                      "end_line": 442, 
+                      "start_column": 3, 
+                      "end_column": 55
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "int64_t", 
+                    "text_range": {
+                      "start_line": 450, 
+                      "end_line": 450, 
+                      "start_column": 3, 
+                      "end_column": 46
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "int64_t", 
                     "text_range": {
                       "start_line": 455, 
                       "end_line": 455, 
                       "start_column": 3, 
-                      "end_column": 53
+                      "end_column": 42
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "CompletionOnceCallback", 
+                    "text_range": {
+                      "start_line": 459, 
+                      "end_line": 459, 
+                      "start_column": 3, 
+                      "end_column": 44
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "base", 
+                    "text_range": {
+                      "start_line": 461, 
+                      "end_line": 461, 
+                      "start_column": 3, 
+                      "end_column": 52
                     }
                   }
-                ], 
-                "name_prefix": "", 
-                "type": 1, 
-                "text_range": {
-                  "start_line": 50, 
-                  "end_line": 458, 
-                  "start_column": 1, 
-                  "end_column": 2
-                }
+                ]
               }
-            ], 
-            "type": 11, 
-            "name": "net", 
-            "text_range": {
-              "start_line": 32, 
-              "end_line": 460, 
-              "start_column": 1, 
-              "end_column": 2
-            }, 
-            "signature": ""
+            ]
           }
         ]
       }, 

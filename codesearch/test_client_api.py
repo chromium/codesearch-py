@@ -88,45 +88,21 @@ class TestCodeSearch(unittest.TestCase):
         # A class definition. The name appears numerous times in the file.
         self.assertEqual(
             cs.GetSignatureForSymbol(TARGET_FILE, 'FieldTrial'),
-            'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h'
+            'kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h'
             '#FieldTrial%3Abase%23c%23cGxmCcu4cj8')
 
         # An enum defined within the class.
         self.assertEqual(
             cs.GetSignatureForSymbol(TARGET_FILE, 'RandomizationType'),
-            'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#'
-            'sffJe7wAnF2I9rS3Yd%2B8%2FcTJryczxcrLGG1xREnxhKU%3D')
+            'kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#sffJe7wAnF2I9rS3Yd-8_cTJryczxcrLGG1xREnxhKU')
 
         # A struct field.
         self.assertEqual(
-            cs.GetSignatureForSymbol(TARGET_FILE, 'pickle_size'),
-            'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#'
-            '5j4rU1ruIZUCxPWsXAOsTjOIQPiJdmvDwkVVxoqsqT8%3D')
+            cs.GetSignatureForSymbol(TARGET_FILE, 'pickle_size'), 'kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#w8YJrCAvr5uKFCpnBIfsSMEMlxmFcWDmfykoysBsuHk')
 
         # A parameter to a function.
         self.assertEqual(
-            cs.GetSignatureForSymbol(TARGET_FILE, 'override_entropy_provider'),
-            'kythe://chromium?lang=c%2B%2B?path=src/base/metrics/field_trial.h#'
-            'lAGs5biYnnRyEje0KIGqTe4V5ZkjOY6%2B7I2jg8Jlxdk%3D')
-
-        # A builtin type.
-        self.assertEqual(
-            cs.GetSignatureForSymbol(TARGET_FILE, 'uint32_t'),
-            'kythe:?lang=c%2B%2B'
-            '#9Q1Qo0dt%2BgETZA3AE5IlwTBVpnGb9lT0KTUS8YtMp7E%3D'
-        )
-
-        # The absence of the "md5" parameter to the annotation_request was
-        # puzzlingly causing the annotations for this file to be offset by a
-        # constant amount.
-        self.assertEqual(
-            cs.GetSignatureForSymbol(
-                '/src/chrome/src/chrome/browser/'
-                'chrome_content_browser_client.cc',
-                'IsURLWhitelisted'),
-            'kythe://chromium?lang=c%2B%2B?path=src/chrome/browser/'
-            'chrome_content_browser_client.cc#'
-            'Fwd4bLZKrcXZ1sb8TmkFDxFtI76Z3V%2BWSTgS%2Bov3Ag8%3D')
+            cs.GetSignatureForSymbol(TARGET_FILE, 'override_entropy_provider'), 'kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#tkn_wFwczggf4CQsRA0v4FGt6Px7kO4_EOyeqlNUDlY')
 
     def test_search_for_symbol(self):
         cs = CodeSearch(source_root='.')
@@ -150,11 +126,11 @@ class TestCodeSearch(unittest.TestCase):
 
     def test_get_call_graph(self):
         cs = CodeSearch(source_root='.')
-        signatures = cs.SearchForSymbol('HttpAuth::ChooseBestChallenge',
-                                        NodeEnumKind.FUNCTION)
-        self.assertEqual(1, len(signatures))
-        self.assertIsInstance(signatures[0], XrefNode)
-        cg_response = cs.GetCallGraph(signature=signatures[0].GetSignature())
+        refs = cs.SearchForSymbol('HttpAuth::ChooseBestChallenge',
+                                  NodeEnumKind.FUNCTION)
+        self.assertEqual(1, len(refs))
+        self.assertIsInstance(refs[0], XrefNode)
+        cg_response = cs.GetCallGraph(signature=refs[0].GetSignature())
         self.assertIsInstance(cg_response, CompoundResponse)
         self.assertIsInstance(cg_response.call_graph_response[0],
                               CallGraphResponse)

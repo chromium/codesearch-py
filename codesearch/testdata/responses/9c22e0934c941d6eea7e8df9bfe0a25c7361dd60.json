@@ -3,18 +3,18 @@
     {
       "status": 0, 
       "hit_max_results": false, 
-      "estimated_total_number_of_results": 50, 
+      "estimated_total_number_of_results": 35, 
       "stats": {
         "retries": 0, 
         "filter_ratio": 0, 
-        "first_phase_latency_micros": "34335"
+        "first_phase_latency_micros": "216703"
       }, 
       "search_result": [
         {
           "snippet": [
             {
               "text": {
-                "text": "class NET_EXPORT URLRequestJob : public base::PowerObserver {\n", 
+                "text": "class NET_EXPORT URLRequestJob {\n", 
                 "range": [
                   {
                     "range": {
@@ -27,7 +27,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 50, 
+              "first_line_number": 51, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -35,7 +35,7 @@
             }
           ], 
           "docid": "rg8u7oPj_WM", 
-          "best_matching_line_number": 50, 
+          "best_matching_line_number": 51, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -45,7 +45,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "69988adc0fd53b7ab8aec0682c290c66689ff539", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/net/url_request/url_request_job.h", 
               "package_name": "chromium", 
               "revision": "0"
@@ -55,11 +55,11 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 50, 
+              "line_number": 51, 
               "score": 1252, 
               "match_offset": 17, 
               "match_length": 13, 
-              "line_text": "class NET_EXPORT URLRequestJob : public base::PowerObserver {\n"
+              "line_text": "class NET_EXPORT URLRequestJob {\n"
             }
           ]
         }, 
@@ -73,15 +73,6 @@
                     "range": {
                       "start_line": 1, 
                       "end_line": 1, 
-                      "start_column": 7, 
-                      "end_column": 20
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
                       "start_column": 22, 
                       "end_column": 35
                     }, 
@@ -89,7 +80,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 54, 
+              "first_line_number": 51, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -97,7 +88,7 @@
             }
           ], 
           "docid": "-OkUmzJC19I", 
-          "best_matching_line_number": 54, 
+          "best_matching_line_number": 51, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -107,7 +98,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "dbe08e3e375fe9bfd13af3709ff3aab5caf3e183", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/net/url_request/url_request_job.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -117,7 +108,7 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 54, 
+              "line_number": 51, 
               "score": 512, 
               "match_offset": 21, 
               "match_length": 13, 
@@ -142,7 +133,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 27, 
+              "first_line_number": 28, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -150,7 +141,7 @@
             }
           ], 
           "docid": "91HGIa329k8", 
-          "best_matching_line_number": 27, 
+          "best_matching_line_number": 28, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -160,7 +151,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "af268239e57931156dc9e56fcf6aa9df733c8eff", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/net/url_request/url_request_test_job.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -170,73 +161,11 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 27, 
+              "line_number": 28, 
               "score": 546, 
               "match_offset": 38, 
               "match_length": 13, 
               "line_text": "typedef std::list<URLRequestTestJob*> URLRequestJobList;\n"
-            }
-          ]
-        }, 
-        {
-          "snippet": [
-            {
-              "text": {
-                "text": "class TestURLRequestJob : public net::URLRequestJob {\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 11, 
-                      "end_column": 24
-                    }, 
-                    "type": 41
-                  }, 
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 39, 
-                      "end_column": 52
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 17, 
-              "match_reason": {
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }
-          ], 
-          "docid": "UHjQj0aGOK8", 
-          "best_matching_line_number": 17, 
-          "language": "c++", 
-          "is_augmented": false, 
-          "match_reason": {
-            "scoped_symbol": true
-          }, 
-          "full_history_search": false, 
-          "num_duplicates": 0, 
-          "top_file": {
-            "file": {
-              "changelist": "b510f8895b7fa9d5d8a66b6b1e07df104f319c85", 
-              "name": "src/headless/test/test_url_request_job.h", 
-              "package_name": "chromium", 
-              "revision": "0"
-            }
-          }, 
-          "has_unshown_matches": false, 
-          "num_matches": 1, 
-          "match": [
-            {
-              "line_number": 17, 
-              "score": 546, 
-              "match_offset": 10, 
-              "match_length": 13, 
-              "line_text": "class TestURLRequestJob : public net::URLRequestJob {\n"
             }
           ]
         }, 
@@ -257,7 +186,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 342, 
+              "first_line_number": 335, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -265,7 +194,7 @@
             }
           ], 
           "docid": "Y_tvmPdbMWE", 
-          "best_matching_line_number": 342, 
+          "best_matching_line_number": 335, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -275,7 +204,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "63a0ce635749606cf30a6a199524a6c9791a3316", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/net/url_request/url_request_unittest.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -285,19 +214,76 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 342, 
+              "line_number": 335, 
               "score": 498, 
               "match_offset": 24, 
               "match_length": 13, 
               "line_text": "class PriorityMonitoringURLRequestJob : public URLRequestTestJob {\n"
             }
           ]
+        }, 
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "class NET_EXPORT URLRequestJobManager {\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 18, 
+                      "end_column": 31
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 29, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }
+          ], 
+          "docid": "CI8etm_8wwU", 
+          "best_matching_line_number": 29, 
+          "language": "c++", 
+          "is_augmented": false, 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "muppet_params": "CgYI/v///wc=", 
+              "name": "src/net/url_request/url_request_job_manager.h", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 29, 
+              "score": 530, 
+              "match_offset": 17, 
+              "match_length": 13, 
+              "line_text": "class NET_EXPORT URLRequestJobManager {\n"
+            }
+          ]
         }
       ], 
       "results_offset": 0, 
+      "called_local_augmentation": false, 
       "maybe_skipped_documents": false, 
-      "hit_max_to_score": false
+      "percent_shards_skipped": 0, 
+      "hit_max_to_score": false, 
+      "status_message": "", 
+      "next_page_token": "CIWG8/3m1sfHCAjh4uy6j/Pb9WMI4/KPn+jdy4euAQjP7NvvmsTxqPcBCNKvi5Kzk8X0/AE="
     }
   ], 
-  "elapsed_ms": 66
+  "elapsed_ms": 233
 }

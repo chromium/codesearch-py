@@ -347,7 +347,7 @@ class InternalLink(Message):
         'package_name': str,
         'highlight_signature': str,  # A ' ' delimited list of tickets.
         'signature': str,  # A ' ' delimited list of tickets.
-        'signature_hash': str,  # Always '' for Kythe.
+        'signature_hash': str,  # Obsolete
         'path': str,
 
         # The range in the target path that should be considered the target of
@@ -584,8 +584,7 @@ class Annotation(Message):
         'file_name': str,
         'internal_link': InternalLink,
         'is_implicit_target': bool,
-        'kythe_xref_kind':
-        KytheNodeKind,  # Not to be confused with KytheXrefKind.
+        'kythe_xref_kind': KytheNodeKind,
         'range': TextRange,
         'status': int,
         'type': AnnotationType,
@@ -643,8 +642,8 @@ class Annotation(Message):
 
 class FileSpec(Message):
     DESCRIPTOR = {
-        'name': str,
-        'package_name': str,
+        'name': str,  # path. E.g. "/src/base/logging.cc"
+        'package_name': str,  # Always "chromium" for Chromium codesearch.
         'changelist': str,  # Last known Git commit.
     }
 
@@ -1350,7 +1349,7 @@ class XrefSearchResponse(Message):
     DESCRIPTOR = {
         'eliminated_type_count': [XrefTypeCount],
         'estimated_total_type_count': [XrefTypeCount],
-        'from_kythe': bool,
+        'from_kythe': bool, # always True these days.
         'kythe_next_page_token': str,
         'grok_total_number_of_results': int,  # DEPRECATED
         'search_result': [XrefSearchResult],

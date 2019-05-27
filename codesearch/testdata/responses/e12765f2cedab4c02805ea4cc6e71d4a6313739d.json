@@ -1,0 +1,2370 @@
+{
+  "annotation_response": [
+    {
+      "return_code": 1, 
+      "annotation": [
+        {
+          "kythe_xref_kind": 600, 
+          "range": {
+            "start_line": 8, 
+            "end_line": 8, 
+            "start_column": 10, 
+            "end_column": 17
+          }, 
+          "internal_link": {
+            "path": "src/buildtools/third_party/libc++/trunk/include/memory", 
+            "range": {}, 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 600, 
+          "range": {
+            "start_line": 9, 
+            "end_line": 9, 
+            "start_column": 10, 
+            "end_column": 14
+          }, 
+          "internal_link": {
+            "path": "src/buildtools/third_party/libc++/trunk/include/set", 
+            "range": {}, 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?path=src/buildtools/third_party/libc%2B%2B/trunk/include/set"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 600, 
+          "range": {
+            "start_line": 10, 
+            "end_line": 10, 
+            "start_column": 10, 
+            "end_column": 17
+          }, 
+          "internal_link": {
+            "path": "src/buildtools/third_party/libc++/trunk/include/string", 
+            "range": {}, 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?path=src/buildtools/third_party/libc%2B%2B/trunk/include/string"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 600, 
+          "range": {
+            "start_line": 12, 
+            "end_line": 12, 
+            "start_column": 10, 
+            "end_column": 26
+          }, 
+          "internal_link": {
+            "path": "src/net/base/auth.h", 
+            "range": {}, 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?path=src/net/base/auth.h"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 600, 
+          "range": {
+            "start_line": 13, 
+            "end_line": 13, 
+            "start_column": 10, 
+            "end_column": 32
+          }, 
+          "internal_link": {
+            "path": "src/net/base/net_export.h", 
+            "range": {}, 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?path=src/net/base/net_export.h"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 600, 
+          "range": {
+            "start_line": 14, 
+            "end_line": 14, 
+            "start_column": 10, 
+            "end_column": 31
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_util.h", 
+            "range": {}, 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?path=src/net/http/http_util.h"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 600, 
+          "range": {
+            "start_line": 15, 
+            "end_line": 15, 
+            "start_column": 10, 
+            "end_column": 48
+          }, 
+          "internal_link": {
+            "path": "src/net/log/net_log_parameters_callback.h", 
+            "range": {}, 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?path=src/net/log/net_log_parameters_callback.h"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 19, 
+            "end_line": 19, 
+            "start_column": 11, 
+            "end_column": 13
+          }, 
+          "kythe_xref_kind": 1200, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B#net%23n%23namespace"
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1000, 
+          "range": {
+            "start_line": 29, 
+            "end_line": 29, 
+            "start_column": 7, 
+            "end_column": 24
+          }, 
+          "internal_link": {
+            "path": "src/net/base/net_export.h", 
+            "range": {
+              "start_line": 29, 
+              "end_line": 29, 
+              "start_column": 9, 
+              "end_column": 26
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/base/net_export.h#%40982%3A1000%25linux%40NET_EXPORT_PRIVATE%23m%40982%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fbase%2Fnet_export.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/base/net_export.h#NET_EXPORT_PRIVATE%23m%40982"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 124, 
+            "end_line": 124, 
+            "start_column": 5, 
+            "end_column": 18
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 68, 
+              "end_line": 68, 
+              "start_column": 8, 
+              "end_column": 21
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%402426%3A2440%25linux%40IdentitySource%3AHttpAuth%3Anet%23n%23cgXq6tVek5W%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#IdentitySource%3AHttpAuth%3Anet%23n%23cgXq6tVek5W"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1310, 
+          "range": {
+            "start_line": 126, 
+            "end_line": 126, 
+            "start_column": 5, 
+            "end_column": 19
+          }, 
+          "internal_link": {
+            "path": "src/net/base/auth.h", 
+            "range": {
+              "start_line": 42, 
+              "end_line": 42, 
+              "start_column": 18, 
+              "end_column": 32
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/base/auth.h#%401190%3A1205%25linux%40AuthCredentials%3Anet%23c%23kcWEHeXFxty%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fbase%2Fauth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/base/auth.h#AuthCredentials%3Anet%23c%23kcWEHeXFxty"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1500, 
+          "range": {
+            "start_line": 131, 
+            "end_line": 131, 
+            "start_column": 15, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/buildtools/third_party/libc++/trunk/include/iosfwd", 
+            "range": {
+              "start_line": 210, 
+              "end_line": 210, 
+              "start_column": 65, 
+              "end_column": 70
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iosfwd#%408188%3A8194%25linux%40mF6WL3yf1y6IwzTJx3mA4GP9fR1t95jDK-r88SqaxZ4", 
+            "package_name": "chromium", 
+            "signature": "kythe:?lang=c%2B%2B#mF6WL3yf1y6IwzTJx3mA4GP9fR1t95jDK-r88SqaxZ4"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 131, 
+            "end_line": 131, 
+            "start_column": 45, 
+            "end_column": 50
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 33, 
+              "end_line": 33, 
+              "start_column": 8, 
+              "end_column": 13
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%40841%3A847%25linux%40Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1500, 
+          "range": {
+            "start_line": 135, 
+            "end_line": 135, 
+            "start_column": 15, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/buildtools/third_party/libc++/trunk/include/iosfwd", 
+            "range": {
+              "start_line": 210, 
+              "end_line": 210, 
+              "start_column": 65, 
+              "end_column": 70
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iosfwd#%408188%3A8194%25linux%40mF6WL3yf1y6IwzTJx3mA4GP9fR1t95jDK-r88SqaxZ4", 
+            "package_name": "chromium", 
+            "signature": "kythe:?lang=c%2B%2B#mF6WL3yf1y6IwzTJx3mA4GP9fR1t95jDK-r88SqaxZ4"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 135, 
+            "end_line": 135, 
+            "start_column": 49, 
+            "end_column": 54
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 33, 
+              "end_line": 33, 
+              "start_column": 8, 
+              "end_column": 13
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%40841%3A847%25linux%40Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1500, 
+          "range": {
+            "start_line": 139, 
+            "end_line": 139, 
+            "start_column": 15, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/buildtools/third_party/libc++/trunk/include/iosfwd", 
+            "range": {
+              "start_line": 210, 
+              "end_line": 210, 
+              "start_column": 65, 
+              "end_column": 70
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iosfwd#%408188%3A8194%25linux%40mF6WL3yf1y6IwzTJx3mA4GP9fR1t95jDK-r88SqaxZ4", 
+            "package_name": "chromium", 
+            "signature": "kythe:?lang=c%2B%2B#mF6WL3yf1y6IwzTJx3mA4GP9fR1t95jDK-r88SqaxZ4"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 139, 
+            "end_line": 139, 
+            "start_column": 42, 
+            "end_column": 47
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 33, 
+              "end_line": 33, 
+              "start_column": 8, 
+              "end_column": 13
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%40841%3A847%25linux%40Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 142, 
+            "end_line": 142, 
+            "start_column": 37, 
+            "end_column": 42
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 97, 
+              "end_line": 97, 
+              "start_column": 8, 
+              "end_column": 13
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403341%3A3347%25linux%40Scheme%3AHttpAuth%3Anet%23n%23pQDbnWB0DcW%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Scheme%3AHttpAuth%3Anet%23n%23pQDbnWB0DcW"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 146, 
+            "end_line": 146, 
+            "start_column": 7, 
+            "end_column": 25
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 44, 
+              "end_line": 44, 
+              "start_column": 8, 
+              "end_column": 26
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401183%3A1202%25linux%40xvt9k4Unkv8WLBCKdsdmO0dfqTpkUpxSHZKr2e5MPxo%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#xvt9k4Unkv8WLBCKdsdmO0dfqTpkUpxSHZKr2e5MPxo"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1900, 
+          "range": {
+            "start_line": 149, 
+            "end_line": 149, 
+            "start_column": 27, 
+            "end_column": 30
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 151, 
+              "end_line": 151, 
+              "start_column": 19, 
+              "end_column": 22
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%405154%3A5158%25linux%40LvqscjsRf9cpYlRRUdIxa1hmdu1urChXOdberRGZ-Gc%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#LvqscjsRf9cpYlRRUdIxa1hmdu1urChXOdberRGZ-Gc"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1500, 
+          "range": {
+            "start_line": 150, 
+            "end_line": 150, 
+            "start_column": 10, 
+            "end_column": 33
+          }, 
+          "internal_link": {
+            "path": "src/net/log/net_log_parameters_callback.h", 
+            "range": {
+              "start_line": 23, 
+              "end_line": 23, 
+              "start_column": 7, 
+              "end_column": 30
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/log/net_log_parameters_callback.h#%40699%3A723%25linux%40KgoHOmCxk-Qc8vYf58QHD8s5Z32zT5l3hvkAH07TN5w", 
+            "package_name": "chromium", 
+            "signature": "kythe:?lang=c%2B%2B#KgoHOmCxk-Qc8vYf58QHD8s5Z32zT5l3hvkAH07TN5w"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 152, 
+            "end_line": 152, 
+            "start_column": 7, 
+            "end_column": 25
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 44, 
+              "end_line": 44, 
+              "start_column": 8, 
+              "end_column": 26
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401183%3A1202%25linux%40xvt9k4Unkv8WLBCKdsdmO0dfqTpkUpxSHZKr2e5MPxo%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#xvt9k4Unkv8WLBCKdsdmO0dfqTpkUpxSHZKr2e5MPxo"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1900, 
+          "range": {
+            "start_line": 154, 
+            "end_line": 154, 
+            "start_column": 23, 
+            "end_column": 38
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 168, 
+              "end_line": 168, 
+              "start_column": 34, 
+              "end_column": 49
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%405936%3A5952%25linux%40gQ9rSRbJvbPZjsp2ijKur3VwDURYUGblx01kNsVLrs0%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#gQ9rSRbJvbPZjsp2ijKur3VwDURYUGblx01kNsVLrs0"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1900, 
+          "range": {
+            "start_line": 159, 
+            "end_line": 159, 
+            "start_column": 7, 
+            "end_column": 22
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 172, 
+              "end_line": 172, 
+              "start_column": 31, 
+              "end_column": 46
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%406062%3A6078%25linux%4089JZGLgs94qwuDtutLpia8VsVS8mmqR8O7tKOmjYZYQ%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#89JZGLgs94qwuDtutLpia8VsVS8mmqR8O7tKOmjYZYQ"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1900, 
+          "range": {
+            "start_line": 161, 
+            "end_line": 161, 
+            "start_column": 7, 
+            "end_column": 12
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 171, 
+              "end_line": 171, 
+              "start_column": 19, 
+              "end_column": 24
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%406024%3A6030%25linux%40Iq5l6DcJnrCpJfG_3hVG0wPborBa38h1ReTprezXNu0%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Iq5l6DcJnrCpJfG_3hVG0wPborBa38h1ReTprezXNu0"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1900, 
+          "range": {
+            "start_line": 164, 
+            "end_line": 164, 
+            "start_column": 7, 
+            "end_column": 14
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 169, 
+              "end_line": 169, 
+              "start_column": 22, 
+              "end_column": 29
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%405975%3A5983%25linux%40hwNSVAcDo7STJ-YTm7EP4osQE88LodM8T8G2CWhebj8%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#hwNSVAcDo7STJ-YTm7EP4osQE88LodM8T8G2CWhebj8"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1310, 
+          "range": {
+            "start_line": 167, 
+            "end_line": 167, 
+            "start_column": 7, 
+            "end_column": 28
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth_handler_factory.h", 
+            "range": {
+              "start_line": 35, 
+              "end_line": 35, 
+              "start_column": 18, 
+              "end_column": 39
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_handler_factory.h#%40973%3A995%25linux%40HttpAuthHandlerFactory%3Anet%23c%23ifvw5bZCjEE%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth_handler_factory.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#AKBm0v34NL_CIFV_PTZVVEcp49bX5yyngvCLU5ksDFc"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1310, 
+          "range": {
+            "start_line": 168, 
+            "end_line": 168, 
+            "start_column": 13, 
+            "end_column": 31
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_response_headers.h", 
+            "range": {
+              "start_line": 42, 
+              "end_line": 42, 
+              "start_column": 18, 
+              "end_column": 36
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_response_headers.h#%401024%3A1043%25linux%40HttpResponseHeaders%3Anet%23c%235nU8YR_Knt%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_response_headers.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#A84umiqbj5tot7N341vsikspuIGO91zUBj0JLGB-Qb8"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1310, 
+          "range": {
+            "start_line": 169, 
+            "end_line": 169, 
+            "start_column": 13, 
+            "end_column": 19
+          }, 
+          "internal_link": {
+            "path": "src/net/ssl/ssl_info.h", 
+            "range": {
+              "start_line": 29, 
+              "end_line": 29, 
+              "start_column": 18, 
+              "end_column": 24
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/ssl/ssl_info.h#%40803%3A810%25linux%40SSLInfo%3Anet%23c%23hrli7flevMA%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fssl%2Fssl_info.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/ssl/ssl_info.h#SSLInfo%3Anet%23c%23hrli7flevMA"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 170, 
+            "end_line": 170, 
+            "start_column": 7, 
+            "end_column": 12
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 33, 
+              "end_line": 33, 
+              "start_column": 8, 
+              "end_column": 13
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%40841%3A847%25linux%40Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1310, 
+          "range": {
+            "start_line": 171, 
+            "end_line": 171, 
+            "start_column": 13, 
+            "end_column": 16
+          }, 
+          "internal_link": {
+            "path": "src/url/gurl.h", 
+            "range": {
+              "start_line": 46, 
+              "end_line": 46, 
+              "start_column": 29, 
+              "end_column": 32
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/url/gurl.h#%401977%3A1981%25linux%40GURL%23c%23cZNxCp4Z1ZQ%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Furl%2Fgurl.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/url/gurl.h#GURL%23c%23cZNxCp4Z1ZQ"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 100, 
+          "range": {
+            "start_line": 172, 
+            "end_line": 172, 
+            "start_column": 18, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/buildtools/third_party/libc++/trunk/include/set", 
+            "range": {
+              "start_line": 441, 
+              "end_line": 441, 
+              "start_column": 28, 
+              "end_column": 30
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/set#%4017764%3A17767%25linux%40pOZ4CWaAej56hNo4PDEjlRzPRTRx1UR_wyxd-RDriRg%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fset", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/set#pOZ4CWaAej56hNo4PDEjlRzPRTRx1UR_wyxd-RDriRg"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 172, 
+            "end_line": 172, 
+            "start_column": 22, 
+            "end_column": 27
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 97, 
+              "end_line": 97, 
+              "start_column": 8, 
+              "end_column": 13
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403341%3A3347%25linux%40Scheme%3AHttpAuth%3Anet%23n%23pQDbnWB0DcW%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Scheme%3AHttpAuth%3Anet%23n%23pQDbnWB0DcW"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1310, 
+          "range": {
+            "start_line": 173, 
+            "end_line": 173, 
+            "start_column": 13, 
+            "end_column": 28
+          }, 
+          "internal_link": {
+            "path": "src/net/log/net_log_with_source.h", 
+            "range": {
+              "start_line": 20, 
+              "end_line": 20, 
+              "start_column": 18, 
+              "end_column": 33
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/log/net_log_with_source.h#%40634%3A650%25linux%40NetLogWithSource%3Anet%23c%23feHbokpc9QY%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Flog%2Fnet_log_with_source.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/log/net_log_with_source.h#NetLogWithSource%3Anet%23c%23feHbokpc9QY"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1310, 
+          "range": {
+            "start_line": 174, 
+            "end_line": 174, 
+            "start_column": 7, 
+            "end_column": 18
+          }, 
+          "internal_link": {
+            "path": "src/net/dns/host_resolver.h", 
+            "range": {
+              "start_line": 51, 
+              "end_line": 51, 
+              "start_column": 18, 
+              "end_column": 29
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/dns/host_resolver.h#%401391%3A1403%25linux%40HostResolver%3Anet%23c%23l_mpIBuvHdg%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fdns%2Fhost_resolver.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/dns/host_resolver.h#HostResolver%3Anet%23c%23l_mpIBuvHdg"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 100, 
+          "range": {
+            "start_line": 175, 
+            "end_line": 175, 
+            "start_column": 12, 
+            "end_column": 21
+          }, 
+          "internal_link": {
+            "path": "src/buildtools/third_party/libc++/trunk/include/memory", 
+            "range": {
+              "start_line": 2400, 
+              "end_line": 2400, 
+              "start_column": 28, 
+              "end_column": 37
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#%4081269%3A81279%25linux%40GnRvKUgoW44h5TAyr00pdRDe7dSoGBk7n4npnz3U0KY%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fmemory", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/memory#GnRvKUgoW44h5TAyr00pdRDe7dSoGBk7n4npnz3U0KY"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1310, 
+          "range": {
+            "start_line": 175, 
+            "end_line": 175, 
+            "start_column": 23, 
+            "end_column": 37
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth_handler.h", 
+            "range": {
+              "start_line": 33, 
+              "end_line": 33, 
+              "start_column": 26, 
+              "end_column": 40
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_handler.h#%401103%3A1118%25linux%40HttpAuthHandler%3Anet%23c%23c42i9Ws%24SX2%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth_handler.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#sCcKdxouE8hMtQL2CwdQ42p66KBLluYfgwN_PyafHV8"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1900, 
+          "range": {
+            "start_line": 184, 
+            "end_line": 184, 
+            "start_column": 7, 
+            "end_column": 13
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 199, 
+              "end_line": 199, 
+              "start_column": 24, 
+              "end_column": 30
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%407322%3A7329%25linux%40cl9bHqWxW7lH1l1bQs4mDGmQTXnIIbMejRBeXu0hxIM%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#cl9bHqWxW7lH1l1bQs4mDGmQTXnIIbMejRBeXu0hxIM"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1900, 
+          "range": {
+            "start_line": 187, 
+            "end_line": 187, 
+            "start_column": 7, 
+            "end_column": 22
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 200, 
+              "end_line": 200, 
+              "start_column": 34, 
+              "end_column": 49
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%407364%3A7380%25linux%40-sumBXjYAdV-Mr7opEc9KQRv10i2Yd9B8NGF7TPyhD0%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#-sumBXjYAdV-Mr7opEc9KQRv10i2Yd9B8NGF7TPyhD0"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1900, 
+          "range": {
+            "start_line": 189, 
+            "end_line": 189, 
+            "start_column": 7, 
+            "end_column": 12
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 201, 
+              "end_line": 201, 
+              "start_column": 14, 
+              "end_column": 19
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%407395%3A7401%25linux%40f5joUpcbi1UnPdXl23SC9j4Q6UxoX4IjCtX5m1ry54k%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#f5joUpcbi1UnPdXl23SC9j4Q6UxoX4IjCtX5m1ry54k"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1900, 
+          "range": {
+            "start_line": 192, 
+            "end_line": 192, 
+            "start_column": 7, 
+            "end_column": 22
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 202, 
+              "end_line": 202, 
+              "start_column": 31, 
+              "end_column": 46
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%407433%3A7449%25linux%40gtVieIJmSuyOor-KD7mrtCXxxp85GxHKUB1e3ROAaDc%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#gtVieIJmSuyOor-KD7mrtCXxxp85GxHKUB1e3ROAaDc"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1900, 
+          "range": {
+            "start_line": 194, 
+            "end_line": 194, 
+            "start_column": 7, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 203, 
+              "end_line": 203, 
+              "start_column": 20, 
+              "end_column": 33
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%407470%3A7484%25linux%40TpVzGVWnYRScR8qQFcDgGVyGe9jrJVL2etppb5HY_c0%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#TpVzGVWnYRScR8qQFcDgGVyGe9jrJVL2etppb5HY_c0"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 198, 
+            "end_line": 198, 
+            "start_column": 10, 
+            "end_column": 28
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 44, 
+              "end_line": 44, 
+              "start_column": 8, 
+              "end_column": 26
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401183%3A1202%25linux%40xvt9k4Unkv8WLBCKdsdmO0dfqTpkUpxSHZKr2e5MPxo%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#xvt9k4Unkv8WLBCKdsdmO0dfqTpkUpxSHZKr2e5MPxo"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1310, 
+          "range": {
+            "start_line": 199, 
+            "end_line": 199, 
+            "start_column": 7, 
+            "end_column": 21
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth_handler.h", 
+            "range": {
+              "start_line": 33, 
+              "end_line": 33, 
+              "start_column": 26, 
+              "end_column": 40
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_handler.h#%401103%3A1118%25linux%40HttpAuthHandler%3Anet%23c%23c42i9Ws%24SX2%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth_handler.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#sCcKdxouE8hMtQL2CwdQ42p66KBLluYfgwN_PyafHV8"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1310, 
+          "range": {
+            "start_line": 200, 
+            "end_line": 200, 
+            "start_column": 13, 
+            "end_column": 31
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_response_headers.h", 
+            "range": {
+              "start_line": 42, 
+              "end_line": 42, 
+              "start_column": 18, 
+              "end_column": 36
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_response_headers.h#%401024%3A1043%25linux%40HttpResponseHeaders%3Anet%23c%235nU8YR_Knt%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_response_headers.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#A84umiqbj5tot7N341vsikspuIGO91zUBj0JLGB-Qb8"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 201, 
+            "end_line": 201, 
+            "start_column": 7, 
+            "end_column": 12
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 33, 
+              "end_line": 33, 
+              "start_column": 8, 
+              "end_column": 13
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%40841%3A847%25linux%40Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 100, 
+          "range": {
+            "start_line": 202, 
+            "end_line": 202, 
+            "start_column": 18, 
+            "end_column": 20
+          }, 
+          "internal_link": {
+            "path": "src/buildtools/third_party/libc++/trunk/include/set", 
+            "range": {
+              "start_line": 441, 
+              "end_line": 441, 
+              "start_column": 28, 
+              "end_column": 30
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/set#%4017764%3A17767%25linux%40pOZ4CWaAej56hNo4PDEjlRzPRTRx1UR_wyxd-RDriRg%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fbuildtools%2Fthird_party%2Flibc%2B%2B%2Ftrunk%2Finclude%2Fset", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/set#pOZ4CWaAej56hNo4PDEjlRzPRTRx1UR_wyxd-RDriRg"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1410, 
+          "range": {
+            "start_line": 202, 
+            "end_line": 202, 
+            "start_column": 22, 
+            "end_column": 27
+          }, 
+          "internal_link": {
+            "path": "src/net/http/http_auth.h", 
+            "range": {
+              "start_line": 97, 
+              "end_line": 97, 
+              "start_column": 8, 
+              "end_column": 13
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403341%3A3347%25linux%40Scheme%3AHttpAuth%3Anet%23n%23pQDbnWB0DcW%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "package_name": "chromium", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Scheme%3AHttpAuth%3Anet%23n%23pQDbnWB0DcW"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "kythe_xref_kind": 1500, 
+          "range": {
+            "start_line": 203, 
+            "end_line": 203, 
+            "start_column": 12, 
+            "end_column": 17
+          }, 
+          "internal_link": {
+            "path": "src/buildtools/third_party/libc++/trunk/include/iosfwd", 
+            "range": {
+              "start_line": 210, 
+              "end_line": 210, 
+              "start_column": 65, 
+              "end_column": 70
+            }, 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/buildtools/third_party/libc%2B%2B/trunk/include/iosfwd#%408188%3A8194%25linux%40mF6WL3yf1y6IwzTJx3mA4GP9fR1t95jDK-r88SqaxZ4", 
+            "package_name": "chromium", 
+            "signature": "kythe:?lang=c%2B%2B#mF6WL3yf1y6IwzTJx3mA4GP9fR1t95jDK-r88SqaxZ4"
+          }, 
+          "type": {
+            "id": 1
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 6, 
+            "end_line": 6, 
+            "start_column": 9, 
+            "end_column": 29
+          }, 
+          "kythe_xref_kind": 1000, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#NET_HTTP_HTTP_AUTH_H_%23m%40208"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 17, 
+            "end_line": 17, 
+            "start_column": 17, 
+            "end_column": 17
+          }, 
+          "kythe_xref_kind": 200, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#ZOrJ7QaUXWdZ3rwWc4CCo2iOxHi588DMzXHp4Km7g7I"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 17, 
+            "end_line": 17, 
+            "start_column": 26, 
+            "end_column": 38
+          }, 
+          "kythe_xref_kind": 100, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#7I6KMDq-lN1ZTqsOkeGtHlomfQdvqC-otApfKrDMV0A"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 21, 
+            "end_line": 21, 
+            "start_column": 7, 
+            "end_column": 21
+          }, 
+          "kythe_xref_kind": 1310, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_handler.h#%401103%3A1118%25linux%40HttpAuthHandler%3Anet%23c%23c42i9Ws%24SX2%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth_handler.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#sCcKdxouE8hMtQL2CwdQ42p66KBLluYfgwN_PyafHV8"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 22, 
+            "end_line": 22, 
+            "start_column": 7, 
+            "end_column": 28
+          }, 
+          "kythe_xref_kind": 1310, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth_handler_factory.h#%40973%3A995%25linux%40HttpAuthHandlerFactory%3Anet%23c%23ifvw5bZCjEE%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth_handler_factory.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#AKBm0v34NL_CIFV_PTZVVEcp49bX5yyngvCLU5ksDFc"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 23, 
+            "end_line": 23, 
+            "start_column": 7, 
+            "end_column": 25
+          }, 
+          "kythe_xref_kind": 1310, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_response_headers.h#%401024%3A1043%25linux%40HttpResponseHeaders%3Anet%23c%235nU8YR_Knt%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_response_headers.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#A84umiqbj5tot7N341vsikspuIGO91zUBj0JLGB-Qb8"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 24, 
+            "end_line": 24, 
+            "start_column": 7, 
+            "end_column": 18
+          }, 
+          "kythe_xref_kind": 1310, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/dns/host_resolver.h#%401391%3A1403%25linux%40HostResolver%3Anet%23c%23l_mpIBuvHdg%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fdns%2Fhost_resolver.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#3Yo3CkUwFWvWYRn-ghbg-tzw9Ie8dbKGlaG1_Sfl3nc"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 25, 
+            "end_line": 25, 
+            "start_column": 7, 
+            "end_column": 22
+          }, 
+          "kythe_xref_kind": 1310, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/log/net_log_with_source.h#%40634%3A650%25linux%40NetLogWithSource%3Anet%23c%23feHbokpc9QY%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Flog%2Fnet_log_with_source.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Fm10iEf5rBkJFNlnTBlqb72AvbgSAlSmMtSo6Ouy52Y"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 26, 
+            "end_line": 26, 
+            "start_column": 7, 
+            "end_column": 13
+          }, 
+          "kythe_xref_kind": 1310, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/ssl/ssl_info.h#%40803%3A810%25linux%40SSLInfo%3Anet%23c%23hrli7flevMA%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fssl%2Fssl_info.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#B6mrAUpXmpqsKN-L8rMXOT-GYcczqfFstjnC1n8Nj0k"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 29, 
+            "end_line": 29, 
+            "start_column": 26, 
+            "end_column": 33
+          }, 
+          "kythe_xref_kind": 1310, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%40690%3A698%25linux%40HttpAuth%3Anet%23c%23hziOS5UFcS6%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#HttpAuth%3Anet%23c%23hziOS5UFcS6"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 33, 
+            "end_line": 33, 
+            "start_column": 8, 
+            "end_column": 13
+          }, 
+          "kythe_xref_kind": 1410, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%40841%3A847%25linux%40Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Target%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 34, 
+            "end_line": 34, 
+            "start_column": 5, 
+            "end_column": 13
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#AUTH_NONE%3ATarget%3AHttpAuth%3Anet%23n%23hMl2%24pd%24IrA"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 37, 
+            "end_line": 37, 
+            "start_column": 5, 
+            "end_column": 14
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%40988%3A998%25linux%40bIa8P94vUg076_A9U-b1OXn7zDmWQ-8QVxzIPb9MjRE%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#bIa8P94vUg076_A9U-b1OXn7zDmWQ-8QVxzIPb9MjRE"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 38, 
+            "end_line": 38, 
+            "start_column": 5, 
+            "end_column": 15
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401008%3A1019%25linux%40UhtX0XiMD4_byG1JQ09iYzby1xJtXO6DUWpQBbDPhxc%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#UhtX0XiMD4_byG1JQ09iYzby1xJtXO6DUWpQBbDPhxc"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 39, 
+            "end_line": 39, 
+            "start_column": 5, 
+            "end_column": 20
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401029%3A1045%25linux%40_iMzFyX9O6nqdbtOCRySdvH_rwW34tm7-7zQpYAORbI%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#_iMzFyX9O6nqdbtOCRySdvH_rwW34tm7-7zQpYAORbI"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 44, 
+            "end_line": 44, 
+            "start_column": 8, 
+            "end_column": 26
+          }, 
+          "kythe_xref_kind": 1410, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401183%3A1202%25linux%40xvt9k4Unkv8WLBCKdsdmO0dfqTpkUpxSHZKr2e5MPxo%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#xvt9k4Unkv8WLBCKdsdmO0dfqTpkUpxSHZKr2e5MPxo"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 45, 
+            "end_line": 45, 
+            "start_column": 5, 
+            "end_column": 31
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401209%3A1236%25linux%40_mHGFEMLG4d7A7YUPb7wX98bpGMETfm5YXDOiwfRnB4%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#_mHGFEMLG4d7A7YUPb7wX98bpGMETfm5YXDOiwfRnB4"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 49, 
+            "end_line": 49, 
+            "start_column": 5, 
+            "end_column": 31
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401425%3A1452%25linux%40-zs8xzJ1yfOYD7Mv08TfZHC2vceSbgzdy2f6x6MPRIc%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#-zs8xzJ1yfOYD7Mv08TfZHC2vceSbgzdy2f6x6MPRIc"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 51, 
+            "end_line": 51, 
+            "start_column": 5, 
+            "end_column": 30
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401504%3A1530%25linux%40DHVV-GOOYI5mUgfG8KJjE9a1_gL2v9Ubb3ghFZZ3dkY%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#DHVV-GOOYI5mUgfG8KJjE9a1_gL2v9Ubb3ghFZZ3dkY"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 55, 
+            "end_line": 55, 
+            "start_column": 5, 
+            "end_column": 32
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401719%3A1747%25linux%40z-vaKuoWNRlPlv8ZBtk_2KWczFfDYiDqR15Q0zBMhJI%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#z-vaKuoWNRlPlv8ZBtk_2KWczFfDYiDqR15Q0zBMhJI"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 59, 
+            "end_line": 59, 
+            "start_column": 5, 
+            "end_column": 40
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%401944%3A1980%25linux%40Cu8osOCCgzOLh2Y90GU5OxZf5t6dsgLTDJHZEwWgO_o%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Cu8osOCCgzOLh2Y90GU5OxZf5t6dsgLTDJHZEwWgO_o"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 68, 
+            "end_line": 68, 
+            "start_column": 8, 
+            "end_column": 21
+          }, 
+          "kythe_xref_kind": 1410, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%402426%3A2440%25linux%40IdentitySource%3AHttpAuth%3Anet%23n%23cgXq6tVek5W%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#IdentitySource%3AHttpAuth%3Anet%23n%23cgXq6tVek5W"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 70, 
+            "end_line": 70, 
+            "start_column": 5, 
+            "end_column": 18
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%402508%3A2522%25linux%40VM0IoK2CpoeCGuE8TGqD3NljtH_8qyZ7k0f3Nac7xoM%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#VM0IoK2CpoeCGuE8TGqD3NljtH_8qyZ7k0f3Nac7xoM"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 74, 
+            "end_line": 74, 
+            "start_column": 5, 
+            "end_column": 25
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%402638%3A2659%25linux%40Db4w6JzwsUxjY6ArMQTC9mEXG598OgQ-B-odCf8vK_w%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Db4w6JzwsUxjY6ArMQTC9mEXG598OgQ-B-odCf8vK_w"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 78, 
+            "end_line": 78, 
+            "start_column": 5, 
+            "end_column": 17
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%402770%3A2783%25linux%40fyFB9kOJg2qPnnbTwgwKbHKvsoCU0kvSvMoDJ9TZUqU%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#fyFB9kOJg2qPnnbTwgwKbHKvsoCU0kvSvMoDJ9TZUqU"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 82, 
+            "end_line": 82, 
+            "start_column": 5, 
+            "end_column": 26
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%402877%3A2899%25linux%40xbYLaL21DMQMM-Z_NTsCFxnZw5StbXyebdZ2c_tUPZ0%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#xbYLaL21DMQMM-Z_NTsCFxnZw5StbXyebdZ2c_tUPZ0"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 86, 
+            "end_line": 86, 
+            "start_column": 5, 
+            "end_column": 22
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403030%3A3048%25linux%40Q-Zt52-Uo3j7ncd-A6UMOZdl8Fv6kVAWTZrQbXU90mw%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Q-Zt52-Uo3j7ncd-A6UMOZdl8Fv6kVAWTZrQbXU90mw"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 90, 
+            "end_line": 90, 
+            "start_column": 5, 
+            "end_column": 33
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403169%3A3198%25linux%40XFTOIM6RsXHy5SLj_6Opl9adwxzOVJnfBUkV0G0ictM%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#XFTOIM6RsXHy5SLj_6Opl9adwxzOVJnfBUkV0G0ictM"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 97, 
+            "end_line": 97, 
+            "start_column": 8, 
+            "end_column": 13
+          }, 
+          "kythe_xref_kind": 1410, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403341%3A3347%25linux%40Scheme%3AHttpAuth%3Anet%23n%23pQDbnWB0DcW%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Scheme%3AHttpAuth%3Anet%23n%23pQDbnWB0DcW"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 98, 
+            "end_line": 98, 
+            "start_column": 5, 
+            "end_column": 21
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#vqAOrhpDEVRUYJIUD3fRhIBMDseO0kWra1bzlhKwiVk"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 99, 
+            "end_line": 99, 
+            "start_column": 5, 
+            "end_column": 22
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#koY6yhuCaM4-fu-QiS5u7BOxMtnAqWc4gRKRQyNyvvQ"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 100, 
+            "end_line": 100, 
+            "start_column": 5, 
+            "end_column": 20
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#sYjVBqW7sHBw5KVJIdKye0dMe0ptERJroT_kOEDR7C4"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 101, 
+            "end_line": 101, 
+            "start_column": 5, 
+            "end_column": 25
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#e-gr4_73u69NB-cAv8c85i48YcixPjqwdiD-KRxUpUc"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 102, 
+            "end_line": 102, 
+            "start_column": 5, 
+            "end_column": 25
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403454%3A3475%25linux%40eGJzmMJ5vZ7_fjIMX_c_FOL6YhS_t5idWN9jBduiqio%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#eGJzmMJ5vZ7_fjIMX_c_FOL6YhS_t5idWN9jBduiqio"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 103, 
+            "end_line": 103, 
+            "start_column": 5, 
+            "end_column": 20
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#CUIQEq_wC4yEMjzsIxUlW65T2fp9DkiWIHJt4HD1fUc"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 104, 
+            "end_line": 104, 
+            "start_column": 5, 
+            "end_column": 19
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#8yaAVBgRqcZU-MixXog9rsx2sfWQjztjcZUSJJLDs3I"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 109, 
+            "end_line": 109, 
+            "start_column": 14, 
+            "end_column": 27
+          }, 
+          "kythe_xref_kind": 1420, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403648%3A3662%25linux%40DelegationType%3AHttpAuth%3Anet%23n%23d6UjLBfRWQN%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#DelegationType%3AHttpAuth%3Anet%23n%23d6UjLBfRWQN"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 111, 
+            "end_line": 111, 
+            "start_column": 5, 
+            "end_column": 9
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403697%3A3702%25linux%40KRns3tB3O3ZuGSo2Se1crN3Vi6HC1OptbAC3_p7gKgQ%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#KRns3tB3O3ZuGSo2Se1crN3Vi6HC1OptbAC3_p7gKgQ"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 113, 
+            "end_line": 113, 
+            "start_column": 5, 
+            "end_column": 16
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403774%3A3786%25linux%40jlM70VpxxSRxFYLm33ZqKJTNh-gHsvS9KNOkPTQn4PM%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#jlM70VpxxSRxFYLm33ZqKJTNh-gHsvS9KNOkPTQn4PM"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 116, 
+            "end_line": 116, 
+            "start_column": 5, 
+            "end_column": 18
+          }, 
+          "kythe_xref_kind": 500, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%403897%3A3911%25linux%407NPuj_b3TmmzPQkRhlrAVPzJNmqGlA-rBfESZbgPdGY%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#7NPuj_b3TmmzPQkRhlrAVPzJNmqGlA-rBfESZbgPdGY"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 121, 
+            "end_line": 121, 
+            "start_column": 10, 
+            "end_column": 17
+          }, 
+          "kythe_xref_kind": 820, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%404046%3A4054%25linux%40Identity%3AHttpAuth%3Anet%23c%23f6gF0FQkD9J%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#HfkyPURcA_RkZfYdLuYPCu9nTlauqNpP7Bcw9dmWrdw kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Identity%3AHttpAuth%3Anet%23c%23f6gF0FQkD9J kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#c1dtqH0AdT-CKsvD_SNFfCKD4aV-RVwCQzwPpVUCWd8 kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#uWS3pHnOGuK2t73gOEvBR8GTPdUxSZZ6kkxFoxoswGM"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 122, 
+            "end_line": 122, 
+            "start_column": 5, 
+            "end_column": 12
+          }, 
+          "kythe_xref_kind": 810, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.cc#%40791%3A799%25linux%402ClqEB0z7Tn2s8GKM1iqQsjrCSotu2nAB-_Lsd_WWKY%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.cc", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#wisbdwDBtqCwzPuc8DIensVNBM65NoH6qC5e0Df1vsA"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 124, 
+            "end_line": 124, 
+            "start_column": 20, 
+            "end_column": 25
+          }, 
+          "kythe_xref_kind": 1910, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#LfSlDanicxeEdf-vF2KmuXAEF1EeRpxb0sgv_4Uowxk"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 125, 
+            "end_line": 125, 
+            "start_column": 10, 
+            "end_column": 16
+          }, 
+          "kythe_xref_kind": 1910, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Rsbmzhpq2ZuW164hkmYS7liDH5nMi0nqsfNL2kDWRg8"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 126, 
+            "end_line": 126, 
+            "start_column": 21, 
+            "end_column": 31
+          }, 
+          "kythe_xref_kind": 1910, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#eBW910lDFyWRRflnO4DtPgVGjHqLiHXYt4skgEe14ac"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 131, 
+            "end_line": 131, 
+            "start_column": 22, 
+            "end_column": 43
+          }, 
+          "kythe_xref_kind": 800, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.cc#%403689%3A3711%25linux%40L2tIScXMpn4xxUl-WjYiqVLC0N8MCnbAXF1LtBCxaKM%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.cc", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#c-TecY_BVpInlMacfA_9rsvhlvTv5UhzRKbh-hdIXus"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 131, 
+            "end_line": 131, 
+            "start_column": 52, 
+            "end_column": 57
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Z1AFXK3shNhrUjO-pfE6tQHSfkhFk71nHdELM1B_pyI"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 135, 
+            "end_line": 135, 
+            "start_column": 22, 
+            "end_column": 47
+          }, 
+          "kythe_xref_kind": 800, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.cc#%403960%3A3986%25linux%40tltJOceSsrrEogd7o3Ghc281gTTHZLh2FDndNrDFAUo%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.cc", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#sJfiILwOWcVNtmgJuno66zPdUXwBDe7KUFixyFH3FPs"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 135, 
+            "end_line": 135, 
+            "start_column": 56, 
+            "end_column": 61
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#VYsegoRNyn2M01VshMxWlmwR16MGcM_c8GZ1hnF_WfM"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 139, 
+            "end_line": 139, 
+            "start_column": 22, 
+            "end_column": 40
+          }, 
+          "kythe_xref_kind": 800, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.cc#%404270%3A4289%25linux%40_i6fMAS4Qt1iYgcIhC8MbURVbFh_OCB9l4GnzzpWs9M%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.cc", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#RruzdOoeEzdGGagjM-kIMdT935GGSEzsJquWKkw4MrA"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 139, 
+            "end_line": 139, 
+            "start_column": 49, 
+            "end_column": 54
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#ylh_1G6-2fhAPlCPIdGz26B2VBZTmQvDI6dtDvIgbqs"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 142, 
+            "end_line": 142, 
+            "start_column": 22, 
+            "end_column": 35
+          }, 
+          "kythe_xref_kind": 800, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.cc#%404515%3A4529%25linux%40YLOYKffaC0prkDHKMMk3A8aYvUV5KHXiU4ZK-oGNpZk%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.cc", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#oZjnJj4my5im-tFicwG6qxXKOqrDtyRIusw9E24xNT4"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 142, 
+            "end_line": 142, 
+            "start_column": 44, 
+            "end_column": 49
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#2_GadKepisKm-v4S1llUI9f2uLqcFuFJ_qjSm_HQAjk"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 145, 
+            "end_line": 145, 
+            "start_column": 22, 
+            "end_column": 48
+          }, 
+          "kythe_xref_kind": 800, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.cc#%405029%3A5056%25linux%400RC7b37hf6NCg-b-0HshP42DQJhWxppO3rXm-6mmghU%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.cc", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#txRDkUFlENPxDJLwXu5eht3l4W9kUD4gQN8DQ_GbDHI"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 146, 
+            "end_line": 146, 
+            "start_column": 27, 
+            "end_column": 46
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#onfvNj9_fzSks-YCFm7BF6yKm8Myhl2KmiqK-7oKeK0"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 150, 
+            "end_line": 150, 
+            "start_column": 35, 
+            "end_column": 67
+          }, 
+          "kythe_xref_kind": 800, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.cc#%405560%3A5593%25linux%40zB4StVJVSKZlDHUdr98VKSwDE7bNXf1-mwCwj_PFJeM%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.cc", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#AK7XB2fDb2QOipUn29MCPHoV-TYRdAaRRKH9icH3m78"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 151, 
+            "end_line": 151, 
+            "start_column": 19, 
+            "end_column": 22
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%405154%3A5158%25linux%40LvqscjsRf9cpYlRRUdIxa1hmdu1urChXOdberRGZ-Gc%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#LvqscjsRf9cpYlRRUdIxa1hmdu1urChXOdberRGZ-Gc"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 152, 
+            "end_line": 152, 
+            "start_column": 27, 
+            "end_column": 46
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#5EpbUZZrWJbffYAuxQY1Ozx-TbTHJelF1dZBe-LdHjA"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 166, 
+            "end_line": 166, 
+            "start_column": 15, 
+            "end_column": 33
+          }, 
+          "kythe_xref_kind": 800, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.cc#%40871%3A890%25linux%40HTJoXbZmPJxgoReecUX54IMlurzQoY7IexpCRUEfvos%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.cc", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#0qLh7YY5gduVXp28F1eroSuay3oNlj0AhilgOEVS5W4"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 167, 
+            "end_line": 167, 
+            "start_column": 31, 
+            "end_column": 55
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#B0Vh2TwVvvMlW49h40m5Ey5pdRjZrQYrqK29Cpd1tM8"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 168, 
+            "end_line": 168, 
+            "start_column": 34, 
+            "end_column": 49
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%405936%3A5952%25linux%40gQ9rSRbJvbPZjsp2ijKur3VwDURYUGblx01kNsVLrs0%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#gQ9rSRbJvbPZjsp2ijKur3VwDURYUGblx01kNsVLrs0"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 169, 
+            "end_line": 169, 
+            "start_column": 22, 
+            "end_column": 29
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%405975%3A5983%25linux%40hwNSVAcDo7STJ-YTm7EP4osQE88LodM8T8G2CWhebj8%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#hwNSVAcDo7STJ-YTm7EP4osQE88LodM8T8G2CWhebj8"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 170, 
+            "end_line": 170, 
+            "start_column": 14, 
+            "end_column": 19
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#gBZBCTJoJk-6SI-CePCLHwon-hBLJDIpFgwY5irlwyg"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 171, 
+            "end_line": 171, 
+            "start_column": 19, 
+            "end_column": 24
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%406024%3A6030%25linux%40Iq5l6DcJnrCpJfG_3hVG0wPborBa38h1ReTprezXNu0%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#Iq5l6DcJnrCpJfG_3hVG0wPborBa38h1ReTprezXNu0"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 172, 
+            "end_line": 172, 
+            "start_column": 31, 
+            "end_column": 46
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%406062%3A6078%25linux%4089JZGLgs94qwuDtutLpia8VsVS8mmqR8O7tKOmjYZYQ%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#89JZGLgs94qwuDtutLpia8VsVS8mmqR8O7tKOmjYZYQ"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 173, 
+            "end_line": 173, 
+            "start_column": 31, 
+            "end_column": 37
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#PY1cVdmw0UuR-RT_73nbey5J9zeiaqZhO7hoyDKqiHg"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 174, 
+            "end_line": 174, 
+            "start_column": 21, 
+            "end_column": 33
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#5UFSiIs3KnxJiCt6_8kFJJUp-bYAcZ7q42yWlArsBr8"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 175, 
+            "end_line": 175, 
+            "start_column": 41, 
+            "end_column": 47
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#grMhui72dpiHZpJIO82HG60_VCUrhzQHLpVDhNreQLY"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 198, 
+            "end_line": 198, 
+            "start_column": 30, 
+            "end_column": 52
+          }, 
+          "kythe_xref_kind": 800, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.cc#%402237%3A2260%25linux%40dJeEQ5yuORxo4H9tFJocEbDov_h_xEQM7J94h5RkOY0%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.cc", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#itz4ZUc5xs2-sV1lRhFLilpK1DoGNOAhCYNByW_U0fo"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 199, 
+            "end_line": 199, 
+            "start_column": 24, 
+            "end_column": 30
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%407322%3A7329%25linux%40cl9bHqWxW7lH1l1bQs4mDGmQTXnIIbMejRBeXu0hxIM%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#cl9bHqWxW7lH1l1bQs4mDGmQTXnIIbMejRBeXu0hxIM"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 200, 
+            "end_line": 200, 
+            "start_column": 34, 
+            "end_column": 49
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%407364%3A7380%25linux%40-sumBXjYAdV-Mr7opEc9KQRv10i2Yd9B8NGF7TPyhD0%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#-sumBXjYAdV-Mr7opEc9KQRv10i2Yd9B8NGF7TPyhD0"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 201, 
+            "end_line": 201, 
+            "start_column": 14, 
+            "end_column": 19
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%407395%3A7401%25linux%40f5joUpcbi1UnPdXl23SC9j4Q6UxoX4IjCtX5m1ry54k%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#f5joUpcbi1UnPdXl23SC9j4Q6UxoX4IjCtX5m1ry54k"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 202, 
+            "end_line": 202, 
+            "start_column": 31, 
+            "end_column": 46
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%407433%3A7449%25linux%40gtVieIJmSuyOor-KD7mrtCXxxp85GxHKUB1e3ROAaDc%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#gtVieIJmSuyOor-KD7mrtCXxxp85GxHKUB1e3ROAaDc"
+          }
+        }, 
+        {
+          "range": {
+            "start_line": 203, 
+            "end_line": 203, 
+            "start_column": 20, 
+            "end_column": 33
+          }, 
+          "kythe_xref_kind": 1900, 
+          "type": {
+            "id": 4
+          }, 
+          "xref_signature": {
+            "signature_hash": "", 
+            "highlight_signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#%407470%3A7484%25linux%40TpVzGVWnYRScR8qQFcDgGVyGe9jrJVL2etppb5HY_c0%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fnet%2Fhttp%2Fhttp_auth.h", 
+            "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/http_auth.h#TpVzGVWnYRScR8qQFcDgGVyGe9jrJVL2etppb5HY_c0"
+          }
+        }
+      ]
+    }
+  ], 
+  "elapsed_ms": 135
+}

@@ -1,635 +1,252 @@
 {
-  "elapsed_ms": 35, 
+  "elapsed_ms": 28, 
   "file_info_response": [
     {
       "file_info": {
         "gob_info": {
           "repo": "chromium/chromium/src", 
-          "commit": "14d133d46eaaeea62d68c1cc215dd529145de72b", 
+          "commit": "bf6aa1f36a7a6ddf045204e92c329dec39983369", 
           "path": "net/http/http_auth.h"
         }, 
         "name": "src/net/http/http_auth.h", 
         "language": "c++", 
-        "changelist_num": "14d133d46eaaeea62d68c1cc215dd529145de72b", 
+        "changelist_num": "bf6aa1f36a7a6ddf045204e92c329dec39983369", 
         "package_name": "chromium", 
-        "lines": "183", 
+        "lines": "208", 
         "content": {
-          "text": "// Copyright (c) 2011 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_HTTP_HTTP_AUTH_H_\n#define NET_HTTP_HTTP_AUTH_H_\n\n#include <memory>\n#include <set>\n#include <string>\n\n#include \"net/base/auth.h\"\n#include \"net/base/net_export.h\"\n#include \"net/http/http_util.h\"\n\ntemplate <class T> class scoped_refptr;\n\nnamespace net {\n\nclass HttpAuthHandler;\nclass HttpAuthHandlerFactory;\nclass HttpResponseHeaders;\nclass NetLogWithSource;\nclass SSLInfo;\n\n// Utility class for http authentication.\nclass NET_EXPORT_PRIVATE HttpAuth {\n public:\n  // Http authentication can be done the the proxy server, origin server,\n  // or both. This enum tracks who the target is.\n  enum Target {\n    AUTH_NONE = -1,\n    // We depend on the valid targets (!= AUTH_NONE) being usable as indexes\n    // in an array, so start from 0.\n    AUTH_PROXY = 0,\n    AUTH_SERVER = 1,\n    AUTH_NUM_TARGETS = 2,\n  };\n\n  // What the HTTP WWW-Authenticate/Proxy-Authenticate headers indicate about\n  // the previous authorization attempt.\n  enum AuthorizationResult {\n    AUTHORIZATION_RESULT_ACCEPT,   // The authorization attempt was accepted,\n                                   // although there still may be additional\n                                   // rounds of challenges.\n\n    AUTHORIZATION_RESULT_REJECT,   // The authorization attempt was rejected.\n\n    AUTHORIZATION_RESULT_STALE,    // (Digest) The nonce used in the\n                                   // authorization attempt is stale, but\n                                   // otherwise the attempt was valid.\n\n    AUTHORIZATION_RESULT_INVALID,  // The authentication challenge headers are\n                                   // poorly formed (the authorization attempt\n                                   // itself may have been fine).\n\n    AUTHORIZATION_RESULT_DIFFERENT_REALM,  // The authorization\n                                           // attempt was rejected,\n                                           // but the realm associated\n                                           // with the new challenge\n                                           // is different from the\n                                           // previous attempt.\n  };\n\n  // Describes where the identity used for authentication came from.\n  enum IdentitySource {\n    // Came from nowhere -- the identity is not initialized.\n    IDENT_SRC_NONE,\n\n    // The identity came from the auth cache, by doing a path-based\n    // lookup (premptive authorization).\n    IDENT_SRC_PATH_LOOKUP,\n\n    // The identity was extracted from a URL of the form:\n    // http://<username>:<password>@host:port\n    IDENT_SRC_URL,\n\n    // The identity was retrieved from the auth cache, by doing a\n    // realm lookup.\n    IDENT_SRC_REALM_LOOKUP,\n\n    // The identity was provided by RestartWithAuth -- it likely\n    // came from a prompt (or maybe the password manager).\n    IDENT_SRC_EXTERNAL,\n\n    // The identity used the default credentials for the computer,\n    // on schemes that support single sign-on.\n    IDENT_SRC_DEFAULT_CREDENTIALS,\n  };\n\n  // Identifier for auth scheme.\n  //\n  // The values are used for calculating UMA buckets. Add but don't remove or\n  // reuse.\n  enum Scheme {\n    AUTH_SCHEME_BASIC = 0,\n    AUTH_SCHEME_DIGEST,\n    AUTH_SCHEME_NTLM,\n    AUTH_SCHEME_NEGOTIATE,\n    AUTH_SCHEME_SPDYPROXY,  // No longer used.\n    AUTH_SCHEME_MOCK,\n    AUTH_SCHEME_MAX,\n  };\n\n  // Helper structure used by HttpNetworkTransaction to track\n  // the current identity being used for authorization.\n  struct Identity {\n    Identity();\n\n    IdentitySource source;\n    bool invalid;\n    AuthCredentials credentials;\n  };\n\n  // Get the name of the header containing the auth challenge\n  // (either WWW-Authenticate or Proxy-Authenticate).\n  static std::string GetChallengeHeaderName(Target target);\n\n  // Get the name of the header where the credentials go\n  // (either Authorization or Proxy-Authorization).\n  static std::string GetAuthorizationHeaderName(Target target);\n\n  // Returns a string representation of a Target value that can be used in log\n  // messages.\n  static std::string GetAuthTargetString(Target target);\n\n  // Returns a string representation of an authentication Scheme.\n  static const char* SchemeToString(Scheme scheme);\n\n  // Iterate through |response_headers|, and pick the best one that we support.\n  // Obtains the implementation class for handling the challenge, and passes it\n  // back in |*handler|. If no supported challenge was found, |*handler| is set\n  // to NULL.\n  //\n  // |disabled_schemes| is the set of schemes that we should not use.\n  //\n  // |origin| is used by the NTLM and Negotiation authentication scheme to\n  // construct the service principal name. It is ignored by other schemes.\n  //\n  // |ssl_info| is passed through to the scheme specific authentication handlers\n  // to use as appropriate.\n  static void ChooseBestChallenge(\n      HttpAuthHandlerFactory* http_auth_handler_factory,\n      const HttpResponseHeaders& response_headers,\n      const SSLInfo& ssl_info,\n      Target target,\n      const GURL& origin,\n      const std::set<Scheme>& disabled_schemes,\n      const NetLogWithSource& net_log,\n      std::unique_ptr<HttpAuthHandler>* handler);\n\n  // Handle a 401/407 response from a server/proxy after a previous\n  // authentication attempt. For connection-based authentication schemes, the\n  // new response may be another round in a multi-round authentication sequence.\n  // For request-based schemes, a 401/407 response is typically treated like a\n  // rejection of the previous challenge, except in the Digest case when a\n  // \"stale\" attribute is present.\n  //\n  // |handler| must be non-NULL, and is the HttpAuthHandler from the previous\n  // authentication round.\n  //\n  // |response_headers| must contain the new HTTP response.\n  //\n  // |target| specifies whether the authentication challenge response came\n  // from a server or a proxy.\n  //\n  // |disabled_schemes| are the authentication schemes to ignore.\n  //\n  // |challenge_used| is the text of the authentication challenge used in\n  // support of the returned AuthorizationResult. If no headers were used for\n  // the result (for example, all headers have unknown authentication schemes),\n  // the value is cleared.\n  static AuthorizationResult HandleChallengeResponse(\n      HttpAuthHandler* handler,\n      const HttpResponseHeaders& response_headers,\n      Target target,\n      const std::set<Scheme>& disabled_schemes,\n      std::string* challenge_used);\n};\n\n}  // namespace net\n\n#endif  // NET_HTTP_HTTP_AUTH_H_\n"
+          "text": "// Copyright (c) 2011 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_HTTP_HTTP_AUTH_H_\n#define NET_HTTP_HTTP_AUTH_H_\n\n#include <memory>\n#include <set>\n#include <string>\n\n#include \"net/base/auth.h\"\n#include \"net/base/net_export.h\"\n#include \"net/http/http_util.h\"\n#include \"net/log/net_log_parameters_callback.h\"\n\ntemplate <class T> class scoped_refptr;\n\nnamespace net {\n\nclass HttpAuthHandler;\nclass HttpAuthHandlerFactory;\nclass HttpResponseHeaders;\nclass HostResolver;\nclass NetLogWithSource;\nclass SSLInfo;\n\n// Utility class for http authentication.\nclass NET_EXPORT_PRIVATE HttpAuth {\n public:\n  // Http authentication can be done the the proxy server, origin server,\n  // or both. This enum tracks who the target is.\n  enum Target {\n    AUTH_NONE = -1,\n    // We depend on the valid targets (!= AUTH_NONE) being usable as indexes\n    // in an array, so start from 0.\n    AUTH_PROXY = 0,\n    AUTH_SERVER = 1,\n    AUTH_NUM_TARGETS = 2,\n  };\n\n  // What the HTTP WWW-Authenticate/Proxy-Authenticate headers indicate about\n  // the previous authorization attempt.\n  enum AuthorizationResult {\n    AUTHORIZATION_RESULT_ACCEPT,   // The authorization attempt was accepted,\n                                   // although there still may be additional\n                                   // rounds of challenges.\n\n    AUTHORIZATION_RESULT_REJECT,   // The authorization attempt was rejected.\n\n    AUTHORIZATION_RESULT_STALE,    // (Digest) The nonce used in the\n                                   // authorization attempt is stale, but\n                                   // otherwise the attempt was valid.\n\n    AUTHORIZATION_RESULT_INVALID,  // The authentication challenge headers are\n                                   // poorly formed (the authorization attempt\n                                   // itself may have been fine).\n\n    AUTHORIZATION_RESULT_DIFFERENT_REALM,  // The authorization\n                                           // attempt was rejected,\n                                           // but the realm associated\n                                           // with the new challenge\n                                           // is different from the\n                                           // previous attempt.\n  };\n\n  // Describes where the identity used for authentication came from.\n  enum IdentitySource {\n    // Came from nowhere -- the identity is not initialized.\n    IDENT_SRC_NONE,\n\n    // The identity came from the auth cache, by doing a path-based\n    // lookup (premptive authorization).\n    IDENT_SRC_PATH_LOOKUP,\n\n    // The identity was extracted from a URL of the form:\n    // http://<username>:<password>@host:port\n    IDENT_SRC_URL,\n\n    // The identity was retrieved from the auth cache, by doing a\n    // realm lookup.\n    IDENT_SRC_REALM_LOOKUP,\n\n    // The identity was provided by RestartWithAuth -- it likely\n    // came from a prompt (or maybe the password manager).\n    IDENT_SRC_EXTERNAL,\n\n    // The identity used the default credentials for the computer,\n    // on schemes that support single sign-on.\n    IDENT_SRC_DEFAULT_CREDENTIALS,\n  };\n\n  // Identifier for auth scheme.\n  //\n  // The values are used for calculating UMA buckets. Add but don't remove or\n  // reuse.\n  enum Scheme {\n    AUTH_SCHEME_BASIC = 0,\n    AUTH_SCHEME_DIGEST,\n    AUTH_SCHEME_NTLM,\n    AUTH_SCHEME_NEGOTIATE,\n    AUTH_SCHEME_SPDYPROXY,  // No longer used.\n    AUTH_SCHEME_MOCK,\n    AUTH_SCHEME_MAX,\n  };\n\n  // Type of Kerberos credentials delegation to be performed during\n  // authentication.\n  enum class DelegationType {\n    // Disallow delegation.\n    kNone,\n    // Delegate if approved by KDC policy. Implemented in GSSAPI.\n    kByKdcPolicy,\n    // Unconstrained delegation. On Windows both kByKdcPolicy and kUnconstraned\n    // check KDC policy.\n    kUnconstrained,\n  };\n\n  // Helper structure used by HttpNetworkTransaction to track\n  // the current identity being used for authorization.\n  struct Identity {\n    Identity();\n\n    IdentitySource source;\n    bool invalid;\n    AuthCredentials credentials;\n  };\n\n  // Get the name of the header containing the auth challenge\n  // (either WWW-Authenticate or Proxy-Authenticate).\n  static std::string GetChallengeHeaderName(Target target);\n\n  // Get the name of the header where the credentials go\n  // (either Authorization or Proxy-Authorization).\n  static std::string GetAuthorizationHeaderName(Target target);\n\n  // Returns a string representation of a Target value that can be used in log\n  // messages.\n  static std::string GetAuthTargetString(Target target);\n\n  // Returns a string representation of an authentication Scheme.\n  static const char* SchemeToString(Scheme scheme);\n\n  // Returns a string representation of an authorization result.\n  static const char* AuthorizationResultToString(\n      AuthorizationResult authorization_result);\n\n  // Use with BoundNetLog to log an authorization result. The returned callback\n  // is valid as long as |name| is valid.\n  static NetLogParametersCallback NetLogAuthorizationResultCallback(\n      const char* name,\n      AuthorizationResult authorization_result);\n\n  // Iterate through |response_headers|, and pick the best one that we support.\n  // Obtains the implementation class for handling the challenge, and passes it\n  // back in |*handler|. If no supported challenge was found, |*handler| is set\n  // to nullptr.\n  //\n  // |disabled_schemes| is the set of schemes that we should not use.\n  //\n  // |origin| is used by the NTLM and Negotiation authentication scheme to\n  // construct the service principal name. It is ignored by other schemes.\n  //\n  // |ssl_info| is passed through to the scheme specific authentication handlers\n  // to use as appropriate.\n  static void ChooseBestChallenge(\n      HttpAuthHandlerFactory* http_auth_handler_factory,\n      const HttpResponseHeaders& response_headers,\n      const SSLInfo& ssl_info,\n      Target target,\n      const GURL& origin,\n      const std::set<Scheme>& disabled_schemes,\n      const NetLogWithSource& net_log,\n      HostResolver* host_resolver,\n      std::unique_ptr<HttpAuthHandler>* handler);\n\n  // Handle a 401/407 response from a server/proxy after a previous\n  // authentication attempt. For connection-based authentication schemes, the\n  // new response may be another round in a multi-round authentication sequence.\n  // For request-based schemes, a 401/407 response is typically treated like a\n  // rejection of the previous challenge, except in the Digest case when a\n  // \"stale\" attribute is present.\n  //\n  // |handler| must be non-nullptr, and is the HttpAuthHandler from the previous\n  // authentication round.\n  //\n  // |response_headers| must contain the new HTTP response.\n  //\n  // |target| specifies whether the authentication challenge response came\n  // from a server or a proxy.\n  //\n  // |disabled_schemes| are the authentication schemes to ignore.\n  //\n  // |challenge_used| is the text of the authentication challenge used in\n  // support of the returned AuthorizationResult. If no headers were used for\n  // the result (for example, all headers have unknown authentication schemes),\n  // the value is cleared.\n  static AuthorizationResult HandleChallengeResponse(\n      HttpAuthHandler* handler,\n      const HttpResponseHeaders& response_headers,\n      Target target,\n      const std::set<Scheme>& disabled_schemes,\n      std::string* challenge_used);\n};\n\n}  // namespace net\n\n#endif  // NET_HTTP_HTTP_AUTH_H_\n"
         }, 
         "generated": false, 
         "mime_type": "text/plain", 
-        "size": "6632", 
+        "size": "7545", 
         "type": 1, 
-        "md5": "ca17de855a27d6153e4fae30f19cc960", 
+        "md5": "ac35d51c713606c40eab34b7229fc609", 
         "codeblock": [
           {
-            "type": 40, 
-            "name": "NET_HTTP_HTTP_AUTH_H_", 
-            "text_range": {
-              "start_line": 6, 
-              "end_line": 7, 
-              "start_column": 1, 
-              "end_column": 1
-            }, 
-            "signature": ""
-          }, 
-          {
-            "child": [
-              {
-                "name": "HttpAuth", 
-                "signature": "", 
-                "child": [
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "Target", 
-                    "signature": "", 
-                    "child": [
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_NONE", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 32, 
-                          "end_line": 32, 
-                          "start_column": 5, 
-                          "end_column": 19
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_PROXY", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 35, 
-                          "end_line": 35, 
-                          "start_column": 5, 
-                          "end_column": 19
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_SERVER", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 36, 
-                          "end_line": 36, 
-                          "start_column": 5, 
-                          "end_column": 20
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_NUM_TARGETS", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 37, 
-                          "end_line": 37, 
-                          "start_column": 5, 
-                          "end_column": 25
-                        }
-                      }
-                    ], 
-                    "name_prefix": "", 
-                    "type": 4, 
-                    "text_range": {
-                      "start_line": 31, 
-                      "end_line": 38, 
-                      "start_column": 3, 
-                      "end_column": 4
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "AuthorizationResult", 
-                    "signature": "", 
-                    "child": [
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTHORIZATION_RESULT_ACCEPT", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 43, 
-                          "end_line": 43, 
-                          "start_column": 5, 
-                          "end_column": 32
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTHORIZATION_RESULT_REJECT", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 47, 
-                          "end_line": 47, 
-                          "start_column": 5, 
-                          "end_column": 32
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTHORIZATION_RESULT_STALE", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 49, 
-                          "end_line": 49, 
-                          "start_column": 5, 
-                          "end_column": 31
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTHORIZATION_RESULT_INVALID", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 53, 
-                          "end_line": 53, 
-                          "start_column": 5, 
-                          "end_column": 33
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTHORIZATION_RESULT_DIFFERENT_REALM", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 57, 
-                          "end_line": 57, 
-                          "start_column": 5, 
-                          "end_column": 41
-                        }
-                      }
-                    ], 
-                    "name_prefix": "", 
-                    "type": 4, 
-                    "text_range": {
-                      "start_line": 42, 
-                      "end_line": 63, 
-                      "start_column": 3, 
-                      "end_column": 4
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "IdentitySource", 
-                    "signature": "", 
-                    "child": [
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "IDENT_SRC_NONE", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 68, 
-                          "end_line": 68, 
-                          "start_column": 5, 
-                          "end_column": 19
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "IDENT_SRC_PATH_LOOKUP", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 72, 
-                          "end_line": 72, 
-                          "start_column": 5, 
-                          "end_column": 26
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "IDENT_SRC_URL", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 76, 
-                          "end_line": 76, 
-                          "start_column": 5, 
-                          "end_column": 18
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "IDENT_SRC_REALM_LOOKUP", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 80, 
-                          "end_line": 80, 
-                          "start_column": 5, 
-                          "end_column": 27
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "IDENT_SRC_EXTERNAL", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 84, 
-                          "end_line": 84, 
-                          "start_column": 5, 
-                          "end_column": 23
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "IDENT_SRC_DEFAULT_CREDENTIALS", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 88, 
-                          "end_line": 88, 
-                          "start_column": 5, 
-                          "end_column": 34
-                        }
-                      }
-                    ], 
-                    "name_prefix": "", 
-                    "type": 4, 
-                    "text_range": {
-                      "start_line": 66, 
-                      "end_line": 89, 
-                      "start_column": 3, 
-                      "end_column": 4
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "Scheme", 
-                    "signature": "", 
-                    "child": [
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_SCHEME_BASIC", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 96, 
-                          "end_line": 96, 
-                          "start_column": 5, 
-                          "end_column": 26
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_SCHEME_DIGEST", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 97, 
-                          "end_line": 97, 
-                          "start_column": 5, 
-                          "end_column": 23
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_SCHEME_NTLM", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 98, 
-                          "end_line": 98, 
-                          "start_column": 5, 
-                          "end_column": 21
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_SCHEME_NEGOTIATE", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 99, 
-                          "end_line": 99, 
-                          "start_column": 5, 
-                          "end_column": 26
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_SCHEME_SPDYPROXY", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 100, 
-                          "end_line": 100, 
-                          "start_column": 5, 
-                          "end_column": 26
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_SCHEME_MOCK", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 101, 
-                          "end_line": 101, 
-                          "start_column": 5, 
-                          "end_column": 21
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "AUTH_SCHEME_MAX", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 14, 
-                        "text_range": {
-                          "start_line": 102, 
-                          "end_line": 102, 
-                          "start_column": 5, 
-                          "end_column": 20
-                        }
-                      }
-                    ], 
-                    "name_prefix": "", 
-                    "type": 4, 
-                    "text_range": {
-                      "start_line": 95, 
-                      "end_line": 103, 
-                      "start_column": 3, 
-                      "end_column": 4
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "public": true
-                    }, 
-                    "name": "Identity", 
-                    "signature": "", 
-                    "child": [
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "Identity", 
-                        "signature": "()", 
-                        "name_prefix": "", 
-                        "type": 8, 
-                        "text_range": {
-                          "start_line": 108, 
-                          "end_line": 108, 
-                          "start_column": 5, 
-                          "end_column": 16
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "source", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 9, 
-                        "text_range": {
-                          "start_line": 110, 
-                          "end_line": 110, 
-                          "start_column": 5, 
-                          "end_column": 27
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "invalid", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 9, 
-                        "text_range": {
-                          "start_line": 111, 
-                          "end_line": 111, 
-                          "start_column": 5, 
-                          "end_column": 18
-                        }
-                      }, 
-                      {
-                        "modifiers": {
-                          "public": true
-                        }, 
-                        "name": "credentials", 
-                        "signature": "", 
-                        "name_prefix": "", 
-                        "type": 9, 
-                        "text_range": {
-                          "start_line": 112, 
-                          "end_line": 112, 
-                          "start_column": 5, 
-                          "end_column": 33
-                        }
-                      }
-                    ], 
-                    "name_prefix": "", 
-                    "type": 3, 
-                    "text_range": {
-                      "start_line": 107, 
-                      "end_line": 113, 
-                      "start_column": 3, 
-                      "end_column": 4
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "static": true, 
-                      "public": true
-                    }, 
-                    "name": "GetChallengeHeaderName", 
-                    "signature": "(Target target)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 117, 
-                      "end_line": 117, 
-                      "start_column": 3, 
-                      "end_column": 60
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "static": true, 
-                      "public": true
-                    }, 
-                    "name": "GetAuthorizationHeaderName", 
-                    "signature": "(Target target)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 121, 
-                      "end_line": 121, 
-                      "start_column": 3, 
-                      "end_column": 64
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "static": true, 
-                      "public": true
-                    }, 
-                    "name": "GetAuthTargetString", 
-                    "signature": "(Target target)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 125, 
-                      "end_line": 125, 
-                      "start_column": 3, 
-                      "end_column": 57
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "static": true, 
-                      "public": true
-                    }, 
-                    "name": "SchemeToString", 
-                    "signature": "(Scheme scheme)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 128, 
-                      "end_line": 128, 
-                      "start_column": 3, 
-                      "end_column": 52
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "static": true, 
-                      "public": true
-                    }, 
-                    "name": "ChooseBestChallenge", 
-                    "signature": "(HttpAuthHandlerFactory* http_auth_handler_factory, const HttpResponseHeaders& response_headers, const SSLInfo& ssl_info, Target target, const GURL& origin, const std::set<Scheme>& disabled_schemes, const NetLogWithSource& net_log, std::unique_ptr<HttpAuthHandler>* handler)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 142, 
-                      "end_line": 150, 
-                      "start_column": 3, 
-                      "end_column": 50
-                    }
-                  }, 
-                  {
-                    "modifiers": {
-                      "static": true, 
-                      "public": true
-                    }, 
-                    "name": "HandleChallengeResponse", 
-                    "signature": "(HttpAuthHandler* handler, const HttpResponseHeaders& response_headers, Target target, const std::set<Scheme>& disabled_schemes, std::string* challenge_used)", 
-                    "name_prefix": "", 
-                    "type": 8, 
-                    "text_range": {
-                      "start_line": 173, 
-                      "end_line": 178, 
-                      "start_column": 3, 
-                      "end_column": 36
-                    }
-                  }
-                ], 
-                "name_prefix": "", 
-                "type": 1, 
-                "text_range": {
-                  "start_line": 27, 
-                  "end_line": 179, 
-                  "start_column": 1, 
-                  "end_column": 2
-                }
-              }
-            ], 
+            "modifiers": {}, 
             "type": 11, 
             "name": "net", 
             "text_range": {
-              "start_line": 18, 
-              "end_line": 181, 
+              "start_line": 19, 
+              "end_line": 206, 
               "start_column": 1, 
               "end_column": 2
             }, 
-            "signature": ""
+            "child": [
+              {
+                "modifiers": {}, 
+                "type": 1, 
+                "name": "NET_EXPORT_PRIVATE HttpAuth", 
+                "text_range": {
+                  "start_line": 29, 
+                  "end_line": 204, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }, 
+                "child": [
+                  {
+                    "modifiers": {}, 
+                    "type": 4, 
+                    "name": "Target", 
+                    "text_range": {
+                      "start_line": 33, 
+                      "end_line": 40, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 4, 
+                    "name": "AuthorizationResult", 
+                    "text_range": {
+                      "start_line": 44, 
+                      "end_line": 65, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 4, 
+                    "name": "IdentitySource", 
+                    "text_range": {
+                      "start_line": 68, 
+                      "end_line": 91, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 4, 
+                    "name": "Scheme", 
+                    "text_range": {
+                      "start_line": 97, 
+                      "end_line": 105, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 4, 
+                    "name": "DelegationType", 
+                    "text_range": {
+                      "start_line": 109, 
+                      "end_line": 117, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 3, 
+                    "name": "Identity", 
+                    "text_range": {
+                      "start_line": 121, 
+                      "end_line": 127, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }, 
+                    "child": [
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Identity", 
+                        "text_range": {
+                          "start_line": 122, 
+                          "end_line": 122, 
+                          "start_column": 5, 
+                          "end_column": 15
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "IdentitySource", 
+                        "text_range": {
+                          "start_line": 124, 
+                          "end_line": 124, 
+                          "start_column": 5, 
+                          "end_column": 26
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "invalid", 
+                        "text_range": {
+                          "start_line": 125, 
+                          "end_line": 125, 
+                          "start_column": 5, 
+                          "end_column": 17
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "AuthCredentials", 
+                        "text_range": {
+                          "start_line": 126, 
+                          "end_line": 126, 
+                          "start_column": 5, 
+                          "end_column": 32
+                        }
+                      }
+                    ]
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "GetChallengeHeaderName", 
+                    "text_range": {
+                      "start_line": 131, 
+                      "end_line": 131, 
+                      "start_column": 3, 
+                      "end_column": 59
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "GetAuthorizationHeaderName", 
+                    "text_range": {
+                      "start_line": 135, 
+                      "end_line": 135, 
+                      "start_column": 3, 
+                      "end_column": 63
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "GetAuthTargetString", 
+                    "text_range": {
+                      "start_line": 139, 
+                      "end_line": 139, 
+                      "start_column": 3, 
+                      "end_column": 56
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SchemeToString", 
+                    "text_range": {
+                      "start_line": 142, 
+                      "end_line": 142, 
+                      "start_column": 3, 
+                      "end_column": 51
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "AuthorizationResultToString", 
+                    "text_range": {
+                      "start_line": 145, 
+                      "end_line": 146, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "NetLogAuthorizationResultCallback", 
+                    "text_range": {
+                      "start_line": 150, 
+                      "end_line": 152, 
+                      "start_column": 3, 
+                      "end_column": 48
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "ChooseBestChallenge", 
+                    "text_range": {
+                      "start_line": 166, 
+                      "end_line": 175, 
+                      "start_column": 3, 
+                      "end_column": 49
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "HandleChallengeResponse", 
+                    "text_range": {
+                      "start_line": 198, 
+                      "end_line": 203, 
+                      "start_column": 3, 
+                      "end_column": 35
+                    }
+                  }
+                ]
+              }
+            ]
           }
         ]
       }, 
