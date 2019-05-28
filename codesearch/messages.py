@@ -1349,7 +1349,7 @@ class XrefSearchResponse(Message):
     DESCRIPTOR = {
         'eliminated_type_count': [XrefTypeCount],
         'estimated_total_type_count': [XrefTypeCount],
-        'from_kythe': bool, # always True these days.
+        'from_kythe': bool,  # always True these days.
         'kythe_next_page_token': str,
         'grok_total_number_of_results': int,  # DEPRECATED
         'search_result': [XrefSearchResult],
