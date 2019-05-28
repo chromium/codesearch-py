@@ -36,3 +36,8 @@ if [[ -n "$TYPE_CHECK" ]]; then
   mypy codesearch
 fi
 
+if [[ -n "$FLAKE8" ]]; then
+  echo Running flake8
+  python3 -m flake8
+fi
+
