@@ -8,28 +8,28 @@ import sys
 
 if sys.version_info[0] < 3:
 
-  def StringFromBytes(b):
-    return str(b)
+    def StringFromBytes(b):
+        return str(b)
 
-  def IsString(s):
-    return isinstance(s, basestring)
+    def IsString(s):
+        return isinstance(s, basestring)  # noqa
 
-  def ToStringSafe(s):
-    if isinstance(s, str):
-      return s
-    if isinstance(s, unicode):
-      return s.encode('utf-8')
-    return str(s)
+    def ToStringSafe(s):
+        if isinstance(s, str):
+            return s
+        if isinstance(s, unicode):  # noqa
+            return s.encode('utf-8')
+        return str(s)
 
 else:
 
-  def StringFromBytes(b):
-    return str(b, encoding='utf-8')
+    def StringFromBytes(b):
+        return str(b, encoding='utf-8')
 
-  def IsString(s):
-    return isinstance(s, str)
+    def IsString(s):
+        return isinstance(s, str)
 
-  def ToStringSafe(s):
-    if isinstance(s, str):
-      return s
-    return str(s)
+    def ToStringSafe(s):
+        if isinstance(s, str):
+            return s
+        return str(s)
