@@ -24,7 +24,7 @@ information on using pull requests.
 
 ## Coding style
 
-Use Chromium's Python coding style as described [here][cr-python-style].
+Use PEP-8 Python coding style as described [here][pep8].
 
 You should be able to invoke [YAPF][yapf], which will pick up the style file at
 the root of the source tree.
@@ -37,22 +37,22 @@ correctly format new code.
 
   * Test files should be named `test_foo` for the `foo` module.
 
-	* When adding doctests, please update the `run_tests.sh` script to include the
-		new file.
+  * When adding doctests, please update the `run_tests.sh` script to include the
+    new file.
 
-	* Your tests can use a real `CodeSearch` object and make network requests in
-		tests. However, make sure to run `InstallTestRequestHandler` (defined in
-		`codesearch/testing_support.py`) in your `setUp()` method so that network
-		requests are correctly mocked.
+  * Your tests can use a real `CodeSearch` object and make network requests in
+    tests. However, make sure to run `InstallTestRequestHandler` (defined in
+    `codesearch/testing_support.py`) in your `setUp()` method so that network
+    requests are correctly mocked.
 
-		The first time you run your tests, the tests will fail and complain that
-		the requests made by your tests were not cached. This is OK.
+    The first time you run your tests, the tests will fail and complain that
+    the requests made by your tests were not cached. This is OK.
 
-		After running and failing the test, run `codesearch/testing_support.py`
-		directly from the commandline. The `main` method will analyze the
-		placeholder file left by the failed test, fetch the necessary resources from
-		the network and write them to `codesearch/testdata/resources`. Your tests
-		should now be able to run successfully.
+    After running and failing the test, run `codesearch/testing_support.py`
+    directly from the commandline. The `main` method will analyze the
+    placeholder file left by the failed test, fetch the necessary resources from
+    the network and write them to `codesearch/testdata/resources`. Your tests
+    should now be able to run successfully.
 
-[cr-python-style]: https://chromium.googlesource.com/chromium/src/+/master/styleguide/styleguide.md
+[pep8]: https://www.python.org/dev/peps/pep-0008/
 [yapf]: https://github.com/google/yapf
