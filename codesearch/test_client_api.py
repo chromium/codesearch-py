@@ -88,21 +88,30 @@ class TestCodeSearch(unittest.TestCase):
         # A class definition. The name appears numerous times in the file.
         self.assertEqual(
             cs.GetSignatureForSymbol(TARGET_FILE, 'FieldTrial'),
-            'kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h'
+            'kythe://chromium.googlesource.com/chromium/src?'
+            'lang=c%2B%2B?path=src/base/metrics/field_trial.h'
             '#FieldTrial%3Abase%23c%23cGxmCcu4cj8')
 
         # An enum defined within the class.
         self.assertEqual(
             cs.GetSignatureForSymbol(TARGET_FILE, 'RandomizationType'),
-            'kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#sffJe7wAnF2I9rS3Yd-8_cTJryczxcrLGG1xREnxhKU')
+            'kythe://chromium.googlesource.com/chromium/src?'
+            'lang=c%2B%2B?path=src/base/metrics/field_trial.h#'
+            'sffJe7wAnF2I9rS3Yd-8_cTJryczxcrLGG1xREnxhKU')
 
         # A struct field.
         self.assertEqual(
-            cs.GetSignatureForSymbol(TARGET_FILE, 'pickle_size'), 'kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#w8YJrCAvr5uKFCpnBIfsSMEMlxmFcWDmfykoysBsuHk')
+            cs.GetSignatureForSymbol(TARGET_FILE, 'pickle_size'),
+            'kythe://chromium.googlesource.com/chromium/src?'
+            'lang=c%2B%2B?path=src/base/metrics/field_trial.h#'
+            'w8YJrCAvr5uKFCpnBIfsSMEMlxmFcWDmfykoysBsuHk')
 
         # A parameter to a function.
         self.assertEqual(
-            cs.GetSignatureForSymbol(TARGET_FILE, 'override_entropy_provider'), 'kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#tkn_wFwczggf4CQsRA0v4FGt6Px7kO4_EOyeqlNUDlY')
+            cs.GetSignatureForSymbol(TARGET_FILE, 'override_entropy_provider'),
+            'kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?'
+            'path=src/base/metrics/field_trial.h#'
+            'tkn_wFwczggf4CQsRA0v4FGt6Px7kO4_EOyeqlNUDlY')
 
     def test_search_for_symbol(self):
         cs = CodeSearch(source_root='.')
