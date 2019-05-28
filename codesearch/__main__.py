@@ -204,7 +204,7 @@ dir_info_command = subcommands.add_parser(
     help='Get directory info',
     parents=[path_specifiers, common_args])
 dir_info_command.set_defaults(func=lambda cs, a: cs.SendRequestToServer(
-    CompoundRequest(dir_info_request=                               # noqa: E251
+    CompoundRequest(dir_info_request=  # noqa: E251
                     [DirInfoRequest(file_spec=cs.GetFileSpec(a.path))])))
 
 # search
