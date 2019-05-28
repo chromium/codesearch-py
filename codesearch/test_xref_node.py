@@ -61,8 +61,7 @@ class TestXrefNode(unittest.TestCase):
     def test_related_definitions(self):
         cs = CodeSearch(source_root='/chrome/')
         sig = cs.GetSignatureForSymbol(
-            '/chrome/src/net/http/http_network_transaction.h',
-            'read_buf_')
+            '/chrome/src/net/http/http_network_transaction.h', 'read_buf_')
         self.assertTrue(sig, "signature lookup failed")
         node = XrefNode.FromSignature(cs, sig)
         related = node.GetRelatedDefinitions()
