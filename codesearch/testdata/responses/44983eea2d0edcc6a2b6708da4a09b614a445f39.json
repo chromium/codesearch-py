@@ -7,62 +7,9 @@
       "stats": {
         "retries": 0, 
         "filter_ratio": 0, 
-        "first_phase_latency_micros": "68525"
+        "first_phase_latency_micros": "21114"
       }, 
       "search_result": [
-        {
-          "snippet": [
-            {
-              "text": {
-                "text": "void HttpAuth::ChooseBestChallenge(\n", 
-                "range": [
-                  {
-                    "range": {
-                      "start_line": 1, 
-                      "end_line": 1, 
-                      "start_column": 6, 
-                      "end_column": 35
-                    }, 
-                    "type": 41
-                  }
-                ]
-              }, 
-              "first_line_number": 25, 
-              "match_reason": {
-                "scoped_symbol": true
-              }, 
-              "scope": ""
-            }
-          ], 
-          "docid": "s6M3OlNaevU", 
-          "best_matching_line_number": 25, 
-          "language": "c++", 
-          "is_augmented": false, 
-          "match_reason": {
-            "scoped_symbol": true
-          }, 
-          "full_history_search": false, 
-          "num_duplicates": 0, 
-          "top_file": {
-            "file": {
-              "changelist": "bd8f9228cdb7169bb1075b45aac892546fc09ee8", 
-              "name": "src/net/http/http_auth.cc", 
-              "package_name": "chromium", 
-              "revision": "0"
-            }
-          }, 
-          "has_unshown_matches": false, 
-          "num_matches": 1, 
-          "match": [
-            {
-              "line_number": 25, 
-              "score": 1026, 
-              "match_offset": 5, 
-              "match_length": 29, 
-              "line_text": "void HttpAuth::ChooseBestChallenge(\n"
-            }
-          ]
-        }, 
         {
           "snippet": [
             {
@@ -80,7 +27,7 @@
                   }
                 ]
               }, 
-              "first_line_number": 142, 
+              "first_line_number": 166, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
@@ -88,7 +35,7 @@
             }
           ], 
           "docid": "vz4-EVWRkJg", 
-          "best_matching_line_number": 142, 
+          "best_matching_line_number": 166, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -98,7 +45,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "e4419e1f6755d26068cfb94f31cf9f7457f12434", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/net/http/http_auth.h", 
               "package_name": "chromium", 
               "revision": "0"
@@ -108,19 +55,75 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 142, 
-              "score": 491, 
+              "line_number": 166, 
+              "score": 1026, 
               "match_offset": 14, 
               "match_length": 19, 
               "line_text": "  static void ChooseBestChallenge(\n"
             }
           ]
+        }, 
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "void HttpAuth::ChooseBestChallenge(\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 6, 
+                      "end_column": 35
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 29, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }
+          ], 
+          "docid": "s6M3OlNaevU", 
+          "best_matching_line_number": 29, 
+          "language": "c++", 
+          "is_augmented": false, 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "muppet_params": "CgYI/v///wc=", 
+              "name": "src/net/http/http_auth.cc", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 29, 
+              "score": 1026, 
+              "match_offset": 5, 
+              "match_length": 29, 
+              "line_text": "void HttpAuth::ChooseBestChallenge(\n"
+            }
+          ]
         }
       ], 
       "results_offset": 0, 
+      "called_local_augmentation": false, 
       "maybe_skipped_documents": false, 
-      "hit_max_to_score": false
+      "percent_shards_skipped": 0, 
+      "hit_max_to_score": false, 
+      "status_message": ""
     }
   ], 
-  "elapsed_ms": 137
+  "elapsed_ms": 37
 }

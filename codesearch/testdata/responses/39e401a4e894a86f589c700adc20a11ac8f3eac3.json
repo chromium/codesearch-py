@@ -3,11 +3,11 @@
     {
       "status": 0, 
       "hit_max_results": true, 
-      "estimated_total_number_of_results": 3460, 
+      "estimated_total_number_of_results": 3948, 
       "stats": {
-        "retries": 0, 
+        "retries": 1, 
         "filter_ratio": 0, 
-        "first_phase_latency_micros": "71966"
+        "first_phase_latency_micros": "85681"
       }, 
       "search_result": [
         {
@@ -22,7 +22,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "d75dcb3c3cc4eff1e42d84f79de43ea8f35dff88", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/v8/samples/hello-world.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -59,7 +59,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "6f09100043cce0c1cd4ade3c4f455185d7893769", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/gin/shell/hello_world.js", 
               "package_name": "chromium", 
               "revision": "0"
@@ -89,7 +89,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "6be02374db118b9fb99cd98c6b403e5a558d0d57", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/v8/test/fuzzer/parser/hello-world", 
               "package_name": "chromium", 
               "revision": "0"
@@ -120,7 +120,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "44b363dfcdaf8fbb97dd31c12d19272a0bbad2a0", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/native_client/tests/hello_world/hello_world.c", 
               "package_name": "chromium", 
               "revision": "0"
@@ -138,47 +138,17 @@
             }, 
             {
               "line_number": 14, 
-              "score": 109, 
+              "score": 86, 
               "match_offset": 17, 
               "match_length": 5, 
               "line_text": "  printf(\"Hello, World!\\n\");\n"
             }, 
             {
               "line_number": 18, 
-              "score": 30, 
+              "score": -14, 
               "match_offset": 8, 
               "match_length": 5, 
               "line_text": "  hello_world();\n"
-            }
-          ]
-        }, 
-        {
-          "docid": "BkR89JvXSj8", 
-          "best_matching_line_number": 9, 
-          "language": "c", 
-          "is_augmented": false, 
-          "match_reason": {
-            "content": true
-          }, 
-          "full_history_search": false, 
-          "num_duplicates": 0, 
-          "top_file": {
-            "file": {
-              "changelist": "0a4c806019e86416cad8dda7ee87a6bcad66f888", 
-              "name": "src/tools/gyp/test/hello/hello.c", 
-              "package_name": "chromium", 
-              "revision": "0"
-            }
-          }, 
-          "has_unshown_matches": false, 
-          "num_matches": 0, 
-          "match": [
-            {
-              "line_number": 9, 
-              "score": 86, 
-              "match_offset": 10, 
-              "match_length": 5, 
-              "line_text": "  printf(\"Hello, world!\\n\");\n"
             }
           ]
         }, 
@@ -194,7 +164,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "84ffc3fc38738e37f2a68751a1046185eba7405f", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/tools/gn/tutorial/hello_world.cc", 
               "package_name": "chromium", 
               "revision": "0"
@@ -225,7 +195,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "b3e7d887158add24ac32c1484038fefa4de5e0fb", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "infra/go/src/go.chromium.org/luci/grpc/prpc/e2etest/helloworld_test.proto", 
               "package_name": "chromium", 
               "revision": "0"
@@ -242,13 +212,6 @@
               "line_text": "service Hello {\n"
             }, 
             {
-              "line_number": 20, 
-              "score": 446, 
-              "match_offset": 12, 
-              "match_length": 5, 
-              "line_text": "  rpc Greet(HelloRequest) returns (HelloReply);\n"
-            }, 
-            {
               "line_number": 15, 
               "score": 200, 
               "match_offset": 8, 
@@ -261,6 +224,13 @@
               "match_offset": 8, 
               "match_length": 5, 
               "line_text": "message HelloRequest {\n"
+            }, 
+            {
+              "line_number": 20, 
+              "score": 43, 
+              "match_offset": 12, 
+              "match_length": 5, 
+              "line_text": "  rpc Greet(HelloRequest) returns (HelloReply);\n"
             }
           ]
         }, 
@@ -276,7 +246,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "e385808c66b0feef2bed5f823cd900d088f6bf42", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "infra/doc/users/services/hello_world.md", 
               "package_name": "chromium", 
               "revision": "0"
@@ -345,7 +315,7 @@
         }, 
         {
           "docid": "CDw9foFHOlc", 
-          "best_matching_line_number": 290, 
+          "best_matching_line_number": 297, 
           "language": "gn", 
           "is_augmented": false, 
           "match_reason": {
@@ -355,7 +325,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "db688ae72c3b5340d2e334ad5e7a82fde134b8e1", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/BUILD.gn", 
               "package_name": "chromium", 
               "revision": "0"
@@ -365,14 +335,14 @@
           "num_matches": 0, 
           "match": [
             {
-              "line_number": 290, 
+              "line_number": 297, 
               "score": -14, 
               "match_offset": 38, 
               "match_length": 5, 
               "line_text": "      \"//build/android/gyp/test:hello_world\",\n"
             }, 
             {
-              "line_number": 291, 
+              "line_number": 298, 
               "score": -14, 
               "match_offset": 38, 
               "match_length": 5, 
@@ -393,7 +363,7 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "28715fe89b940be3ab638eee67871e5d40c3c080", 
+              "muppet_params": "CgYI/v///wc=", 
               "name": "src/third_party/skia/example/HelloWorld.h", 
               "package_name": "chromium", 
               "revision": "0"
@@ -438,12 +408,61 @@
               "line_text": "#ifndef HelloWorld_DEFINED\n"
             }
           ]
+        }, 
+        {
+          "docid": "LvOgV3Ahej4", 
+          "best_matching_line_number": 10, 
+          "language": "c", 
+          "is_augmented": false, 
+          "match_reason": {
+            "content": true, 
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "muppet_params": "CgYI/v///wc=", 
+              "name": "src/native_client/tests/hello_world/at_exit.c", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 0, 
+          "match": [
+            {
+              "line_number": 10, 
+              "score": 151, 
+              "match_offset": 11, 
+              "match_length": 5, 
+              "line_text": "void hello_world(void) {\n"
+            }, 
+            {
+              "line_number": 11, 
+              "score": 86, 
+              "match_offset": 17, 
+              "match_length": 5, 
+              "line_text": "  printf(\"Hello, World!\\n\");\n"
+            }, 
+            {
+              "line_number": 17, 
+              "score": -14, 
+              "match_offset": 17, 
+              "match_length": 5, 
+              "line_text": "    atexit(hello_world);\n"
+            }
+          ]
         }
       ], 
       "results_offset": 0, 
+      "called_local_augmentation": false, 
       "maybe_skipped_documents": false, 
-      "hit_max_to_score": false
+      "percent_shards_skipped": 0, 
+      "hit_max_to_score": false, 
+      "status_message": "", 
+      "next_page_token": "CNf0nIror4+eCAiw5trYg+TziBcIhsSbsurEyYAuCL70hYH3iuj5LgjAitna3OS51zgIhKCs4uKLnapuCM+6sInWj/SmdAjjm8bq/vHjwX0IxP6Ty5n9ttCmAQiAh+XBscqrjsEB"
     }
   ], 
-  "elapsed_ms": 107
+  "elapsed_ms": 109
 }

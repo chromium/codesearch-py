@@ -1,0 +1,1039 @@
+{
+  "elapsed_ms": 42, 
+  "file_info_response": [
+    {
+      "file_info": {
+        "gob_info": {
+          "repo": "chromium/chromium/src/out", 
+          "commit": "a1a0a0f4a40120bb2f4d4d5a6ada465499be5622", 
+          "path": "chromeos-Debug/gen/third_party/blink/public/mojom/background_sync/background_sync.mojom.h"
+        }, 
+        "name": "src/out/chromeos-Debug/gen/third_party/blink/public/mojom/background_sync/background_sync.mojom.h", 
+        "language": "c++", 
+        "changelist_num": "a1a0a0f4a40120bb2f4d4d5a6ada465499be5622", 
+        "package_name": "chromium", 
+        "lines": "551", 
+        "content": {
+          "text": "// Copyright 2013 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef THIRD_PARTY_BLINK_PUBLIC_MOJOM_BACKGROUND_SYNC_BACKGROUND_SYNC_MOJOM_H_\n#define THIRD_PARTY_BLINK_PUBLIC_MOJOM_BACKGROUND_SYNC_BACKGROUND_SYNC_MOJOM_H_\n\n#include <stdint.h>\n\n#include <limits>\n#include <type_traits>\n#include <utility>\n\n#include \"base/callback.h\"\n#include \"base/macros.h\"\n#include \"base/optional.h\"\n\n#include \"mojo/public/cpp/bindings/mojo_buildflags.h\"\n#if BUILDFLAG(MOJO_TRACE_ENABLED)\n#include \"base/trace_event/trace_event.h\"\n#endif\n#include \"mojo/public/cpp/bindings/clone_traits.h\"\n#include \"mojo/public/cpp/bindings/equals_traits.h\"\n#include \"mojo/public/cpp/bindings/lib/serialization.h\"\n#include \"mojo/public/cpp/bindings/struct_ptr.h\"\n#include \"mojo/public/cpp/bindings/struct_traits.h\"\n#include \"mojo/public/cpp/bindings/union_traits.h\"\n#include \"third_party/blink/public/mojom/background_sync/background_sync.mojom-shared.h\"\n#include \"third_party/blink/public/mojom/background_sync/background_sync.mojom-forward.h\"\n#include <string>\n#include <vector>\n\n#include \"mojo/public/cpp/bindings/associated_interface_ptr.h\"\n#include \"mojo/public/cpp/bindings/associated_interface_ptr_info.h\"\n#include \"mojo/public/cpp/bindings/associated_interface_request.h\"\n#include \"mojo/public/cpp/bindings/interface_ptr.h\"\n#include \"mojo/public/cpp/bindings/interface_request.h\"\n#include \"mojo/public/cpp/bindings/lib/control_message_handler.h\"\n#include \"mojo/public/cpp/bindings/raw_ptr_impl_ref_traits.h\"\n#include \"mojo/public/cpp/bindings/thread_safe_interface_ptr.h\"\n\n\n#include \"mojo/public/cpp/bindings/lib/native_enum_serialization.h\"\n#include \"mojo/public/cpp/bindings/lib/native_struct_serialization.h\"\n#include \"third_party/blink/public/common/common_export.h\"\n\n#ifdef KYTHE_IS_RUNNING\n#pragma kythe_inline_metadata \"Metadata comment\"\n#endif\n\n\nnamespace blink {\nnamespace mojom {\n\nclass BackgroundSyncServiceProxy;\n\ntemplate <typename ImplRefTraits>\nclass BackgroundSyncServiceStub;\n\nclass BackgroundSyncServiceRequestValidator;\nclass BackgroundSyncServiceResponseValidator;\n\n\n// @generated_from: blink.mojom.BackgroundSyncService\nclass BLINK_COMMON_EXPORT BackgroundSyncService\n    : public BackgroundSyncServiceInterfaceBase {\n public:\n  static const char Name_[];\n  static constexpr uint32_t Version_ = 0;\n  static constexpr bool PassesAssociatedKinds_ = false;\n  static constexpr bool HasSyncMethods_ = false;\n\n  using Base_ = BackgroundSyncServiceInterfaceBase;\n  using Proxy_ = BackgroundSyncServiceProxy;\n\n  template <typename ImplRefTraits>\n  using Stub_ = BackgroundSyncServiceStub<ImplRefTraits>;\n\n  using RequestValidator_ = BackgroundSyncServiceRequestValidator;\n  using ResponseValidator_ = BackgroundSyncServiceResponseValidator;\n  enum MethodMinVersions : uint32_t {\n    kRegisterMinVersion = 0,\n    kDidResolveRegistrationMinVersion = 0,\n    kGetOneShotSyncRegistrationsMinVersion = 0,\n  };\n  virtual ~BackgroundSyncService() {}\n\n\n  using RegisterCallback = base::OnceCallback<void(BackgroundSyncError, SyncRegistrationOptionsPtr)>;\n  \n// @generated_from: blink.mojom.BackgroundSyncService.Register\n  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n\n  \n// @generated_from: blink.mojom.BackgroundSyncService.DidResolveRegistration\n  virtual void DidResolveRegistration(BackgroundSyncRegistrationInfoPtr registration_info) = 0;\n\n\n  using GetOneShotSyncRegistrationsCallback = base::OnceCallback<void(BackgroundSyncError, std::vector<SyncRegistrationOptionsPtr>)>;\n  \n// @generated_from: blink.mojom.BackgroundSyncService.GetOneShotSyncRegistrations\n  virtual void GetOneShotSyncRegistrations(int64_t service_worker_registration_id, GetOneShotSyncRegistrationsCallback callback) = 0;\n};\n\nclass BLINK_COMMON_EXPORT BackgroundSyncServiceProxy\n    : public BackgroundSyncService {\n public:\n  using InterfaceType = BackgroundSyncService;\n\n  explicit BackgroundSyncServiceProxy(mojo::MessageReceiverWithResponder* receiver);\n  void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) final;\n  void DidResolveRegistration(BackgroundSyncRegistrationInfoPtr registration_info) final;\n  void GetOneShotSyncRegistrations(int64_t service_worker_registration_id, GetOneShotSyncRegistrationsCallback callback) final;\n\n private:\n  mojo::MessageReceiverWithResponder* receiver_;\n};\nclass BLINK_COMMON_EXPORT BackgroundSyncServiceStubDispatch {\n public:\n  static bool Accept(BackgroundSyncService* impl, mojo::Message* message);\n  static bool AcceptWithResponder(\n      BackgroundSyncService* impl,\n      mojo::Message* message,\n      std::unique_ptr<mojo::MessageReceiverWithStatus> responder);\n};\n\ntemplate <typename ImplRefTraits =\n              mojo::RawPtrImplRefTraits<BackgroundSyncService>>\nclass BackgroundSyncServiceStub\n    : public mojo::MessageReceiverWithResponderStatus {\n public:\n  using ImplPointerType = typename ImplRefTraits::PointerType;\n\n  BackgroundSyncServiceStub() {}\n  ~BackgroundSyncServiceStub() override {}\n\n  void set_sink(ImplPointerType sink) { sink_ = std::move(sink); }\n  ImplPointerType& sink() { return sink_; }\n\n  bool Accept(mojo::Message* message) override {\n    if (ImplRefTraits::IsNull(sink_))\n      return false;\n    return BackgroundSyncServiceStubDispatch::Accept(\n        ImplRefTraits::GetRawPointer(&sink_), message);\n  }\n\n  bool AcceptWithResponder(\n      mojo::Message* message,\n      std::unique_ptr<mojo::MessageReceiverWithStatus> responder) override {\n    if (ImplRefTraits::IsNull(sink_))\n      return false;\n    return BackgroundSyncServiceStubDispatch::AcceptWithResponder(\n        ImplRefTraits::GetRawPointer(&sink_), message, std::move(responder));\n  }\n\n private:\n  ImplPointerType sink_;\n};\nclass BLINK_COMMON_EXPORT BackgroundSyncServiceRequestValidator : public mojo::MessageReceiver {\n public:\n  bool Accept(mojo::Message* message) override;\n};\nclass BLINK_COMMON_EXPORT BackgroundSyncServiceResponseValidator : public mojo::MessageReceiver {\n public:\n  bool Accept(mojo::Message* message) override;\n};\n\n\n\n\n\n// @generated_from: blink.mojom.SyncRegistrationOptions\nclass BLINK_COMMON_EXPORT SyncRegistrationOptions {\n public:\n  using DataView = SyncRegistrationOptionsDataView;\n  using Data_ = internal::SyncRegistrationOptions_Data;\n\n  template <typename... Args>\n  static SyncRegistrationOptionsPtr New(Args&&... args) {\n    return SyncRegistrationOptionsPtr(\n        base::in_place, std::forward<Args>(args)...);\n  }\n\n  template <typename U>\n  static SyncRegistrationOptionsPtr From(const U& u) {\n    return mojo::TypeConverter<SyncRegistrationOptionsPtr, U>::Convert(u);\n  }\n\n  template <typename U>\n  U To() const {\n    return mojo::TypeConverter<U, SyncRegistrationOptions>::Convert(*this);\n  }\n\n\n  SyncRegistrationOptions();\n\n  SyncRegistrationOptions(\n      const std::string& tag,\n      int64_t min_interval);\n\n  ~SyncRegistrationOptions();\n\n  // Clone() is a template so it is only instantiated if it is used. Thus, the\n  // bindings generator does not need to know whether Clone() or copy\n  // constructor/assignment are available for members.\n  template <typename StructPtrType = SyncRegistrationOptionsPtr>\n  SyncRegistrationOptionsPtr Clone() const;\n\n  // Equals() is a template so it is only instantiated if it is used. Thus, the\n  // bindings generator does not need to know whether Equals() or == operator\n  // are available for members.\n  template <typename T,\n            typename std::enable_if<std::is_same<\n                T, SyncRegistrationOptions>::value>::type* = nullptr>\n  bool Equals(const T& other) const;\n  size_t Hash(size_t seed) const;\n\n  template <typename UserType>\n  static std::vector<uint8_t> Serialize(UserType* input) {\n    return mojo::internal::SerializeImpl<\n        SyncRegistrationOptions::DataView, std::vector<uint8_t>>(input);\n  }\n\n  template <typename UserType>\n  static mojo::Message SerializeAsMessage(UserType* input) {\n    return mojo::internal::SerializeAsMessageImpl<\n        SyncRegistrationOptions::DataView>(input);\n  }\n\n  // The returned Message is serialized only if the message is moved\n  // cross-process or cross-language. Otherwise if the message is Deserialized\n  // as the same UserType |input| will just be moved to |output| in\n  // DeserializeFromMessage.\n  template <typename UserType>\n  static mojo::Message WrapAsMessage(UserType input) {\n    return mojo::Message(std::make_unique<\n        internal::SyncRegistrationOptions_UnserializedMessageContext<\n            UserType, SyncRegistrationOptions::DataView>>(0, 0, std::move(input)));\n  }\n\n  template <typename UserType>\n  static bool Deserialize(const void* data,\n                          size_t data_num_bytes,\n                          UserType* output) {\n    return mojo::internal::DeserializeImpl<SyncRegistrationOptions::DataView>(\n        data, data_num_bytes, std::vector<mojo::ScopedHandle>(), output, Validate);\n  }\n\n  template <typename UserType>\n  static bool Deserialize(const std::vector<uint8_t>& input,\n                          UserType* output) {\n    return SyncRegistrationOptions::Deserialize(\n        input.size() == 0 ? nullptr : &input.front(), input.size(), output);\n  }\n\n  template <typename UserType>\n  static bool DeserializeFromMessage(mojo::Message input,\n                                     UserType* output) {\n    auto context = input.TakeUnserializedContext<\n        internal::SyncRegistrationOptions_UnserializedMessageContext<\n            UserType, SyncRegistrationOptions::DataView>>();\n    if (context) {\n      *output = std::move(context->TakeData());\n      return true;\n    }\n    input.SerializeIfNecessary();\n    return mojo::internal::DeserializeImpl<SyncRegistrationOptions::DataView>(\n        input.payload(), input.payload_num_bytes(),\n        std::move(*input.mutable_handles()), output, Validate);\n  }\n\n  \n// @generated_from: blink.mojom.SyncRegistrationOptions.tag\n  std::string tag;\n  \n// @generated_from: blink.mojom.SyncRegistrationOptions.min_interval\n  int64_t min_interval;\n\n private:\n  static bool Validate(const void* data,\n                       mojo::internal::ValidationContext* validation_context);\n};\n\n\n\n\n\n// @generated_from: blink.mojom.BackgroundSyncRegistrationInfo\nclass BLINK_COMMON_EXPORT BackgroundSyncRegistrationInfo {\n public:\n  using DataView = BackgroundSyncRegistrationInfoDataView;\n  using Data_ = internal::BackgroundSyncRegistrationInfo_Data;\n\n  template <typename... Args>\n  static BackgroundSyncRegistrationInfoPtr New(Args&&... args) {\n    return BackgroundSyncRegistrationInfoPtr(\n        base::in_place, std::forward<Args>(args)...);\n  }\n\n  template <typename U>\n  static BackgroundSyncRegistrationInfoPtr From(const U& u) {\n    return mojo::TypeConverter<BackgroundSyncRegistrationInfoPtr, U>::Convert(u);\n  }\n\n  template <typename U>\n  U To() const {\n    return mojo::TypeConverter<U, BackgroundSyncRegistrationInfo>::Convert(*this);\n  }\n\n\n  BackgroundSyncRegistrationInfo();\n\n  BackgroundSyncRegistrationInfo(\n      int64_t service_worker_registration_id,\n      const std::string& tag,\n      BackgroundSyncType sync_type);\n\n  ~BackgroundSyncRegistrationInfo();\n\n  // Clone() is a template so it is only instantiated if it is used. Thus, the\n  // bindings generator does not need to know whether Clone() or copy\n  // constructor/assignment are available for members.\n  template <typename StructPtrType = BackgroundSyncRegistrationInfoPtr>\n  BackgroundSyncRegistrationInfoPtr Clone() const;\n\n  // Equals() is a template so it is only instantiated if it is used. Thus, the\n  // bindings generator does not need to know whether Equals() or == operator\n  // are available for members.\n  template <typename T,\n            typename std::enable_if<std::is_same<\n                T, BackgroundSyncRegistrationInfo>::value>::type* = nullptr>\n  bool Equals(const T& other) const;\n  size_t Hash(size_t seed) const;\n\n  template <typename UserType>\n  static std::vector<uint8_t> Serialize(UserType* input) {\n    return mojo::internal::SerializeImpl<\n        BackgroundSyncRegistrationInfo::DataView, std::vector<uint8_t>>(input);\n  }\n\n  template <typename UserType>\n  static mojo::Message SerializeAsMessage(UserType* input) {\n    return mojo::internal::SerializeAsMessageImpl<\n        BackgroundSyncRegistrationInfo::DataView>(input);\n  }\n\n  // The returned Message is serialized only if the message is moved\n  // cross-process or cross-language. Otherwise if the message is Deserialized\n  // as the same UserType |input| will just be moved to |output| in\n  // DeserializeFromMessage.\n  template <typename UserType>\n  static mojo::Message WrapAsMessage(UserType input) {\n    return mojo::Message(std::make_unique<\n        internal::BackgroundSyncRegistrationInfo_UnserializedMessageContext<\n            UserType, BackgroundSyncRegistrationInfo::DataView>>(0, 0, std::move(input)));\n  }\n\n  template <typename UserType>\n  static bool Deserialize(const void* data,\n                          size_t data_num_bytes,\n                          UserType* output) {\n    return mojo::internal::DeserializeImpl<BackgroundSyncRegistrationInfo::DataView>(\n        data, data_num_bytes, std::vector<mojo::ScopedHandle>(), output, Validate);\n  }\n\n  template <typename UserType>\n  static bool Deserialize(const std::vector<uint8_t>& input,\n                          UserType* output) {\n    return BackgroundSyncRegistrationInfo::Deserialize(\n        input.size() == 0 ? nullptr : &input.front(), input.size(), output);\n  }\n\n  template <typename UserType>\n  static bool DeserializeFromMessage(mojo::Message input,\n                                     UserType* output) {\n    auto context = input.TakeUnserializedContext<\n        internal::BackgroundSyncRegistrationInfo_UnserializedMessageContext<\n            UserType, BackgroundSyncRegistrationInfo::DataView>>();\n    if (context) {\n      *output = std::move(context->TakeData());\n      return true;\n    }\n    input.SerializeIfNecessary();\n    return mojo::internal::DeserializeImpl<BackgroundSyncRegistrationInfo::DataView>(\n        input.payload(), input.payload_num_bytes(),\n        std::move(*input.mutable_handles()), output, Validate);\n  }\n\n  \n// @generated_from: blink.mojom.BackgroundSyncRegistrationInfo.service_worker_registration_id\n  int64_t service_worker_registration_id;\n  \n// @generated_from: blink.mojom.BackgroundSyncRegistrationInfo.tag\n  std::string tag;\n  \n// @generated_from: blink.mojom.BackgroundSyncRegistrationInfo.sync_type\n  BackgroundSyncType sync_type;\n\n private:\n  static bool Validate(const void* data,\n                       mojo::internal::ValidationContext* validation_context);\n};\n\n\n\n\n\ntemplate <typename StructPtrType>\nSyncRegistrationOptionsPtr SyncRegistrationOptions::Clone() const {\n  return New(\n      mojo::Clone(tag),\n      mojo::Clone(min_interval)\n  );\n}\n\ntemplate <typename T,\n          typename std::enable_if<std::is_same<\n              T, SyncRegistrationOptions>::value>::type*>\nbool SyncRegistrationOptions::Equals(const T& other_struct) const {\n  if (!mojo::Equals(this->tag, other_struct.tag))\n    return false;\n  if (!mojo::Equals(this->min_interval, other_struct.min_interval))\n    return false;\n  return true;\n}\ntemplate <typename StructPtrType>\nBackgroundSyncRegistrationInfoPtr BackgroundSyncRegistrationInfo::Clone() const {\n  return New(\n      mojo::Clone(service_worker_registration_id),\n      mojo::Clone(tag),\n      mojo::Clone(sync_type)\n  );\n}\n\ntemplate <typename T,\n          typename std::enable_if<std::is_same<\n              T, BackgroundSyncRegistrationInfo>::value>::type*>\nbool BackgroundSyncRegistrationInfo::Equals(const T& other_struct) const {\n  if (!mojo::Equals(this->service_worker_registration_id, other_struct.service_worker_registration_id))\n    return false;\n  if (!mojo::Equals(this->tag, other_struct.tag))\n    return false;\n  if (!mojo::Equals(this->sync_type, other_struct.sync_type))\n    return false;\n  return true;\n}\n\n\n}  // namespace mojom\n}  // namespace blink\n\nnamespace mojo {\n\n\ntemplate <>\nstruct BLINK_COMMON_EXPORT StructTraits<::blink::mojom::SyncRegistrationOptions::DataView,\n                                         ::blink::mojom::SyncRegistrationOptionsPtr> {\n  static bool IsNull(const ::blink::mojom::SyncRegistrationOptionsPtr& input) { return !input; }\n  static void SetToNull(::blink::mojom::SyncRegistrationOptionsPtr* output) { output->reset(); }\n\n  static const decltype(::blink::mojom::SyncRegistrationOptions::tag)& tag(\n      const ::blink::mojom::SyncRegistrationOptionsPtr& input) {\n    return input->tag;\n  }\n\n  static decltype(::blink::mojom::SyncRegistrationOptions::min_interval) min_interval(\n      const ::blink::mojom::SyncRegistrationOptionsPtr& input) {\n    return input->min_interval;\n  }\n\n  static bool Read(::blink::mojom::SyncRegistrationOptions::DataView input, ::blink::mojom::SyncRegistrationOptionsPtr* output);\n};\n\n\ntemplate <>\nstruct BLINK_COMMON_EXPORT StructTraits<::blink::mojom::BackgroundSyncRegistrationInfo::DataView,\n                                         ::blink::mojom::BackgroundSyncRegistrationInfoPtr> {\n  static bool IsNull(const ::blink::mojom::BackgroundSyncRegistrationInfoPtr& input) { return !input; }\n  static void SetToNull(::blink::mojom::BackgroundSyncRegistrationInfoPtr* output) { output->reset(); }\n\n  static decltype(::blink::mojom::BackgroundSyncRegistrationInfo::service_worker_registration_id) service_worker_registration_id(\n      const ::blink::mojom::BackgroundSyncRegistrationInfoPtr& input) {\n    return input->service_worker_registration_id;\n  }\n\n  static const decltype(::blink::mojom::BackgroundSyncRegistrationInfo::tag)& tag(\n      const ::blink::mojom::BackgroundSyncRegistrationInfoPtr& input) {\n    return input->tag;\n  }\n\n  static decltype(::blink::mojom::BackgroundSyncRegistrationInfo::sync_type) sync_type(\n      const ::blink::mojom::BackgroundSyncRegistrationInfoPtr& input) {\n    return input->sync_type;\n  }\n\n  static bool Read(::blink::mojom::BackgroundSyncRegistrationInfo::DataView input, ::blink::mojom::BackgroundSyncRegistrationInfoPtr* output);\n};\n\n}  // namespace mojo\n\n#endif  // THIRD_PARTY_BLINK_PUBLIC_MOJOM_BACKGROUND_SYNC_BACKGROUND_SYNC_MOJOM_H_\n\n/* Metadata comment\neyJtZXRhIjogW3siZW5kIjogMjI2NywgImJlZ2luIjogMjI0NiwgImVkZ2UiOiAiJS9reXRoZS9l\nZGdlL2dlbmVyYXRlcyIsICJ0eXBlIjogImFuY2hvcl9kZWZpbmVzIiwgInZuYW1lIjogeyJjb3Jw\ndXMiOiAiY2hyb21pdW0uZ29vZ2xlc291cmNlLmNvbS9jaHJvbWl1bS9zcmMiLCAibGFuZ3VhZ2Ui\nOiAibW9qb20iLCAic2lnbmF0dXJlIjogImJsaW5rLm1vam9tLkJhY2tncm91bmRTeW5jU2Vydmlj\nZSJ9fSwgeyJlbmQiOiAzMjI3LCAiYmVnaW4iOiAzMjE5LCAiZWRnZSI6ICIlL2t5dGhlL2VkZ2Uv\nZ2VuZXJhdGVzIiwgInR5cGUiOiAiYW5jaG9yX2RlZmluZXMiLCAidm5hbWUiOiB7ImNvcnB1cyI6\nICJjaHJvbWl1bS5nb29nbGVzb3VyY2UuY29tL2Nocm9taXVtL3NyYyIsICJsYW5ndWFnZSI6ICJt\nb2pvbSIsICJzaWduYXR1cmUiOiAiYmxpbmsubW9qb20uQmFja2dyb3VuZFN5bmNTZXJ2aWNlLlJl\nZ2lzdGVyIn19LCB7ImVuZCI6IDM0NTQsICJiZWdpbiI6IDM0MzIsICJlZGdlIjogIiUva3l0aGUv\nZWRnZS9nZW5lcmF0ZXMiLCAidHlwZSI6ICJhbmNob3JfZGVmaW5lcyIsICJ2bmFtZSI6IHsiY29y\ncHVzIjogImNocm9taXVtLmdvb2dsZXNvdXJjZS5jb20vY2hyb21pdW0vc3JjIiwgImxhbmd1YWdl\nIjogIm1vam9tIiwgInNpZ25hdHVyZSI6ICJibGluay5tb2pvbS5CYWNrZ3JvdW5kU3luY1NlcnZp\nY2UuRGlkUmVzb2x2ZVJlZ2lzdHJhdGlvbiJ9fSwgeyJlbmQiOiAzNzc2LCAiYmVnaW4iOiAzNzQ5\nLCAiZWRnZSI6ICIlL2t5dGhlL2VkZ2UvZ2VuZXJhdGVzIiwgInR5cGUiOiAiYW5jaG9yX2RlZmlu\nZXMiLCAidm5hbWUiOiB7ImNvcnB1cyI6ICJjaHJvbWl1bS5nb29nbGVzb3VyY2UuY29tL2Nocm9t\naXVtL3NyYyIsICJsYW5ndWFnZSI6ICJtb2pvbSIsICJzaWduYXR1cmUiOiAiYmxpbmsubW9qb20u\nQmFja2dyb3VuZFN5bmNTZXJ2aWNlLkdldE9uZVNob3RTeW5jUmVnaXN0cmF0aW9ucyJ9fSwgeyJl\nbmQiOiA2MzA1LCAiYmVnaW4iOiA2MjgyLCAiZWRnZSI6ICIlL2t5dGhlL2VkZ2UvZ2VuZXJhdGVz\nIiwgInR5cGUiOiAiYW5jaG9yX2RlZmluZXMiLCAidm5hbWUiOiB7ImNvcnB1cyI6ICJjaHJvbWl1\nbS5nb29nbGVzb3VyY2UuY29tL2Nocm9taXVtL3NyYyIsICJsYW5ndWFnZSI6ICJtb2pvbSIsICJz\naWduYXR1cmUiOiAiYmxpbmsubW9qb20uU3luY1JlZ2lzdHJhdGlvbk9wdGlvbnMifX0sIHsiZW5k\nIjogMTAwNDQsICJiZWdpbiI6IDEwMDQxLCAiZWRnZSI6ICIlL2t5dGhlL2VkZ2UvZ2VuZXJhdGVz\nIiwgInR5cGUiOiAiYW5jaG9yX2RlZmluZXMiLCAidm5hbWUiOiB7ImNvcnB1cyI6ICJjaHJvbWl1\nbS5nb29nbGVzb3VyY2UuY29tL2Nocm9taXVtL3NyYyIsICJsYW5ndWFnZSI6ICJtb2pvbSIsICJz\naWduYXR1cmUiOiAiYmxpbmsubW9qb20uU3luY1JlZ2lzdHJhdGlvbk9wdGlvbnMudGFnIn19LCB7\nImVuZCI6IDEwMTQwLCAiYmVnaW4iOiAxMDEyOCwgImVkZ2UiOiAiJS9reXRoZS9lZGdlL2dlbmVy\nYXRlcyIsICJ0eXBlIjogImFuY2hvcl9kZWZpbmVzIiwgInZuYW1lIjogeyJjb3JwdXMiOiAiY2hy\nb21pdW0uZ29vZ2xlc291cmNlLmNvbS9jaHJvbWl1bS9zcmMiLCAibGFuZ3VhZ2UiOiAibW9qb20i\nLCAic2lnbmF0dXJlIjogImJsaW5rLm1vam9tLlN5bmNSZWdpc3RyYXRpb25PcHRpb25zLm1pbl9p\nbnRlcnZhbCJ9fSwgeyJlbmQiOiAxMDQwMCwgImJlZ2luIjogMTAzNzAsICJlZGdlIjogIiUva3l0\naGUvZWRnZS9nZW5lcmF0ZXMiLCAidHlwZSI6ICJhbmNob3JfZGVmaW5lcyIsICJ2bmFtZSI6IHsi\nY29ycHVzIjogImNocm9taXVtLmdvb2dsZXNvdXJjZS5jb20vY2hyb21pdW0vc3JjIiwgImxhbmd1\nYWdlIjogIm1vam9tIiwgInNpZ25hdHVyZSI6ICJibGluay5tb2pvbS5CYWNrZ3JvdW5kU3luY1Jl\nZ2lzdHJhdGlvbkluZm8ifX0sIHsiZW5kIjogMTQ0MDQsICJiZWdpbiI6IDE0Mzc0LCAiZWRnZSI6\nICIlL2t5dGhlL2VkZ2UvZ2VuZXJhdGVzIiwgInR5cGUiOiAiYW5jaG9yX2RlZmluZXMiLCAidm5h\nbWUiOiB7ImNvcnB1cyI6ICJjaHJvbWl1bS5nb29nbGVzb3VyY2UuY29tL2Nocm9taXVtL3NyYyIs\nICJsYW5ndWFnZSI6ICJtb2pvbSIsICJzaWduYXR1cmUiOiAiYmxpbmsubW9qb20uQmFja2dyb3Vu\nZFN5bmNSZWdpc3RyYXRpb25JbmZvLnNlcnZpY2Vfd29ya2VyX3JlZ2lzdHJhdGlvbl9pZCJ9fSwg\neyJlbmQiOiAxNDQ5MywgImJlZ2luIjogMTQ0OTAsICJlZGdlIjogIiUva3l0aGUvZWRnZS9nZW5l\ncmF0ZXMiLCAidHlwZSI6ICJhbmNob3JfZGVmaW5lcyIsICJ2bmFtZSI6IHsiY29ycHVzIjogImNo\ncm9taXVtLmdvb2dsZXNvdXJjZS5jb20vY2hyb21pdW0vc3JjIiwgImxhbmd1YWdlIjogIm1vam9t\nIiwgInNpZ25hdHVyZSI6ICJibGluay5tb2pvbS5CYWNrZ3JvdW5kU3luY1JlZ2lzdHJhdGlvbklu\nZm8udGFnIn19LCB7ImVuZCI6IDE0NjAxLCAiYmVnaW4iOiAxNDU5MiwgImVkZ2UiOiAiJS9reXRo\nZS9lZGdlL2dlbmVyYXRlcyIsICJ0eXBlIjogImFuY2hvcl9kZWZpbmVzIiwgInZuYW1lIjogeyJj\nb3JwdXMiOiAiY2hyb21pdW0uZ29vZ2xlc291cmNlLmNvbS9jaHJvbWl1bS9zcmMiLCAibGFuZ3Vh\nZ2UiOiAibW9qb20iLCAic2lnbmF0dXJlIjogImJsaW5rLm1vam9tLkJhY2tncm91bmRTeW5jUmVn\naXN0cmF0aW9uSW5mby5zeW5jX3R5cGUifX1dLCAidHlwZSI6ICJreXRoZTAifQ==\n*/"
+        }, 
+        "generated": true, 
+        "mime_type": "text/plain", 
+        "size": "21900", 
+        "type": 1, 
+        "md5": "88fb5a187496c6f2f8a37fec028c608d", 
+        "codeblock": [
+          {
+            "modifiers": {}, 
+            "type": 11, 
+            "name": "blink", 
+            "text_range": {
+              "start_line": 52, 
+              "end_line": 450, 
+              "start_column": 1, 
+              "end_column": 2
+            }, 
+            "child": [
+              {
+                "modifiers": {}, 
+                "type": 11, 
+                "name": "mojom", 
+                "text_range": {
+                  "start_line": 53, 
+                  "end_line": 449, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }, 
+                "child": [
+                  {
+                    "modifiers": {}, 
+                    "type": 1, 
+                    "name": "BLINK_COMMON_EXPORT BackgroundSyncService", 
+                    "text_range": {
+                      "start_line": 65, 
+                      "end_line": 103, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }, 
+                    "child": [
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "Name_", 
+                        "text_range": {
+                          "start_line": 68, 
+                          "end_line": 68, 
+                          "start_column": 3, 
+                          "end_column": 28
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "Version_", 
+                        "text_range": {
+                          "start_line": 69, 
+                          "end_line": 69, 
+                          "start_column": 3, 
+                          "end_column": 41
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "PassesAssociatedKinds_", 
+                        "text_range": {
+                          "start_line": 70, 
+                          "end_line": 70, 
+                          "start_column": 3, 
+                          "end_column": 55
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "HasSyncMethods_", 
+                        "text_range": {
+                          "start_line": 71, 
+                          "end_line": 71, 
+                          "start_column": 3, 
+                          "end_column": 48
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 4, 
+                        "name": "MethodMinVersions", 
+                        "text_range": {
+                          "start_line": 81, 
+                          "end_line": 85, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Register", 
+                        "text_range": {
+                          "start_line": 92, 
+                          "end_line": 92, 
+                          "start_column": 3, 
+                          "end_column": 131
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "DidResolveRegistration", 
+                        "text_range": {
+                          "start_line": 96, 
+                          "end_line": 96, 
+                          "start_column": 3, 
+                          "end_column": 95
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "GetOneShotSyncRegistrations", 
+                        "text_range": {
+                          "start_line": 102, 
+                          "end_line": 102, 
+                          "start_column": 3, 
+                          "end_column": 133
+                        }
+                      }
+                    ]
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 1, 
+                    "name": "BLINK_COMMON_EXPORT BackgroundSyncServiceProxy", 
+                    "text_range": {
+                      "start_line": 105, 
+                      "end_line": 117, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }, 
+                    "child": [
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "BackgroundSyncServiceProxy", 
+                        "text_range": {
+                          "start_line": 110, 
+                          "end_line": 110, 
+                          "start_column": 3, 
+                          "end_column": 84
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Register", 
+                        "text_range": {
+                          "start_line": 111, 
+                          "end_line": 111, 
+                          "start_column": 3, 
+                          "end_column": 125
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "DidResolveRegistration", 
+                        "text_range": {
+                          "start_line": 112, 
+                          "end_line": 112, 
+                          "start_column": 3, 
+                          "end_column": 89
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "GetOneShotSyncRegistrations", 
+                        "text_range": {
+                          "start_line": 113, 
+                          "end_line": 113, 
+                          "start_column": 3, 
+                          "end_column": 127
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "receiver_", 
+                        "text_range": {
+                          "start_line": 116, 
+                          "end_line": 116, 
+                          "start_column": 3, 
+                          "end_column": 48
+                        }
+                      }
+                    ]
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 1, 
+                    "name": "BLINK_COMMON_EXPORT BackgroundSyncServiceStubDispatch", 
+                    "text_range": {
+                      "start_line": 118, 
+                      "end_line": 125, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }, 
+                    "child": [
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Accept", 
+                        "text_range": {
+                          "start_line": 120, 
+                          "end_line": 120, 
+                          "start_column": 3, 
+                          "end_column": 74
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "AcceptWithResponder", 
+                        "text_range": {
+                          "start_line": 121, 
+                          "end_line": 124, 
+                          "start_column": 3, 
+                          "end_column": 66
+                        }
+                      }
+                    ]
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 1, 
+                    "name": "BackgroundSyncServiceStub", 
+                    "text_range": {
+                      "start_line": 129, 
+                      "end_line": 158, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }, 
+                    "child": [
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "BackgroundSyncServiceStub", 
+                        "text_range": {
+                          "start_line": 134, 
+                          "end_line": 134, 
+                          "start_column": 3, 
+                          "end_column": 33
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "~BackgroundSyncServiceStub", 
+                        "text_range": {
+                          "start_line": 135, 
+                          "end_line": 135, 
+                          "start_column": 3, 
+                          "end_column": 43
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "set_sink", 
+                        "text_range": {
+                          "start_line": 137, 
+                          "end_line": 137, 
+                          "start_column": 3, 
+                          "end_column": 67
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "sink", 
+                        "text_range": {
+                          "start_line": 138, 
+                          "end_line": 138, 
+                          "start_column": 3, 
+                          "end_column": 44
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Accept", 
+                        "text_range": {
+                          "start_line": 140, 
+                          "end_line": 145, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "AcceptWithResponder", 
+                        "text_range": {
+                          "start_line": 147, 
+                          "end_line": 154, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "ImplPointerType", 
+                        "text_range": {
+                          "start_line": 157, 
+                          "end_line": 157, 
+                          "start_column": 3, 
+                          "end_column": 24
+                        }
+                      }
+                    ]
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 1, 
+                    "name": "BLINK_COMMON_EXPORT BackgroundSyncServiceRequestValidator", 
+                    "text_range": {
+                      "start_line": 159, 
+                      "end_line": 162, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }, 
+                    "child": [
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Accept", 
+                        "text_range": {
+                          "start_line": 161, 
+                          "end_line": 161, 
+                          "start_column": 3, 
+                          "end_column": 47
+                        }
+                      }
+                    ]
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 1, 
+                    "name": "BLINK_COMMON_EXPORT BackgroundSyncServiceResponseValidator", 
+                    "text_range": {
+                      "start_line": 163, 
+                      "end_line": 166, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }, 
+                    "child": [
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Accept", 
+                        "text_range": {
+                          "start_line": 165, 
+                          "end_line": 165, 
+                          "start_column": 3, 
+                          "end_column": 47
+                        }
+                      }
+                    ]
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 1, 
+                    "name": "BLINK_COMMON_EXPORT SyncRegistrationOptions", 
+                    "text_range": {
+                      "start_line": 173, 
+                      "end_line": 282, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }, 
+                    "child": [
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "New", 
+                        "text_range": {
+                          "start_line": 179, 
+                          "end_line": 182, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "From", 
+                        "text_range": {
+                          "start_line": 185, 
+                          "end_line": 187, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "To", 
+                        "text_range": {
+                          "start_line": 190, 
+                          "end_line": 192, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "SyncRegistrationOptions", 
+                        "text_range": {
+                          "start_line": 195, 
+                          "end_line": 195, 
+                          "start_column": 3, 
+                          "end_column": 28
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "SyncRegistrationOptions", 
+                        "text_range": {
+                          "start_line": 197, 
+                          "end_line": 199, 
+                          "start_column": 3, 
+                          "end_column": 28
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "~SyncRegistrationOptions", 
+                        "text_range": {
+                          "start_line": 201, 
+                          "end_line": 201, 
+                          "start_column": 3, 
+                          "end_column": 29
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Clone", 
+                        "text_range": {
+                          "start_line": 207, 
+                          "end_line": 207, 
+                          "start_column": 3, 
+                          "end_column": 43
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Equals", 
+                        "text_range": {
+                          "start_line": 215, 
+                          "end_line": 215, 
+                          "start_column": 3, 
+                          "end_column": 36
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "size_t", 
+                        "text_range": {
+                          "start_line": 216, 
+                          "end_line": 216, 
+                          "start_column": 3, 
+                          "end_column": 33
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Serialize", 
+                        "text_range": {
+                          "start_line": 219, 
+                          "end_line": 222, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "SerializeAsMessage", 
+                        "text_range": {
+                          "start_line": 225, 
+                          "end_line": 228, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "WrapAsMessage", 
+                        "text_range": {
+                          "start_line": 235, 
+                          "end_line": 239, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Deserialize", 
+                        "text_range": {
+                          "start_line": 242, 
+                          "end_line": 247, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Deserialize", 
+                        "text_range": {
+                          "start_line": 250, 
+                          "end_line": 254, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "DeserializeFromMessage", 
+                        "text_range": {
+                          "start_line": 257, 
+                          "end_line": 270, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }, 
+                        "child": [
+                          {
+                            "modifiers": {}, 
+                            "type": 9, 
+                            "name": "context", 
+                            "text_range": {
+                              "start_line": 259, 
+                              "end_line": 261, 
+                              "start_column": 5, 
+                              "end_column": 60
+                            }
+                          }
+                        ]
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "std", 
+                        "text_range": {
+                          "start_line": 274, 
+                          "end_line": 274, 
+                          "start_column": 3, 
+                          "end_column": 18
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "int64_t", 
+                        "text_range": {
+                          "start_line": 277, 
+                          "end_line": 277, 
+                          "start_column": 3, 
+                          "end_column": 23
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Validate", 
+                        "text_range": {
+                          "start_line": 280, 
+                          "end_line": 281, 
+                          "start_column": 3, 
+                          "end_column": 78
+                        }
+                      }
+                    ]
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 1, 
+                    "name": "BLINK_COMMON_EXPORT BackgroundSyncRegistrationInfo", 
+                    "text_range": {
+                      "start_line": 289, 
+                      "end_line": 402, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }, 
+                    "child": [
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "New", 
+                        "text_range": {
+                          "start_line": 295, 
+                          "end_line": 298, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "From", 
+                        "text_range": {
+                          "start_line": 301, 
+                          "end_line": 303, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "To", 
+                        "text_range": {
+                          "start_line": 306, 
+                          "end_line": 308, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "BackgroundSyncRegistrationInfo", 
+                        "text_range": {
+                          "start_line": 311, 
+                          "end_line": 311, 
+                          "start_column": 3, 
+                          "end_column": 35
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "BackgroundSyncRegistrationInfo", 
+                        "text_range": {
+                          "start_line": 313, 
+                          "end_line": 316, 
+                          "start_column": 3, 
+                          "end_column": 36
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "~BackgroundSyncRegistrationInfo", 
+                        "text_range": {
+                          "start_line": 318, 
+                          "end_line": 318, 
+                          "start_column": 3, 
+                          "end_column": 36
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Clone", 
+                        "text_range": {
+                          "start_line": 324, 
+                          "end_line": 324, 
+                          "start_column": 3, 
+                          "end_column": 50
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Equals", 
+                        "text_range": {
+                          "start_line": 332, 
+                          "end_line": 332, 
+                          "start_column": 3, 
+                          "end_column": 36
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "size_t", 
+                        "text_range": {
+                          "start_line": 333, 
+                          "end_line": 333, 
+                          "start_column": 3, 
+                          "end_column": 33
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Serialize", 
+                        "text_range": {
+                          "start_line": 336, 
+                          "end_line": 339, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "SerializeAsMessage", 
+                        "text_range": {
+                          "start_line": 342, 
+                          "end_line": 345, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "WrapAsMessage", 
+                        "text_range": {
+                          "start_line": 352, 
+                          "end_line": 356, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Deserialize", 
+                        "text_range": {
+                          "start_line": 359, 
+                          "end_line": 364, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Deserialize", 
+                        "text_range": {
+                          "start_line": 367, 
+                          "end_line": 371, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "DeserializeFromMessage", 
+                        "text_range": {
+                          "start_line": 374, 
+                          "end_line": 387, 
+                          "start_column": 3, 
+                          "end_column": 4
+                        }, 
+                        "child": [
+                          {
+                            "modifiers": {}, 
+                            "type": 9, 
+                            "name": "context", 
+                            "text_range": {
+                              "start_line": 376, 
+                              "end_line": 378, 
+                              "start_column": 5, 
+                              "end_column": 67
+                            }
+                          }
+                        ]
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "int64_t", 
+                        "text_range": {
+                          "start_line": 391, 
+                          "end_line": 391, 
+                          "start_column": 3, 
+                          "end_column": 41
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "std", 
+                        "text_range": {
+                          "start_line": 394, 
+                          "end_line": 394, 
+                          "start_column": 3, 
+                          "end_column": 18
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "BackgroundSyncType", 
+                        "text_range": {
+                          "start_line": 397, 
+                          "end_line": 397, 
+                          "start_column": 3, 
+                          "end_column": 31
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Validate", 
+                        "text_range": {
+                          "start_line": 400, 
+                          "end_line": 401, 
+                          "start_column": 3, 
+                          "end_column": 78
+                        }
+                      }
+                    ]
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SyncRegistrationOptions::Clone", 
+                    "text_range": {
+                      "start_line": 409, 
+                      "end_line": 414, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SyncRegistrationOptions::Equals", 
+                    "text_range": {
+                      "start_line": 419, 
+                      "end_line": 425, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "BackgroundSyncRegistrationInfo::Clone", 
+                    "text_range": {
+                      "start_line": 427, 
+                      "end_line": 433, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "BackgroundSyncRegistrationInfo::Equals", 
+                    "text_range": {
+                      "start_line": 438, 
+                      "end_line": 446, 
+                      "start_column": 1, 
+                      "end_column": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }, 
+          {
+            "modifiers": {}, 
+            "type": 11, 
+            "name": "mojo", 
+            "text_range": {
+              "start_line": 452, 
+              "end_line": 499, 
+              "start_column": 1, 
+              "end_column": 2
+            }, 
+            "child": [
+              {
+                "modifiers": {}, 
+                "type": 3, 
+                "name": "BLINK_COMMON_EXPORT StructTraits", 
+                "text_range": {
+                  "start_line": 455, 
+                  "end_line": 472, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }, 
+                "child": [
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "IsNull", 
+                    "text_range": {
+                      "start_line": 458, 
+                      "end_line": 458, 
+                      "start_column": 3, 
+                      "end_column": 97
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SetToNull", 
+                    "text_range": {
+                      "start_line": 459, 
+                      "end_line": 459, 
+                      "start_column": 3, 
+                      "end_column": 97
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "min_interval", 
+                    "text_range": {
+                      "start_line": 466, 
+                      "end_line": 469, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "Read", 
+                    "text_range": {
+                      "start_line": 471, 
+                      "end_line": 471, 
+                      "start_column": 3, 
+                      "end_column": 128
+                    }
+                  }
+                ]
+              }, 
+              {
+                "modifiers": {}, 
+                "type": 3, 
+                "name": "BLINK_COMMON_EXPORT StructTraits", 
+                "text_range": {
+                  "start_line": 475, 
+                  "end_line": 497, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }, 
+                "child": [
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "IsNull", 
+                    "text_range": {
+                      "start_line": 478, 
+                      "end_line": 478, 
+                      "start_column": 3, 
+                      "end_column": 104
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "SetToNull", 
+                    "text_range": {
+                      "start_line": 479, 
+                      "end_line": 479, 
+                      "start_column": 3, 
+                      "end_column": 104
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "service_worker_registration_id", 
+                    "text_range": {
+                      "start_line": 481, 
+                      "end_line": 484, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "sync_type", 
+                    "text_range": {
+                      "start_line": 491, 
+                      "end_line": 494, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "Read", 
+                    "text_range": {
+                      "start_line": 496, 
+                      "end_line": 496, 
+                      "start_column": 3, 
+                      "end_column": 142
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }, 
+      "return_code": 1
+    }
+  ]
+}

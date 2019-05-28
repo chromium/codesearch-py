@@ -3,18 +3,18 @@
     {
       "status": 0, 
       "hit_max_results": false, 
-      "estimated_total_number_of_results": 4, 
+      "estimated_total_number_of_results": 8, 
       "stats": {
         "retries": 0, 
         "filter_ratio": 0, 
-        "first_phase_latency_micros": "34615"
+        "first_phase_latency_micros": "20203"
       }, 
       "search_result": [
         {
           "snippet": [
             {
               "text": {
-                "text": "  virtual void Register(SyncRegistrationPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n", 
+                "text": "  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n", 
                 "range": [
                   {
                     "range": {
@@ -27,15 +27,15 @@
                   }
                 ]
               }, 
-              "first_line_number": 99, 
+              "first_line_number": 92, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
               "scope": ""
             }
           ], 
-          "docid": "trDEo0OxzGU", 
-          "best_matching_line_number": 99, 
+          "docid": "v7eWjoLaqPg", 
+          "best_matching_line_number": 92, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -45,8 +45,8 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "bc53994820565c7b2f000b1fb740e5657445d670", 
-              "name": "src/out/Debug/gen/third_party/blink/public/platform/modules/background_sync/background_sync.mojom.h", 
+              "muppet_params": "CgYI/v///wc=", 
+              "name": "src/out/Debug/gen/third_party/blink/public/mojom/background_sync/background_sync.mojom.h", 
               "package_name": "chromium", 
               "revision": "0"
             }
@@ -55,11 +55,11 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 99, 
-              "score": 491, 
+              "line_number": 92, 
+              "score": 1026, 
               "match_offset": 15, 
               "match_length": 8, 
-              "line_text": "  virtual void Register(SyncRegistrationPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n"
+              "line_text": "  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n"
             }
           ]
         }, 
@@ -67,7 +67,7 @@
           "snippet": [
             {
               "text": {
-                "text": "  virtual void Register(SyncRegistrationPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n", 
+                "text": "  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n", 
                 "range": [
                   {
                     "range": {
@@ -80,15 +80,15 @@
                   }
                 ]
               }, 
-              "first_line_number": 262, 
+              "first_line_number": 92, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
               "scope": ""
             }
           ], 
-          "docid": "ymx7fi_PF2A", 
-          "best_matching_line_number": 262, 
+          "docid": "SigqgfLLOwc", 
+          "best_matching_line_number": 92, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -98,8 +98,8 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "9c53bbe76d5d8333ff795448fe315b10100301a9", 
-              "name": "src/out/Debug/gen/third_party/blink/public/platform/modules/background_sync/background_sync.mojom-blink.h", 
+              "muppet_params": "CgYI/v///wc=", 
+              "name": "src/out/android-Debug/gen/third_party/blink/public/mojom/background_sync/background_sync.mojom.h", 
               "package_name": "chromium", 
               "revision": "0"
             }
@@ -108,11 +108,11 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 262, 
-              "score": 491, 
+              "line_number": 92, 
+              "score": 1026, 
               "match_offset": 15, 
               "match_length": 8, 
-              "line_text": "  virtual void Register(SyncRegistrationPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n"
+              "line_text": "  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n"
             }
           ]
         }, 
@@ -120,7 +120,7 @@
           "snippet": [
             {
               "text": {
-                "text": "  virtual void Register(SyncRegistrationPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n", 
+                "text": "  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n", 
                 "range": [
                   {
                     "range": {
@@ -133,15 +133,15 @@
                   }
                 ]
               }, 
-              "first_line_number": 99, 
+              "first_line_number": 92, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
               "scope": ""
             }
           ], 
-          "docid": "s1XBWGK6ljM", 
-          "best_matching_line_number": 99, 
+          "docid": "tpLnjHriaEs", 
+          "best_matching_line_number": 92, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -151,8 +151,8 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "bc53994820565c7b2f000b1fb740e5657445d670", 
-              "name": "src/out/chromium-android/Debug/gen/third_party/blink/public/platform/modules/background_sync/background_sync.mojom.h", 
+              "muppet_params": "CgYI/v///wc=", 
+              "name": "src/out/win-Debug/gen/third_party/blink/public/mojom/background_sync/background_sync.mojom.h", 
               "package_name": "chromium", 
               "revision": "0"
             }
@@ -161,11 +161,11 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 99, 
-              "score": 491, 
+              "line_number": 92, 
+              "score": 1026, 
               "match_offset": 15, 
               "match_length": 8, 
-              "line_text": "  virtual void Register(SyncRegistrationPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n"
+              "line_text": "  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n"
             }
           ]
         }, 
@@ -173,7 +173,7 @@
           "snippet": [
             {
               "text": {
-                "text": "  virtual void Register(SyncRegistrationPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n", 
+                "text": "  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n", 
                 "range": [
                   {
                     "range": {
@@ -186,15 +186,15 @@
                   }
                 ]
               }, 
-              "first_line_number": 262, 
+              "first_line_number": 228, 
               "match_reason": {
                 "scoped_symbol": true
               }, 
               "scope": ""
             }
           ], 
-          "docid": "Cpm1BnBZqQ8", 
-          "best_matching_line_number": 262, 
+          "docid": "_b7Y7m0CLj4", 
+          "best_matching_line_number": 228, 
           "language": "c++", 
           "is_augmented": false, 
           "match_reason": {
@@ -204,8 +204,8 @@
           "num_duplicates": 0, 
           "top_file": {
             "file": {
-              "changelist": "9c53bbe76d5d8333ff795448fe315b10100301a9", 
-              "name": "src/out/chromium-android/Debug/gen/third_party/blink/public/platform/modules/background_sync/background_sync.mojom-blink.h", 
+              "muppet_params": "CgYI/v///wc=", 
+              "name": "src/out/Debug/gen/third_party/blink/public/mojom/background_sync/background_sync.mojom-blink.h", 
               "package_name": "chromium", 
               "revision": "0"
             }
@@ -214,19 +214,76 @@
           "num_matches": 1, 
           "match": [
             {
-              "line_number": 262, 
-              "score": 491, 
+              "line_number": 228, 
+              "score": 1026, 
               "match_offset": 15, 
               "match_length": 8, 
-              "line_text": "  virtual void Register(SyncRegistrationPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n"
+              "line_text": "  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n"
+            }
+          ]
+        }, 
+        {
+          "snippet": [
+            {
+              "text": {
+                "text": "  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n", 
+                "range": [
+                  {
+                    "range": {
+                      "start_line": 1, 
+                      "end_line": 1, 
+                      "start_column": 16, 
+                      "end_column": 24
+                    }, 
+                    "type": 41
+                  }
+                ]
+              }, 
+              "first_line_number": 92, 
+              "match_reason": {
+                "scoped_symbol": true
+              }, 
+              "scope": ""
+            }
+          ], 
+          "docid": "Ucb0xb7T33k", 
+          "best_matching_line_number": 92, 
+          "language": "c++", 
+          "is_augmented": false, 
+          "match_reason": {
+            "scoped_symbol": true
+          }, 
+          "full_history_search": false, 
+          "num_duplicates": 0, 
+          "top_file": {
+            "file": {
+              "muppet_params": "CgYI/v///wc=", 
+              "name": "src/out/chromeos-Debug/gen/third_party/blink/public/mojom/background_sync/background_sync.mojom.h", 
+              "package_name": "chromium", 
+              "revision": "0"
+            }
+          }, 
+          "has_unshown_matches": false, 
+          "num_matches": 1, 
+          "match": [
+            {
+              "line_number": 92, 
+              "score": 1026, 
+              "match_offset": 15, 
+              "match_length": 8, 
+              "line_text": "  virtual void Register(SyncRegistrationOptionsPtr options, int64_t service_worker_registration_id, RegisterCallback callback) = 0;\n"
             }
           ]
         }
       ], 
       "results_offset": 0, 
+      "called_local_augmentation": false, 
       "maybe_skipped_documents": false, 
-      "hit_max_to_score": false
+      "percent_shards_skipped": 0, 
+      "hit_max_to_score": false, 
+      "status_message": "", 
+      "next_page_token": "CIf2rJaf0IqUSgj5vs/225i941EIy9CJ18fxucm2AQj40eqW6NHl278BCL7ciOjmnbbf+QE="
     }
   ], 
-  "elapsed_ms": 109
+  "elapsed_ms": 37
 }

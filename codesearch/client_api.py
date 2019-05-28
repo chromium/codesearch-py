@@ -228,8 +228,8 @@ class CsFile(object):
             if annotation.MatchesSignature(signature):
                 return self.Text(annotation.range)
 
-        raise NotFoundError(
-            'can\'t determine display name for {}'.format(signature))
+        raise NotFoundError('can\'t determine anchor text for {} in {}'.format(
+            signature, self.Path()))
 
 
 class XrefNode(object):
@@ -454,8 +454,7 @@ class XrefNode(object):
         annotations = self.cs.GetFileInfo(self.filespec).GetAnnotations()
         target_range = None
         for annotation in annotations:
-            sig = annotation.xref_signature.signature
-            if sig == self.single_match.signature:
+            if annotation.MatchesSignature(self.single_match.signature):
                 target_range = annotation.range
                 break
 
@@ -934,8 +933,7 @@ class CodeSearch(object):
 
     def GetSignatureForSymbol(self, filename, symbol):
         # type: (str, str) -> str
-        """Return a signature matching |symbol| in |filename|.
-    """
+        """Return a signature matching |symbol| in |filename|."""
 
         fileinfo = self.GetFileInfo(filename)
         types_haystack = frozenset([
@@ -954,7 +952,7 @@ class CodeSearch(object):
             if sig:
                 return sig
 
-        raise NotFoundError("Can't determine signature for %s in %s" %
+        raise NotFoundError("can't determine signature for %s in %s" %
                             (symbol, filename))
 
     def GetSignaturesForSymbol(self, filename, symbol, node_kind=None):

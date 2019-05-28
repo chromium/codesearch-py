@@ -1,0 +1,520 @@
+{
+  "elapsed_ms": 115, 
+  "file_info_response": [
+    {
+      "file_info": {
+        "gob_info": {
+          "repo": "chromium/chromium/src", 
+          "commit": "bf6aa1f36a7a6ddf045204e92c329dec39983369", 
+          "path": "net/http/http_auth_cache.h"
+        }, 
+        "name": "src/net/http/http_auth_cache.h", 
+        "language": "c++", 
+        "changelist_num": "bf6aa1f36a7a6ddf045204e92c329dec39983369", 
+        "package_name": "chromium", 
+        "lines": "222", 
+        "content": {
+          "text": "// Copyright (c) 2011 The Chromium Authors. All rights reserved.\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n#ifndef NET_HTTP_HTTP_AUTH_CACHE_H_\n#define NET_HTTP_HTTP_AUTH_CACHE_H_\n\n#include <stddef.h>\n\n#include <list>\n#include <map>\n#include <string>\n\n#include \"base/gtest_prod_util.h\"\n#include \"base/memory/ref_counted.h\"\n#include \"base/time/default_clock.h\"\n#include \"base/time/default_tick_clock.h\"\n#include \"base/time/time.h\"\n#include \"net/base/net_export.h\"\n#include \"net/http/http_auth.h\"\n#include \"url/gurl.h\"\n\nnamespace net {\n\n// HttpAuthCache stores HTTP authentication identities and challenge info.\n// For each (origin, realm, scheme) triple the cache stores a\n// HttpAuthCache::Entry, which holds:\n//   - the origin server {protocol scheme, host, port}\n//   - the last identity used (username/password)\n//   - the last auth handler used (contains realm and authentication scheme)\n//   - the list of paths which used this realm\n// Entries can be looked up by either (origin, realm, scheme) or (origin, path).\nclass NET_EXPORT HttpAuthCache {\n public:\n  class NET_EXPORT Entry {\n   public:\n    Entry(const Entry& other);\n    ~Entry();\n\n    const GURL& origin() const {\n      return origin_;\n    }\n\n    // The case-sensitive realm string of the challenge.\n    const std::string& realm() const { return realm_; }\n\n    // The authentication scheme of the challenge.\n    HttpAuth::Scheme scheme() const {\n      return scheme_;\n    }\n\n    // The authentication challenge.\n    const std::string& auth_challenge() const { return auth_challenge_; }\n\n    // The login credentials.\n    const AuthCredentials& credentials() const {\n      return credentials_;\n    }\n\n    int IncrementNonceCount() {\n      return ++nonce_count_;\n    }\n\n    void UpdateStaleChallenge(const std::string& auth_challenge);\n\n    bool IsEqualForTesting(const Entry& other) const;\n\n    bool operator==(const Entry& other) const = delete;\n\n   private:\n    friend class HttpAuthCache;\n    FRIEND_TEST_ALL_PREFIXES(HttpAuthCacheTest, AddPath);\n    FRIEND_TEST_ALL_PREFIXES(HttpAuthCacheTest, AddToExistingEntry);\n\n    typedef std::list<std::string> PathList;\n\n    Entry();\n\n    // Adds a path defining the realm's protection space. If the path is\n    // already contained in the protection space, is a no-op.\n    void AddPath(const std::string& path);\n\n    // Returns true if |dir| is contained within the realm's protection\n    // space.  |*path_len| is set to the length of the enclosing path if\n    // such a path exists and |path_len| is non-nullptr.  If no enclosing\n    // path is found, |*path_len| is left unmodified.\n    //\n    // If an enclosing path is found, moves it up by one place in the paths list\n    // so that more frequently used paths migrate to the front of the list.\n    //\n    // Note that proxy auth cache entries are associated with empty\n    // paths.  Therefore it is possible for HasEnclosingPath() to return\n    // true and set |*path_len| to 0.\n    bool HasEnclosingPath(const std::string& dir, size_t* path_len);\n\n    // |origin_| contains the {protocol, host, port} of the server.\n    GURL origin_;\n    std::string realm_;\n    HttpAuth::Scheme scheme_;\n\n    // Identity.\n    std::string auth_challenge_;\n    AuthCredentials credentials_;\n\n    int nonce_count_;\n\n    // List of paths that define the realm's protection space.\n    PathList paths_;\n\n    // Times the entry was created and last used (by looking up, adding a path,\n    // or updating the challenge.)\n    base::TimeTicks creation_time_ticks_;\n    base::TimeTicks last_use_time_ticks_;\n    base::Time creation_time_;\n  };\n\n  // Prevent unbounded memory growth. These are safeguards for abuse; it is\n  // not expected that the limits will be reached in ordinary usage.\n  // This also defines the worst-case lookup times (which grow linearly\n  // with number of elements in the cache).\n  enum { kMaxNumPathsPerRealmEntry = 10 };\n  enum { kMaxNumRealmEntries = 20 };\n\n  HttpAuthCache();\n  ~HttpAuthCache();\n\n  // Find the realm entry on server |origin| for realm |realm| and\n  // scheme |scheme|. If a matching entry is found, move it up by one place\n  // in the entries list, so that more frequently used entries migrate to the\n  // front of the list.\n  //   |origin| - the {scheme, host, port} of the server.\n  //   |realm|  - case sensitive realm string.\n  //   |scheme| - the authentication scheme (i.e. basic, negotiate).\n  //   returns  - the matched entry or nullptr.\n  Entry* Lookup(const GURL& origin,\n                const std::string& realm,\n                HttpAuth::Scheme scheme);\n\n  // Find the entry on server |origin| whose protection space includes\n  // |path|. This uses the assumption in RFC 2617 section 2 that deeper\n  // paths lie in the same protection space. If a matching entry is found, move\n  // it up by one place in the entries list, so that more frequently used\n  // entries migrate to the front of the list.\n  //   |origin| - the {scheme, host, port} of the server.\n  //   |path|   - absolute path of the resource, or empty string in case of\n  //              proxy auth (which does not use the concept of paths).\n  //   returns  - the matched entry or nullptr.\n  Entry* LookupByPath(const GURL& origin, const std::string& path);\n\n  // Add an entry on server |origin| for realm |handler->realm()| and\n  // scheme |handler->scheme()|.  If an entry for this (realm,scheme)\n  // already exists, update it rather than replace it -- this  preserves the\n  // paths list.\n  //   |origin|   - the {scheme, host, port} of the server.\n  //   |realm|    - the auth realm for the challenge.\n  //   |scheme|   - the authentication scheme (i.e. basic, negotiate).\n  //   |credentials| - login information for the realm.\n  //   |path|     - absolute path for a resource contained in the protection\n  //                space; this will be added to the list of known paths.\n  //   returns    - the entry that was just added/updated.\n  Entry* Add(const GURL& origin,\n             const std::string& realm,\n             HttpAuth::Scheme scheme,\n             const std::string& auth_challenge,\n             const AuthCredentials& credentials,\n             const std::string& path);\n\n  // Remove entry on server |origin| for realm |realm| and scheme |scheme|\n  // if one exists AND if the cached credentials matches |credentials|.\n  //   |origin|   - the {scheme, host, port} of the server.\n  //   |realm|    - case sensitive realm string.\n  //   |scheme|   - the authentication scheme (i.e. basic, negotiate).\n  //   |credentials| - the credentials to match.\n  //   returns    - true if an entry was removed.\n  bool Remove(const GURL& origin,\n              const std::string& realm,\n              HttpAuth::Scheme scheme,\n              const AuthCredentials& credentials);\n\n  // Clears cache entries added since |begin_time| or all entries if\n  // |begin_time| is null.\n  void ClearEntriesAddedSince(base::Time begin_time);\n\n  // Clears all added entries.\n  void ClearAllEntries();\n\n  // Updates a stale digest entry on server |origin| for realm |realm| and\n  // scheme |scheme|. The cached auth challenge is replaced with\n  // |auth_challenge| and the nonce count is reset.\n  // |UpdateStaleChallenge()| returns true if a matching entry exists in the\n  // cache, false otherwise.\n  bool UpdateStaleChallenge(const GURL& origin,\n                            const std::string& realm,\n                            HttpAuth::Scheme scheme,\n                            const std::string& auth_challenge);\n\n  // Copies all entries from |other| cache.\n  void UpdateAllFrom(const HttpAuthCache& other);\n\n  size_t GetEntriesSizeForTesting();\n  void set_tick_clock_for_testing(const base::TickClock* tick_clock) {\n    tick_clock_ = tick_clock;\n  }\n  void set_clock_for_testing(const base::Clock* clock) { clock_ = clock; }\n\n private:\n  using EntryMap = std::multimap<GURL, Entry>;\n  EntryMap entries_;\n\n  const base::TickClock* tick_clock_ = base::DefaultTickClock::GetInstance();\n  const base::Clock* clock_ = base::DefaultClock::GetInstance();\n\n  EntryMap::iterator LookupEntryIt(const GURL& origin,\n                                   const std::string& realm,\n                                   HttpAuth::Scheme scheme);\n  void EvictLeastRecentlyUsedEntry();\n};\n\n// An authentication realm entry.\n}  // namespace net\n\n#endif  // NET_HTTP_HTTP_AUTH_CACHE_H_\n"
+        }, 
+        "generated": false, 
+        "mime_type": "text/plain", 
+        "size": "8384", 
+        "type": 1, 
+        "md5": "442f2641e2928458f63b83deadf545eb", 
+        "codeblock": [
+          {
+            "modifiers": {}, 
+            "type": 11, 
+            "name": "net", 
+            "text_range": {
+              "start_line": 23, 
+              "end_line": 220, 
+              "start_column": 1, 
+              "end_column": 2
+            }, 
+            "child": [
+              {
+                "modifiers": {}, 
+                "type": 1, 
+                "name": "NET_EXPORT HttpAuthCache", 
+                "text_range": {
+                  "start_line": 33, 
+                  "end_line": 217, 
+                  "start_column": 1, 
+                  "end_column": 2
+                }, 
+                "child": [
+                  {
+                    "modifiers": {}, 
+                    "type": 1, 
+                    "name": "NET_EXPORT Entry", 
+                    "text_range": {
+                      "start_line": 35, 
+                      "end_line": 115, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }, 
+                    "child": [
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Entry", 
+                        "text_range": {
+                          "start_line": 37, 
+                          "end_line": 37, 
+                          "start_column": 5, 
+                          "end_column": 30
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "~Entry", 
+                        "text_range": {
+                          "start_line": 38, 
+                          "end_line": 38, 
+                          "start_column": 5, 
+                          "end_column": 13
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "origin", 
+                        "text_range": {
+                          "start_line": 40, 
+                          "end_line": 42, 
+                          "start_column": 5, 
+                          "end_column": 6
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "realm", 
+                        "text_range": {
+                          "start_line": 45, 
+                          "end_line": 45, 
+                          "start_column": 5, 
+                          "end_column": 56
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "HttpAuth", 
+                        "text_range": {
+                          "start_line": 48, 
+                          "end_line": 50, 
+                          "start_column": 5, 
+                          "end_column": 6
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "auth_challenge", 
+                        "text_range": {
+                          "start_line": 53, 
+                          "end_line": 53, 
+                          "start_column": 5, 
+                          "end_column": 74
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "credentials", 
+                        "text_range": {
+                          "start_line": 56, 
+                          "end_line": 58, 
+                          "start_column": 5, 
+                          "end_column": 6
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "IncrementNonceCount", 
+                        "text_range": {
+                          "start_line": 60, 
+                          "end_line": 62, 
+                          "start_column": 5, 
+                          "end_column": 6
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "UpdateStaleChallenge", 
+                        "text_range": {
+                          "start_line": 64, 
+                          "end_line": 64, 
+                          "start_column": 5, 
+                          "end_column": 65
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "IsEqualForTesting", 
+                        "text_range": {
+                          "start_line": 66, 
+                          "end_line": 66, 
+                          "start_column": 5, 
+                          "end_column": 53
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "PathList", 
+                        "text_range": {
+                          "start_line": 75, 
+                          "end_line": 75, 
+                          "start_column": 5, 
+                          "end_column": 44
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "Entry", 
+                        "text_range": {
+                          "start_line": 77, 
+                          "end_line": 77, 
+                          "start_column": 5, 
+                          "end_column": 12
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "AddPath", 
+                        "text_range": {
+                          "start_line": 81, 
+                          "end_line": 81, 
+                          "start_column": 5, 
+                          "end_column": 42
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 8, 
+                        "name": "HasEnclosingPath", 
+                        "text_range": {
+                          "start_line": 94, 
+                          "end_line": 94, 
+                          "start_column": 5, 
+                          "end_column": 68
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "origin_", 
+                        "text_range": {
+                          "start_line": 97, 
+                          "end_line": 97, 
+                          "start_column": 5, 
+                          "end_column": 17
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "std", 
+                        "text_range": {
+                          "start_line": 98, 
+                          "end_line": 98, 
+                          "start_column": 5, 
+                          "end_column": 23
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "HttpAuth", 
+                        "text_range": {
+                          "start_line": 99, 
+                          "end_line": 99, 
+                          "start_column": 5, 
+                          "end_column": 29
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "std", 
+                        "text_range": {
+                          "start_line": 102, 
+                          "end_line": 102, 
+                          "start_column": 5, 
+                          "end_column": 32
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "AuthCredentials", 
+                        "text_range": {
+                          "start_line": 103, 
+                          "end_line": 103, 
+                          "start_column": 5, 
+                          "end_column": 33
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "nonce_count_", 
+                        "text_range": {
+                          "start_line": 105, 
+                          "end_line": 105, 
+                          "start_column": 5, 
+                          "end_column": 21
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "PathList", 
+                        "text_range": {
+                          "start_line": 108, 
+                          "end_line": 108, 
+                          "start_column": 5, 
+                          "end_column": 20
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "base", 
+                        "text_range": {
+                          "start_line": 112, 
+                          "end_line": 112, 
+                          "start_column": 5, 
+                          "end_column": 41
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "base", 
+                        "text_range": {
+                          "start_line": 113, 
+                          "end_line": 113, 
+                          "start_column": 5, 
+                          "end_column": 41
+                        }
+                      }, 
+                      {
+                        "modifiers": {}, 
+                        "type": 9, 
+                        "name": "base", 
+                        "text_range": {
+                          "start_line": 114, 
+                          "end_line": 114, 
+                          "start_column": 5, 
+                          "end_column": 30
+                        }
+                      }
+                    ]
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "HttpAuthCache", 
+                    "text_range": {
+                      "start_line": 124, 
+                      "end_line": 124, 
+                      "start_column": 3, 
+                      "end_column": 18
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "~HttpAuthCache", 
+                    "text_range": {
+                      "start_line": 125, 
+                      "end_line": 125, 
+                      "start_column": 3, 
+                      "end_column": 19
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "Lookup", 
+                    "text_range": {
+                      "start_line": 135, 
+                      "end_line": 137, 
+                      "start_column": 3, 
+                      "end_column": 41
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "LookupByPath", 
+                    "text_range": {
+                      "start_line": 148, 
+                      "end_line": 148, 
+                      "start_column": 3, 
+                      "end_column": 67
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "Add", 
+                    "text_range": {
+                      "start_line": 161, 
+                      "end_line": 166, 
+                      "start_column": 3, 
+                      "end_column": 38
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "Remove", 
+                    "text_range": {
+                      "start_line": 175, 
+                      "end_line": 178, 
+                      "start_column": 3, 
+                      "end_column": 50
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "ClearEntriesAddedSince", 
+                    "text_range": {
+                      "start_line": 182, 
+                      "end_line": 182, 
+                      "start_column": 3, 
+                      "end_column": 53
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "ClearAllEntries", 
+                    "text_range": {
+                      "start_line": 185, 
+                      "end_line": 185, 
+                      "start_column": 3, 
+                      "end_column": 25
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "UpdateStaleChallenge", 
+                    "text_range": {
+                      "start_line": 192, 
+                      "end_line": 195, 
+                      "start_column": 3, 
+                      "end_column": 63
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "UpdateAllFrom", 
+                    "text_range": {
+                      "start_line": 198, 
+                      "end_line": 198, 
+                      "start_column": 3, 
+                      "end_column": 49
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "size_t", 
+                    "text_range": {
+                      "start_line": 200, 
+                      "end_line": 200, 
+                      "start_column": 3, 
+                      "end_column": 36
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "set_tick_clock_for_testing", 
+                    "text_range": {
+                      "start_line": 201, 
+                      "end_line": 203, 
+                      "start_column": 3, 
+                      "end_column": 4
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "set_clock_for_testing", 
+                    "text_range": {
+                      "start_line": 204, 
+                      "end_line": 204, 
+                      "start_column": 3, 
+                      "end_column": 75
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "entries_", 
+                    "text_range": {
+                      "start_line": 208, 
+                      "end_line": 208, 
+                      "start_column": 3, 
+                      "end_column": 20
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 9, 
+                    "name": "tick_clock_", 
+                    "text_range": {
+                      "start_line": 210, 
+                      "end_line": 210, 
+                      "start_column": 3, 
+                      "end_column": 77
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "LookupEntryIt", 
+                    "text_range": {
+                      "start_line": 213, 
+                      "end_line": 215, 
+                      "start_column": 3, 
+                      "end_column": 60
+                    }
+                  }, 
+                  {
+                    "modifiers": {}, 
+                    "type": 8, 
+                    "name": "EvictLeastRecentlyUsedEntry", 
+                    "text_range": {
+                      "start_line": 216, 
+                      "end_line": 216, 
+                      "start_column": 3, 
+                      "end_column": 37
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }, 
+      "return_code": 1
+    }
+  ]
+}

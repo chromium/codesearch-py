@@ -1,0 +1,3923 @@
+{
+  "elapsed_ms": 29, 
+  "xref_search_response": [
+    {
+      "status": 0, 
+      "search_result": [
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/android_webview/browser/aw_metrics_service_client.cc#%407549%3A7559%25android", 
+              "line_number": 196, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/android_webview/browser/aw_metrics_service_client.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/android_webview/browser/aw_metrics_service_client.h#%404517%3A4527%25android", 
+              "line_number": 114, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/android_webview/browser/aw_metrics_service_client.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/android/field_trial_list.cc#%402708%3A2718%25android", 
+              "line_number": 85, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::vector<base::FieldTrial::ActiveGroup> active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/android/field_trial_list.cc#%402834%3A2844%25android", 
+              "line_number": 87, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  for (const base::FieldTrial::ActiveGroup& group : active_groups) {"
+            }
+          ], 
+          "file": {
+            "name": "src/base/android/field_trial_list.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/debug/activity_tracker.cc#%4065502%3A65512%25android", 
+              "line_number": 1681, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }
+          ], 
+          "file": {
+            "name": "src/base/debug/activity_tracker.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.cc#%404082%3A4092%25android", 
+              "line_number": 116, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial = FieldTrialList::Find(trial_name.as_string());"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.cc#%404636%3A4646%25android", 
+              "line_number": 132, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.cc#%405408%3A5418%25android", 
+              "line_number": 151, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                             FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.cc#%407276%3A7286%25android", 
+              "line_number": 208, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FeatureList::GetFieldTrial(const Feature& feature) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.cc#%4011525%3A11535%25android", 
+              "line_number": 325, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FeatureList::GetAssociatedFieldTrial(const Feature& feature) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.cc#%4012172%3A12182%25android", 
+              "line_number": 344, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial = nullptr;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.cc#%4012814%3A12824%25android", 
+              "line_number": 360, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                   FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.cc#%4015366%3A15376%25android", 
+              "line_number": 433, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                          FieldTrial* field_trial)"
+            }
+          ], 
+          "file": {
+            "name": "src/base/feature_list.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.h#%40563%3A573%25android%40MtdJBOHMwYhAOqgPqBMkXQab6IjrZUjzW1YKwunZ3og%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fbase%2Ffeature_list.h", 
+              "line_number": 23, 
+              "type_id": 2, 
+              "type": "DECLARATION", 
+              "line_text": "class FieldTrial;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.h#%405879%3A5889%25android", 
+              "line_number": 135, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                    FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.h#%406603%3A6613%25android", 
+              "line_number": 146, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                  FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.h#%408334%3A8344%25android", 
+              "line_number": 175, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* GetFieldTrial(const Feature& feature);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.h#%4010919%3A10929%25android", 
+              "line_number": 225, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.h#%4011589%3A11599%25android", 
+              "line_number": 238, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    OverrideEntry(OverrideState overridden_state, FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.h#%4012389%3A12399%25android", 
+              "line_number": 255, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* GetAssociatedFieldTrial(const Feature& feature);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list.h#%4013486%3A13496%25android", 
+              "line_number": 273, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                        FieldTrial* field_trial);"
+            }
+          ], 
+          "file": {
+            "name": "src/base/feature_list.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%405088%3A5098%25android", 
+              "line_number": 147, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%405435%3A5445%25android", 
+              "line_number": 157, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial1 = FieldTrialList::CreateFieldTrial(\"TrialExample1\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%405516%3A5526%25android", 
+              "line_number": 158, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial2 = FieldTrialList::CreateFieldTrial(\"TrialExample2\", \"B\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%407076%3A7086%25android", 
+              "line_number": 189, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial1 = FieldTrialList::CreateFieldTrial(\"TrialExample1\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%407155%3A7165%25android", 
+              "line_number": 190, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial2 = FieldTrialList::CreateFieldTrial(\"TrialExample2\", \"B\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%408721%3A8731%25android", 
+              "line_number": 224, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"TrialExample2\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%409811%3A9821%25android", 
+              "line_number": 248, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"TrialExample2\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4014495%3A14505%25android", 
+              "line_number": 345, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* enable_trial = nullptr;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4014980%3A14990%25android", 
+              "line_number": 354, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* disable_trial = nullptr;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4016413%3A16423%25android", 
+              "line_number": 387, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"Trial\", \"Group\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4017618%3A17628%25android", 
+              "line_number": 413, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"Trial\", \"Group\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4018327%3A18337%25android", 
+              "line_number": 430, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"Trial\", \"Group\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4023300%3A23310%25android", 
+              "line_number": 540, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial1 = FieldTrialList::CreateFieldTrial(\"TrialExample1\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4023379%3A23389%25android", 
+              "line_number": 541, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial2 = FieldTrialList::CreateFieldTrial(\"TrialExample2\", \"B\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4024302%3A24312%25android", 
+              "line_number": 560, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* associated_trial1 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/feature_list_unittest.cc#%4024403%3A24413%25android", 
+              "line_number": 562, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* associated_trial2 ="
+            }
+          ], 
+          "file": {
+            "name": "src/base/feature_list_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%402913%3A2923%25android", 
+              "line_number": 74, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void PickleFieldTrial(const FieldTrial::State& trial_state, Pickle* pickle) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%404305%3A4315%25android", 
+              "line_number": 116, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::Probability GetGroupBoundaryValue("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%404356%3A4366%25android", 
+              "line_number": 117, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::Probability divisor,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%404872%3A4882%25android", 
+              "line_number": 127, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::Probability result ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%404923%3A4933%25android", 
+              "line_number": 128, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      static_cast<FieldTrial::Probability>(divisor * entropy_value + kEpsilon);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%408330%3A8340%25android", 
+              "line_number": 228, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const int FieldTrial::kNotFinalized = -1;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%408372%3A8382%25android", 
+              "line_number": 229, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const int FieldTrial::kDefaultGroupNumber = 0;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%408414%3A8424%25android", 
+              "line_number": 230, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::enable_benchmarking_ = false;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%408618%3A8628%25android", 
+              "line_number": 237, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::EntropyProvider::~EntropyProvider() = default;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%408678%3A8688%25android", 
+              "line_number": 239, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::State::State() = default;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%408717%3A8727%25android", 
+              "line_number": 241, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::State::State(const State& other) = default;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%408774%3A8784%25android", 
+              "line_number": 243, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::State::~State() = default;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%408819%3A8829%25android", 
+              "line_number": 245, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::FieldTrialEntry::GetTrialAndGroupName("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409045%3A9055%25android", 
+              "line_number": 252, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::FieldTrialEntry::GetParams("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409554%3A9564%25android", 
+              "line_number": 269, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "PickleIterator FieldTrial::FieldTrialEntry::GetPickleIterator() const {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%409777%3A9787%25android", 
+              "line_number": 277, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::FieldTrialEntry::ReadStringPair("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4010057%3A10067%25android", 
+              "line_number": 288, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::Disable() {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4010597%3A10607%25android", 
+              "line_number": 303, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int FieldTrial::AppendGroup(const std::string& name,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4011966%3A11976%25android", 
+              "line_number": 338, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "int FieldTrial::group() {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4012135%3A12145%25android", 
+              "line_number": 345, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const std::string& FieldTrial::group_name() {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4012327%3A12337%25android", 
+              "line_number": 352, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const std::string& FieldTrial::GetGroupNameWithoutActivation() {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4012428%3A12438%25android", 
+              "line_number": 357, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::SetForced() {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4012769%3A12779%25android", 
+              "line_number": 369, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::EnableBenchmarking() {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4012903%3A12913%25android", 
+              "line_number": 375, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrial::CreateSimulatedFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4013108%3A13118%25android", 
+              "line_number": 380, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  return new FieldTrial(trial_name, total_probability, default_group_name,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4013213%3A13223%25android", 
+              "line_number": 384, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::FieldTrial(const std::string& trial_name,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4014104%3A14114%25android", 
+              "line_number": 406, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial::~FieldTrial() = default;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4014147%3A14157%25android", 
+              "line_number": 408, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::SetTrialRegistered() {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4014284%3A14294%25android", 
+              "line_number": 414, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::SetGroupChoice(const std::string& group_name, int number) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4014574%3A14584%25android", 
+              "line_number": 423, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::FinalizeGroupChoice() {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4014652%3A14662%25android", 
+              "line_number": 427, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrial::FinalizeGroupChoiceImpl(bool is_locked) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4015102%3A15112%25android", 
+              "line_number": 441, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::GetActiveGroup(ActiveGroup* active_group) const {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4015373%3A15383%25android", 
+              "line_number": 450, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "bool FieldTrial::GetStateWhileLocked(State* field_trial_state,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4016108%3A16118%25android", 
+              "line_number": 473, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<const FieldTrial::EntropyProvider> entropy_provider)"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4016862%3A16872%25android", 
+              "line_number": 499, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrialList::FactoryGetFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4016951%3A16961%25android", 
+              "line_number": 501, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::Probability total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4017110%3A17120%25android", 
+              "line_number": 506, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::RandomizationType randomization_type,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4017403%3A17413%25android", 
+              "line_number": 514, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrialList::FactoryGetFieldTrialWithRandomizationSeed("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4017513%3A17523%25android", 
+              "line_number": 516, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::Probability total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4017672%3A17682%25android", 
+              "line_number": 521, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::RandomizationType randomization_type,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4017796%3A17806%25android", 
+              "line_number": 524, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const FieldTrial::EntropyProvider* override_entropy_provider) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4017910%3A17920%25android", 
+              "line_number": 526, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    *default_group_number = FieldTrial::kDefaultGroupNumber;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4018019%3A18029%25android", 
+              "line_number": 528, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* existing_trial = Find(trial_name);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4019049%3A19059%25android", 
+              "line_number": 546, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "            kNonConflictingGroupNumber != FieldTrial::kDefaultGroupNumber,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4019195%3A19205%25android", 
+              "line_number": 548, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        static_assert(kNonConflictingGroupNumber != FieldTrial::kNotFinalized,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4019451%3A19461%25android", 
+              "line_number": 557, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  if (randomization_type == FieldTrial::ONE_TIME_RANDOMIZED) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4019553%3A19563%25android", 
+              "line_number": 559, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const FieldTrial::EntropyProvider* entropy_provider ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4019945%3A19955%25android", 
+              "line_number": 566, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    DCHECK_EQ(FieldTrial::SESSION_RANDOMIZED, randomization_type);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4020108%3A20118%25android", 
+              "line_number": 571, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = new FieldTrial(trial_name, total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4020405%3A20415%25android", 
+              "line_number": 580, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrialList::Find(const std::string& trial_name) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4020668%3A20678%25android", 
+              "line_number": 589, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = Find(trial_name);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4020773%3A20783%25android", 
+              "line_number": 592, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  return FieldTrial::kNotFinalized;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4020889%3A20899%25android", 
+              "line_number": 597, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = Find(trial_name);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4021214%3A21224%25android", 
+              "line_number": 610, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = Find(trial_name);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4021260%3A21270%25android", 
+              "line_number": 611, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4021440%3A21450%25android", 
+              "line_number": 617, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4022247%3A22257%25android", 
+              "line_number": 639, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::State trial;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4023157%3A23167%25android", 
+              "line_number": 662, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::State trial;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4024552%3A24562%25android", 
+              "line_number": 701, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::ActiveGroups* active_groups) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4024756%3A24766%25android", 
+              "line_number": 708, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4025015%3A25025%25android", 
+              "line_number": 717, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::ActiveGroups* active_groups) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4025244%3A25254%25android", 
+              "line_number": 724, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::ActiveGroup group;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4025546%3A25556%25android", 
+              "line_number": 735, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::ActiveGroups* active_groups) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4025999%3A26009%25android", 
+              "line_number": 748, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::FieldTrialEntry* entry;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4026078%3A26088%25android", 
+              "line_number": 749, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  while ((entry = mem_iter.GetNextOfObject<FieldTrial::FieldTrialEntry>()) !="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4026313%3A26323%25android", 
+              "line_number": 755, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::ActiveGroup group;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4027353%3A27363%25android", 
+              "line_number": 787, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial = CreateFieldTrial(trial_name, group_name);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4033240%3A33250%25android", 
+              "line_number": 948, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrialList::CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4033514%3A33524%25android", 
+              "line_number": 957, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = FieldTrialList::Find(name);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4033882%3A33892%25android", 
+              "line_number": 966, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  field_trial = new FieldTrial(name, kTotalProbability, group_name, 0);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4034824%3A34834%25android", 
+              "line_number": 1001, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrialList::OnGroupFinalized(bool is_locked, FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4035244%3A35254%25android", 
+              "line_number": 1015, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrialList::NotifyFieldTrialGroupSelection(FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4036520%3A36530%25android", 
+              "line_number": 1060, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* field_trial,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4037571%3A37581%25android", 
+              "line_number": 1082, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::FieldTrialEntry* entry ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4037659%3A37669%25android", 
+              "line_number": 1083, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      global_->field_trial_allocator_->GetAsObject<FieldTrial::FieldTrialEntry>("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4037848%3A37858%25android", 
+              "line_number": 1088, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  size_t actual_size = sizeof(FieldTrial::FieldTrialEntry) + entry->pickle_size;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4038626%3A38636%25android", 
+              "line_number": 1112, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::vector<FieldTrial::FieldTrialRef> new_refs;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4038666%3A38676%25android", 
+              "line_number": 1114, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::FieldTrialRef prev_ref;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4038746%3A38756%25android", 
+              "line_number": 1115, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  while ((prev_ref = mem_iter.GetNextOfType<FieldTrial::FieldTrialEntry>()) !="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4038899%3A38909%25android", 
+              "line_number": 1118, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const FieldTrial::FieldTrialEntry* prev_entry ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4038972%3A38982%25android", 
+              "line_number": 1119, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        allocator->GetAsObject<FieldTrial::FieldTrialEntry>(prev_ref);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4039320%3A39330%25android", 
+              "line_number": 1129, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    size_t total_size = sizeof(FieldTrial::FieldTrialEntry) + pickle.size();"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4039370%3A39380%25android", 
+              "line_number": 1130, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::FieldTrialEntry* new_entry ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4039434%3A39444%25android", 
+              "line_number": 1131, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        allocator->New<FieldTrial::FieldTrialEntry>(total_size);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4039852%3A39862%25android", 
+              "line_number": 1139, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                sizeof(FieldTrial::FieldTrialEntry);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4040026%3A40036%25android", 
+              "line_number": 1144, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::FieldTrialRef new_ref = allocator->GetAsReference(new_entry);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4040104%3A40114%25android", 
+              "line_number": 1145, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial = global_->PreLockedFind(trial_name.as_string());"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4040340%3A40350%25android", 
+              "line_number": 1151, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                          FieldTrial::FieldTrialEntry::kPersistentTypeId,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4040849%3A40859%25android", 
+              "line_number": 1172, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::vector<const FieldTrial::FieldTrialEntry*>"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4041007%3A41017%25android", 
+              "line_number": 1175, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::vector<const FieldTrial::FieldTrialEntry*> entries;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4041104%3A41114%25android", 
+              "line_number": 1177, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::FieldTrialEntry* entry;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4041179%3A41189%25android", 
+              "line_number": 1178, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  while ((entry = iter.GetNextOfObject<FieldTrial::FieldTrialEntry>()) !="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4047415%3A47425%25android", 
+              "line_number": 1359, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::FieldTrialEntry* entry;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4047494%3A47504%25android", 
+              "line_number": 1360, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  while ((entry = mem_iter.GetNextOfObject<FieldTrial::FieldTrialEntry>()) !="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4047785%3A47795%25android", 
+              "line_number": 1369, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4049486%3A49496%25android", 
+              "line_number": 1422, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4049784%3A49794%25android", 
+              "line_number": 1432, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::State trial_state;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4050126%3A50136%25android", 
+              "line_number": 1444, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  size_t total_size = sizeof(FieldTrial::FieldTrialEntry) + pickle.size();"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4050174%3A50184%25android", 
+              "line_number": 1445, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::FieldTrialRef ref = allocator->Allocate("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4050245%3A50255%25android", 
+              "line_number": 1446, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      total_size, FieldTrial::FieldTrialEntry::kPersistentTypeId);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4050383%3A50393%25android", 
+              "line_number": 1452, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::FieldTrialEntry* entry ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4050449%3A50459%25android", 
+              "line_number": 1453, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      allocator->GetAsObject<FieldTrial::FieldTrialEntry>(ref);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4050775%3A50785%25android", 
+              "line_number": 1460, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      reinterpret_cast<char*>(entry) + sizeof(FieldTrial::FieldTrialEntry);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4050984%3A50994%25android", 
+              "line_number": 1469, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* field_trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4051211%3A51221%25android", 
+              "line_number": 1476, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::FieldTrialRef ref = field_trial->ref_;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4051718%3A51728%25android", 
+              "line_number": 1485, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::FieldTrialEntry* entry ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4051786%3A51796%25android", 
+              "line_number": 1486, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        allocator->GetAsObject<FieldTrial::FieldTrialEntry>(ref);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4051895%3A51905%25android", 
+              "line_number": 1492, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "const FieldTrial::EntropyProvider*"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4052112%3A52122%25android", 
+              "line_number": 1502, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "FieldTrial* FieldTrialList::PreLockedFind(const std::string& name) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.cc#%4052332%3A52342%25android", 
+              "line_number": 1510, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "void FieldTrialList::Register(FieldTrial* trial) {"
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%403655%3A3665%25android%40FieldTrial%3Abase%23c%23cGxmCcu4cj8%23chromium.googlesource.com%2Fchromium%2Fsrc%23src%2Fbase%2Fmetrics%2Ffield_trial.h", 
+              "line_number": 93, 
+              "type_id": 1, 
+              "type": "DEFINITION", 
+              "line_text": "class BASE_EXPORT FieldTrial : public RefCounted<FieldTrial> {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%403686%3A3696%25android", 
+              "line_number": 93, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "class BASE_EXPORT FieldTrial : public RefCounted<FieldTrial> {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4010804%3A10814%25android", 
+              "line_number": 248, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* CreateSimulatedFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4012559%3A12569%25android", 
+              "line_number": 281, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  friend class RefCounted<FieldTrial>;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4013254%3A13264%25android", 
+              "line_number": 296, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  virtual ~FieldTrial();"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4016986%3A16996%25android", 
+              "line_number": 388, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  DISALLOW_COPY_AND_ASSIGN(FieldTrial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4018581%3A18591%25android", 
+              "line_number": 426, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::unique_ptr<const FieldTrial::EntropyProvider> entropy_provider);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4019799%3A19809%25android", 
+              "line_number": 449, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* FactoryGetFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4019876%3A19886%25android", 
+              "line_number": 451, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::Probability total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4020045%3A20055%25android", 
+              "line_number": 456, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::RandomizationType randomization_type,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4020928%3A20938%25android", 
+              "line_number": 470, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* FactoryGetFieldTrialWithRandomizationSeed("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4021026%3A21036%25android", 
+              "line_number": 472, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::Probability total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4021195%3A21205%25android", 
+              "line_number": 477, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::RandomizationType randomization_type,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4021325%3A21335%25android", 
+              "line_number": 480, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const FieldTrial::EntropyProvider* override_entropy_provider);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4021540%3A21550%25android", 
+              "line_number": 484, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* Find(const std::string& trial_name);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4024726%3A24736%25android", 
+              "line_number": 539, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::ActiveGroups* active_groups);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4024939%3A24949%25android", 
+              "line_number": 544, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::ActiveGroups* active_groups);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4025328%3A25338%25android", 
+              "line_number": 552, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::ActiveGroups* active_groups);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4029527%3A29537%25android", 
+              "line_number": 626, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static FieldTrial* CreateFieldTrial(const std::string& name,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4031038%3A31048%25android", 
+              "line_number": 654, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static void OnGroupFinalized(bool is_locked, FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4031187%3A31197%25android", 
+              "line_number": 657, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static void NotifyFieldTrialGroupSelection(FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4031546%3A31556%25android", 
+              "line_number": 666, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial* field_trial,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4032179%3A32189%25android", 
+              "line_number": 680, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static std::vector<const FieldTrial::FieldTrialEntry*>"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4036108%3A36118%25android", 
+              "line_number": 754, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                        FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4036259%3A36269%25android", 
+              "line_number": 757, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static void ActivateFieldTrialEntryWhileLocked(FieldTrial* field_trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4036376%3A36386%25android", 
+              "line_number": 760, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  typedef std::map<std::string, FieldTrial*> RegistrationMap;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4036556%3A36566%25android", 
+              "line_number": 764, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static const FieldTrial::EntropyProvider*"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4036703%3A36713%25android", 
+              "line_number": 768, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* PreLockedFind(const std::string& name);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4036976%3A36986%25android", 
+              "line_number": 773, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static void Register(FieldTrial* trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial.h#%4037742%3A37752%25android", 
+              "line_number": 794, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const FieldTrial::EntropyProvider> entropy_provider_;"
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_param_associator.cc#%401176%3A1186%25android", 
+              "line_number": 39, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* field_trial = FieldTrialList::Find(trial_name);"
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial_param_associator.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params.cc#%401138%3A1148%25android", 
+              "line_number": 32, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FeatureList::GetFieldTrial(feature);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params.cc#%401866%3A1876%25android", 
+              "line_number": 55, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FeatureList::GetFieldTrial(feature);"
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial_params.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%40571%3A581%25android", 
+              "line_number": 19, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "scoped_refptr<FieldTrial> CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%40890%3A900%25android", 
+              "line_number": 26, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrialList::kNoExpirationYear, 1, 1, FieldTrial::SESSION_RANDOMIZED,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%401472%3A1482%25android", 
+              "line_number": 44, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                              FieldTrial* trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%404111%3A4121%25android", 
+              "line_number": 116, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%405455%3A5465%25android", 
+              "line_number": 150, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%405976%3A5986%25android", 
+              "line_number": 163, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%406620%3A6630%25android", 
+              "line_number": 179, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%407305%3A7315%25android", 
+              "line_number": 197, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%407964%3A7974%25android", 
+              "line_number": 214, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%408624%3A8634%25android", 
+              "line_number": 231, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%409816%3A9826%25android", 
+              "line_number": 260, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%4010968%3A10978%25android", 
+              "line_number": 291, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%4012525%3A12535%25android", 
+              "line_number": 329, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%4014192%3A14202%25android", 
+              "line_number": 370, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%4015599%3A15609%25android", 
+              "line_number": 407, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_params_unittest.cc#%4017041%3A17051%25android", 
+              "line_number": 444, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial_params_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%401404%3A1414%25android", 
+              "line_number": 47, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "scoped_refptr<FieldTrial> CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%401723%3A1733%25android", 
+              "line_number": 54, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrialList::kNoExpirationYear, 1, 1, FieldTrial::SESSION_RANDOMIZED,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%403665%3A3675%25android", 
+              "line_number": 128, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial1 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%403765%3A3775%25android", 
+              "line_number": 130, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  EXPECT_EQ(FieldTrial::kNotFinalized, trial1->group_);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%404060%3A4070%25android", 
+              "line_number": 139, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial2 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%404160%3A4170%25android", 
+              "line_number": 141, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  EXPECT_EQ(FieldTrial::kNotFinalized, trial2->group_);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%405032%3A5042%25android", 
+              "line_number": 165, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial_true ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%405353%3A5363%25android", 
+              "line_number": 173, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial_false ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%405767%3A5777%25android", 
+              "line_number": 185, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%406138%3A6148%25android", 
+              "line_number": 193, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  } while (trial->group_ != FieldTrial::kNotFinalized);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%406953%3A6963%25android", 
+              "line_number": 214, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%407208%3A7218%25android", 
+              "line_number": 218, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    if (trial->group_ != FieldTrial::kNotFinalized) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%407370%3A7380%25android", 
+              "line_number": 223, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    EXPECT_NE(FieldTrial::kNotFinalized, trial->group());"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%407894%3A7904%25android", 
+              "line_number": 239, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%408612%3A8622%25android", 
+              "line_number": 263, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%409729%3A9739%25android", 
+              "line_number": 295, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::FactoryGetFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%409869%3A9879%25android", 
+              "line_number": 297, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      FieldTrial::SESSION_RANDOMIZED,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4010338%3A10348%25android", 
+              "line_number": 310, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4010486%3A10496%25android", 
+              "line_number": 314, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4011131%3A11141%25android", 
+              "line_number": 330, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> multi_group_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4011757%3A11767%25android", 
+              "line_number": 344, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4012389%3A12399%25android", 
+              "line_number": 358, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4012991%3A13001%25android", 
+              "line_number": 373, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4013238%3A13248%25android", 
+              "line_number": 378, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4013403%3A13413%25android", 
+              "line_number": 382, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4014419%3A14429%25android", 
+              "line_number": 408, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4015163%3A15173%25android", 
+              "line_number": 428, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4015867%3A15877%25android", 
+              "line_number": 446, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial2 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4016338%3A16348%25android", 
+              "line_number": 458, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial3 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4016698%3A16708%25android", 
+              "line_number": 470, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4017536%3A17546%25android", 
+              "line_number": 489, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial2 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4018056%3A18066%25android", 
+              "line_number": 502, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial3 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4018375%3A18385%25android", 
+              "line_number": 511, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> expired_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4018550%3A18560%25android", 
+              "line_number": 514, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          OneYearBeforeBuildTime(), 1, 1, FieldTrial::SESSION_RANDOMIZED,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4019393%3A19403%25android", 
+              "line_number": 537, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::Find(\"Some_name\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4019472%3A19482%25android", 
+              "line_number": 538, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  ASSERT_NE(static_cast<FieldTrial*>(nullptr), trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4019658%3A19668%25android", 
+              "line_number": 543, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  ASSERT_NE(static_cast<FieldTrial*>(nullptr), trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4019978%3A19988%25android", 
+              "line_number": 552, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::Find(\"tname\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4020053%3A20063%25android", 
+              "line_number": 553, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  ASSERT_NE(static_cast<FieldTrial*>(nullptr), trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4021038%3A21048%25android", 
+              "line_number": 572, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4022100%3A22110%25android", 
+              "line_number": 596, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4023074%3A23084%25android", 
+              "line_number": 619, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4025169%3A25179%25android", 
+              "line_number": 672, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4025311%3A25321%25android", 
+              "line_number": 676, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::Find(\"Foo\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4025384%3A25394%25android", 
+              "line_number": 677, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  ASSERT_NE(static_cast<FieldTrial*>(nullptr), trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4025566%3A25576%25android", 
+              "line_number": 682, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  ASSERT_NE(static_cast<FieldTrial*>(nullptr), trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4025851%3A25861%25android", 
+              "line_number": 692, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::Find(\"Some_name\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4025930%3A25940%25android", 
+              "line_number": 693, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  ASSERT_NE(static_cast<FieldTrial*>(nullptr), trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4026332%3A26342%25android", 
+              "line_number": 704, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4026536%3A26546%25android", 
+              "line_number": 710, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4026706%3A26716%25android", 
+              "line_number": 715, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial1 = FieldTrialList::CreateFieldTrial(\"Some_name\", \"Winner\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4026885%3A26895%25android", 
+              "line_number": 719, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial2 = FieldTrialList::CreateFieldTrial(\"Some_name\", \"Loser\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4027093%3A27103%25android", 
+              "line_number": 725, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4027373%3A27383%25android", 
+              "line_number": 733, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4027648%3A27658%25android", 
+              "line_number": 742, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* forced_trial = FieldTrialList::CreateFieldTrial(\"Use the\","
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4027902%3A27912%25android", 
+              "line_number": 747, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> factory_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4028775%3A28785%25android", 
+              "line_number": 767, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* forced_trial = FieldTrialList::CreateFieldTrial(\"Trial Name\","
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4028972%3A28982%25android", 
+              "line_number": 770, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> factory_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4029652%3A29662%25android", 
+              "line_number": 786, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> forced_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4030043%3A30053%25android", 
+              "line_number": 797, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> hard_coded_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4030431%3A30441%25android", 
+              "line_number": 806, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> other_hard_coded_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4030971%3A30981%25android", 
+              "line_number": 820, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4031482%3A31492%25android", 
+              "line_number": 834, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4032223%3A32233%25android", 
+              "line_number": 852, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> forced_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4032442%3A32452%25android", 
+              "line_number": 858, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> client_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4033212%3A33222%25android", 
+              "line_number": 876, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> forced_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4033429%3A33439%25android", 
+              "line_number": 882, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> client_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4034273%3A34283%25android", 
+              "line_number": 901, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> forced_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4034482%3A34492%25android", 
+              "line_number": 907, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> client_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4035312%3A35322%25android", 
+              "line_number": 926, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> forced_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4035519%3A35529%25android", 
+              "line_number": 932, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> client_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4036179%3A36189%25android", 
+              "line_number": 949, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4037112%3A37122%25android", 
+              "line_number": 973, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4037896%3A37906%25android", 
+              "line_number": 992, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4038727%3A38737%25android", 
+              "line_number": 1016, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4039555%3A39565%25android", 
+              "line_number": 1040, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4039745%3A39755%25android", 
+              "line_number": 1046, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4040291%3A40301%25android", 
+              "line_number": 1062, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4040771%3A40781%25android", 
+              "line_number": 1075, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4040802%3A40812%25android", 
+              "line_number": 1076, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        new FieldTrial(\"test\", kBucketCount, \"default\", entropy));"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4041161%3A41171%25android", 
+              "line_number": 1088, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4041190%3A41200%25android", 
+              "line_number": 1089, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      new FieldTrial(\"test\", 2, \"default\", kEntropyValue));"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4041904%3A41914%25android", 
+              "line_number": 1112, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4041930%3A41940%25android", 
+              "line_number": 1113, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "       FieldTrial::CreateSimulatedFieldTrial(kTrialName, 100, kDefaultGroupName,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4042583%3A42593%25android", 
+              "line_number": 1128, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4043156%3A43166%25android", 
+              "line_number": 1146, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4043316%3A43326%25android", 
+              "line_number": 1150, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial2 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4043473%3A43483%25android", 
+              "line_number": 1154, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> trial3 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4043859%3A43869%25android", 
+              "line_number": 1165, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4044656%3A44666%25android", 
+              "line_number": 1182, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          FieldTrial::ONE_TIME_RANDOMIZED, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4045439%3A45449%25android", 
+              "line_number": 1203, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"Trial1\", \"Group1\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4048698%3A48708%25android", 
+              "line_number": 1283, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> simulated_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4048736%3A48746%25android", 
+              "line_number": 1284, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "        FieldTrial::CreateSimulatedFieldTrial(kTrialName, 100, \"Simulated\","
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4048933%3A48943%25android", 
+              "line_number": 1289, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* real_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4051719%3A51729%25android", 
+              "line_number": 1359, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial* trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4052209%3A52219%25android", 
+              "line_number": 1370, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::FieldTrialRef old_ref = trial->ref_;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4052336%3A52346%25android", 
+              "line_number": 1372, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    FieldTrial::FieldTrialRef new_ref = trial->ref_;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4054527%3A54537%25android", 
+              "line_number": 1421, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::vector<const FieldTrial::FieldTrialEntry*> entries ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4054729%3A54739%25android", 
+              "line_number": 1426, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const FieldTrial::FieldTrialEntry* entry = entries[0];"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4059729%3A59739%25android", 
+              "line_number": 1553, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial1 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/metrics/field_trial_unittest.cc#%4060229%3A60239%25android", 
+              "line_number": 1564, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial2 ="
+            }
+          ], 
+          "file": {
+            "name": "src/base/metrics/field_trial_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/mock_entropy_provider.h#%40372%3A382%25android", 
+              "line_number": 14, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "class MockEntropyProvider : public base::FieldTrial::EntropyProvider {"
+            }
+          ], 
+          "file": {
+            "name": "src/base/test/mock_entropy_provider.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list.cc#%405162%3A5172%25android", 
+              "line_number": 155, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const std::vector<FieldTrial*>& trials_for_enabled_features,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list.cc#%408146%3A8156%25android", 
+              "line_number": 220, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::vector<FieldTrial*> field_trials;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list.cc#%408780%3A8790%25android", 
+              "line_number": 234, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<FieldTrial> field_trial_override ="
+            }
+          ], 
+          "file": {
+            "name": "src/base/test/scoped_feature_list.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list.h#%405188%3A5198%25android", 
+              "line_number": 117, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const std::vector<FieldTrial*>& trials_for_enabled_features,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list.h#%405642%3A5652%25android", 
+              "line_number": 125, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                                                  FieldTrial* trial);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list.h#%405775%3A5785%25android", 
+              "line_number": 129, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::vector<scoped_refptr<FieldTrial>> field_trial_overrides_;"
+            }
+          ], 
+          "file": {
+            "name": "src/base/test/scoped_feature_list.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list_unittest.cc#%402972%3A2982%25android", 
+              "line_number": 89, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list_unittest.cc#%404138%3A4148%25android", 
+              "line_number": 118, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list_unittest.cc#%407395%3A7405%25android", 
+              "line_number": 186, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<FieldTrial> trial1 ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list_unittest.cc#%4011491%3A11501%25android", 
+              "line_number": 292, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"TrialExample\", \"A\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/base/test/scoped_feature_list_unittest.cc#%4012135%3A12145%25android", 
+              "line_number": 309, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  FieldTrial* trial = FieldTrialList::CreateFieldTrial(\"TrialExample\", \"A\");"
+            }
+          ], 
+          "file": {
+            "name": "src/base/test/scoped_feature_list_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/chrome/browser/android/explore_sites/explore_sites_fetcher_unittest.cc#%403074%3A3084%25android", 
+              "line_number": 81, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/android/explore_sites/explore_sites_fetcher_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/chrome/browser/android/explore_sites/explore_sites_service_impl_unittest.cc#%403458%3A3468%25android", 
+              "line_number": 92, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/android/explore_sites/explore_sites_service_impl_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/chrome/browser/autocomplete/search_provider_unittest.cc#%4010348%3A10358%25android", 
+              "line_number": 269, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* CreateFieldTrial(const char* field_trial_rule,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/chrome/browser/autocomplete/search_provider_unittest.cc#%4022171%3A22181%25android", 
+              "line_number": 591, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "base::FieldTrial* BaseSearchProviderTest::CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/chrome/browser/autocomplete/search_provider_unittest.cc#%40113888%3A113898%25android", 
+              "line_number": 2530, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/autocomplete/search_provider_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/chrome/browser/metrics/chrome_metrics_services_manager_client.cc#%403538%3A3548%25android", 
+              "line_number": 85, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                              base::FieldTrial* trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/chrome/browser/metrics/chrome_metrics_services_manager_client.cc#%406761%3A6771%25android", 
+              "line_number": 175, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/chrome/browser/metrics/chrome_metrics_services_manager_client.cc#%406932%3A6942%25android", 
+              "line_number": 178, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          1, 1, base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr));"
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/metrics/chrome_metrics_services_manager_client.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/chrome/browser/prefs/chrome_pref_service_factory.cc#%4011322%3A11332%25android", 
+              "line_number": 256, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/prefs/chrome_pref_service_factory.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/chrome/browser/ui/webui/snippets_internals/snippets_internals_page_handler.cc#%401670%3A1680%25android", 
+              "line_number": 45, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial = base::FeatureList::GetFieldTrial(*feature);"
+            }
+          ], 
+          "file": {
+            "name": "src/chrome/browser/ui/webui/snippets_internals/snippets_internals_page_handler.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/autofill/core/browser/form_structure_unittest.cc#%405765%3A5775%25android", 
+              "line_number": 143, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> field_trial_;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/autofill/core/browser/form_structure_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/autofill_assistant/browser/service.cc#%4010502%3A10512%25android", 
+              "line_number": 285, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups active_groups;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/autofill_assistant/browser/service.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/feature_engagement/internal/chrome_variations_configuration_unittest.cc#%401808%3A1818%25android", 
+              "line_number": 49, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* foo_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/feature_engagement/internal/chrome_variations_configuration_unittest.cc#%401917%3A1927%25android", 
+              "line_number": 51, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* bar_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/feature_engagement/internal/chrome_variations_configuration_unittest.cc#%402026%3A2036%25android", 
+              "line_number": 53, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* qux_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/feature_engagement/internal/chrome_variations_configuration_unittest.cc#%404600%3A4610%25android", 
+              "line_number": 115, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::map<std::string, base::FieldTrial*> trials_;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/feature_engagement/internal/chrome_variations_configuration_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/flags_ui/flags_state.cc#%407533%3A7543%25android", 
+              "line_number": 204, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "base::FieldTrial* RegisterFeatureVariationParameters("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/flags_ui/flags_state.cc#%408136%3A8146%25android", 
+              "line_number": 216, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/flags_ui/flags_state.cc#%4019692%3A19702%25android", 
+              "line_number": 525, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial = RegisterFeatureVariationParameters("
+            }
+          ], 
+          "file": {
+            "name": "src/components/flags_ui/flags_state.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/flags_ui/flags_state_unittest.cc#%4012417%3A12427%25android", 
+              "line_number": 303, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::Find(kTestTrial);"
+            }
+          ], 
+          "file": {
+            "name": "src/components/flags_ui/flags_state_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/metrics/metrics_state_manager.cc#%4010437%3A10447%25android", 
+              "line_number": 274, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/metrics/metrics_state_manager.cc#%4010710%3A10720%25android", 
+              "line_number": 279, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    return std::unique_ptr<const base::FieldTrial::EntropyProvider>("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/metrics/metrics_state_manager.cc#%4010939%3A10949%25android", 
+              "line_number": 287, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/metrics/metrics_state_manager.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/metrics/metrics_state_manager.h#%403162%3A3172%25android", 
+              "line_number": 83, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/metrics/metrics_state_manager.h#%403498%3A3508%25android", 
+              "line_number": 90, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/metrics/metrics_state_manager.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/metrics_services_manager/metrics_services_manager.cc#%401256%3A1266%25android", 
+              "line_number": 36, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/metrics_services_manager/metrics_services_manager.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/metrics_services_manager/metrics_services_manager.h#%401641%3A1651%25android", 
+              "line_number": 56, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/metrics_services_manager/metrics_services_manager.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/network_time/network_time_test_utils.cc#%405055%3A5065%25android", 
+              "line_number": 113, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::FactoryGetFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/network_time/network_time_test_utils.cc#%405178%3A5188%25android", 
+              "line_number": 115, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::SESSION_RANDOMIZED, nullptr /* default_group_number */);"
+            }
+          ], 
+          "file": {
+            "name": "src/components/network_time/network_time_test_utils.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/offline_pages/core/prefetch/prefetch_request_test_base.cc#%401658%3A1668%25android", 
+              "line_number": 47, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/offline_pages/core/prefetch/prefetch_request_test_base.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/omnibox/browser/omnibox_field_trial_unittest.cc#%401370%3A1380%25android", 
+              "line_number": 42, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  static base::FieldTrial* CreateTestTrial(const std::string& name,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/omnibox/browser/omnibox_field_trial_unittest.cc#%401509%3A1519%25android", 
+              "line_number": 44, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/omnibox/browser/omnibox_field_trial_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/safe_browsing/triggers/ad_sampler_trigger_unittest.cc#%409978%3A9988%25android", 
+              "line_number": 236, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/safe_browsing/triggers/ad_sampler_trigger_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/safe_browsing/triggers/trigger_throttler_unittest.cc#%408938%3A8948%25android", 
+              "line_number": 217, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/safe_browsing/triggers/trigger_throttler_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/subresource_filter/core/browser/subresource_filter_features_unittest.cc#%401572%3A1582%25android", 
+              "line_number": 43, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/subresource_filter/core/browser/subresource_filter_features_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/ukm/ukm_recorder_impl.cc#%407074%3A7084%25android", 
+              "line_number": 198, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/ukm/ukm_recorder_impl.cc#%407276%3A7286%25android", 
+              "line_number": 202, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr));"
+            }
+          ], 
+          "file": {
+            "name": "src/components/ukm/ukm_recorder_impl.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/ukm/ukm_service_unittest.cc#%403351%3A3361%25android", 
+              "line_number": 96, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial = base::FieldTrialList::CreateFieldTrial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/ukm/ukm_service_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/active_field_trials.cc#%40823%3A833%25android", 
+              "line_number": 27, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::ActiveGroups& active_groups,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/active_field_trials.cc#%402177%3A2187%25android", 
+              "line_number": 62, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/active_field_trials.cc#%403303%3A3313%25android", 
+              "line_number": 95, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::ActiveGroups& active_groups,"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/active_field_trials.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/active_field_trials.h#%403547%3A3557%25android", 
+              "line_number": 84, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::ActiveGroups& active_groups,"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/active_field_trials.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/active_field_trials_unittest.cc#%40689%3A699%25android", 
+              "line_number": 22, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/active_field_trials_unittest.cc#%40737%3A747%25android", 
+              "line_number": 23, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroup active_group;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/active_field_trials_unittest.cc#%402079%3A2089%25android", 
+              "line_number": 59, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/active_field_trials_unittest.cc#%402127%3A2137%25android", 
+              "line_number": 60, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroup active_group;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/active_field_trials_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer.cc#%401182%3A1192%25android", 
+              "line_number": 33, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups initially_active_trials;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer.cc#%401570%3A1580%25android", 
+              "line_number": 41, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups current_active_trials;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer.cc#%402045%3A2055%25android", 
+              "line_number": 52, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/child_process_field_trial_syncer.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer_unittest.cc#%402101%3A2111%25android", 
+              "line_number": 62, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial1 = base::FieldTrialList::CreateFieldTrial(\"A\", \"G1\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer_unittest.cc#%402181%3A2191%25android", 
+              "line_number": 63, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial2 = base::FieldTrialList::CreateFieldTrial(\"B\", \"G2\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/child_process_field_trial_syncer_unittest.cc#%402261%3A2271%25android", 
+              "line_number": 64, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial3 = base::FieldTrialList::CreateFieldTrial(\"C\", \"G3\");"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/child_process_field_trial_syncer_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider.h#%40820%3A830%25android", 
+              "line_number": 26, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "class SHA1EntropyProvider : public base::FieldTrial::EntropyProvider {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider.h#%401992%3A2002%25android", 
+              "line_number": 51, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    : public base::FieldTrial::EntropyProvider {"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/entropy_provider.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%407577%3A7587%25android", 
+              "line_number": 189, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trials[] = {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%407726%3A7736%25android", 
+              "line_number": 192, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%407893%3A7903%25android", 
+              "line_number": 195, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%408952%3A8962%25android", 
+              "line_number": 220, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trials[] = {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%409101%3A9111%25android", 
+              "line_number": 223, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%409268%3A9278%25android", 
+              "line_number": 226, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4010122%3A10132%25android", 
+              "line_number": 247, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trials[] = {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4010292%3A10302%25android", 
+              "line_number": 250, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, kCustomSeed, nullptr, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4010502%3A10512%25android", 
+              "line_number": 253, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, kCustomSeed, nullptr, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4011493%3A11503%25android", 
+              "line_number": 276, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trials[] = {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4011663%3A11673%25android", 
+              "line_number": 279, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, kCustomSeed, nullptr, nullptr),"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/entropy_provider_unittest.cc#%4011873%3A11883%25android", 
+              "line_number": 282, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "          base::FieldTrial::ONE_TIME_RANDOMIZED, kCustomSeed, nullptr, nullptr),"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/entropy_provider_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/field_trial_config/field_trial_util.cc#%403525%3A3535%25android", 
+              "line_number": 99, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/field_trial_config/field_trial_util.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/processed_study.cc#%40570%3A580%25android", 
+              "line_number": 21, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial::Probability* total_probability,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/processed_study.cc#%401287%3A1297%25android", 
+              "line_number": 38, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::Probability divisor = 0;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/processed_study.cc#%404384%3A4394%25android", 
+              "line_number": 121, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::Probability total_probability = 0;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/processed_study.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/processed_study.h#%40947%3A957%25android", 
+              "line_number": 33, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::Probability total_probability() const {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/processed_study.h#%401892%3A1902%25android", 
+              "line_number": 65, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::Probability total_probability_ = 0;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/processed_study.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_field_trial_creator.cc#%407659%3A7669%25android", 
+              "line_number": 210, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_field_trial_creator.cc#%4018288%3A18298%25android", 
+              "line_number": 464, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_field_trial_creator.cc#%4018709%3A18719%25android", 
+              "line_number": 473, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial::EnableBenchmarking();"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/service/variations_field_trial_creator.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_field_trial_creator.h#%402929%3A2939%25android", 
+              "line_number": 66, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                        std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_field_trial_creator.h#%406293%3A6303%25android", 
+              "line_number": 134, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/service/variations_field_trial_creator.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_service.cc#%4024139%3A24149%25android", 
+              "line_number": 616, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_service.cc#%4033896%3A33906%25android", 
+              "line_number": 857, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider> default_provider ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_service.cc#%4034028%3A34038%25android", 
+              "line_number": 859, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider> low_provider ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/service/variations_service.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_service.h#%408999%3A9009%25android", 
+              "line_number": 227, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  virtual std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/service/variations_service.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_service_unittest.cc#%407463%3A7473%25android", 
+              "line_number": 207, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  std::unique_ptr<const base::FieldTrial::EntropyProvider>"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/service/variations_service_unittest.cc#%407571%3A7581%25android", 
+              "line_number": 209, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    return std::unique_ptr<const base::FieldTrial::EntropyProvider>(nullptr);"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/service/variations_service_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/simulate_for_crosstalk_unittest.cc#%401024%3A1034%25android", 
+              "line_number": 28, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "scoped_refptr<base::FieldTrial> CreateDnsStudy(double value) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/simulate_for_crosstalk_unittest.cc#%401089%3A1099%25android", 
+              "line_number": 29, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/simulate_for_crosstalk_unittest.cc#%401120%3A1130%25android", 
+              "line_number": 30, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::CreateSimulatedFieldTrial(kDnsStudyName, 100, \"default\","
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/simulate_for_crosstalk_unittest.cc#%401318%3A1328%25android", 
+              "line_number": 36, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "scoped_refptr<base::FieldTrial> CreateInstantStudy(double value) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/simulate_for_crosstalk_unittest.cc#%401387%3A1397%25android", 
+              "line_number": 37, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/simulate_for_crosstalk_unittest.cc#%401418%3A1428%25android", 
+              "line_number": 38, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::CreateSimulatedFieldTrial(kInstantStudyName, 100,"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/simulate_for_crosstalk_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%40674%3A684%25android", 
+              "line_number": 20, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "VariationID GetIDForTrial(IDCollectionKey key, base::FieldTrial* trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%40870%3A880%25android", 
+              "line_number": 25, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "scoped_refptr<base::FieldTrial> CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%401213%3A1223%25android", 
+              "line_number": 33, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::SESSION_RANDOMIZED, default_group_number);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%401950%3A1960%25android", 
+              "line_number": 58, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%402535%3A2545%25android", 
+              "line_number": 72, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%403213%3A3223%25android", 
+              "line_number": 88, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_true("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%403958%3A3968%25android", 
+              "line_number": 105, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_false("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_associated_data_unittest.cc#%404736%3A4746%25android", 
+              "line_number": 124, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> no_id_trial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_associated_data_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_crash_keys.cc#%403032%3A3042%25android", 
+              "line_number": 84, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups active_groups;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_crash_keys.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider.cc#%407348%3A7358%25android", 
+              "line_number": 199, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups initial_groups;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_http_header_provider.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider_unittest.cc#%401358%3A1368%25android", 
+              "line_number": 39, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "scoped_refptr<base::FieldTrial> CreateTrialAndAssociateId("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider_unittest.cc#%401544%3A1554%25android", 
+              "line_number": 44, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider_unittest.cc#%405091%3A5101%25android", 
+              "line_number": 131, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_1(CreateTrialAndAssociateId("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider_unittest.cc#%405267%3A5277%25android", 
+              "line_number": 135, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_2(CreateTrialAndAssociateId("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_http_header_provider_unittest.cc#%405451%3A5461%25android", 
+              "line_number": 139, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_3(CreateTrialAndAssociateId("
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_http_header_provider_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_id_collection.cc#%40709%3A719%25android", 
+              "line_number": 22, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups initial_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_id_collection.cc#%40837%3A847%25android", 
+              "line_number": 24, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  for (const base::FieldTrial::ActiveGroup& group : initial_groups) {"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_id_collection.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_params_manager.cc#%40765%3A775%25android", 
+              "line_number": 24, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "base::FieldTrial* CreateFieldTrialWithParams("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_params_manager.cc#%402386%3A2396%25android", 
+              "line_number": 68, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* field_trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_params_manager.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%403087%3A3097%25android", 
+              "line_number": 78, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* trial) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%403843%3A3853%25android", 
+              "line_number": 93, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "                              base::FieldTrial* trial,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%406865%3A6875%25android", 
+              "line_number": 165, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::EntropyProvider* low_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%407867%3A7877%25android", 
+              "line_number": 193, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::EntropyProvider* low_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%408152%3A8162%25android", 
+              "line_number": 199, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* existing_trial = base::FieldTrialList::Find(study.name());"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%408835%3A8845%25android", 
+              "line_number": 213, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial* trial = base::FieldTrialList::CreateFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%409914%3A9924%25android", 
+              "line_number": 237, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::RandomizationType randomization_type ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%409977%3A9987%25android", 
+              "line_number": 238, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::SESSION_RANDOMIZED;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%4010373%3A10383%25android", 
+              "line_number": 245, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    randomization_type = base::FieldTrial::ONE_TIME_RANDOMIZED;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.cc#%4010756%3A10766%25android", 
+              "line_number": 253, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_seed_processor.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.h#%401564%3A1574%25android", 
+              "line_number": 50, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider* low_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor.h#%403586%3A3596%25android", 
+              "line_number": 88, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider* low_entropy_provider,"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_seed_processor.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor_unittest.cc#%404412%3A4422%25android", 
+              "line_number": 135, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider* override_entropy_provider) {"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor_unittest.cc#%405013%3A5023%25android", 
+              "line_number": 148, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider* override_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor_unittest.cc#%4033994%3A34004%25android", 
+              "line_number": 882, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial = base::FieldTrialList::Find(\"Study1\");"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor_unittest.cc#%4034599%3A34603%25android", 
+              "line_number": 898, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  auto* trial = base::FieldTrialList::FactoryGetFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_processor_unittest.cc#%4034756%3A34766%25android", 
+              "line_number": 900, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      1, 1, base::FieldTrial::SESSION_RANDOMIZED, nullptr);"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_seed_processor_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%40880%3A890%25android", 
+              "line_number": 26, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups trial_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%401376%3A1386%25android", 
+              "line_number": 36, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::EntropyProvider& entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%401761%3A1771%25android", 
+              "line_number": 44, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%401792%3A1802%25android", 
+              "line_number": 45, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      base::FieldTrial::CreateSimulatedFieldTrial("
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%404008%3A4018%25android", 
+              "line_number": 108, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::EntropyProvider& default_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%404079%3A4089%25android", 
+              "line_number": 109, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    const base::FieldTrial::EntropyProvider& low_entropy_provider)"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.cc#%407746%3A7756%25android", 
+              "line_number": 205, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const base::FieldTrial::EntropyProvider& entropy_provider ="
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_seed_simulator.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.h#%401988%3A1998%25android", 
+              "line_number": 54, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider& default_entropy_provider,"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.h#%402061%3A2071%25android", 
+              "line_number": 55, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "      const base::FieldTrial::EntropyProvider& low_entropy_provider);"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.h#%404096%3A4106%25android", 
+              "line_number": 99, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const base::FieldTrial::EntropyProvider& default_entropy_provider_;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/variations/variations_seed_simulator.h#%404166%3A4176%25android", 
+              "line_number": 100, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  const base::FieldTrial::EntropyProvider& low_entropy_provider_;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/variations/variations_seed_simulator.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/components/version_ui/version_handler_helper.cc#%40697%3A707%25android", 
+              "line_number": 23, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial::ActiveGroups active_groups;"
+            }
+          ], 
+          "file": {
+            "name": "src/components/version_ui/version_handler_helper.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/content/renderer/input/input_event_prediction_unittest.cc#%402534%3A2544%25android", 
+              "line_number": 71, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/content/renderer/input/input_event_prediction_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/media/capabilities/video_decode_stats_db_impl_unittest.cc#%407734%3A7744%25android", 
+              "line_number": 214, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* field_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/media/capabilities/video_decode_stats_db_impl_unittest.cc#%409915%3A9925%25android", 
+              "line_number": 270, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* field_trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/media/capabilities/video_decode_stats_db_impl_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/media/mojo/services/video_decode_perf_history_unittest.cc#%4034701%3A34711%25android", 
+              "line_number": 825, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* field_trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/media/mojo/services/video_decode_perf_history_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/http/transport_security_state_unittest.cc#%4073592%3A73602%25android", 
+              "line_number": 1718, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/net/http/transport_security_state_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/log/net_log_util.cc#%4010238%3A10248%25android", 
+              "line_number": 295, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial::ActiveGroups active_groups;"
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/net/log/net_log_util.cc#%4010429%3A10439%25android", 
+              "line_number": 298, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    for (base::FieldTrial::ActiveGroups::const_iterator it ="
+            }
+          ], 
+          "file": {
+            "name": "src/net/log/net_log_util.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/services/network/resource_scheduler_params_manager_unittest.cc#%402319%3A2329%25android", 
+              "line_number": 60, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    base::FieldTrial* field_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/services/network/resource_scheduler_params_manager_unittest.cc#%4011604%3A11614%25android", 
+              "line_number": 260, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/services/network/resource_scheduler_params_manager_unittest.cc#%4016192%3A16202%25android", 
+              "line_number": 349, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  scoped_refptr<base::FieldTrial> trial_multiplex ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/services/network/resource_scheduler_params_manager_unittest.cc#%4017332%3A17342%25android", 
+              "line_number": 369, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* trial_throttle_delayable ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/services/network/resource_scheduler_params_manager_unittest.cc#%4021788%3A21798%25android", 
+              "line_number": 457, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* field_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/services/network/resource_scheduler_params_manager_unittest.cc#%4023847%3A23857%25android", 
+              "line_number": 504, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* field_trial ="
+            }, 
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/services/network/resource_scheduler_params_manager_unittest.cc#%4025914%3A25924%25android", 
+              "line_number": 555, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* field_trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/services/network/resource_scheduler_params_manager_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/services/network/resource_scheduler_unittest.cc#%4045174%3A45184%25android", 
+              "line_number": 1157, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "  base::FieldTrial* field_trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/services/network/resource_scheduler_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/third_party/blink/renderer/platform/scheduler/main_thread/frame_scheduler_impl_unittest.cc#%4073507%3A73517%25android", 
+              "line_number": 1755, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/third_party/blink/renderer/platform/scheduler/main_thread/frame_scheduler_impl_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/third_party/googletest/src/googletest/include/gtest/gtest.h#%4058390%3A58391%25android", 
+              "line_number": 1556, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    return CmpHelperEQ(lhs_expression, rhs_expression, static_cast<T*>(nullptr),"
+            }
+          ], 
+          "file": {
+            "name": "src/third_party/googletest/src/googletest/include/gtest/gtest.h", 
+            "package_name": "chromium"
+          }
+        }, 
+        {
+          "match": [
+            {
+              "signature": "kythe://chromium.googlesource.com/chromium/src?lang=c%2B%2B?path=src/ui/events/blink/scroll_predictor_unittest.cc#%404459%3A4469%25android", 
+              "line_number": 118, 
+              "type_id": 3, 
+              "type": "REFERENCE", 
+              "line_text": "    scoped_refptr<base::FieldTrial> trial ="
+            }
+          ], 
+          "file": {
+            "name": "src/ui/events/blink/scroll_predictor_unittest.cc", 
+            "package_name": "chromium"
+          }
+        }
+      ], 
+      "estimated_total_type_count": [
+        {
+          "count": 8, 
+          "type": "DEFINITION", 
+          "type_id": 1
+        }, 
+        {
+          "count": 4, 
+          "type": "DECLARATION", 
+          "type_id": 2
+        }, 
+        {
+          "count": 1946, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }, 
+        {
+          "count": 4, 
+          "type": "EXTENDS", 
+          "type_id": 6
+        }
+      ], 
+      "kythe_next_page_token": "CygiCQoEc2tpcBD0Aw==", 
+      "eliminated_type_count": [
+        {
+          "count": 7, 
+          "type": "DEFINITION", 
+          "type_id": 1
+        }, 
+        {
+          "count": 3, 
+          "type": "DECLARATION", 
+          "type_id": 2
+        }, 
+        {
+          "count": 26, 
+          "type": "REFERENCE", 
+          "type_id": 3
+        }
+      ], 
+      "from_kythe": true
+    }
+  ]
+}
