@@ -11,7 +11,7 @@ matrix:
 
 install:
   - if [[ -n "$TYPE_CHECK" ]]; then python3 -m pip install mypy ; fi
-  - if [[ -n "FLAKE8" ]]; then python3 -m pip install flake8 ; fi
+  - if [[ -n "$FLAKE8" ]]; then python3 -m pip install flake8 ; fi
 
 script:
   - ./run_tests.sh
