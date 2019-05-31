@@ -210,7 +210,8 @@ class CsFile(object):
                 return []
             self.annotations = response.annotation_response[0].annotation
             assert isinstance(self.annotations, list)
-            assert isinstance(self.annotations[0], Annotation)
+            assert len(self.annotations) == 0 or isinstance(
+                self.annotations[0], Annotation)
 
         if self.annotations is None:
             return []
