@@ -10,7 +10,6 @@ Codesearch library.
 from __future__ import absolute_import
 
 import logging
-import os
 import sys
 
 from .file_cache import FileCache
@@ -730,12 +729,14 @@ class CodeSearch(object):
 
     def GetLocalPath(self, remote_path):
         # type: (str) -> str
-        '''Given a remote (indexed) path, returns the corresponding local path.'''
+        '''Given a remote (indexed) path, returns the corresponding local path.
+        '''
         return self.path_transformer.RemoteToLocal(remote_path)
 
     def GetRemotePath(self, local_path):
         # type: (str) -> str
-        '''Given a local path, returns the corresponding remote (indexed) path.'''
+        '''Given a local path, returns the corresponding remote (indexed) path.
+        '''
         return self.path_transformer.LocalToRemote(local_path)
 
     def GetFileSpec(self, path=None):
