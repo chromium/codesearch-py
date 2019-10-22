@@ -75,7 +75,6 @@ class SymbolSuffixMatcher(object):
     >>> SymbolSuffixMatcher("abc::def").Match("aabc def")
     False
     """
-
     def __init__(self, needle):
         self.needle = CppIdentifierTokens(needle)
 
