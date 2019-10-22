@@ -51,7 +51,7 @@ else:
 
 # For type checking. Not needed at runtime.
 try:
-    from typing import List, Optional, Dict, Union, Set
+    from typing import List, Optional, Dict, Union, Set, Tuple
 except ImportError:
     pass
 

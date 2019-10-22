@@ -9,7 +9,7 @@ import re
 
 # Type checking
 try:
-    from typing import List, Tuple
+    from typing import List, Tuple, Dict
 except ImportError:
     pass
 
@@ -63,7 +63,7 @@ class PathTransformer(object):
         out_dir = os.path.join(source_root, 'src', 'out')
 
         def _DirEntryToTime(d):
-            # type: (str) -> int
+            # type: (str) -> float
             return os.stat(os.path.join(out_dir, d)).st_mtime
 
         def _DirEntryIsDir(d):
@@ -72,8 +72,8 @@ class PathTransformer(object):
 
         self.source_root = source_root
         if not os.path.exists(out_dir):
-            self.local_to_remote = {}
-            self.remote_to_local = {}
+            self.local_to_remote = {}  # type: Dict[str, str]
+            self.remote_to_local = {}  # type: Dict[str, str]
             return
 
         build_dirs = sorted(filter(_DirEntryIsDir, os.listdir(out_dir)),
