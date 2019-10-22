@@ -37,7 +37,7 @@ from .messages import \
     XrefSearchRequest, \
     XrefSearchResult, \
     XrefSingleMatch
-from .paths import GetSourceRoot
+from .paths import GetSourceRoot, PathTransformer
 from .compat import StringFromBytes
 from .language_utils import SymbolSuffixMatcher
 
@@ -51,7 +51,7 @@ else:
 
 # For type checking. Not needed at runtime.
 try:
-    from typing import List, Optional, Dict, Union, Set
+    from typing import List, Optional, Dict, Union, Set, Tuple
 except ImportError:
     pass
 
@@ -76,7 +76,6 @@ class NotFoundError(Exception):
 
 class CsFile(object):
     """Represents a source file known to CodeSearch."""
-
     def __init__(self, cs, file_info):
         # type: (CodeSearch, FileInfo) -> None
         assert isinstance(cs, CodeSearch)
@@ -271,7 +270,6 @@ class XrefNode(object):
   XrefNode.FromSignature() doesn't have anything interesting in the |filespec|
   and |single_match| members other than the signature.
   """
-
     def __init__(self, cs, single_match, filespec=None, parent=None):
         # type: (CodeSearch, XrefSingleMatch, Optional[FileSpec], Optional[XrefNode]) -> None  # noqa: E501
         """Constructs an XrefNode.
@@ -589,12 +587,25 @@ class XrefNode(object):
 class CodeSearch(object):
     class Stats(object):
         """Used internally to track how many requests are being made."""
-
         def __init__(self):
             self.cache_hits = 0  # type: int
 
             # cache_misses is also the number of network requests made.
             self.cache_misses = 0  # type: int
+
+    # Mapping of output directories to indexed directories. Key is the local
+    # output directory in Posix form (i.e. with '/' for separators). The value
+    # is the remote mapping.
+    #
+    # Each element of the array is a tuple where the first element is a regex
+    # and the second element is the replacement.
+    DEFAULT_OUTPUT_DIR_MAPPING = [
+        (r"/out/[wW]in[^/]*/", "/out/win-Debug/"),
+        (r"/out/android[^/]*/", "/out/android-Debug/"),
+        (r"/out/chromeos[^/]*/", "/out/chromeos-Debug/"),
+        (r"/out/cros[^/]*/", "/out/chromeos-Debug/"),
+        (r"/out/[^/]*/", "/out/Debug/"), (r'/out[^/]*/[^/]*/', "/out/Debug/")
+    ]  # type: List[Tuple[str,str]]
 
     def __init__(
             self,
@@ -607,8 +618,8 @@ class CodeSearch(object):
             codesearch_host='https://cs.chromium.org',  # type: str
             request_timeout_in_seconds=10,  # type: int
             user_agent_string='Python-CodeSearch-Client '
-            '(https://github.com/chromium/codesearch-py)'  # type: str
-    ):
+            '(https://github.com/chromium/codesearch-py)',  # type: str
+            output_dir_mapping=DEFAULT_OUTPUT_DIR_MAPPING):
         # type: (...) -> None
         """Initialize a CodeSearch object.
 
@@ -661,6 +672,11 @@ class CodeSearch(object):
         request_timeout_in_seconds -- Timeout to be applied to requests made to
             the server.
 
+        output_dir_mapping -- Generated file have relative paths that look like
+            'src/out/foo/gen/bar'. The mapping here represents transforms that
+            should be applied to local paths to determine the corresponding
+            remote (indexed) path.
+
     In general, you only need to set the source_root or a_path_inside_source_dir
     in order to construct a functional CodeSearch object.
 
@@ -695,6 +711,10 @@ class CodeSearch(object):
         # empty, but will be populated with the latest revision we know of.
         self.gob_revision = ''  # type: str
 
+        self.output_dir_mapping = output_dir_mapping
+        self.path_transformer = PathTransformer(self.source_root,
+                                                output_dir_mapping)
+
         if should_cache:
             self.file_cache = FileCache(
                 cache_dir=cache_dir,
@@ -708,6 +728,16 @@ class CodeSearch(object):
         # type: () -> logging.Logger
         return self.logger
 
+    def GetLocalPath(self, remote_path):
+        # type: (str) -> str
+        '''Given a remote (indexed) path, returns the corresponding local path.'''
+        return self.path_transformer.RemoteToLocal(remote_path)
+
+    def GetRemotePath(self, local_path):
+        # type: (str) -> str
+        '''Given a local path, returns the corresponding remote (indexed) path.'''
+        return self.path_transformer.LocalToRemote(local_path)
+
     def GetFileSpec(self, path=None):
         # type: (Union[str,FileSpec,None]) -> FileSpec
         if path is None:
@@ -716,9 +746,8 @@ class CodeSearch(object):
         if isinstance(path, FileSpec):
             return path
 
-        relpath = os.path.relpath(os.path.abspath(path),
-                                  self.source_root).replace('\\', '/')
-        return FileSpec(name=relpath, package_name=self.package_name)
+        return FileSpec(name=self.GetRemotePath(path),
+                        package_name=self.package_name)
 
     def GetFileSpecFromSignature(self, signature):
         # type: (str) -> FileSpec

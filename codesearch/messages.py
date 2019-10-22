@@ -71,7 +71,6 @@ def AttemptToFixupInvalidUtf8(s):
     The response from the server is not guaranteed to be valid UTF-8.  This
     function attempts to recover incorrect UTF-8. We may still run into issues
     due to a botched recovery, but this response is already doomed."""
-
     def FixupByteArray(s):
         return s.decode(encoding='utf-8', errors='replace')
 
