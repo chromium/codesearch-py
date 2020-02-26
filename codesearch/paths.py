@@ -27,13 +27,25 @@ def GetPackageRelativePath(filename):
     return os.path.relpath(filename, GetSourceRoot(filename)).replace('\\', '/')
 
 
+def IsChromiumRoot(path):
+    """Returns True if |path| exists and is the root of the Chromium source
+    tree. The root of the Chromium tree is the directory above 'src'. I.e.
+    '<root_path>/src/.gn' is the top level .gn file."""
+    paths_to_check = ['.gn', 'chrome', 'content', 'net']
+    return all(
+        os.path.exists(os.path.join(path, 'src', p)) for p in paths_to_check)
+
+
 def GetSourceRoot(filename):
     """Try to determine the root of the package which contains |filename|.
 
-  The current heuristic attempts to determine the root of the Chromium source
-  tree by searching up the directory hierarchy until we find a directory
-  containing src/.gn.
-  """
+Root of the package for Chromium is the directory *above* src. I.e.
+<root_path>/src/.gn is the top level .gn file.
+
+The current heuristic attempts to determine the root of the Chromium source
+tree by searching up the directory hierarchy until we find a directory
+containing src/.gn.
+"""
 
     # If filename is not absolute, then we are going to assume that it is
     # relative to the current directory.
@@ -43,8 +55,7 @@ def GetSourceRoot(filename):
         raise NoSourceRootError('File not found: {}'.format(filename))
     source_root = os.path.dirname(filename)
     while True:
-        gnfile = os.path.join(source_root, 'src', '.gn')
-        if os.path.exists(gnfile):
+        if IsChromiumRoot(source_root):
             return source_root
 
         new_package_root = os.path.dirname(source_root)
@@ -59,6 +70,17 @@ DEFAULT_REMOTE_OUT = '/out/Debug/'
 class PathTransformer(object):
     def __init__(self, source_root, mappings):
         # type: (PathTransformer, str, List[Tuple[str,str]]) -> None
+        """Initialize a PathTransformer.
+
+        |source_root| is the root of the Chromium source tree.
+
+        |mappings| is an ordered list of tuples where the each tuple consists of
+        a regex and a string. The regex is one that matches a path of the form
+        "/out/foo/" (note the leading and trailing '/'). The string is the
+        target path also of the form "/out/foo/". Each tuple is used to map a
+        localoutput directory to one that is understood by the CodeSearch
+        backend.
+        """
 
         out_dir = os.path.join(source_root, 'src', 'out')
 
@@ -110,20 +132,24 @@ class PathTransformer(object):
                                      start=self.source_root).replace('\\', '/')
 
         out = source_rel
-        for (k, v) in self.local_to_remote.items():
-            out = out.replace(k, v, 1)
+        for (local_fragment, remote_fragment) in self.local_to_remote.items():
+            out = out.replace(local_fragment, remote_fragment, 1)
 
         return out
 
     def RemoteToLocal(self, source):
         # type: (str) -> str
 
+        # This is the only case where this can work.
+        assert source.startswith('src/')
+
         remote = source
         if '/out/' in remote:
             found = False
-            for (k, v) in self.remote_to_local.items():
-                if k in remote:
-                    remote = remote.replace(k, v)
+            for (remote_fragment,
+                 local_fragment) in self.remote_to_local.items():
+                if remote_fragment in remote:
+                    remote = remote.replace(remote_fragment, local_fragment)
                     found = True
 
             if not found and DEFAULT_REMOTE_OUT in self.remote_to_local:

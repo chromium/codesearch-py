@@ -94,7 +94,7 @@ class CsFile(object):
 
     def Path(self):
         # type: () -> str
-        """Return the path to the file relative to the source directory."""
+        """Return the path to the file relative to the source root."""
         return self.file_info.name
 
     def Text(self, text_range):
